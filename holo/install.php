@@ -818,8 +818,8 @@ mysql_query("INSERT DELAYED INTO `cms_banners` (`id`, `text`, `banner`, `url`, `
 		mysql_query("ALTER TABLE `users` ADD `visibility` INT( 1 ) NOT NULL DEFAULT '1' AFTER `lastgift` ;");
 		mysql_query("ALTER TABLE `users` ADD `screen` VARCHAR( 4 ) NULL DEFAULT 'wide' AFTER `online` ;");
 		mysql_query("ALTER TABLE `users` ADD `rea` VARCHAR( 8 ) NULL DEFAULT 'enabled' AFTER `screen` ;");
-		
-
+		mysql_query("ALTER TABLE `soundmachine_songs` ADD `cms_current` INT( 1 ) NULL DEFAULT '0' AFTER `burnt` ;");
+		mysql_query("ALTER TABLE `soundmachine_songs` ADD `cms_owner` INT( 100 ) NULL AFTER `cms_current` ;");
 
 		echo "<strong>done!</strong></p>\n";
 		echo "<p>The tables have been created, truncated and modified where needed, and required data has been inserted. Your site is technically ready for use now, but let's take a moment to set up an administrator account for you first.</p>";
