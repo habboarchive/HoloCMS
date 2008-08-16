@@ -133,7 +133,7 @@ $failure = false;
 
 		$password = sha1($password.strtolower($name));
 
-		mysql_query("INSERT INTO users (name,password,email,birth,figure,sex,rank,hbirth,ipaddress_last,postcount,tickets,credits,lastvisit,screen,rea,language) VALUES ('".$name."','".$password."','".$email."','".$dob."','".$figure."','".$gender."','1','".$date_normal."','".$remote_ip."','0','100','".$scredits."','".$date_full."','wide','enabled','en')") or die(mysql_error());
+		mysql_query("INSERT INTO users (name,password,email,birth,figure,sex,rank,hbirth,ipaddress_last,postcount,tickets,credits,lastvisit,screen,rea) VALUES ('".$name."','".$password."','".$email."','".$dob."','".$figure."','".$gender."','1','".$date_normal."','".$remote_ip."','0','100','".$scredits."','".$date_full."','wide','enabled')") or die(mysql_error());
 
 		$check = mysql_query("SELECT id FROM users WHERE name = '".$name."' ORDER BY id ASC LIMIT 1") or die(mysql_error());
 		$row = mysql_fetch_assoc($check);

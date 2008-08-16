@@ -13,11 +13,12 @@ include('../core.php');
 include('../includes/session.php');
 
 $ownerid = $_POST['ownerId'];
+$widgetid = $_POST['widgetId'];
 $message = stripslashes(mysql_real_escape_string(htmlspecialchars($_POST['message'])));
 $sql = mysql_query("SELECT NOW()");
 $date = mysql_result($sql, 0);
 
-mysql_query("INSERT INTO cms_guestbook (userid,message,time,type,type_id) VALUES ('".$my_id."','".$message."','".$date."','home','".$ownerid."')");
+mysql_query("INSERT INTO cms_guestbook (message,time,widget_id,userid) VALUES ('".$message."','".$date."','".$widgetid."','".$my_id."')");
 
 $row = mysql_fetch_assoc(mysql_query("SELECT * FROM cms_guestbook WHERE userid = '".$my_id."' ORDER BY id DESC LIMIT 1"));
 $userrow = mysql_fetch_assoc(mysql_query("SELECT * FROM users WHERE id = '".$row['userid']."'"));

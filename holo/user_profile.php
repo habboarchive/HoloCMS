@@ -203,7 +203,8 @@ Event.observe(\"".$type."-".$row[0]."-edit\", \"click\", function(e) { openEditM
 		case 3: $subtype = "RoomsWidget"; break;
 		case 4: $subtype = "GuestbookWidget"; break;
 		case 5: $subtype = "FriendsWidget"; break;
-		case 6: $subtype = "TraxPlayerWidget";
+		case 6: $subtype = "TraxPlayerWidget"; break;
+		case 7: $subtype = "HighScoresWidget";
 		}
 
 		if($subtype == "GroupsWidget"){
@@ -500,15 +501,20 @@ if($userdata['id'] == $my_id){
 </div>
 <?php 
 	} elseif($subtype == "GuestbookWidget"){
-	$sql = mysql_query("SELECT * FROM cms_guestbook WHERE type = 'home' AND type_id = '".$user_row['id']."' ORDER BY id DESC");
+	$sql = mysql_query("SELECT * FROM cms_guestbook WHERE widget_id = '".$row['0']."' ORDER BY id DESC");
 	$count = mysql_num_rows($sql);
+	if($row['10'] == "0"){;
+		$status = "public";
+	}else{
+		$status = "private";
+	}
 	?>
 	<div class="movable widget GuestbookWidget" id="widget-<?php echo $row['0']; ?>" style=" left: <?php echo $row['2']; ?>px; top: <?php echo $row['3']; ?>px; z-index: <?php echo $row['4']; ?>;">
 <div class="w_skin_<?php echo $row['6']; ?>">
 	<div class="widget-corner" id="widget-<?php echo $row['0']; ?>-handle">
 		<div class="widget-headline"><h3>
 		<?php echo $edit; ?>
-		<span class="header-left">&nbsp;</span><span class="header-middle">My Guestbook(<span id="guestbook-size"><?php echo $count; ?></span>) <span id="guestbook-type" class="public"><img src="./images/groups/status_exclusive.gif" title="Friends only" alt="Friends only"/></span></span><span class="header-right">&nbsp;</span></h3>
+		<span class="header-left">&nbsp;</span><span class="header-middle">My Guestbook(<span id="guestbook-size"><?php echo $count; ?></span>) <span id="guestbook-type" class="<?php echo $status; ?>"><img src="./web-gallery/images/groups/status_exclusive.gif" title="Friends only" alt="Friends only"/></span></span><span class="header-right">&nbsp;</span></h3>
 		</div>	
 	</div>
 	<div class="widget-body">
@@ -557,10 +563,10 @@ if($userdata['id'] == $my_id){
 <?php } ?>
 <script type="text/javascript">	
 	document.observe("dom:loaded", function() {
-		var gb81481 = new GuestbookWidget('17570', '<?php echo $row['0']; ?>', 500);
+		var gb<?php echo $row['0']; ?> = new GuestbookWidget('17570', '<?php echo $row['0']; ?>', 500);
 		var editMenuSection = $('guestbook-privacy-options');
 		if (editMenuSection) {
-			gb81481.updateOptionsList('public');
+			gb<?php echo $row['0']; ?>.updateOptionsList('public');
 		}
 	});
 </script>
@@ -571,6 +577,42 @@ if($userdata['id'] == $my_id){
 </div>
 <?php
 	} elseif($subtype == "HighScoresWidget"){
+	?>
+<div class="movable widget HighScoresWidget" id="widget-<?php echo $row['0']; ?>" style=" left: <?php echo $row['2']; ?>px; top: <?php echo $row['3']; ?>px; z-index: <?php echo $row['4']; ?>;">
+<div class="w_skin_<?php echo $row['6']; ?>">
+	<div class="widget-corner" id="widget-<?php echo $row['0']; ?>-handle">
+		<div class="widget-headline"><h3><?php echo $edit; ?><span class="header-left">&nbsp;</span><span class="header-middle">HIGH SCORES</span><span class="header-right">&nbsp;</span></h3>
+		</div>	
+	</div>
+	<div class="widget-body">
+		<div class="widget-content">
+	<?php
+	$bbsql = mysql_query("SELECT * FROM users WHERE id = '".$user_row['id']."' LIMIT 1");
+	$bbrow = mysql_fetch_assoc($bbsql);
+	if($bbrow['bb_playedgames'] == "0"){
+		echo "You have not played any games yet.";
+	}else{ ?>
+	<table>
+			<tr colspan="2">
+				<th>Battle Ball</a></th>
+			</tr>
+			<tr>
+				<td>Games played</td>
+				<td><?php echo $bbrow['bb_playedgames']; ?></td>
+			</tr>
+
+			<tr>
+				<td>Total score</td>
+				<td><?php echo $bbrow['bb_totalpoints']; ?></td>
+			</tr>
+	</table>
+	<?php } ?>
+		<div class="clear"></div>
+		</div>
+	</div>
+</div>
+</div>
+	<?php
 	} elseif($subtype == "FriendsWidget"){
 	$sql1 = mysql_query("SELECT * FROM messenger_friendships WHERE userid = '".$user_row['id']."'");
 	$sql2 = mysql_query("SELECT * FROM messenger_friendships WHERE friendid = '".$user_row['id']."'");
@@ -955,7 +997,7 @@ document.observe("dom:loaded", initDraggableDialogs);
 				</div>
 				<div id="edit-menu-gb-availability">
 					<select id="guestbook-privacy-options">
-						<!-- <option value="private">Private</option> -->
+						<option value="private">Private</option>
 						<option value="public">Public</option>
 					</select>
 				</div>

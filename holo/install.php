@@ -451,14 +451,12 @@ if(empty($_POST['path'])){ $_POST['path'] = "http://www.mysite.com/cms/"; }
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci COMMENT='HoloCMS';");
 		mysql_query("CREATE TABLE `cms_guestbook` (
   `id` int(10) NOT NULL auto_increment,
-  `userid` int(10) default '0',
   `message` varchar(1000) default NULL,
   `time` varchar(1000) default NULL,
-  `type` varchar(10) default 'home',
-  `type_id` int(10) default NULL,
-  `groupid` int(10) default '0',
+  `widget_id` int(10) default NULL,
+  `userid` int(10) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;");
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;");
 		
 		echo "<strong>done!</strong><br />\n";
 		echo "Inserting data and building default content..";
@@ -820,6 +818,7 @@ mysql_query("INSERT DELAYED INTO `cms_banners` (`id`, `text`, `banner`, `url`, `
 		mysql_query("ALTER TABLE `users` ADD `rea` VARCHAR( 8 ) NULL DEFAULT 'enabled' AFTER `screen` ;");
 		mysql_query("ALTER TABLE `soundmachine_songs` ADD `cms_current` INT( 1 ) NULL DEFAULT '0' AFTER `burnt` ;");
 		mysql_query("ALTER TABLE `soundmachine_songs` ADD `cms_owner` INT( 100 ) NULL AFTER `cms_current` ;");
+		mysql_query("ALTER TABLE `cms_homes_stickers` ADD `var` INT( 100 ) NULL AFTER `groupid` ;");
 
 		echo "<strong>done!</strong></p>\n";
 		echo "<p>The tables have been created, truncated and modified where needed, and required data has been inserted. Your site is technically ready for use now, but let's take a moment to set up an administrator account for you first.</p>";

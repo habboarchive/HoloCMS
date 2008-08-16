@@ -196,10 +196,10 @@ $body_id = "home";
 	    			<a href="forum.php">Discussion Board</a>
                 <?php } ?>
                 <?php if($pageid == "5"){ ?>
-                <li class="selected">
+                <li class="selected last">
     				Tags
                 <?php } else { ?>
-                <li class=" ">
+                <li class=" last">
 	    			<a href="tags.php">Tags</a>
                 <?php } ?>
 				<?php /* if($pageid == "applications"){ ?>

@@ -523,10 +523,12 @@ $type = $_POST['type'];
 			$placed_friendswidget = mysql_num_rows($check);
 			$check = mysql_query("SELECT id FROM cms_homes_stickers WHERE userid = '".$my_id."' AND groupid = '-1' AND type = '2' AND subtype = '6' LIMIT 1") or die(mysql_error());
 			$placed_traxwidget = mysql_num_rows($check);
+			$check = mysql_query("SELECT id FROM cms_homes_stickers WHERE userid = '".$my_id."' AND groupid = '-1' AND type = '2' AND subtype = '7' LIMIT 1") or die(mysql_error());
+			$placed_scoreswidget = mysql_num_rows($check);
 
 			echo "<ul id=\"inventory-item-list\">";
-	/*<li id=\"inventory-item-p-X\"
-		title=\"High scores widget\" class=\"webstore-widget-item webstore-widget-disabled\">
+	echo "<li id=\"inventory-item-p-7\"
+		title=\"High scores widget\" class=\"webstore-widget-item"; if($placed_scoreswidget > 0){ echo " webstore-widget-disabled"; } echo "\">
 		<div class=\"webstore-item-preview w_highscoreswidget_pre\" >
 			<div class=\"webstore-item-mask\">
 
@@ -536,8 +538,8 @@ $type = $_POST['type'];
 			<h3>High scores widget</h3>
 			<p>Display your high scores</p>
 		</div>
-	</li>"; */
-	echo "<li id=\"inventory-item-p-2\"
+	</li>
+	<li id=\"inventory-item-p-2\"
 		title=\"My Groups\" class=\"webstore-widget-item"; if($placed_groupwidget > 0){ echo " webstore-widget-disabled"; } echo "\">
 		<div class=\"webstore-item-preview w_groupswidget_pre\" >
 			<div class=\"webstore-item-mask\">

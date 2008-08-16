@@ -42,6 +42,7 @@ if(!empty($widgetid)){
     elseif($widgetid == "4" && $linked < 1){ $widget = "4"; }
     elseif($widgetid == "5" && $linked < 1){ $widget = "5"; }
     elseif($widgetid == "6" && $linked < 1){ $widget = "6"; }
+    elseif($widgetid == "7" && $linked < 1){ $widget = "7"; }
     else { exit; }
 
     if($widget == "2" && $linked < 1){
@@ -340,7 +341,7 @@ Event.observe(\"widget-".$saved_id."-edit\", \"click\", function(e) { openEditMe
 <script language=\"JavaScript\" type=\"text/javascript\">
 Event.observe(\"widget-".$saved_id."-edit\", \"click\", function(e) { openEditMenu(e, ".$saved_id.", \"widget\", \"widget-".$saved_id."-edit\"); }, false);
 </script>\n";
-	$sql = mysql_query("SELECT * FROM cms_guestbook WHERE type = 'home' AND type_id = '".$my_id."' ORDER BY id DESC");
+	$sql = mysql_query("SELECT * FROM cms_guestbook WHERE widget_id = '".$saved_id."' ORDER BY id DESC");
 	$count = mysql_num_rows($sql);
 	?>
 	<div class="movable widget GuestbookWidget" id="widget-<?php echo $saved_id ?>\" style=\" left: 20px; top: 20px; z-index: <?php echo $zindex; ?>;">
@@ -404,7 +405,7 @@ Event.observe(\"widget-".$saved_id."-edit\", \"click\", function(e) { openEditMe
 </div>
 <?php
     } elseif($widget == "5" && $linked < 1){
-		mysql_query("INSERT INTO cms_homes_stickers (userid,groupid,type,subtype,skin,x,y,z) VALUES ('".$my_id."','-1','2','5','defaultskin','20','20','".$zindex."')") or die(mysql_error());
+		mysql_query("INSERT INTO cms_homes_stickers (userid,groupid,type,subtype,skin,x,y,z,var) VALUES ('".$my_id."','-1','2','5','defaultskin','20','20','".$zindex."','0')") or die(mysql_error());
 
         $ret_sql = mysql_query("SELECT id FROM cms_homes_stickers WHERE userid = '".$my_id."' AND groupid = '-1' AND type = '2' ORDER BY id DESC LIMIT 1") or die(mysql_error());
         $ret_row = mysql_fetch_assoc($ret_sql);
@@ -563,6 +564,53 @@ You do not have a selected Trax song.
 </div>
 </div>
 	<?php
+    } elseif($widget == "7" && $linked < 1){
+	mysql_query("INSERT INTO cms_homes_stickers (userid,groupid,type,subtype,skin,x,y,z) VALUES ('".$my_id."','-1','2','7','defaultskin','20','20','".$zindex."')") or die(mysql_error());
+
+        $ret_sql = mysql_query("SELECT id FROM cms_homes_stickers WHERE userid = '".$my_id."' AND groupid = '-1' AND type = '2' ORDER BY id DESC LIMIT 1") or die(mysql_error());
+        $ret_row = mysql_fetch_assoc($ret_sql);
+        $saved_id = $ret_row['id'];
+
+        $edit = "\n<img src=\"./web-gallery/images/myhabbo/icon_edit.gif\" width=\"19\" height=\"18\" class=\"edit-button\" id=\"widget-" . $saved_id . "-edit\" />
+<script language=\"JavaScript\" type=\"text/javascript\">
+Event.observe(\"widget-".$saved_id."-edit\", \"click\", function(e) { openEditMenu(e, ".$saved_id.", \"widget\", \"widget-".$saved_id."-edit\"); }, false);
+</script>\n";
+	?>
+<div class="movable widget HighScoresWidget" id="widget-<?php echo $saved_id ?>\" style=\" left: 20px; top: 20px; z-index: <?php echo $zindex; ?>;">
+<div class="w_skin_defaultskin">
+	<div class="widget-corner" id="widget-<?php echo $saved_id ?>-handle">
+		<div class="widget-headline"><h3><?php echo $edit; ?><span class="header-left">&nbsp;</span><span class="header-middle">HIGH SCORES</span><span class="header-right">&nbsp;</span></h3>
+		</div>	
+	</div>
+	<div class="widget-body">
+		<div class="widget-content">
+	<?php
+	$bbsql = mysql_query("SELECT * FROM users WHERE id = '".$my_id."' LIMIT 1");
+	$bbrow = mysql_fetch_assoc($bbsql);
+	if($bbrow['bb_playedgames'] == "0"){
+		echo "You have not played any games yet.";
+	}else{ ?>
+	<table>
+			<tr colspan="2">
+				<th>Battle Ball</a></th>
+			</tr>
+			<tr>
+				<td>Games played</td>
+				<td><?php echo $bbrow['bb_playedgames']; ?></td>
+			</tr>
+
+			<tr>
+				<td>Total score</td>
+				<td><?php echo $bbrow['bb_totalpoints']; ?></td>
+			</tr>
+	</table>
+	<?php } ?>
+		<div class="clear"></div>
+		</div>
+	</div>
+</div>
+</div>
+<?php 
 	}
 } else { exit; }
 
