@@ -1480,8 +1480,7 @@ div.admin-group { background-position: 100% -528px; }
 #quickmenu-groups li a.group-room, #promogroups-habblet-list-container a.group-room { background-position: 0 -800px; width: 19px; }
 #promogroups-habblet-list-container a.group-room { margin-top: 15px; width: 24px; }
 
-#qtab-container-myrooms p.create-room, #qtab-container-mygroups p.create-group, 
-#qtab-container-myfriends p.manage-friends {
+#qtab-container-myrooms p.create-room, #qtab-container-mygroups p.create-group {
 	margin: 0;
     padding: 4px 14px 3px 14px;
     border-top: 1px dashed #777777;
@@ -1701,7 +1700,7 @@ input.invitation-input {
 }
 
 #purse-habblet li.icon-purse {
-	background-image: url(/images/purse/purse_icon.gif);
+	background-image: url(../../images/purse/purse_icon.gif);
     background-repeat: no-repeat;
     background-position: 22px 9px;
     padding: 10px 0 15px 60px;
@@ -2206,85 +2205,6 @@ div.frank-stop {
 	font-weight: bold;
 	font-size: 12px;
 }
-
-
-div.best-exps-list-container {
-    width: 460px;
-	height: 185px;
-	overflow: auto;
-}
-
-div.best-exps-no-exps {
-	text-align: center;
-	line-height:160px;
-}
-
-table.best-exps-scores .own-score {
-	background-color: #FFDC0D;
-}
-
-tr.best-exps-types td.selected {
-	font-weight: bold;
-}
-
-tr.best-exps-types td.selected a {
-	color: black;
-	text-decoration: none;
-}
-
-table.best-exps-offsets {
-	height: 30px;
-}
-
-table.best-exps-scores {
-	border: 0;
-	border-spacing: 0;
-	border-collapse: collapse;
-	width: 440px;
-}
-
-table.best-exps-scores tr.odd {
-	background-color: #efefef;
-}
-
-table.best-exps-scores td, table.highscores-scores th {
-	margin: 0;
-	padding: 2px 8px;
-	text-align: left;
-}
-
-table.best-exps-scores th {
-	color: #999;
-	font-size: 10px;
-	font-weight: normal;
-}
-
-table.best-exps-scores .scores-position {
-	padding-left: 15px;
-	color: #999;
-}
-
-table.best-exps-scores .scores-name {
-	width: 100%;
-	padding-left: 0;
-	padding-right: 0;
-}
-
-table.best-exps-scores .scores-points {
-	text-align: right;
-	padding-right: 15px;
-}
-
-tr.hall-of-fame-games td.selected {
-	font-weight: bold;
-}
-
-tr.hall-of-fame-games td.selected a {
-	color: black;
-	text-decoration: none;
-}
-
-
 
 
 ul.highscores-habblet-games {
@@ -2865,13 +2785,10 @@ div.bubbletip .active-habbo-data-container {
     width: 100%;
     padding-top: 0px;
     margin-top: 0px;
-    position: relative;
 }
 
 #faq-header form.search-box {
     position: absolute;
-    top: 0;
-    left: 206px;    
     display: inline;
 }
 
@@ -2905,7 +2822,8 @@ div.bubbletip .active-habbo-data-container {
 }
 
 #faq-category-list ul.faq span.faq-link:hover  {
-    color: #000;
+    color: #76c7e6;
+	padding-left: 4px;
 }
 
 #faq-category-list ul.faq span.faq-link.selected:hover {
@@ -3525,11 +3443,6 @@ div.hr-body a {
 #current-events .event-date {
 	font-size: 9px;
 	color: #666;
-}
-
-#event-list {
-    overflow: auto;
-    max-height: 200px;
 }
 
 .room-occupancy-1 { background-image: url(../images/rooms/room_icon_1.gif);	}

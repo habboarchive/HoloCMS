@@ -272,7 +272,7 @@ document.observe(\"dom:loaded\", function() {
 <div class=\"w_skin_".$row[6]."\">
 	<div class=\"widget-corner\" id=\"widget-".$row[0]."-handle\">
 		<div class=\"widget-headline\"><h3>" . $edit . "
-<span class=\"header-left\">&nbsp;</span><span class=\"header-middle\">My ".$shortname."</span><span class=\"header-right\">&nbsp;</span></h3>
+<span class=\"header-left\">&nbsp;</span><span class=\"header-middle\">MY ".strtoupper($shortname)."</span><span class=\"header-right\">&nbsp;</span></h3>
 		</div>
 	</div>
 	<div class=\"widget-body\">
@@ -688,7 +688,7 @@ $valid = mysql_num_rows($info);
 <?php echo "<div class=\"w_skin_defaultskin\">
 	<div class=\"widget-corner\" id=\"widget-".$row['id']."-handle\">
 		<div class=\"widget-headline\"><h3>" . $edit . "
-<span class=\"header-left\">&nbsp;</span><span class=\"header-middle\">MY upper($shortname)</span><span class=\"header-right\">&nbsp;</span></h3>
+<span class=\"header-left\">&nbsp;</span><span class=\"header-middle\">MY ".strtoupper($shortname)."</span><span class=\"header-right\">&nbsp;</span></h3>
 		</div>
 	</div>
 	<div class=\"widget-body\">
@@ -966,7 +966,7 @@ Event.observe("trax-select-options", "change", handleTraxplayerTrackChange, fals
 <div id="linktool">
     <div id="linktool-scope">
         <label for="linktool-query-input">Create link:</label>
-        <input type="radio" name="scope" class="linktool-scope" value="1" checked="checked"/><?php echo $shortname; ?>s
+        <input type="radio" name="scope" class="linktool-scope" value="1" checked="checked"/>Habbos
         <input type="radio" name="scope" class="linktool-scope" value="2"/>Rooms
         <input type="radio" name="scope" class="linktool-scope" value="3"/>Groups
     </div>

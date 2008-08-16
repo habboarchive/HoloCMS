@@ -37,7 +37,7 @@ var andSoItBegins = (new Date()).getTime();
 <link rel="stylesheet" href="./web-gallery/v2/styles/buttons.css" type="text/css" />
 <link rel="stylesheet" href="./web-gallery/v2/styles/boxes.css" type="text/css" />
 <link rel="stylesheet" href="./web-gallery/v2/styles/tooltips.css" type="text/css" />
-<link rel="alternate" type="application/rss+xml" title="<?php echo $; ?> News RSS" href="./rss.php"/>
+<link rel="alternate" type="application/rss+xml" title="<?php echo $sitename; ?> News RSS" href="./rss.php"/>
 
 <script type="text/javascript">
 document.habboLoggedIn = true;
