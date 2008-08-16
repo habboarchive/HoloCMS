@@ -1,7 +1,7 @@
 <?php
 include('../core.php');
 $id = $_GET['songId'];
-$mysql = mysql_query("SELECT * FROM soundmachine_songs WHERE title = 'Rainforest' LIMIT 1");
+$mysql = mysql_query("SELECT * FROM soundmachine_songs WHERE id = '".$id."' LIMIT 1");
 $mysql = mysql_fetch_assoc($mysql);
 $song = $mysql['data'];
 $song = substr($song, 0, -1);
