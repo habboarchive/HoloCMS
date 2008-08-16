@@ -41,6 +41,7 @@ if(!empty($widgetid)){
     elseif($widgetid == "3" && $linked < 1){ $widget = "3"; }
     elseif($widgetid == "4" && $linked < 1){ $widget = "4"; }
     elseif($widgetid == "5" && $linked < 1){ $widget = "5"; }
+    elseif($widgetid == "6" && $linked < 1){ $widget = "6"; }
     else { exit; }
 
     if($widget == "2" && $linked < 1){
@@ -339,7 +340,7 @@ Event.observe(\"widget-".$saved_id."-edit\", \"click\", function(e) { openEditMe
 <script language=\"JavaScript\" type=\"text/javascript\">
 Event.observe(\"widget-".$saved_id."-edit\", \"click\", function(e) { openEditMenu(e, ".$saved_id.", \"widget\", \"widget-".$saved_id."-edit\"); }, false);
 </script>\n";
-	$sql = mysql_query("SELECT * FROM cms_guestbook WHERE type = 'home' AND type_id = '".$user_row['id']."' ORDER BY id DESC");
+	$sql = mysql_query("SELECT * FROM cms_guestbook WHERE type = 'home' AND type_id = '".$my_id."' ORDER BY id DESC");
 	$count = mysql_num_rows($sql);
 	?>
 	<div class="movable widget GuestbookWidget" id="widget-<?php echo $saved_id ?>\" style=\" left: 20px; top: 20px; z-index: <?php echo $zindex; ?>;">
@@ -413,8 +414,8 @@ Event.observe(\"widget-".$saved_id."-edit\", \"click\", function(e) { openEditMe
 <script language=\"JavaScript\" type=\"text/javascript\">
 Event.observe(\"widget-".$saved_id."-edit\", \"click\", function(e) { openEditMenu(e, ".$saved_id.", \"widget\", \"widget-".$saved_id."-edit\"); }, false);
 </script>\n";
-	$sql1 = mysql_query("SELECT * FROM messenger_friendships WHERE userid = '".$user_row['id']."'");
-	$sql2 = mysql_query("SELECT * FROM messenger_friendships WHERE friendid = '".$user_row['id']."'");
+	$sql1 = mysql_query("SELECT * FROM messenger_friendships WHERE userid = '".$my_id."'");
+	$sql2 = mysql_query("SELECT * FROM messenger_friendships WHERE friendid = '".$my_id."'");
 	$count = mysql_num_rows($sql1) + mysql_num_rows($sql2);
 			echo "<div class=\"movable widget FriendsWidget\" id=\"widget-".$saved_id."\" style=\" left: 20px; top: 20px; z-index: ".$zindex.";\">
 <div class=\"w_skin_defaultskin\">
@@ -444,9 +445,9 @@ while($row = mysql_fetch_assoc($sql1)){
 	if($found > 0){
 		$userrow = mysql_fetch_assoc($userrow);
 
-		echo "<li id=\"avatar-list-".$user_row['id']."-".$userrow['id']."\" title=\"".$userrow['name']."\">
+		echo "<li id=\"avatar-list-".$my_id."-".$userrow['id']."\" title=\"".$userrow['name']."\">
 <div class=\"avatar-list-open\">
-	<a href=\"#\" id=\"avatar-list-open-link-".$user_row['id']."-".$userrow['id']."\" class=\"avatar-list-open-link\"></a>
+	<a href=\"#\" id=\"avatar-list-open-link-".$my_id."-".$userrow['id']."\" class=\"avatar-list-open-link\"></a>
 </div>
 <div class=\"avatar-list-avatar\">
 	<img src=\"http://www.habbo.co.uk/habbo-imaging/avatarimage?figure=".$userrow['figure']."&size=s&direction=2&head_direction=2&gesture=sml\" alt=\"\" />
@@ -469,9 +470,9 @@ while($row = mysql_fetch_assoc($sql2)){
 	if($found > 0){
 		$userrow = mysql_fetch_assoc($userrow);
 
-		echo "<li id=\"avatar-list-".$user_row['id']."-".$userrow['id']."\" title=\"".$userrow['name']."\">
+		echo "<li id=\"avatar-list-".$my_id."-".$userrow['id']."\" title=\"".$userrow['name']."\">
 <div class=\"avatar-list-open\">
-	<a href=\"#\" id=\"avatar-list-open-link-".$user_row['id']."-".$userrow['id']."\" class=\"avatar-list-open-link\"></a>
+	<a href=\"#\" id=\"avatar-list-open-link-".$my_id."-".$userrow['id']."\" class=\"avatar-list-open-link\"></a>
 </div>
 <div class=\"avatar-list-avatar\">
 	<img src=\"http://www.habbo.co.uk/habbo-imaging/avatarimage?figure=".$userrow['figure']."&size=s&direction=2&head_direction=2&gesture=sml\" alt=\"\" />
@@ -511,6 +512,57 @@ document.observe(\"dom:loaded\", function() {
 	</div>
 </div>
 </div>";
+    } elseif($widget == "6" && $linked < 1){ 
+	mysql_query("INSERT INTO cms_homes_stickers (userid,groupid,type,subtype,skin,x,y,z) VALUES ('".$my_id."','-1','2','6','defaultskin','20','20','".$zindex."')") or die(mysql_error());
+
+        $ret_sql = mysql_query("SELECT id FROM cms_homes_stickers WHERE userid = '".$my_id."' AND groupid = '-1' AND type = '2' ORDER BY id DESC LIMIT 1") or die(mysql_error());
+        $ret_row = mysql_fetch_assoc($ret_sql);
+        $saved_id = $ret_row['id'];
+
+        $edit = "\n<img src=\"./web-gallery/images/myhabbo/icon_edit.gif\" width=\"19\" height=\"18\" class=\"edit-button\" id=\"widget-" . $saved_id . "-edit\" />
+<script language=\"JavaScript\" type=\"text/javascript\">
+Event.observe(\"widget-".$saved_id."-edit\", \"click\", function(e) { openEditMenu(e, ".$saved_id.", \"widget\", \"widget-".$saved_id."-edit\"); }, false);
+</script>\n";
+	?>
+			<div class="movable widget TraxPlayerWidget" id="widget-<?php echo $saved_id ?>\" style=\" left: 20px; top: 20px; z-index: <?php echo $zindex; ?>;">
+<div class="w_skin_defaultskin">
+	<div class="widget-corner" id="widget-<?php echo $saved_id ?>-handle">
+		<div class="widget-headline"><h3><?php echo $edit; ?><span class="header-left">&nbsp;</span><span class="header-middle">TRAXPLAYER</span><span class="header-right">&nbsp;</span></h3>
+		</div>	
+	</div>
+	<div class="widget-body">
+		<div class="widget-content">
+<?php 
+$sql1 = mysql_query("SELECT * FROM soundmachine_songs WHERE cms_current = '1' AND cms_owner = '".$my_id."' LIMIT 1");
+$songrow1 = mysql_fetch_assoc($sql); ?>
+<div id="traxplayer-content" style="text-align: center;">
+	<img src="./web-gallery/images/traxplayer/player.png"/>
+</div>
+
+<div id="edit-menu-trax-select-temp" style="display:none">
+    <select id="trax-select-options-temp">
+    <option value="">- Choose song -</option>
+	<?php
+	$mysql = mysql_query("SELECT * FROM furniture WHERE ownerid = '".$my_id."'");
+	$i = 0;
+	while($machinerow = mysql_fetch_assoc($mysql)){
+		$i++;
+		$sql = mysql_query("SELECT * FROM soundmachine_songs WHERE machineid = '".$machinerow['id']."'");
+		$n = 0;
+		while($songrow = mysql_fetch_assoc($sql)){
+			$n++;
+			if($songrow['id'] <> ""){ echo "		<option value=\"".$songrow['id']."\">".trim(nl2br(stripslashes($songrow['title'])))."</option>\n"; }
+		}
+	} ?>
+    </select>
+</div>
+You do not have a selected Trax song.
+		<div class="clear"></div>
+		</div>
+	</div>
+</div>
+</div>
+	<?php
 	}
 } else { exit; }
 

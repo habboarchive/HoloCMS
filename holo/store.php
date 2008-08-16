@@ -521,6 +521,8 @@ $type = $_POST['type'];
 			$placed_guestbookwidget = mysql_num_rows($check);
 			$check = mysql_query("SELECT id FROM cms_homes_stickers WHERE userid = '".$my_id."' AND groupid = '-1' AND type = '2' AND subtype = '5' LIMIT 1") or die(mysql_error());
 			$placed_friendswidget = mysql_num_rows($check);
+			$check = mysql_query("SELECT id FROM cms_homes_stickers WHERE userid = '".$my_id."' AND groupid = '-1' AND type = '2' AND subtype = '6' LIMIT 1") or die(mysql_error());
+			$placed_traxwidget = mysql_num_rows($check);
 
 			echo "<ul id=\"inventory-item-list\">";
 	/*<li id=\"inventory-item-p-X\"
@@ -582,9 +584,9 @@ $type = $_POST['type'];
 			<h3>My Friends</h3>
 			<p>Display all your friends</p>
 		</div>
-	</li>";
-	/*<li id=\"inventory-item-p-X\"
-		title=\"Traxplayer\" class=\"webstore-widget-item webstore-widget-disabled\">
+	</li>
+	<li id=\"inventory-item-p-6\"
+		title=\"Traxplayer\" class=\"webstore-widget-item" ; if($placed_traxwidget > 0){ echo " webstore-widget-disabled"; } echo "\">
 		<div class=\"webstore-item-preview w_traxplayerwidget_pre\" >
 			<div class=\"webstore-item-mask\">
 
@@ -592,9 +594,9 @@ $type = $_POST['type'];
 		</div>
 		<div class=\"webstore-widget-description\">
 			<h3>Traxplayer</h3>
-			<p>Plays your Habbo tunes on your page</p>
+			<p>Plays your ".$shortname." tunes on your page</p>
 		</div>
-	</li>"; */
+	</li>";
 echo "</ul>";
 		}
 	}

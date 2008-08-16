@@ -202,7 +202,8 @@ Event.observe(\"".$type."-".$row[0]."-edit\", \"click\", function(e) { openEditM
 		case 2: $subtype = "GroupsWidget"; break;
 		case 3: $subtype = "RoomsWidget"; break;
 		case 4: $subtype = "GuestbookWidget"; break;
-		case 5: $subtype = "FriendsWidget";
+		case 5: $subtype = "FriendsWidget"; break;
+		case 6: $subtype = "TraxPlayerWidget";
 		}
 
 		if($subtype == "GroupsWidget"){
@@ -669,7 +670,56 @@ document.observe(\"dom:loaded\", function() {
 	</div>
 </div>
 </div>";
-	} elseif($subtype == "TraxPlayerWidget"){
+	} elseif($subtype == "TraxPlayerWidget"){ ?>
+		<div class="movable widget TraxPlayerWidget" id="widget-<?php echo $row['0']; ?>" style=" left: <?php echo $row['2']; ?>px; top: <?php echo $row['3']; ?>px; z-index: <?php echo $row['4']; ?>;">
+<div class="w_skin_<?php echo $row['6']; ?>">
+	<div class="widget-corner" id="widget-<?php echo $row['0']; ?>-handle">
+		<div class="widget-headline"><h3><?php echo $edit; ?><span class="header-left">&nbsp;</span><span class="header-middle">TRAXPLAYER</span><span class="header-right">&nbsp;</span></h3>
+		</div>	
+	</div>
+	<div class="widget-body">
+		<div class="widget-content">
+<?php 
+$sql1 = mysql_query("SELECT * FROM soundmachine_songs WHERE cms_current = '1' AND cms_owner = '".$row['0']."' LIMIT 1");
+$songrow1 = mysql_fetch_assoc($sql);
+if($edit_mode == true){ ?>
+<div id="traxplayer-content" style="text-align: center;">
+	<img src="./web-gallery/images/traxplayer/player.png"/>
+</div>
+
+<div id="edit-menu-trax-select-temp" style="display:none">
+    <select id="trax-select-options-temp">
+    <option value="">- Choose song -</option>
+	<?php
+	$mysql = mysql_query("SELECT * FROM furniture WHERE ownerid = '".$user_row['id']."'");
+	$i = 0;
+	while($machinerow = mysql_fetch_assoc($mysql)){
+		$i++;
+		$sql = mysql_query("SELECT * FROM soundmachine_songs WHERE machineid = '".$machinerow['id']."'");
+		$n = 0;
+		while($songrow = mysql_fetch_assoc($sql)){
+			$n++;
+			if($songrow['id'] <> ""){ echo "		<option value=\"".$songrow['id']."\">".trim(nl2br(stripslashes($songrow['title'])))."</option>\n"; }
+		}
+	} ?>
+    </select>
+
+</div>
+<?php }elseif(mysql_num_rows($sql1) == 0){ ?>
+You do not have a selected Trax song.
+<?php }else{ ?>
+<div id="traxplayer-content" style="text-align:center;"></div>
+<embed type="application/x-shockwave-flash"
+src="<?php echo $path; ?>web-gallery/flash/traxplayer/traxplayer.swf" name="traxplayer" quality="high"
+base="<?php echo $path; ?>web-gallery/flash/traxplayer/" allowscriptaccess="always" menu="false"
+wmode="transparent" flashvars="songUrl=<?php echo $path; ?>myhabbo/trax_song.php?songId=<?php echo $songrow1['cms_current']; ?>&amp;sampleUrl=http://images.habbohotel.com/dcr/hof_furni//mp3/" height="66" width="210" />
+<?php } ?>
+
+		<div class="clear"></div>
+		</div>
+	</div>
+</div>
+</div><?php
 	}
 }
 }
@@ -905,7 +955,7 @@ document.observe("dom:loaded", initDraggableDialogs);
 				</div>
 				<div id="edit-menu-gb-availability">
 					<select id="guestbook-privacy-options">
-						<option value="private">Private</option>
+						<!-- <option value="private">Private</option> -->
 						<option value="public">Public</option>
 					</select>
 				</div>
