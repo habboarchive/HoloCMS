@@ -190,6 +190,12 @@ $starttime = $starttime[1] + $starttime[0];
 			} elseif($p == "alertlist"){
 				$tab = 5;
 				include('alertlist.php');
+			} elseif($p == "massmail"){
+				$tab = 5;
+				include('massmail.php');
+			} elseif($p == "minimail"){
+				$tab = 5;
+				include('minimail.php');
 			} elseif($p == "onlinelist"){
 				$tab = 5;
 				include('onlinelist.php');

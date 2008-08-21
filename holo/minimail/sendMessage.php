@@ -9,6 +9,7 @@
 || # warrenty of any kind. HoloCMS is free software!
 |+===================================================*/
 
+if($bypass1 != "true"){
 include('../core.php');
 include('../includes/session.php');
 
@@ -16,6 +17,7 @@ $messageid = $_POST['messageId'];
 $recipientids = $_POST['recipientIds'];
 $subject = $_POST['subject'];
 $body = $_POST['body'];
+}
 $body = stripslashes(mysql_real_escape_string(htmlspecialchars($body)));
 
 $ids = explode(",", $recipientids);
@@ -51,5 +53,5 @@ while ($elements <> $i){
 $bypass = "true";
 $page = "inbox";
 $message = "Message sent sucessfully.";
-include('loadMessage.php');
+if($bypass1 != "true"){ include('loadMessage.php'); }
 ?>

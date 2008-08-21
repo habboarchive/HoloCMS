@@ -159,6 +159,16 @@ if($hkzone !== true){ header("Location: index.php?throwBack=true"); exit; }
 <a href='./index.php?p=massalert' style='text-decoration:none'>Mass Site/Remote Alert</a>
 </div> 
 
+<div class='menulinkwrap'>&nbsp;
+<img src='./images/item_bullet.gif' border='0' alt='' valign='absmiddle'>&nbsp;
+<a href='./index.php?p=minimail' style='text-decoration:none'>Send minimail</a>
+</div>
+
+<div class='menulinkwrap'>&nbsp;
+<img src='./images/item_bullet.gif' border='0' alt='' valign='absmiddle'>&nbsp;
+<a href='./index.php?p=massmail' style='text-decoration:none'>Mass minimail</a>
+</div> 
+
 </div>
 <br />
 
