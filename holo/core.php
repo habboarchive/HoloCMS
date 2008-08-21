@@ -369,7 +369,7 @@ if(session_is_registered('username')){
 
 // #########################################################################
 // Gift check (noob/welcome stuff)
-
+/*
 $sql = mysql_query("SELECT noob,gift,sort,roomid,lastgift FROM users WHERE id='".$my_id."' LIMIT 1");
 $row = mysql_fetch_assoc($sql);
 if($row['gift'] < 3) {
@@ -381,20 +381,24 @@ if($row['noob'] == 1) {
 }
 }
 // #########################################################################
+*/
+if($enable_status_image == "1"){
+	if($server_on_localhost !== 0 || $ip == "127.0.0.1"){
+		$server = "127.0.0.1";
+	} else {
+		$fip = $ip;
+	}
 
-if($server_on_localhost !== 0 || $ip == "127.0.0.1"){
-	$server = "127.0.0.1";
-} else {
-	$fip = $ip;
-}
+	$fp = @fsockopen($fip, $fport, $errno, $errstr, 1);
 
-$fp = @fsockopen($fip, $fport, $errno, $errstr, 1);
-
-if($fp){
+	if($fp){
+		$online = "online";
+		fclose($fp);
+	} else {
+		$online = "offline";
+	}
+}else{
 	$online = "online";
-	fclose($fp);
-} else {
-	$online = "offline";
 }
 
 // #########################################################################
