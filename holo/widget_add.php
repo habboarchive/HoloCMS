@@ -343,55 +343,20 @@ Event.observe(\"widget-".$saved_id."-edit\", \"click\", function(e) { openEditMe
 <script language=\"JavaScript\" type=\"text/javascript\">
 Event.observe(\"widget-".$saved_id."-edit\", \"click\", function(e) { openEditMenu(e, ".$saved_id.", \"widget\", \"widget-".$saved_id."-edit\"); }, false);
 </script>\n";
-	$sql = mysql_query("SELECT * FROM cms_guestbook WHERE widget_id = '".$saved_id."' ORDER BY id DESC");
-	$count = mysql_num_rows($sql);
 	?>
 	<div class="movable widget GuestbookWidget" id="widget-<?php echo $saved_id ?>\" style=\" left: 20px; top: 20px; z-index: <?php echo $zindex; ?>;">
 <div class="w_skin_defaultskin">
 	<div class="widget-corner" id="widget-<?php echo $saved_id ?>-handle">
 		<div class="widget-headline"><h3>
 		<?php echo $edit; ?>
-		<span class="header-left">&nbsp;</span><span class="header-middle">My Guestbook(<span id="guestbook-size"><?php echo $count; ?></span>) <span id="guestbook-type" class="public"><img src="./images/groups/status_exclusive.gif" title="Friends only" alt="Friends only"/></span></span><span class="header-right">&nbsp;</span></h3>
+		<span class="header-left">&nbsp;</span><span class="header-middle">My Guestbook(<span id="guestbook-size">0</span>) <span id="guestbook-type" class="public"><img src="./images/groups/status_exclusive.gif" title="Friends only" alt="Friends only"/></span></span><span class="header-right">&nbsp;</span></h3>
 		</div>	
 	</div>
 	<div class="widget-body">
 		<div class="widget-content">
 <div id="guestbook-wrapper" class="gb-public">
 <ul class="guestbook-entries" id="guestbook-entry-container">
-	<?php if($count == 0){ ?>
 	<div id="guestbook-empty-notes">This guestbook has no entries.</div>
-	<?php } else { ?>
-			<?php 
-			$i = 0;
-			while ($row1 = mysql_fetch_assoc($sql)) {
-				$i++;
-				$userrow = mysql_fetch_assoc(mysql_query("SELECT * FROM users WHERE id = '".$row1['userid']."' LIMIT 1"));
-				if($my_id == $row1['userid']){
-					$owneronly = "<img src=\"./web-gallery/images/myhabbo/buttons/delete_entry_button.gif\" id=\"gbentry-delete-".$row1['id']."\" class=\"gbentry-delete\" style=\"cursor:pointer\" alt=\"\"/><br/>";
-				} elseif($user_row['id'] == $my_id) {
-					$owneronly = "<img src=\"./web-gallery/images/myhabbo/buttons/delete_entry_button.gif\" id=\"gbentry-delete-".$row1['id']."\" class=\"gbentry-delete\" style=\"cursor:pointer\" alt=\"\"/><br/>";
-				} else {
-					$owneronly = "";
-				}
-				if(IsUserOnline($row1['userid'])){ $useronline = "online"; } else { $useronline = "offline"; }
-				printf("	<li id=\"guestbook-entry-%s\" class=\"guestbook-entry\">
-		<div class=\"guestbook-author\">
-			<img src=\"http://www.habbo.co.uk/habbo-imaging/avatarimage?figure=%s&direction=2&head_direction=2&gesture=sml&size=s\" alt=\"%s\" title=\"%s\"/>
-		</div>
-			<div class=\"guestbook-actions\">
-					$owneronly
-			</div>
-		<div class=\"guestbook-message\">
-			<div class=\"%s\">
-				<a href=\"./user_profile.php?id=%s\">%s</a>
-			</div>
-			<p>%s</p>
-		</div>
-		<div class=\"guestbook-cleaner\">&nbsp;</div>
-		<div class=\"guestbook-entry-footer metadata\">%s</div>
-	</li>",$row1['id'], $userrow['figure'], $userrow['name'], $userrow['name'], $useronline, $userrow['id'], $userrow['name'], bbcode_format(trim(nl2br(stripslashes($row1['message'])))), $userrow['time']);
-			}
-	} ?>
 </ul></div>
 <script type="text/javascript">	
 	document.observe("dom:loaded", function() {
@@ -625,57 +590,20 @@ Event.observe(\"widget-".$saved_id."-edit\", \"click\", function(e) { openEditMe
 <script language=\"JavaScript\" type=\"text/javascript\">
 Event.observe(\"widget-".$saved_id."-edit\", \"click\", function(e) { openEditMenu(e, ".$saved_id.", \"widget\", \"widget-".$saved_id."-edit\"); }, false);
 </script>\n";
-	$sql = mysql_query("SELECT * FROM cms_guestbook WHERE widget_id = '".$saved_id."' ORDER BY id DESC");
-	$count = mysql_num_rows($sql);
 	?>
 	<div class="movable widget GuestbookWidget" id="widget-<?php echo $saved_id ?>\" style=\" left: 20px; top: 20px; z-index: <?php echo $zindex; ?>;">
 <div class="w_skin_defaultskin">
 	<div class="widget-corner" id="widget-<?php echo $saved_id ?>-handle">
 		<div class="widget-headline"><h3>
 		<?php echo $edit; ?>
-		<span class="header-left">&nbsp;</span><span class="header-middle">My Guestbook(<span id="guestbook-size"><?php echo $count; ?></span>) <span id="guestbook-type" class="public"><img src="./images/groups/status_exclusive.gif" title="Friends only" alt="Friends only"/></span></span><span class="header-right">&nbsp;</span></h3>
+		<span class="header-left">&nbsp;</span><span class="header-middle">My Guestbook(<span id="guestbook-size">0</span>) <span id="guestbook-type" class="public"><img src="./images/groups/status_exclusive.gif" title="Friends only" alt="Friends only"/></span></span><span class="header-right">&nbsp;</span></h3>
 		</div>	
 	</div>
 	<div class="widget-body">
 		<div class="widget-content">
 <div id="guestbook-wrapper" class="gb-public">
 <ul class="guestbook-entries" id="guestbook-entry-container">
-	<?php if($count == 0){ ?>
 	<div id="guestbook-empty-notes">This guestbook has no entries.</div>
-	<?php } else { ?>
-			<?php 
-			$sql123 = mysql_query("SELECT * FROM groups_details WHERE id = '".$groupid."' LIMIT 1");
-			$grouprrow = mysql_fetch_assoc($sql123);
-			$i = 0;
-			while ($row1 = mysql_fetch_assoc($sql)) {
-				$i++;
-				$userrow = mysql_fetch_assoc(mysql_query("SELECT * FROM users WHERE id = '".$row1['userid']."' LIMIT 1"));
-				if($my_id == $row1['userid']){
-					$owneronly = "<img src=\"./web-gallery/images/myhabbo/buttons/delete_entry_button.gif\" id=\"gbentry-delete-".$row1['id']."\" class=\"gbentry-delete\" style=\"cursor:pointer\" alt=\"\"/><br/>";
-				} elseif($grouprrow['ownerid'] == $my_id) {
-					$owneronly = "<img src=\"./web-gallery/images/myhabbo/buttons/delete_entry_button.gif\" id=\"gbentry-delete-".$row1['id']."\" class=\"gbentry-delete\" style=\"cursor:pointer\" alt=\"\"/><br/>";
-				} else {
-					$owneronly = "";
-				}
-				if(IsUserOnline($row1['userid'])){ $useronline = "online"; } else { $useronline = "offline"; }
-				printf("	<li id=\"guestbook-entry-%s\" class=\"guestbook-entry\">
-		<div class=\"guestbook-author\">
-			<img src=\"http://www.habbo.co.uk/habbo-imaging/avatarimage?figure=%s&direction=2&head_direction=2&gesture=sml&size=s\" alt=\"%s\" title=\"%s\"/>
-		</div>
-			<div class=\"guestbook-actions\">
-					$owneronly
-			</div>
-		<div class=\"guestbook-message\">
-			<div class=\"%s\">
-				<a href=\"./user_profile.php?id=%s\">%s</a>
-			</div>
-			<p>%s</p>
-		</div>
-		<div class=\"guestbook-cleaner\">&nbsp;</div>
-		<div class=\"guestbook-entry-footer metadata\">%s</div>
-	</li>",$row1['id'], $userrow['figure'], $userrow['name'], $userrow['name'], $useronline, $userrow['id'], $userrow['name'], bbcode_format(trim(nl2br(stripslashes($row1['message'])))), $userrow['time']);
-			}
-	} ?>
 </ul></div>
 <script type="text/javascript">	
 	document.observe("dom:loaded", function() {
