@@ -36,9 +36,12 @@ $widget = $_POST['widgetId'];
 	$num = mysql_num_rows($sql);
 
 	if($num > 0){
+		$row = mysql_fetch_assoc($sql);
 		if($linked > 0){
+			mysql_query("DELETE FROM cms_guestbook WHERE widget_id = '".$widget."'");
 			mysql_query("DELETE FROM cms_homes_stickers WHERE groupid = '".$groupid."' AND type = '2' AND id = '".$widget."' LIMIT 1") or die(mysql_error());
 		} else {
+			mysql_query("DELETE FROM cms_guestbook WHERE widget_id = '".$widget."'");
 			mysql_query("DELETE FROM cms_homes_stickers WHERE userid = '".$my_id."' AND groupid = '-1' AND type = '2' AND id = '".$widget."' LIMIT 1") or die(mysql_error());
 		}
 	echo "SUCCESS";

@@ -496,6 +496,10 @@ $type = $_POST['type'];
 		if($linked > 0){ // Group Mode
 			$check = mysql_query("SELECT id FROM cms_homes_stickers WHERE groupid = '".$groupid."' AND type = '2' AND subtype = '3' LIMIT 1") or die(mysql_error());
 			$placed_memberwidget = mysql_num_rows($check);
+			$check = mysql_query("SELECT id FROM cms_homes_stickers WHERE groupid = '".$groupid."' AND type = '2' AND subtype = '4' LIMIT 1") or die(mysql_error());
+			$placed_guestbookwidget = mysql_num_rows($check);
+			$check = mysql_query("SELECT id FROM cms_homes_stickers WHERE groupid = '".$groupid."' AND type = '2' AND subtype = '5' LIMIT 1") or die(mysql_error());
+			$placed_traxwidget = mysql_num_rows($check);
 
 			echo "<ul id=\"inventory-item-list\">";
 			echo "<li id=\"inventory-item-p-3\"
@@ -508,6 +512,30 @@ $type = $_POST['type'];
 		<div class=\"webstore-widget-description\">
 			<h3>Group Members</h3>
 			<p>Display your groups' members</p>
+		</div>
+	</li>";
+	echo "<li id=\"inventory-item-p-4\"
+		title=\"Guestbook\" class=\"webstore-widget-item"; if($placed_guestbookwidget > 0){ echo " webstore-widget-disabled"; } echo "\">
+		<div class=\"webstore-item-preview w_guestbookwidget_pre\" >
+			<div class=\"webstore-item-mask\">
+
+			</div>
+		</div>
+		<div class=\"webstore-widget-description\">
+			<h3>Guestbook</h3>
+			<p>Guestbook</p>
+		</div>
+	</li>
+	<li id=\"inventory-item-p-5\"
+		title=\"Traxplayer\" class=\"webstore-widget-item" ; if($placed_traxwidget > 0){ echo " webstore-widget-disabled"; } echo "\">
+		<div class=\"webstore-item-preview w_traxplayerwidget_pre\" >
+			<div class=\"webstore-item-mask\">
+
+			</div>
+		</div>
+		<div class=\"webstore-widget-description\">
+			<h3>Traxplayer</h3>
+			<p>Plays your ".$shortname." tunes on your page</p>
 		</div>
 	</li>";
 			echo "</ul>";

@@ -149,7 +149,7 @@ include('templates/community/header.php');
 				<div id="playground">
 
 <?php
-$get_em = mysql_query("SELECT id,type,x,y,z,data,skin,subtype FROM cms_homes_stickers WHERE userid = '".$user_row['id']."' AND groupid = '-1' AND type < 4 LIMIT 200") or die(mysql_error());
+$get_em = mysql_query("SELECT id,type,x,y,z,data,skin,subtype,var FROM cms_homes_stickers WHERE userid = '".$user_row['id']."' AND groupid = '-1' AND type < 4 LIMIT 200") or die(mysql_error());
 
 while ($row = mysql_fetch_array($get_em, MYSQL_NUM)) {
 
@@ -526,15 +526,17 @@ if($userdata['id'] == $my_id){
 	<?php } else { ?>
 			<?php 
 			$i = 0;
-			while ($row = mysql_fetch_assoc($sql)) {
+			while ($row1 = mysql_fetch_assoc($sql)) {
 				$i++;
-				$userrow = mysql_fetch_assoc(mysql_query("SELECT * FROM users WHERE id = '".$row['userid']."' LIMIT 1"));
-				if($my_id == $row['userid']){
-					$owneronly = "<img src=\"./web-gallery/images/myhabbo/buttons/delete_entry_button.gif\" id=\"gbentry-delete-".$row['id']."\" class=\"gbentry-delete\" style=\"cursor:pointer\" alt=\"\"/><br/>";
+				$userrow = mysql_fetch_assoc(mysql_query("SELECT * FROM users WHERE id = '".$row1['userid']."' LIMIT 1"));
+				if($my_id == $row1['userid']){
+					$owneronly = "<img src=\"./web-gallery/images/myhabbo/buttons/delete_entry_button.gif\" id=\"gbentry-delete-".$row1['id']."\" class=\"gbentry-delete\" style=\"cursor:pointer\" alt=\"\"/><br/>";
+				} elseif($user_row['id'] == $my_id) {
+					$owneronly = "<img src=\"./web-gallery/images/myhabbo/buttons/delete_entry_button.gif\" id=\"gbentry-delete-".$row1['id']."\" class=\"gbentry-delete\" style=\"cursor:pointer\" alt=\"\"/><br/>";
 				} else {
 					$owneronly = "";
 				}
-				if(IsUserOnline($row['userid'])){ $useronline = "online"; } else { $useronline = "offline"; }
+				if(IsUserOnline($row1['userid'])){ $useronline = "online"; } else { $useronline = "offline"; }
 				printf("	<li id=\"guestbook-entry-%s\" class=\"guestbook-entry\">
 		<div class=\"guestbook-author\">
 			<img src=\"http://www.habbo.co.uk/habbo-imaging/avatarimage?figure=%s&direction=2&head_direction=2&gesture=sml&size=s\" alt=\"%s\" title=\"%s\"/>
@@ -550,7 +552,7 @@ if($userdata['id'] == $my_id){
 		</div>
 		<div class=\"guestbook-cleaner\">&nbsp;</div>
 		<div class=\"guestbook-entry-footer metadata\">%s</div>
-	</li>",$row['id'], $userrow['figure'], $userrow['name'], $userrow['name'], $useronline, $userrow['id'], $userrow['name'], bbcode_format(trim(nl2br(stripslashes($row['message'])))), $userrow['time']);
+	</li>",$row1['id'], $userrow['figure'], $userrow['name'], $userrow['name'], $useronline, $userrow['id'], $userrow['name'], bbcode_format(trim(nl2br(stripslashes($row1['message'])))), $userrow['time']);
 			}
 	} ?>
 </ul></div>
@@ -722,8 +724,7 @@ document.observe(\"dom:loaded\", function() {
 	<div class="widget-body">
 		<div class="widget-content">
 <?php 
-$sql1 = mysql_query("SELECT * FROM soundmachine_songs WHERE cms_current = '1' AND cms_owner = '".$row['0']."' LIMIT 1");
-$songrow1 = mysql_fetch_assoc($sql);
+if($row['8'] == ""){ $songselected = false; }else{ $songselected = true; }
 if($edit_mode == true){ ?>
 <div id="traxplayer-content" style="text-align: center;">
 	<img src="./web-gallery/images/traxplayer/player.png"/>
@@ -747,14 +748,16 @@ if($edit_mode == true){ ?>
     </select>
 
 </div>
-<?php }elseif(mysql_num_rows($sql1) == 0){ ?>
+<?php }elseif($songselected == false){ ?>
 You do not have a selected Trax song.
-<?php }else{ ?>
+<?php }else{
+$sql1 = mysql_query("SELECT * FROM soundmachine_songs WHERE id = '".$row['8']."' LIMIT 1");
+$songrow1 = mysql_fetch_assoc($sql); ?>
 <div id="traxplayer-content" style="text-align:center;"></div>
 <embed type="application/x-shockwave-flash"
 src="<?php echo $path; ?>web-gallery/flash/traxplayer/traxplayer.swf" name="traxplayer" quality="high"
 base="<?php echo $path; ?>web-gallery/flash/traxplayer/" allowscriptaccess="always" menu="false"
-wmode="transparent" flashvars="songUrl=<?php echo $path; ?>myhabbo/trax_song.php?songId=<?php echo $songrow1['cms_current']; ?>&amp;sampleUrl=http://images.habbohotel.com/dcr/hof_furni//mp3/" height="66" width="210" />
+wmode="transparent" flashvars="songUrl=<?php echo $path; ?>myhabbo/trax_song.php?songId=<?php echo $row['8']; ?>&amp;sampleUrl=http://images.habbohotel.com/dcr/hof_furni//mp3/" height="66" width="210" />
 <?php } ?>
 
 		<div class="clear"></div>

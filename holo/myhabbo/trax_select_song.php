@@ -4,7 +4,7 @@ include('../core.php');
 $songid = $_POST['songId'];
 $id = $_POST['widgetId'];
 
-mysql_query("UPDATE soundmachine_songs SET cms_current = '1', cms_owner = '".$id."' WHERE id = '".$songid."'");?>
+mysql_query("UPDATE cms_homes_stickers SET var = '".$songid."' WHERE id = '".$id."'");?>
 
 <embed type="application/x-shockwave-flash"
 src="<?php echo $path; ?>web-gallery/flash/traxplayer/traxplayer.swf" name="traxplayer" quality="high"

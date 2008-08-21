@@ -188,7 +188,7 @@ mysql_query("UPDATE groups_details SET views = views+'1' WHERE id='".$groupid."'
 				<div id="playground">
 
 <?php
-$get_em = mysql_query("SELECT id,type,x,y,z,data,skin,subtype FROM cms_homes_stickers WHERE groupid = '".$groupid."' and type < 4 LIMIT 200") or die(mysql_error());
+$get_em = mysql_query("SELECT id,type,x,y,z,data,skin,subtype,var FROM cms_homes_stickers WHERE groupid = '".$groupid."' and type < 4 LIMIT 200") or die(mysql_error());
 
 while ($row = mysql_fetch_array($get_em, MYSQL_NUM)) {
 
@@ -231,6 +231,8 @@ Event.observe(\"".$type."-".$row[0]."-edit\", \"click\", function(e) { openEditM
 		switch($row[7]){
 		case "1": $subtype = "Profilewidget"; break;
 		case "3": $subtype = "MemberWidget"; break;
+		case "4": $subtype = "GuestbookWidget"; break;
+		case "5": $subtype = "TraxPlayerWidget";
 		}
 
 		if($subtype == "Profilewidget"){
@@ -394,7 +396,140 @@ document.observe(\"dom:loaded\", function() {
 	</div>
 </div>
 </div>";
+	} elseif($subtype == "GuestbookWidget"){
+	$sql = mysql_query("SELECT * FROM cms_guestbook WHERE widget_id = '".$row['0']."' ORDER BY id DESC");
+	$count = mysql_num_rows($sql);
+	if($row['10'] == "0"){;
+		$status = "public";
+	}else{
+		$status = "private";
+	}
+	?>
+	<div class="movable widget GuestbookWidget" id="widget-<?php echo $row['0']; ?>" style=" left: <?php echo $row['2']; ?>px; top: <?php echo $row['3']; ?>px; z-index: <?php echo $row['4']; ?>;">
+<div class="w_skin_<?php echo $row['6']; ?>">
+	<div class="widget-corner" id="widget-<?php echo $row['0']; ?>-handle">
+		<div class="widget-headline"><h3>
+		<?php echo $edit; ?>
+		<span class="header-left">&nbsp;</span><span class="header-middle">My Guestbook(<span id="guestbook-size"><?php echo $count; ?></span>) <span id="guestbook-type" class="<?php echo $status; ?>"><img src="./web-gallery/images/groups/status_exclusive.gif" title="Friends only" alt="Friends only"/></span></span><span class="header-right">&nbsp;</span></h3>
+		</div>	
+	</div>
+	<div class="widget-body">
+		<div class="widget-content">
+<div id="guestbook-wrapper" class="gb-public">
+<ul class="guestbook-entries" id="guestbook-entry-container">
+	<?php if($count == 0){ ?>
+	<div id="guestbook-empty-notes">This guestbook has no entries.</div>
+	<?php } else { ?>
+			<?php 
+			$sql123 = mysql_query("SELECT * FROM groups_details WHERE id = '".$_GET['id']."' LIMIT 1");
+			$grouprrow = mysql_fetch_assoc($sql123);
+			$i = 0;
+			while ($row1 = mysql_fetch_assoc($sql)) {
+				$i++;
+				$userrow = mysql_fetch_assoc(mysql_query("SELECT * FROM users WHERE id = '".$row1['userid']."' LIMIT 1"));
+				if($my_id == $row1['userid']){
+					$owneronly = "<img src=\"./web-gallery/images/myhabbo/buttons/delete_entry_button.gif\" id=\"gbentry-delete-".$row1['id']."\" class=\"gbentry-delete\" style=\"cursor:pointer\" alt=\"\"/><br/>";
+				} elseif($grouprrow['ownerid'] == $my_id) {
+					$owneronly = "<img src=\"./web-gallery/images/myhabbo/buttons/delete_entry_button.gif\" id=\"gbentry-delete-".$row1['id']."\" class=\"gbentry-delete\" style=\"cursor:pointer\" alt=\"\"/><br/>";
+				} else {
+					$owneronly = "";
+				}
+				if(IsUserOnline($row1['userid'])){ $useronline = "online"; } else { $useronline = "offline"; }
+				printf("	<li id=\"guestbook-entry-%s\" class=\"guestbook-entry\">
+		<div class=\"guestbook-author\">
+			<img src=\"http://www.habbo.co.uk/habbo-imaging/avatarimage?figure=%s&direction=2&head_direction=2&gesture=sml&size=s\" alt=\"%s\" title=\"%s\"/>
+		</div>
+			<div class=\"guestbook-actions\">
+					$owneronly
+			</div>
+		<div class=\"guestbook-message\">
+			<div class=\"%s\">
+				<a href=\"./user_profile.php?id=%s\">%s</a>
+			</div>
+			<p>%s</p>
+		</div>
+		<div class=\"guestbook-cleaner\">&nbsp;</div>
+		<div class=\"guestbook-entry-footer metadata\">%s</div>
+	</li>",$row1['id'], $userrow['figure'], $userrow['name'], $userrow['name'], $useronline, $userrow['id'], $userrow['name'], bbcode_format(trim(nl2br(stripslashes($row1['message'])))), $userrow['time']);
+			}
+	} ?>
+</ul></div>
+<?php if($edit_mode == false){ ?>
+	<div class="guestbook-toolbar clearfix">
+	<a href="#" class="new-button envelope-icon" id="guestbook-open-dialog">
+	<b><span></span>Post new message</b><i></i>
+	</a>
+	</div>
+<?php } ?>
+<script type="text/javascript">	
+	document.observe("dom:loaded", function() {
+		var gb<?php echo $row['0']; ?> = new GuestbookWidget('17570', '<?php echo $row['0']; ?>', 500);
+		var editMenuSection = $('guestbook-privacy-options');
+		if (editMenuSection) {
+			gb<?php echo $row['0']; ?>.updateOptionsList('public');
 		}
+	});
+</script>
+		<div class="clear"></div>
+		</div>
+	</div>
+</div>
+</div>
+<?php
+	} elseif($subtype == "TraxPlayerWidget"){ 
+		$sql123 = mysql_query("SELECT * FROM groups_details WHERE id = '".$_GET['id']."' LIMIT 1");
+		$grouprrow = mysql_fetch_assoc($sql123);?>
+		<div class="movable widget TraxPlayerWidget" id="widget-<?php echo $row['0']; ?>" style=" left: <?php echo $row['2']; ?>px; top: <?php echo $row['3']; ?>px; z-index: <?php echo $row['4']; ?>;">
+<div class="w_skin_<?php echo $row['6']; ?>">
+	<div class="widget-corner" id="widget-<?php echo $row['0']; ?>-handle">
+		<div class="widget-headline"><h3><?php echo $edit; ?><span class="header-left">&nbsp;</span><span class="header-middle">TRAXPLAYER</span><span class="header-right">&nbsp;</span></h3>
+		</div>	
+	</div>
+	<div class="widget-body">
+		<div class="widget-content">
+<?php 
+if($row['8'] == ""){ $songselected = false; }else{ $songselected = true; }
+if($edit_mode == true){ ?>
+<div id="traxplayer-content" style="text-align: center;">
+	<img src="./web-gallery/images/traxplayer/player.png"/>
+</div>
+
+<div id="edit-menu-trax-select-temp" style="display:none">
+    <select id="trax-select-options-temp">
+    <option value="">- Choose song -</option>
+	<?php
+	$mysql = mysql_query("SELECT * FROM furniture WHERE ownerid = '".$grouprrow['ownerid']."'");
+	$i = 0;
+	while($machinerow = mysql_fetch_assoc($mysql)){
+		$i++;
+		$sql = mysql_query("SELECT * FROM soundmachine_songs WHERE machineid = '".$machinerow['id']."'");
+		$n = 0;
+		while($songrow = mysql_fetch_assoc($sql)){
+			$n++;
+			if($songrow['id'] <> ""){ echo "		<option value=\"".$songrow['id']."\">".trim(nl2br(stripslashes($songrow['title'])))."</option>\n"; }
+		}
+	} ?>
+    </select>
+
+</div>
+<?php }elseif($songselected == false){ ?>
+You do not have a selected Trax song.
+<?php }else{
+$sql1 = mysql_query("SELECT * FROM soundmachine_songs WHERE id = '".$row['8']."' LIMIT 1");
+$songrow1 = mysql_fetch_assoc($sql); ?>
+<div id="traxplayer-content" style="text-align:center;"></div>
+<embed type="application/x-shockwave-flash"
+src="<?php echo $path; ?>web-gallery/flash/traxplayer/traxplayer.swf" name="traxplayer" quality="high"
+base="<?php echo $path; ?>web-gallery/flash/traxplayer/" allowscriptaccess="always" menu="false"
+wmode="transparent" flashvars="songUrl=<?php echo $path; ?>myhabbo/trax_song.php?songId=<?php echo $row['8']; ?>&amp;sampleUrl=http://images.habbohotel.com/dcr/hof_furni//mp3/" height="66" width="210" />
+<?php } ?>
+
+		<div class="clear"></div>
+		</div>
+	</div>
+</div>
+</div><?php
+	}
 
 	}
 
