@@ -38,7 +38,7 @@ $sql_num = mysql_num_rows($sql_forgot);
 	  }
 	$result = $locale['forgot_mail_send'];
 	$sql_row = mysql_fetch_assoc($sql_forgot);
-	$hashed_pass = sha1($password.strtolower($sql_row['name']));
+	$hashed_pass = HoloHash($password, $sql_row['name']);
 	mysql_query("UPDATE users SET password = '".$hashed_pass."' WHERE name = '".$forgot_name."'") or die(mysql_error());
 	$teh_pass = $password;
 	$subject = 'Your $shortname Password';

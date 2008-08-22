@@ -145,6 +145,8 @@ function FetchCMSSetting($strSetting){
 
 if(!session_is_registered(username) && $_COOKIE['remember'] == "remember"){
 
+@include('./includes/inc.crypt.php');
+@include('../includes/inc.crypt.php');
 	// Get variables stored in cookies; the username and sha1 hashed password
 	$cname = addslashes($_COOKIE['rusername']);
 	$cpass_hash = $_COOKIE['rpassword'];
@@ -162,7 +164,7 @@ if(!session_is_registered(username) && $_COOKIE['remember'] == "remember"){
 
 			// We found a user, now get his password and hash it
 			$crow = mysql_fetch_assoc($csql);
-			$correct_pass = sha1($crow['password'].strtolower($crow['name']));
+			$correct_pass = HoloHash($crow['password'], $crow['name']);
 
 			// Check if the hashed database password and hash in the cookie match
 			// If no, destroy the cookie. If yes, log the user in.
@@ -674,8 +676,6 @@ function mysql_evaluate($query, $default_value="undefined") {
 
 // #########################################################################
 
-@include('./includes/inc.crypt.php');
-@include('../includes/inc.crypt.php');
 @include('./includes/version.php');
 @include('../includes/version.php');
 

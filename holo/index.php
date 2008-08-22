@@ -23,7 +23,7 @@ if(!session_is_registered(username)){
 	if(isset($_POST['username']) && isset($_POST['password'])){
 		$username = addslashes($_POST['username']);
 		// $password = HoloHash($_POST['password']);
-		$password = sha1($_POST['password'].strtolower($username));
+		$password = HoloHash($_POST['password'], $username);
 		$remember_me = $_POST['_login_remember_me'];
 
 		if(empty($username) || empty($password)){
@@ -44,7 +44,7 @@ if(!session_is_registered(username)){
 					if($remember_me == "true"){
 						setcookie("remember", "remember", time()+60*60*24*100, "/");
 						setcookie("rusername", $_SESSION['username'], time()+60*60*24*100, "/");
-						setcookie("rpassword", sha1($_SESSION['password'].strtolower($_SESSION['username'])), time()+60*60*24*100, "/");
+						setcookie("rpassword", HoloHash($_SESSION['password'], $_SESSION['username']), time()+60*60*24*100, "/");
 					}
 					$sql3 = mysql_query("UPDATE users SET lastvisit = '".$date_full."' WHERE name = '".$username."'") or die(mysql_error());
 					header("location:security_check.php"); exit;
@@ -69,7 +69,7 @@ if(!session_is_registered(username)){
 						if($remember_me == "true"){
 							setcookie("remember", "remember", time()+60*60*24*100, "/");
 							setcookie("rusername", $_SESSION['username'], time()+60*60*24*100, "/");
-						setcookie("rpassword", sha1($_SESSION['password'].strtolower($_SESSION['username'])), time()+60*60*24*100, "/");
+						setcookie("rpassword", HoloHash($_SESSION['password'], $_SESSION['username']), time()+60*60*24*100, "/");
 						}
 						$sql3 = mysql_query("UPDATE users SET lastvisit = '".$date_full."' WHERE name = '".$username."'") or die(mysql_error());
 						header("location:security_check.php"); exit;
@@ -178,7 +178,7 @@ if(!session_is_registered(username)){
 				<div class="habblet-container ">
 
 						<div class="ad-container">
-<a href="register.php"><img src="./web-gallery/v2/images/landing/summer_habblet_US.png" alt="" /></a>
+<a href="register.php"><img src="./web-gallery/v2/images/landing/uk_party_frontpage_image.gif" alt="" /></a>
 </div>
 
 

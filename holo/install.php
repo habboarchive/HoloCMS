@@ -42,7 +42,7 @@ function dbquery($query) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-function writeconfig($host, $username, $password, $db, $sitepath){
+function writeconfig($host, $username, $password, $db, $sitepath, $encryption, $hash){
 		$config = "<?php
 /*===================================================+
 || # HoloCMS - Website and Content Management System
@@ -91,6 +91,13 @@ function writeconfig($host, $username, $password, $db, $sitepath){
 //	ingame priveliges.
 "."$"."sysadmin = \"1\";
 
+//	****** HOLOCMS ENCRYPTION SYSTEM ******
+//	How HoloCMS stores passowrds.
+//	Do NOT manually change this unless you know what you are doing,
+//	doing so may corrupt your database.
+"."$"."encryption = \"".$encryption."\";
+"."$"."hashtext = \"".$hashtext."\";
+
 ?>";
 	$temp = fopen("config.php","w");
 	
@@ -132,7 +139,6 @@ echo "	<li>MySQL Database name</li>\n";
 echo "	<li>MySQL Username</li>\n";
 echo "	<li>MySQL Password</li>\n";
 echo "	<li>MySQL Host (if not on localhost)</li>\n";
-echo "</ol>\n";
 echo "<p><b>In order for this installation to complete successfully, the installer script must have access to write to config.php. For assistance with giving write permissions or connecting to your MySQL database, please consult your host/ISP.</b></p>\n";
 echo "<p>Please be aware that this installer will override (and thus empty) any existing (and required) CMS tables in your MySQL Database, and possibly modify Holograph Emulator tables where needed. Please read the compatability information below for optimal performance and integration.</p>\n";
 echo "<p><strong>HoloCMS Version:</strong> ".$holocms['version']." ".$holocms['stable']." [".$holocms['title']."]<br />\n<strong>HoloCMS Build Date:</strong> ".$holocms['date']."<br />\n<strong>Holograph Emulator Compatability:</strong> Build for <a href='http://trac2.assembla.com/holograph/changeset/".$holograph['revision']."' target='_blank'>Revision ".$holograph['revision']."</a> (".$holograph['type'].")</p>\n";
@@ -144,7 +150,26 @@ echo "<p><a href=\"install.php?step=1\" class=\"button\">New Installation</a>\n"
 } elseif($step == 1){
 
 if(isset($_POST['name'])){
-	$write = WriteConfig($_POST['host'], $_POST['username'], $_POST['pass'], $_POST['name'], $_POST['path']);
+	if($_POST['encryption'] == "new"){
+		$encryption = "new";
+		$hash = "";
+	}elseif($_POST['encryption'] == "old"){
+		$encryption = "old";
+		$hash = "235x17aXCaRb";
+	}elseif($_POST['encryption'] == "bad"){
+		$encryption = "nosalt";
+		$hash = "";
+	}elseif($_POST['encryption'] == "verybad"){
+		$encryption = "none";
+		$hash = "";
+	}elseif($_POST['encryption'] == "advanced"){
+		$encryption = "old";
+		$hash = "change to your hash";
+	}else{
+		$encryption = "new";
+		$hash = "";
+	}
+	$write = WriteConfig($_POST['host'], $_POST['username'], $_POST['pass'], $_POST['name'], $_POST['path'], $encryption, $hash);
 	if(!$write){
 		$message = "Unable to write config file, this script may not have the correct read/write permissions; please CHMOD config.php to 777, but remember to return it to normal after you finish using the installer.";
 	} else {
@@ -197,6 +222,14 @@ if(empty($_POST['path'])){ $_POST['path'] = "http://www.mysite.com/cms/"; }
 			<td>The full path to your HoloCMS directory, with a ending slash (/).</td>
 		</tr>
 	</table>
+	<p>Choose your salting system for encrypting passwords, you CANNOT change this later or bad things will happen</p>
+	<select name=\"encryption\">
+		<option value=\"new\">Salts user's passwords with their username, uses SHA1 for best security (recommended).</option>
+		<option value=\"old\">Salts user's passwords with a default hash, uses MD5 for ok security (for old users).</option>
+		<option value=\"bad\">Do not salt user's password (not recommended).</option>
+		<option value=\"verybad\">Do not encrypt user's passwords (VERY not recommended).</option>
+		<option value=\"advanced\">Manually choose salt later (edit config.php).</option>
+	</select>
 	<h2 class=\"step\">
 	<input name=\"submit\" type=\"submit\" value=\"Submit\" class=\"button\" />
 	</h2>
@@ -2525,7 +2558,7 @@ INSERT INTO `cms_homes_catalouge` VALUES ('4574', 'xmas_gifts_bg2', '4', '0', 'x
 				$fail = true;
 				$error = "Username already in use!";
 			} else {
-				$password = sha1($password.strtolower($name));
+				$password = HoloHash($password, $name);
 				$scredits = 5000;
 				$dob = "1-1-1980";
 				$figure = "hr-802-61.hd-190-1.ch-260-62.lg-280-110.sh-295-91.fa-1207-103";

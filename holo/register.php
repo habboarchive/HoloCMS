@@ -131,7 +131,7 @@ $failure = false;
 
 		$dob = $day . "-" . $month . "-" . $year;
 
-		$password = sha1($password.strtolower($name));
+		$password = HoloHash($password, $name);
 
 		mysql_query("INSERT INTO users (name,password,email,birth,figure,sex,rank,hbirth,ipaddress_last,postcount,tickets,credits,lastvisit,screen,rea) VALUES ('".$name."','".$password."','".$email."','".$dob."','".$figure."','".$gender."','1','".$date_normal."','".$remote_ip."','0','100','".$scredits."','".$date_full."','wide','enabled')") or die(mysql_error());
 

@@ -17,7 +17,7 @@ if(isset($_POST['password'])) {
 	$username = addslashes($name);
 	$password = addslashes($_POST['password']);
 	//Hashes and salts the password --encryption--
-	$password_hash = sha1($password.strtolower($username));
+	$password_hash = HoloHash($password, $username);
 
 	if(empty($password)){
 	header("location:./reauthenticate.php?error=2");

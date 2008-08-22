@@ -97,7 +97,7 @@ if($tab == "1"){
 	if(isset($_POST['save'])){
 	$pass1 = $_POST['password'];
 	//Hashes and salts the first password with the user id (in lowercase) --encryption--
-	$pass1_hash = sha1($pass1.strtolower($myrow['name']));
+	$pass1_hash = HoloHash($pass1, $myrow['name']);
 	$day1 = $_POST['day'];
 	$month1 = $_POST['month'];
 	$year1 = $_POST['year'];
@@ -125,14 +125,14 @@ if($tab == "1"){
 	if(isset($_POST['save'])){
 	$pass1 = $_POST['password'];
 	//Hashes and salts the old password with the user id (in lowercase) --encryption--
-	$pass1_hash = sha1($pass1.strtolower($myrow['name']));
+	$pass1_hash = HoloHash($pass1, $myrow['name']);
 	$day1 = $_POST['day'];
 	$month1 = $_POST['month'];
 	$year1 = $_POST['year'];
 		$formatted_dob = "".$day1."-".$month1."-".$year1."";
 	$newpass = $_POST['pass'];
 	//Hashes and salts the new password with the user id (in lowercase) --encryption--
-	$newpass_hash = sha1($newpass.strtolower($rawname));
+	$newpass_hash = HoloHash($newpass, $rawname);
 	$newpass_conf = $_POST['confpass'];
 		if($pass1_hash == $myrow['password'] && $formatted_dob == $myrow['birth']){
 			if($newpass == $newpass_conf){
@@ -162,14 +162,14 @@ if($tab == "1"){
 	if(isset($_POST['save'])){
 	$pass1 = $_POST['password'];
 	//Hashes and salts the old password with the user id (in lowercase) --encryption--
-	$pass1_hash = sha1($pass1.strtolower($myrow['name']));
+	$pass1_hash = HoloHash($pass1, $myrow['name']);
 	$day1 = $_POST['day'];
 	$month1 = $_POST['month'];
 	$year1 = $_POST['year'];
 		$formatted_dob = "".$day1."-".$month1."-".$year1."";
 	$newpass = $_POST['pass'];
 	//Hashes and salts the new password with the user id (in lowercase) --encryption--
-	$newpass_hash = sha1($newpass.strtolower($rawname));
+	$newpass_hash = HoloHash($newpass, $rawname);
 	$newpass_conf = $_POST['confpass'];
 		if($pass1_hash == $myrow['password'] && $formatted_dob == $myrow['birth']){
 			if($newpass == $newpass_conf){
