@@ -156,6 +156,15 @@ if($valid > 0){
 				<li id="subcategory-3-227-stickers" class="subcategory">
 					<div>Alpha Wood</div>
 				</li>
+				<li id="subcategory-3-242-stickers" class="subcategory">
+					<div>Alpha Blue Diner</div>
+				</li>
+				<li id="subcategory-3-244-stickers" class="subcategory">
+					<div>Alpha Green Diner</div>
+				</li>
+				<li id="subcategory-3-246-stickers" class="subcategory">
+					<div>Alpha Red Diner</div>
+				</li>
 				<li id="subcategory-3-236-stickers" class="subcategory">
 					<div>Bank</div>
 				</li>
@@ -176,6 +185,12 @@ if($valid > 0){
 				</li>
 				<li id="subcategory-3-201-stickers" class="subcategory">
 					<div>Clubber</div>
+				</li>
+				<li id="subcategory-3-245-stickers" class="subcategory">
+					<div>Dark Knight</div>
+				</li>
+				<li id="subcategory-3-243-stickers" class="subcategory">
+					<div>Diner</div>
 				</li>
 				<li id="subcategory-3-235-stickers" class="subcategory">
 					<div>Eco</div>
@@ -208,13 +223,16 @@ if($valid > 0){
 					<div>Love</div>
 				</li>
 				<li id="subcategory-3-216-stickers" class="subcategory">
-					<div>Obbahs</div>
+					<div><?echo $shortname; ?>s</div>
 				</li>
 				<li id="subcategory-3-220-stickers" class="subcategory">
-					<div>Obbahween</div>
+					<div><?echo $shortname; ?>ween</div>
 				</li>
 				<li id="subcategory-3-221-stickers" class="subcategory">
-					<div>Obbahwood</div>
+					<div><?echo $shortname; ?>wood</div>
+				</li>
+				<li id="subcategory-3-247-stickers" class="subcategory">
+					<div>Olympics</div>
 				</li>
 				<li id="subcategory-3-228-stickers" class="subcategory">
 					<div>Others 1</div>
@@ -276,6 +294,9 @@ if($valid > 0){
 				</li>
 				<li id="subcategory-2-132-stickers" class="subcategory">
 					<div>Background 6</div>
+				</li>
+				<li id="subcategory-2-248-stickers" class="subcategory">
+					<div>Background 7</div>
 				</li>
 			</ul>
 		</li>
@@ -672,6 +693,15 @@ if($valid > 0){
 				<li id="subcategory-3-227-stickers" class="subcategory">
 					<div>Alpha Wood</div>
 				</li>
+				<li id="subcategory-3-242-stickers" class="subcategory">
+					<div>Alpha Blue Diner</div>
+				</li>
+				<li id="subcategory-3-244-stickers" class="subcategory">
+					<div>Alpha Green Diner</div>
+				</li>
+				<li id="subcategory-3-246-stickers" class="subcategory">
+					<div>Alpha Red Diner</div>
+				</li>
 				<li id="subcategory-3-236-stickers" class="subcategory">
 					<div>Bank</div>
 				</li>
@@ -692,6 +722,12 @@ if($valid > 0){
 				</li>
 				<li id="subcategory-3-201-stickers" class="subcategory">
 					<div>Clubber</div>
+				</li>
+				<li id="subcategory-3-245-stickers" class="subcategory">
+					<div>Dark Knight</div>
+				</li>
+				<li id="subcategory-3-243-stickers" class="subcategory">
+					<div>Diner</div>
 				</li>
 				<li id="subcategory-3-235-stickers" class="subcategory">
 					<div>Eco</div>
@@ -724,13 +760,16 @@ if($valid > 0){
 					<div>Love</div>
 				</li>
 				<li id="subcategory-3-216-stickers" class="subcategory">
-					<div>Obbahs</div>
+					<div><?echo $shortname; ?>s</div>
 				</li>
 				<li id="subcategory-3-220-stickers" class="subcategory">
-					<div>Obbahween</div>
+					<div><?echo $shortname; ?>ween</div>
 				</li>
 				<li id="subcategory-3-221-stickers" class="subcategory">
-					<div>Obbahwood</div>
+					<div><?echo $shortname; ?>wood</div>
+				</li>
+				<li id="subcategory-3-247-stickers" class="subcategory">
+					<div>Olympics</div>
 				</li>
 				<li id="subcategory-3-228-stickers" class="subcategory">
 					<div>Others 1</div>
@@ -792,6 +831,9 @@ if($valid > 0){
 				</li>
 				<li id="subcategory-2-132-stickers" class="subcategory">
 					<div>Background 6</div>
+				</li>
+				<li id="subcategory-2-248-stickers" class="subcategory">
+					<div>Background 7</div>
 				</li>
 			</ul>
 		</li>
