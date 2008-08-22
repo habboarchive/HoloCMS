@@ -143,10 +143,10 @@ function FetchCMSSetting($strSetting){
 // Please do not mess with this. It is a fairly simple process, but if it doesn't work
 // properly it can cause a huge mess. Everything in this function is commented.
 
-if(!session_is_registered(username) && $_COOKIE['remember'] == "remember"){
-
 @include('./includes/inc.crypt.php');
 @include('../includes/inc.crypt.php');
+if(!session_is_registered(username) && $_COOKIE['remember'] == "remember"){
+
 	// Get variables stored in cookies; the username and sha1 hashed password
 	$cname = addslashes($_COOKIE['rusername']);
 	$cpass_hash = $_COOKIE['rpassword'];
