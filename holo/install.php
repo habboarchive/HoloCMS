@@ -74,7 +74,7 @@ function writeconfig($host, $username, $password, $db, $sitepath){
 //	This option will allow HoloCMS to perform full status checks. This,
 //	however, slows down your site A LOT. It is therefore disabled by
 //	default.
-"."$"."enable_status_image = \"0\";
+"."$"."enable_status_image = \"1\";
 
 //	****** SITE PATH ******
 //	The full URL to your site; with an slash added on the end.
@@ -855,7 +855,7 @@ mysql_query("INSERT DELAYED INTO `cms_banners` (`id`, `text`, `banner`, `url`, `
 				$fail = true;
 				$error = "Username already in use!";
 			} else {
-				$password = HoloHash($password);
+				$password = sha1($password.strtolower($name));
 				$scredits = 5000;
 				$dob = "1-1-1980";
 				$figure = "hr-802-61.hd-190-1.ch-260-62.lg-280-110.sh-295-91.fa-1207-103";
