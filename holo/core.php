@@ -36,7 +36,8 @@ if(empty($sqlpassword) || empty($sqlusername) || empty($sqldb) || empty($sqlhost
 
 		echo "<h1>Security Alert</h1><hr>It appears you have already executed the installation script or written your configuration file. To start using your site, for security reasons, please delete install.php and/or upgrade.php from the HoloCMS directory to proceed. If you have not yet completed installation or wish to execute it again, please <a href='install.php'>click here</a>.<hr><i>HoloCMS</i>";
 		exit;
-
+	}elseif(file_exists('check.php')){
+		header("location:check.php");
 	} else {
 
 		include('includes/mysql.php');
