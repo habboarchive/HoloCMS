@@ -33,7 +33,12 @@ echo "	<li>Make sure the link given to you was posted by yifan_lu, if not, HoloC
 echo "<p><strong>Found a bug?</strong></p>";
 echo "<p>Please do not post bugs in the forum topic, post it here: <a href='https://www.assembla.com/spaces/holocms3/tickets'>Assembla</a> so I can organize them and help you. I will not fix bugs posted in the forum.
 </p>";
-echo "<p>Now that you read this, delete check.php to continue to your site.<p>";
+echo "<p><strong>Compatible Data</strong></p>\n";
+echo "<p>If you came from:<br />";
+echo "<strong>3.1.X BETA</strong>, <strong>3.0.X.X</strong>, <strong>2.1.1</strong>, or lower:<br />";
+echo "Please replace all files and run install.php";
+echo "<strong>3.1.X</strong>:<br />";
+echo "Run replace all files and run upgrade.php";
 
 ?>
 </body>

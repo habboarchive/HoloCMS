@@ -70,7 +70,7 @@ $shortname = $config['shortname'];
 $ip = $config['ip'];
 $dcr = $config['dcr'];
 $port = FetchServerSetting('server_game_port');
-$fport = FetchServerSetting('server_game_port');
+$fport = FetchServerSetting('server_mus_port');
 $texts = $config['texts'];
 $variables = $config['variables'];
 $reload_url = $config['reload_url'];
@@ -386,8 +386,8 @@ if($row['noob'] == 1) {
 // #########################################################################
 */
 if($enable_status_image == "1"){
-	if($server_on_localhost !== 0 || $ip == "127.0.0.1"){
-		$server = "127.0.0.1";
+	if($server_on_localhost != 0 || $ip == "127.0.0.1"){
+		$fip = "127.0.0.1";
 	} else {
 		$fip = $ip;
 	}

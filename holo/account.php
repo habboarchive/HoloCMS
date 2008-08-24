@@ -642,24 +642,18 @@ if(!empty($result)){
 
             <h2 class="title">Refer Options</h2>
             <div class="box-content">
-		<h3>Refer users and rank up</h3>
-		<p>Want to rank up, get cool badges or special stuff? Referral points are a new system (indepent to credits) where you can get incentives for referring new users. For every person you refer, you get one usable point and one total point.</p>
-		<!-- <p>A quick lesson on ranks: VIP is the first rank (after regular member), you get a VIP badge, join the VIP group, and get access to more furni in the catalogue. Next is Silver and the Gold Abboh, they have small moderator rights such as banning, and room alert, and some more catalogue access. Then there's moderator, you have full ban rights, perm ban, and even more catalogue access!</p> !-->
+		<h3>Refer users and get credits</h3>
+		<p>Out of credits again? Can't find staff that is willing to fill up your purse? Want to buy that shiney rare but just don't have the credits for it? Don't stress, just get a few friends to sign up on <?php echo $shortname; ?>! Do that, and your purse will be filled again in no time! Below are a few options you have at your disposal.</p>
 		<h3>Referal Options</h3>
-		<p>There are two ways you can use to get refers, and with that, refer points*.</p>
-		<p><b>1. Send your friends a link</b><br />This option is probably as easy as it gets; it basicly does step 2, but automaticly! You just send your friends a invite with the link shown below, your friends click the link, and if they complete registration, you get the points! This is your referal link to get some easy credits:<br /><br />
-		<input type="text" size="80%" value="<?php if(!empty($path)){ echo $path; } ?>register.php?refer=<?php echo $rawname; ?>"></p>
-		<p><b>2. Let them fill in your name during registration</b><br />During the registration process, users can manually give the username of the person that referred them to the site. If they complete registration, that person gets credits! And that person could be you, if you have some friends that are nice enough to fill in your username.</p><br />
-		<h3>Your Points</h3>
-		<p>There are two types of referal points, the usable points can be used to buy stuff like badges, rights, or special furni in the referal store (comming soon) and decrease when you spend them. The total points are used to buy ranks and does NOT decrease when used.
-		<?php
-			$refersql = mysql_query("SELECT * FROM referrals WHERE id = '".$myrow['id']."' LIMIT 1");
-			$refer = mysql_fetch_assoc($refersql);
-		?>
-		<p>You currently have <b><?php echo $refer['usable_points']; ?></b> <sup>usable points</sup><br />
-		<p>You currently have <b><?php echo $refer['total_points']; ?></b> <sup>total points</sup><br />
+		<p>There are two ways you can use to get refers, and with that, free credits.</p>
+		<p><b>1. Send your friends a link</b><br />This option is probably as easy as it gets; it basicly does step 2, but automaticly! You just send your friends a invite with the link shown below, your friends click the link, and if they complete registration, you get free credits! This is your referal link to get some easy credits:<br /><br />
+		<input type="text" size="80%" disabled="disabled" value="<?php if(!empty($path)){ echo $path; } ?>register.php?refer=<?php echo $rawname; ?>"></p>
+		<p><b>2. Let them fill in your name during registration</b><br />During the registration process, users can manually give the username of the person that referred them to the site. If they complete registration, that person gets credits! And that person could be you, if you have some friends that are nice enough to fill in your username.
+		<h3>Today's Referal Reward</h3>
+		<p>This is the amount of credits you get per user you refer. This amount may change over time.<br />
+		<br />
+		<b><?php echo $reward; ?></b> credits <sup>per refer</sup>
 		</p>
-		<p><h5>* If you get banned twice, you will lose your rank and you will lose all your points if you get perm-banned. Prices are subject to change, and users who abuse the system will be banned (I do check).</h5></p>
 	    </div>
 	</div>
     </div>
