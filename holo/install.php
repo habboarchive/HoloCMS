@@ -96,7 +96,7 @@ function writeconfig($host, $username, $password, $db, $sitepath, $encryption, $
 //	Do NOT manually change this unless you know what you are doing,
 //	doing so may corrupt your database.
 "."$"."encryption = \"".$encryption."\";
-"."$"."hashtext = \"".$hashtext."\";
+"."$"."hashtext = \"".$hash."\";
 
 ?>";
 	$temp = fopen("config.php","w");
