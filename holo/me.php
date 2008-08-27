@@ -261,6 +261,31 @@ if($count != 0){ ?>
 				You have <a href="./client.php" onclick="HabboClient.openOrFocus(this); return false;"><?php echo $count; ?> friend requests</a> waiting
 			</li>
 <?php } ?>
+<?php /*
+$onlineCutOff = (time() - 601);
+$onlineUsers = mysql_evaluate("SELECT COUNT(*) FROM users WHERE online > " . $onlineCutOff);
+$get_users = mysql_query("SELECT id,name,email,ipaddress_last,hbirth,online FROM users WHERE online > " . $onlineCutOff . " ORDER BY online DESC LIMIT " . $onlineUsers) or die(mysql_error());
+
+while($row = mysql_fetch_assoc($get_users)){
+	
+	if(empty($row['ipaddress_last'])){ $row['ipaddress_last'] = "No IP Found"; }
+	printf(" <tr>
+  <td class='tablerow1' align='center'>%s</td>
+  <td class='tablerow2'><strong>%s</strong><div class='desctext'>%s [<a href='http://who.is/whois-ip/ip-address/%s/' target='_blank'>WHOIS</a>]</div></td>
+  <td class='tablerow2' align='center'><a href='mailto:%s'>%s</a></td>
+  <td class='tablerow2' align='center'>%s</td>
+  <td class='tablerow2' align='center'>%s</td>
+  <td class='tablerow2' align='center'><a href='index.php?p=edituser&key=%s'><img src='./images/edit.gif' alt='Edit User Data'></a></td>
+</tr>", $row['id'], $row['name'], $row['ipaddress_last'], $row['ipaddress_last'], $row['email'], $row['email'], $row['hbirth'], (time() - $row['online']) . " seconds ago", $row['id']);
+}
+?>
+			<li id="feed-friends">
+				You have <strong>1</strong> friends online
+				<span>
+			Dafor
+				</span>
+			</li>
+*/ ?>
 
             <li class="small" id="feed-lastlogin">
                 Last signed in:

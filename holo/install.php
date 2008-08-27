@@ -490,6 +490,14 @@ if(empty($_POST['path'])){ $_POST['path'] = "http://www.mysite.com/cms/"; }
   `userid` int(10) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;");
+	mysql_query("CREATE TABLE `cms_faq` (
+  `id` int(255) NOT NULL auto_increment,
+  `type` varchar(255) NOT NULL default 'type',
+  `catid` int(11) default NULL,
+  `title` varchar(1000) NOT NULL,
+  `content` text,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;");
 		
 		echo "<strong>done!</strong><br />\n";
 		echo "Inserting data and building default content..";

@@ -164,7 +164,7 @@ $body_id = "home";
     	    	</li>
 
 		<li class="last">
-				<a href="club.php">Obbah Club</a>
+				<a href="club.php"><?php echo $shortname; ?> Club</a>
 		</li>
         <?php } else if($pageid == 4 || $pageid > 3  && $pageid < 6 || $pageid == "profile" || $pageid == "com" || $pageid == "8" || $pageid == "forum" || $pageid == "rotm" || $pageid == "about"){ ?>
                 <?php if($pageid == "com"){ ?>

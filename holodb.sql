@@ -1001,6 +1001,18 @@ CREATE TABLE `wordfilter` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 -- ----------------------------
+-- Table structure for cms_faq
+-- ----------------------------
+CREATE TABLE `cms_faq` (
+  `id` int(255) NOT NULL auto_increment,
+  `type` varchar(255) NOT NULL default 'type',
+  `catid` int(11) default NULL,
+  `title` varchar(1000) NOT NULL,
+  `content` text,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
 -- Records 
 -- ----------------------------
 INSERT INTO `catalogue_deals` VALUES ('2', '272', '1');
