@@ -225,7 +225,7 @@ div.stickie ul {
 	padding-left: 12px;
 }
 
-div.stickie p {
+div.stickie div.stickie-markup {
 	overflow: hidden;
 }
 
@@ -284,7 +284,7 @@ hr.divider {
 /* guestbook */
 
 .GuestbookWidget  .widget-headline img {
-	vertical-align: top;	
+	vertical-align: top;
 }
 
 .GuestbookWidget  .widget-headline .private {
@@ -353,7 +353,7 @@ hr.divider {
 }
 
 .metadata {
-	color: #666;		
+	color: #666;
 }
 
 #guestbook-form-dialog, #guestbook-delete-dialog {
@@ -561,6 +561,9 @@ ul.avatar-widget-list li:hover {
 	background-image: url(../../images/myhabbo/widgets/raster_selected.gif);
 }
 
+ul.avatar-widget-list li h4 {
+    width: 70px;
+}
 ul.avatar-widget-list li h4, ul.avatar-widget-list li p {
 	margin: 0;
 	font-size: 10px;
@@ -866,7 +869,7 @@ ul.web-item-list li:hover {
 }
 
 #purchase-main-dialog-body {
-	height: 324px;    
+	height: 324px;
     padding-bottom: 10px;
 }
 
@@ -1224,7 +1227,7 @@ span.webstore-preview-error {
 }
 
 #webstore-notes-edit-container {
-    overflow: auto;    
+    overflow: auto;
 }
 
 /* main categories */
@@ -1330,7 +1333,7 @@ a#group-url-button{
 }
 
 /* support for larger ... */
-div#member-list-paging, div#avatar-list-paging {
+div#member-list-paging, div#avatar-list-paging, div#badge-list-paging {
 	text-align:center;
 }
 a.avatar-list-paging-link {
@@ -1345,7 +1348,7 @@ input#group-memberlist-members-search-string {
 }
 
 #group-memberlist-search-info.error {
-    color: #ee0000;    
+    color: #ee0000;
 }
 
 div#group-memberlist-members {
@@ -1358,7 +1361,7 @@ div#group-memberlist-members-list {
 }
 
 #group-memberlist-members-search input {
-	padding: 4px;	
+	padding: 4px;
 }
 
 #group-memberlist-members-list div.item {
@@ -1381,16 +1384,19 @@ div#profile-tags-panel, div#profile-tags-list {
 	position: relative;
 }
 
-a.tag-search-link {
+a.tag {
 	font-weight: normal;
 	text-decoration: none;
 }
+a.tag:hover {
+    text-decoration: underline;
+}
 
-img.tag-delete-link {
+img.tag-delete-link, img.tag-add-link {
 	position: relative;
 	top: 1px;
-	cursor: hand;
-    margin: 0px 5px 0px 0px;
+	cursor: pointer;
+    margin: 0 5px 0 0;
 }
 
 input#profile-add-tag-input {

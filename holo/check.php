@@ -38,7 +38,8 @@ echo "<p>If you came from:<br />";
 echo "<strong>3.1.X BETA</strong>, <strong>3.0.X.X</strong>, <strong>2.1.1</strong>, or lower:<br />";
 echo "Please replace all files and run install.php";
 echo "<strong>3.1.X</strong>:<br />";
-echo "Run replace all files and run upgrade.php";
+echo "Run replace all files and run upgrade.php<br /><br />";
+echo "Now that you read this, delete check.php to continue.";
 
 ?>
 </body>

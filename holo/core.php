@@ -98,8 +98,7 @@ $online_count = $r1ow['onlinecount'];
 $server_on_localhost = $config['localhost'];
 $habboversion = "23_deebb3529e0d9d4e847a31e5f6fb4c5b/9";
 $forumid = $_GET['id'];
-$cimagesurl = "http://images.habbohotel.co.uk/c_images/";
-$badgesurl = "album1584/";
+$analytics = stripslashes($config['analytics'])."\n";
 
 // #########################################################################
 

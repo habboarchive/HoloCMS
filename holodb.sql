@@ -154,10 +154,12 @@ CREATE TABLE `cms_applications` (
 -- ----------------------------
 CREATE TABLE `cms_banners` (
   `id` int(35) NOT NULL auto_increment,
-  `text` varchar(50) NOT NULL,
-  `banner` varchar(255) NOT NULL,
-  `url` varchar(255) NOT NULL,
+  `text` varchar(50) default NULL,
+  `banner` varchar(255) default NULL,
+  `url` varchar(255) default NULL,
   `status` smallint(1) NOT NULL default '0',
+  `advanced` int(1) default '0',
+  `html` text,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
@@ -376,7 +378,8 @@ CREATE TABLE `cms_system` (
   `localhost` enum('0','1') collate latin1_general_ci NOT NULL COMMENT 'Local server?',
   `start_credits` int(11) NOT NULL default '0',
   `admin_notes` text collate latin1_general_ci NOT NULL,
-  `loader` int(1) NOT NULL default '1'
+  `loader` int(1) NOT NULL default '1',
+  `analytics` text collate latin1_general_ci
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci COMMENT='HoloCMS';
 
 -- ----------------------------

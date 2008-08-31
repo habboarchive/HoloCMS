@@ -5,7 +5,7 @@
 | Copyright © 2008 Meth0d
 +----------------------------------------------------+
 | HoloCMS is provided "as is" and comes without
-| warrenty of any kind. 
+| warrenty of any kind.
 +---------------------------------------------------*/
 
 if (!defined("IN_HOLOCMS")) { header("Location: ../../index.php"); exit; }
@@ -30,6 +30,32 @@ if (!defined("IN_HOLOCMS")) { header("Location: ../../index.php"); exit; }
 */
 
 ?>
+<?php if($noads == true){ ?>
+<?php } elseif($pageid == "forum"){ ?>
+<?php } else { ?>
+<div id="column3" class="column">
+				<div class="habblet-container ">		
+	
+						<div class="ad-container">
+<?php $sql = mysql_query("SELECT * FROM cms_banners WHERE status = '1'");
+
+while($row = mysql_fetch_assoc($sql)) { ?>
+<?php if($row['advanced'] == "1"){
+echo stripslashes($row['html'])."\n<br />\n";
+}else{ ?>
+<a target="blank" href="<?php echo $row['url']; ?>"><img src="<?php echo $row['banner']; ?>"></a><br />
+<a target="blank" href="<?php echo $row['url']; ?>"><?php echo stripslashes($row['text']); ?></a><br />
+<?php } ?>
+<?php } ?>
+<br>
+</div>
+	
+						
+					
+				</div>
+				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
+</div>
+<?php } ?>
 
 <!--[if lt IE 7]>
 <script type="text/javascript">
@@ -40,7 +66,7 @@ Pngfix.doPngImageFix();
 <div id="footer">
 	<p><a href="index.php" target="_self">Homepage</a> | <a href="./disclaimer.php" target="_self">Terms of Service</a> | <a href="./privacy.php" target="_self">Privacy Policy</a></p>
 	<?php /*@@* DO NOT EDIT OR REMOVE THE LINE BELOW WHATSOEVER! *@@*/ ?>
-	<p>Powered by HoloCMS &copy 2008 Meth0d & Parts by Yifan.<br />HABBO is a registered trademark of Sulake Corporation. All rights reserved to their respective owner(s).</p>
+	<p>Powered by HoloCMS &copy 2008 Meth0d.<br />Everything &copy 2005 - 2007 Sulake Corporation Ltd. HABBO is a registered trademark of Sulake Corporation Oy in the European Union, the USA, Japan, the People's Republic of China and various other jurisdictions. All rights reserved.<br>We are not endorsed, affiliated, or sponsered by Sulake Corporation Oy.</p>
 	<?php /*@@* DO NOT EDIT OR REMOVE THE LINE ABOVE WHATSOEVER! *@@*/ ?>
 </div></div>
 
@@ -50,9 +76,6 @@ Pngfix.doPngImageFix();
 HabboView.run();
 </script>
 
-<?php if($notify_maintenance){ ?>
-<div align="center" style="color: red; background-color: white; border: 1px solid black; padding:2px; width: 75%"><b>Alert:</b> The site is currently turned off!</div>
-<?php } ?>
-
+<?php echo $analytics; ?>
 </body>
 </html>

@@ -5,7 +5,7 @@
 .RatingWidget .widget-content {
 	width: 160px;
 }
-.GroupInfoWidget .widget-content, .ProfileWidget .widget-content, .RoomsWidget .widget-content, .GroupsWidget .widget-content, .HighScoresWidget .widget-content, .UserExpsWidget .widget-content, .stickie-content, .HabboMoviesWidget .widget-content, .TraxPlayerWidget .widget-content {
+.GroupInfoWidget .widget-content, .ProfileWidget .widget-content, .RoomsWidget .widget-content, .GroupsWidget .widget-content, .HighScoresWidget .widget-content, .UserExpsWidget .widget-content, .stickie-content, .HabboMoviesWidget .widget-content, .TraxPlayerWidget .widget-content, .BadgesWidget .widget-content {
 	width: 218px;
 }
 
@@ -16,7 +16,7 @@
 .RatingWidget .w_skin_goldenskin {
 	width: 229px;
 }
-.GroupInfoWidget .w_skin_goldenskin, .ProfileWidget .w_skin_goldenskin, .RoomsWidget .w_skin_goldenskin, .GroupsWidget .w_skin_goldenskin, .HighScoresWidget .w_skin_goldenskin, .UserExpsWidget .w_skin_goldenskin, .HabboMoviesWidget .w_skin_goldenskin, .TraxPlayerWidget .w_skin_goldenskin {
+.GroupInfoWidget .w_skin_goldenskin, .ProfileWidget .w_skin_goldenskin, .RoomsWidget .w_skin_goldenskin, .GroupsWidget .w_skin_goldenskin, .HighScoresWidget .w_skin_goldenskin, .UserExpsWidget .w_skin_goldenskin, .HabboMoviesWidget .w_skin_goldenskin, .TraxPlayerWidget .w_skin_goldenskin, .BadgesWidget .w_skin_goldenskin {
 	width: 287px;
 }
 
@@ -27,7 +27,7 @@
 .RatingWidget .w_skin_defaultskin {
 	width: 194px;
 }
-.GroupInfoWidget .w_skin_defaultskin, .ProfileWidget .w_skin_defaultskin, .RoomsWidget .w_skin_defaultskin, .GroupsWidget .w_skin_defaultskin, .HighScoresWidget .w_skin_defaultskin, .UserExpsWidget .w_skin_defaultskin, .HabboMoviesWidget .w_skin_defaultskin, .TraxPlayerWidget .w_skin_defaultskin {
+.GroupInfoWidget .w_skin_defaultskin, .ProfileWidget .w_skin_defaultskin, .RoomsWidget .w_skin_defaultskin, .GroupsWidget .w_skin_defaultskin, .HighScoresWidget .w_skin_defaultskin, .UserExpsWidget .w_skin_defaultskin, .HabboMoviesWidget .w_skin_defaultskin, .TraxPlayerWidget .w_skin_defaultskin, .BadgesWidget .w_skin_defaultskin {
 	width: 252px;
 }
 
@@ -38,7 +38,7 @@
 .RatingWidget .w_skin_hc_pillowskin {
 	width: 244px;
 }
-.GroupInfoWidget .w_skin_hc_pillowskin, .ProfileWidget .w_skin_hc_pillowskin, .RoomsWidget .w_skin_hc_pillowskin, .GroupsWidget .w_skin_hc_pillowskin, .HighScoresWidget .w_skin_hc_pillowskin, .UserExpsWidget .w_skin_hc_pillowskin, .HabboMoviesWidget .w_skin_hc_pillowskin, .TraxPlayerWidget .w_skin_hc_pillowskin {
+.GroupInfoWidget .w_skin_hc_pillowskin, .ProfileWidget .w_skin_hc_pillowskin, .RoomsWidget .w_skin_hc_pillowskin, .GroupsWidget .w_skin_hc_pillowskin, .HighScoresWidget .w_skin_hc_pillowskin, .UserExpsWidget .w_skin_hc_pillowskin, .HabboMoviesWidget .w_skin_hc_pillowskin, .TraxPlayerWidget .w_skin_hc_pillowskin, .BadgesWidget .w_skin_hc_pillowskin {
 	width: 302px;
 }
 
@@ -49,7 +49,7 @@
 .RatingWidget .w_skin_hc_machineskin {
 	width: 255px;
 }
-.GroupInfoWidget .w_skin_hc_machineskin, .ProfileWidget .w_skin_hc_machineskin, .RoomsWidget .w_skin_hc_machineskin, .GroupsWidget .w_skin_hc_machineskin, .HighScoresWidget .w_skin_hc_machineskin, .UserExpsWidget .w_skin_hc_machineskin, .HabboMoviesWidget .w_skin_hc_machineskin, .TraxPlayerWidget .w_skin_hc_machineskin {
+.GroupInfoWidget .w_skin_hc_machineskin, .ProfileWidget .w_skin_hc_machineskin, .RoomsWidget .w_skin_hc_machineskin, .GroupsWidget .w_skin_hc_machineskin, .HighScoresWidget .w_skin_hc_machineskin, .UserExpsWidget .w_skin_hc_machineskin, .HabboMoviesWidget .w_skin_hc_machineskin, .TraxPlayerWidget .w_skin_hc_machineskin, .BadgesWidget .w_skin_hc_machineskin {
 	width: 313px;
 }
 
@@ -60,7 +60,7 @@
 .RatingWidget .w_skin_metalskin {
 	width: 215px;
 }
-.GroupInfoWidget .w_skin_metalskin, .ProfileWidget .w_skin_metalskin, .RoomsWidget .w_skin_metalskin, .GroupsWidget .w_skin_metalskin, .HighScoresWidget .w_skin_metalskin, .UserExpsWidget .w_skin_metalskin, .HabboMoviesWidget .w_skin_metalskin, .TraxPlayerWidget .w_skin_metalskin {
+.GroupInfoWidget .w_skin_metalskin, .ProfileWidget .w_skin_metalskin, .RoomsWidget .w_skin_metalskin, .GroupsWidget .w_skin_metalskin, .HighScoresWidget .w_skin_metalskin, .UserExpsWidget .w_skin_metalskin, .HabboMoviesWidget .w_skin_metalskin, .TraxPlayerWidget .w_skin_metalskin, .BadgesWidget .w_skin_metalskin {
 	width: 273px;
 }
 
@@ -71,7 +71,7 @@
 .RatingWidget .w_skin_notepadskin {
 	width: 196px;
 }
-.GroupInfoWidget .w_skin_notepadskin, .ProfileWidget .w_skin_notepadskin, .RoomsWidget .w_skin_notepadskin, .GroupsWidget .w_skin_notepadskin, .HighScoresWidget .w_skin_notepadskin, .UserExpsWidget .w_skin_notepadskin, .HabboMoviesWidget .w_skin_notepadskin, .TraxPlayerWidget .w_skin_notepadskin {
+.GroupInfoWidget .w_skin_notepadskin, .ProfileWidget .w_skin_notepadskin, .RoomsWidget .w_skin_notepadskin, .GroupsWidget .w_skin_notepadskin, .HighScoresWidget .w_skin_notepadskin, .UserExpsWidget .w_skin_notepadskin, .HabboMoviesWidget .w_skin_notepadskin, .TraxPlayerWidget .w_skin_notepadskin, .BadgesWidget .w_skin_notepadskin {
 	width: 254px;
 }
 
@@ -82,7 +82,7 @@
 .RatingWidget .w_skin_speechbubbleskin {
 	width: 180px;
 }
-.GroupInfoWidget .w_skin_speechbubbleskin, .ProfileWidget .w_skin_speechbubbleskin, .RoomsWidget .w_skin_speechbubbleskin, .GroupsWidget .w_skin_speechbubbleskin, .HighScoresWidget .w_skin_speechbubbleskin, .UserExpsWidget .w_skin_speechbubbleskin, .HabboMoviesWidget .w_skin_speechbubbleskin, .TraxPlayerWidget .w_skin_speechbubbleskin {
+.GroupInfoWidget .w_skin_speechbubbleskin, .ProfileWidget .w_skin_speechbubbleskin, .RoomsWidget .w_skin_speechbubbleskin, .GroupsWidget .w_skin_speechbubbleskin, .HighScoresWidget .w_skin_speechbubbleskin, .UserExpsWidget .w_skin_speechbubbleskin, .HabboMoviesWidget .w_skin_speechbubbleskin, .TraxPlayerWidget .w_skin_speechbubbleskin, .BadgesWidget .w_skin_speechbubbleskin {
 	width: 238px;
 }
 
@@ -93,7 +93,7 @@
 .RatingWidget .w_skin_noteitskin {
 	width: 179px;
 }
-.GroupInfoWidget .w_skin_noteitskin, .ProfileWidget .w_skin_noteitskin, .RoomsWidget .w_skin_noteitskin, .GroupsWidget .w_skin_noteitskin, .HighScoresWidget .w_skin_noteitskin, .UserExpsWidget .w_skin_noteitskin, .HabboMoviesWidget .w_skin_noteitskin, .TraxPlayerWidget .w_skin_noteitskin {
+.GroupInfoWidget .w_skin_noteitskin, .ProfileWidget .w_skin_noteitskin, .RoomsWidget .w_skin_noteitskin, .GroupsWidget .w_skin_noteitskin, .HighScoresWidget .w_skin_noteitskin, .UserExpsWidget .w_skin_noteitskin, .HabboMoviesWidget .w_skin_noteitskin, .TraxPlayerWidget .w_skin_noteitskin, .BadgesWidget .w_skin_noteitskin {
 	width: 237px;
 }
 

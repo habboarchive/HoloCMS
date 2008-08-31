@@ -436,6 +436,7 @@ if($userdata['id'] == $my_id){
 
 <div id="room_wrapper">
 <table border="0" cellpadding="0" cellspacing="0">
+
 			<?php 
 			$i = 0;
 			while ($roomrow = mysql_fetch_assoc($roomsql)) {
@@ -1105,6 +1106,7 @@ Event.observe("trax-select-options", "change", handleTraxplayerTrackChange, fals
 HabboView.run();
 </script>
 
+<?php echo $analytics; ?>
 </body>
 </html>
 

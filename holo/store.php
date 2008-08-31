@@ -133,142 +133,142 @@ if($valid > 0){
 	<h4>Categories:</h4>
 	<div id="webstore-categories">
 <ul class="purchase-main-category">
-		<li id="maincategory-3-stickers" class="selected-main-category webstore-selected-main">
+		<li id="maincategory-1-stickers" class="selected-main-category webstore-selected-main">
 			<div>Stickers</div>
-			<ul class="purchase-subcategory-list" id="main-category-items-228">
+			<ul class="purchase-subcategory-list" id="main-category-items-1">
 				<?php if($user_rank > 5){ ?>
-				<li id="subcategory-3-50-stickers" class="subcategory">
+				<li id="subcategory-1-50-stickers" class="subcategory">
 					<div><strong><font color='red'><?php echo $shortname; ?> Staff</strong></font></div>
 				</li>
 				<?php } ?>
-				<li id="subcategory-3-214-stickers" class="subcategory">
+				<li id="subcategory-1-214-stickers" class="subcategory">
 					<div>Advertisment</div>
 				</li>
-				<li id="subcategory-3-205-stickers" class="subcategory">
+				<li id="subcategory-1-205-stickers" class="subcategory">
 					<div>Alhambra</div>
 				</li>
-				<li id="subcategory-3-211-stickers" class="subcategory">
+				<li id="subcategory-1-211-stickers" class="subcategory">
 					<div>Alpha Bling</div>
 				</li>
-				<li id="subcategory-3-203-stickers" class="subcategory">
+				<li id="subcategory-1-203-stickers" class="subcategory">
 					<div>Alpha Plastic</div>
 				</li>
-				<li id="subcategory-3-227-stickers" class="subcategory">
+				<li id="subcategory-1-227-stickers" class="subcategory">
 					<div>Alpha Wood</div>
 				</li>
-				<li id="subcategory-3-242-stickers" class="subcategory">
+				<li id="subcategory-1-242-stickers" class="subcategory">
 					<div>Alpha Blue Diner</div>
 				</li>
-				<li id="subcategory-3-244-stickers" class="subcategory">
+				<li id="subcategory-1-244-stickers" class="subcategory">
 					<div>Alpha Green Diner</div>
 				</li>
-				<li id="subcategory-3-246-stickers" class="subcategory">
+				<li id="subcategory-1-246-stickers" class="subcategory">
 					<div>Alpha Red Diner</div>
 				</li>
-				<li id="subcategory-3-236-stickers" class="subcategory">
+				<li id="subcategory-1-236-stickers" class="subcategory">
 					<div>Bank</div>
 				</li>
-				<li id="subcategory-3-206-stickers" class="subcategory">
+				<li id="subcategory-1-206-stickers" class="subcategory">
 					<div>Birthday</div>
 				</li>
-				<li id="subcategory-3-215-stickers" class="subcategory">
+				<li id="subcategory-1-215-stickers" class="subcategory">
 					<div>Borders</div>
 				</li>
-				<li id="subcategory-3-204-stickers" class="subcategory">
+				<li id="subcategory-1-204-stickers" class="subcategory">
 					<div>Buttons</div>
 				</li>
-				<li id="subcategory-3-223-stickers" class="subcategory">
+				<li id="subcategory-1-223-stickers" class="subcategory">
 					<div>Celebration</div>
 				</li>
-				<li id="subcategory-3-217-stickers" class="subcategory">
+				<li id="subcategory-1-217-stickers" class="subcategory">
 					<div>Chinese</div>
 				</li>
-				<li id="subcategory-3-201-stickers" class="subcategory">
+				<li id="subcategory-1-201-stickers" class="subcategory">
 					<div>Clubber</div>
 				</li>
-				<li id="subcategory-3-245-stickers" class="subcategory">
+				<li id="subcategory-1-245-stickers" class="subcategory">
 					<div>Dark Knight</div>
 				</li>
-				<li id="subcategory-3-243-stickers" class="subcategory">
+				<li id="subcategory-1-243-stickers" class="subcategory">
 					<div>Diner</div>
 				</li>
-				<li id="subcategory-3-235-stickers" class="subcategory">
+				<li id="subcategory-1-235-stickers" class="subcategory">
 					<div>Eco</div>
 				</li>
-				<li id="subcategory-3-240-stickers" class="subcategory">
+				<li id="subcategory-1-240-stickers" class="subcategory">
 					<div>FX</div>
 				</li>
-				<li id="subcategory-3-208-stickers" class="subcategory">
+				<li id="subcategory-1-208-stickers" class="subcategory">
 					<div>Costume</div>
 				</li>
-				<li id="subcategory-3-219-stickers" class="subcategory">
+				<li id="subcategory-1-219-stickers" class="subcategory">
 					<div>Goth</div>
 				</li>
-				<li id="subcategory-3-238-stickers" class="subcategory">
+				<li id="subcategory-1-238-stickers" class="subcategory">
 					<div>Highlighter</div>
 				</li>
-				<li id="subcategory-3-213-stickers" class="subcategory">
+				<li id="subcategory-1-213-stickers" class="subcategory">
 					<div>Hocky</div>
 				</li>
-				<li id="subcategory-3-239-stickers" class="subcategory">
+				<li id="subcategory-1-239-stickers" class="subcategory">
 					<div>Inked</div>
 				</li>
-				<li id="subcategory-3-224-stickers" class="subcategory">
+				<li id="subcategory-1-224-stickers" class="subcategory">
 					<div>Japanese</div>
 				</li>
-				<li id="subcategory-3-225-stickers" class="subcategory">
+				<li id="subcategory-1-225-stickers" class="subcategory">
 					<div>Keep it Real (NOT!)</div>
 				</li>
-				<li id="subcategory-3-226-stickers" class="subcategory">
+				<li id="subcategory-1-226-stickers" class="subcategory">
 					<div>Love</div>
 				</li>
-				<li id="subcategory-3-216-stickers" class="subcategory">
+				<li id="subcategory-1-216-stickers" class="subcategory">
 					<div><?echo $shortname; ?>s</div>
 				</li>
-				<li id="subcategory-3-220-stickers" class="subcategory">
+				<li id="subcategory-1-220-stickers" class="subcategory">
 					<div><?echo $shortname; ?>ween</div>
 				</li>
-				<li id="subcategory-3-221-stickers" class="subcategory">
+				<li id="subcategory-1-221-stickers" class="subcategory">
 					<div><?echo $shortname; ?>wood</div>
 				</li>
-				<li id="subcategory-3-247-stickers" class="subcategory">
+				<li id="subcategory-1-247-stickers" class="subcategory">
 					<div>Olympics</div>
 				</li>
-				<li id="subcategory-3-228-stickers" class="subcategory">
+				<li id="subcategory-1-228-stickers" class="subcategory">
 					<div>Others 1</div>
 				</li>
-				<li id="subcategory-3-229-stickers" class="subcategory">
+				<li id="subcategory-1-229-stickers" class="subcategory">
 					<div>Others 2</div>
 				</li>
-				<li id="subcategory-3-230-stickers" class="subcategory">
+				<li id="subcategory-1-230-stickers" class="subcategory">
 					<div>Others 3</div>
 				</li>
-				<li id="subcategory-3-212-stickers" class="subcategory">
+				<li id="subcategory-1-212-stickers" class="subcategory">
 					<div>Paper Mario</div>
 				</li>
-				<li id="subcategory-3-222-stickers" class="subcategory">
+				<li id="subcategory-1-222-stickers" class="subcategory">
 					<div>Pointers</div>
 				</li>
-				<li id="subcategory-3-232-stickers" class="subcategory">
+				<li id="subcategory-1-232-stickers" class="subcategory">
 					<div>Soccer</div>
 				</li>
-				<li id="subcategory-3-237-stickers" class="subcategory">
+				<li id="subcategory-1-237-stickers" class="subcategory">
 					<div>Sparkle</div>
 				</li>
-				<li id="subcategory-3-210-stickers" class="subcategory">
+				<li id="subcategory-1-210-stickers" class="subcategory">
 					<div>Spring</div>
 				</li>
-				<li id="subcategory-3-241-stickers" class="subcategory">
+				<li id="subcategory-1-241-stickers" class="subcategory">
 					<div>St. Patricks</div>
 				</li>
-				<li id="subcategory-3-207-stickers" class="subcategory">
+				<li id="subcategory-1-207-stickers" class="subcategory">
 					<div>Summer</div>
 				</li>
-				<li id="subcategory-3-209-stickers" class="subcategory">
+				<li id="subcategory-1-209-stickers" class="subcategory">
 					<div>Wrestlers</div>
 				</li>
 				<?php if($user_rank > 5){ ?>
-				<li id="subcategory-3-1000-stickers" class="subcategory">
+				<li id="subcategory-1-1000-stickers" class="subcategory">
 					<div>Not Working</div>
 				</li>
 				<?php } ?>
@@ -308,7 +308,8 @@ if($valid > 0){
 				</li>
 			</ul>
 		</li>
-</div>
+</ul>
+	</div>
 </div>
 
 <div id="webstore-content-container">
@@ -672,140 +673,140 @@ if($valid > 0){
 <ul class="purchase-main-category">
 		<li id="maincategory-1-stickers" class="selected-main-category webstore-selected-main">
 			<div>Stickers</div>
-			<ul class="purchase-subcategory-list" id="main-category-items-228">
+			<ul class="purchase-subcategory-list" id="main-category-items-1">
 				<?php if($user_rank > 5){ ?>
 				<li id="subcategory-1-50-stickers" class="subcategory">
 					<div><strong><font color='red'><?php echo $shortname; ?> Staff</strong></font></div>
 				</li>
 				<?php } ?>
-				<li id="subcategory-3-214-stickers" class="subcategory">
+				<li id="subcategory-1-214-stickers" class="subcategory">
 					<div>Advertisment</div>
 				</li>
-				<li id="subcategory-3-205-stickers" class="subcategory">
+				<li id="subcategory-1-205-stickers" class="subcategory">
 					<div>Alhambra</div>
 				</li>
-				<li id="subcategory-3-211-stickers" class="subcategory">
+				<li id="subcategory-1-211-stickers" class="subcategory">
 					<div>Alpha Bling</div>
 				</li>
-				<li id="subcategory-3-203-stickers" class="subcategory">
+				<li id="subcategory-1-203-stickers" class="subcategory">
 					<div>Alpha Plastic</div>
 				</li>
-				<li id="subcategory-3-227-stickers" class="subcategory">
+				<li id="subcategory-1-227-stickers" class="subcategory">
 					<div>Alpha Wood</div>
 				</li>
-				<li id="subcategory-3-242-stickers" class="subcategory">
+				<li id="subcategory-1-242-stickers" class="subcategory">
 					<div>Alpha Blue Diner</div>
 				</li>
-				<li id="subcategory-3-244-stickers" class="subcategory">
+				<li id="subcategory-1-244-stickers" class="subcategory">
 					<div>Alpha Green Diner</div>
 				</li>
-				<li id="subcategory-3-246-stickers" class="subcategory">
+				<li id="subcategory-1-246-stickers" class="subcategory">
 					<div>Alpha Red Diner</div>
 				</li>
-				<li id="subcategory-3-236-stickers" class="subcategory">
+				<li id="subcategory-1-236-stickers" class="subcategory">
 					<div>Bank</div>
 				</li>
-				<li id="subcategory-3-206-stickers" class="subcategory">
+				<li id="subcategory-1-206-stickers" class="subcategory">
 					<div>Birthday</div>
 				</li>
-				<li id="subcategory-3-215-stickers" class="subcategory">
+				<li id="subcategory-1-215-stickers" class="subcategory">
 					<div>Borders</div>
 				</li>
-				<li id="subcategory-3-204-stickers" class="subcategory">
+				<li id="subcategory-1-204-stickers" class="subcategory">
 					<div>Buttons</div>
 				</li>
-				<li id="subcategory-3-223-stickers" class="subcategory">
+				<li id="subcategory-1-223-stickers" class="subcategory">
 					<div>Celebration</div>
 				</li>
-				<li id="subcategory-3-217-stickers" class="subcategory">
+				<li id="subcategory-1-217-stickers" class="subcategory">
 					<div>Chinese</div>
 				</li>
-				<li id="subcategory-3-201-stickers" class="subcategory">
+				<li id="subcategory-1-201-stickers" class="subcategory">
 					<div>Clubber</div>
 				</li>
-				<li id="subcategory-3-245-stickers" class="subcategory">
+				<li id="subcategory-1-245-stickers" class="subcategory">
 					<div>Dark Knight</div>
 				</li>
-				<li id="subcategory-3-243-stickers" class="subcategory">
+				<li id="subcategory-1-243-stickers" class="subcategory">
 					<div>Diner</div>
 				</li>
-				<li id="subcategory-3-235-stickers" class="subcategory">
+				<li id="subcategory-1-235-stickers" class="subcategory">
 					<div>Eco</div>
 				</li>
-				<li id="subcategory-3-240-stickers" class="subcategory">
+				<li id="subcategory-1-240-stickers" class="subcategory">
 					<div>FX</div>
 				</li>
-				<li id="subcategory-3-208-stickers" class="subcategory">
+				<li id="subcategory-1-208-stickers" class="subcategory">
 					<div>Costume</div>
 				</li>
-				<li id="subcategory-3-219-stickers" class="subcategory">
+				<li id="subcategory-1-219-stickers" class="subcategory">
 					<div>Goth</div>
 				</li>
-				<li id="subcategory-3-238-stickers" class="subcategory">
+				<li id="subcategory-1-238-stickers" class="subcategory">
 					<div>Highlighter</div>
 				</li>
-				<li id="subcategory-3-213-stickers" class="subcategory">
+				<li id="subcategory-1-213-stickers" class="subcategory">
 					<div>Hocky</div>
 				</li>
-				<li id="subcategory-3-239-stickers" class="subcategory">
+				<li id="subcategory-1-239-stickers" class="subcategory">
 					<div>Inked</div>
 				</li>
-				<li id="subcategory-3-224-stickers" class="subcategory">
+				<li id="subcategory-1-224-stickers" class="subcategory">
 					<div>Japanese</div>
 				</li>
-				<li id="subcategory-3-225-stickers" class="subcategory">
+				<li id="subcategory-1-225-stickers" class="subcategory">
 					<div>Keep it Real (NOT!)</div>
 				</li>
-				<li id="subcategory-3-226-stickers" class="subcategory">
+				<li id="subcategory-1-226-stickers" class="subcategory">
 					<div>Love</div>
 				</li>
-				<li id="subcategory-3-216-stickers" class="subcategory">
+				<li id="subcategory-1-216-stickers" class="subcategory">
 					<div><?echo $shortname; ?>s</div>
 				</li>
-				<li id="subcategory-3-220-stickers" class="subcategory">
+				<li id="subcategory-1-220-stickers" class="subcategory">
 					<div><?echo $shortname; ?>ween</div>
 				</li>
-				<li id="subcategory-3-221-stickers" class="subcategory">
+				<li id="subcategory-1-221-stickers" class="subcategory">
 					<div><?echo $shortname; ?>wood</div>
 				</li>
-				<li id="subcategory-3-247-stickers" class="subcategory">
+				<li id="subcategory-1-247-stickers" class="subcategory">
 					<div>Olympics</div>
 				</li>
-				<li id="subcategory-3-228-stickers" class="subcategory">
+				<li id="subcategory-1-228-stickers" class="subcategory">
 					<div>Others 1</div>
 				</li>
-				<li id="subcategory-3-229-stickers" class="subcategory">
+				<li id="subcategory-1-229-stickers" class="subcategory">
 					<div>Others 2</div>
 				</li>
-				<li id="subcategory-3-230-stickers" class="subcategory">
+				<li id="subcategory-1-230-stickers" class="subcategory">
 					<div>Others 3</div>
 				</li>
-				<li id="subcategory-3-212-stickers" class="subcategory">
+				<li id="subcategory-1-212-stickers" class="subcategory">
 					<div>Paper Mario</div>
 				</li>
-				<li id="subcategory-3-222-stickers" class="subcategory">
+				<li id="subcategory-1-222-stickers" class="subcategory">
 					<div>Pointers</div>
 				</li>
-				<li id="subcategory-3-232-stickers" class="subcategory">
+				<li id="subcategory-1-232-stickers" class="subcategory">
 					<div>Soccer</div>
 				</li>
-				<li id="subcategory-3-237-stickers" class="subcategory">
+				<li id="subcategory-1-237-stickers" class="subcategory">
 					<div>Sparkle</div>
 				</li>
-				<li id="subcategory-3-210-stickers" class="subcategory">
+				<li id="subcategory-1-210-stickers" class="subcategory">
 					<div>Spring</div>
 				</li>
-				<li id="subcategory-3-241-stickers" class="subcategory">
+				<li id="subcategory-1-241-stickers" class="subcategory">
 					<div>St. Patricks</div>
 				</li>
-				<li id="subcategory-3-207-stickers" class="subcategory">
+				<li id="subcategory-1-207-stickers" class="subcategory">
 					<div>Summer</div>
 				</li>
-				<li id="subcategory-3-209-stickers" class="subcategory">
+				<li id="subcategory-1-209-stickers" class="subcategory">
 					<div>Wrestlers</div>
 				</li>
 				<?php if($user_rank > 5){ ?>
-				<li id="subcategory-3-1000-stickers" class="subcategory">
+				<li id="subcategory-1-1000-stickers" class="subcategory">
 					<div>Not Working</div>
 				</li>
 				<?php } ?>
@@ -845,6 +846,9 @@ if($valid > 0){
 				</li>
 			</ul>
 		</li>
+</ul>
+
+	</div>
 </div>
 
 <div id="webstore-content-container">

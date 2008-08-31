@@ -1,4 +1,4 @@
-HoloCMS 3.1 RC2
+HoloCMS 3.1
 -----------------------
 New Users:
 Run holodb.sql

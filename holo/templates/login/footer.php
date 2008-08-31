@@ -40,7 +40,7 @@ Pngfix.doPngImageFix();
 <div id="footer">
 	<p><a href="index.php" target="_self">Homepage</a> | <a href="./disclaimer.php" target="_self">Terms of Service</a> | <a href="./privacy.php" target="_self">Privacy Policy</a><?php if($rank[iAdmin] == "1" || $user_rank > 5){ ?> | <a href="./housekeeping.php" target="_self"><b>Housekeeping</b></a><?php } ?></p>
 	<?php /*@@* DO NOT EDIT OR REMOVE THE LINE BELOW WHATSOEVER! *@@*/ ?>
-	<p>Powered by HoloCMS &copy 2008 Meth0d & Yifan<br><?php echo $locale['copyright_habbo']; ?></p>
+	<p>Powered by HoloCMS &copy 2008 Meth0d & Parts by Yifan, sisija<br><?php echo $locale['copyright_habbo']; ?></p>
 	<?php /*@@* DO NOT EDIT OR REMOVE THE LINE ABOVE WHATSOEVER! *@@*/ ?>
 </div>			</div>
         </div>
@@ -51,5 +51,6 @@ Pngfix.doPngImageFix();
 HabboView.run();
 </script>
 
+<?php echo $analytics; ?>
 </body>
 </html>

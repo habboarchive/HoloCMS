@@ -15,5 +15,6 @@ if($hkzone !== true){ header("Location: index.php?throwBack=true"); exit; }
 <br />
  <div class='copy' align='center'>HoloCMS v<?php echo $holocms['version']; ?> [ <?php echo $holocms['title']; ?> ] <?php echo $holocms['stable']; ?><br /><font size='1'>Build <?php echo $holocms['date']; ?> </font></div>
 </div>
+<?php echo $analytics; ?>
 </body>
 </html>

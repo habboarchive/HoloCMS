@@ -229,3 +229,11 @@ a.group-info-room {
 a.group-info-room:hover {
 	text-decoration: underline;
 }
+
+#badgelist-content ul li {
+    width: 53px;
+    height: 45px;
+    float: left;
+    background-repeat: no-repeat;
+    background-position: center center;
+}

@@ -22,10 +22,11 @@ if(isset($_POST['sitename'])){
 	$enable_sso = $_POST['enable_sso'];
 	$start_credits = $_POST['credits'];
 	$language = addslashes($_POST['language']);
+	$analytics = addslashes($_POST['analytics']);
 
 	if(!empty($sitename) && !empty($shortname) && !empty($language)){
 
-		mysql_query("UPDATE cms_system SET sitename = '".$sitename."', shortname = '".$shortname."', enable_sso = '".$enable_sso."', language = '".$language."' , start_credits='".$start_credits."' LIMIT 1") or die(mysql_error());
+		mysql_query("UPDATE cms_system SET sitename = '".$sitename."', shortname = '".$shortname."', enable_sso = '".$enable_sso."', language = '".$language."' , start_credits='".$start_credits."', analytics = '".$analytics."' LIMIT 1") or die(mysql_error());
 		$msg = "Settings saved successfully.";
 
 		mysql_query("INSERT INTO system_stafflog (action,message,note,userid,targetid,timestamp) VALUES ('Housekeeping','Updated CMS Settings (General Configuration)','cms_config.php','".$my_id."','','".$date_full."')") or die(mysql_error());
@@ -86,6 +87,11 @@ if(isset($_POST['sitename'])){
 <tr>
 <td class='tablerow1'  width='40%'  valign='middle'><b>Start credits</b><div class='graytext'>How many credits do people get if they register on the site?</div></td>
 <td class='tablerow2'  width='60%'  valign='middle'><input type='text' name='credits' value="<?php echo FetchCMSSetting('start_credits'); ?>" size='2' maxlength='5' class='textinput'></td>
+</tr>
+
+<tr>
+<td class='tablerow1'  width='40%'  valign='middle'><b>Google Analytics Code</b><div class='graytext'>Code for Google Analytics placed in every page.</div></td>
+<td class='tablerow2'  width='60%'  valign='middle'><textarea name='analytics' cols='61' rows='3' wrap='soft' id='sub_desc' class='multitext'><?php echo stripslashes(FetchCMSSetting('analytics')); ?></textarea></td>
 </tr>
 
 <tr>

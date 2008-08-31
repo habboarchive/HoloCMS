@@ -74,7 +74,7 @@ function writeconfig($host, $username, $password, $db, $sitepath, $encryption, $
 //	This option will allow HoloCMS to perform full status checks. This,
 //	however, slows down your site A LOT. It is therefore disabled by
 //	default.
-"."$"."enable_status_image = \"1\";
+"."$"."enable_status_image = \"0\";
 
 //	****** SITE PATH ******
 //	The full URL to your site; with an slash added on the end.
@@ -97,6 +97,11 @@ function writeconfig($host, $username, $password, $db, $sitepath, $encryption, $
 //	doing so may corrupt your database.
 "."$"."encryption = \"".$encryption."\";
 "."$"."hashtext = \"".$hash."\";
+
+//	****** BADGES ******
+//	Where badges are located.
+"."$"."cimagesurl = \"http://images.habbohotel.co.uk/c_images/\";
+"."$"."badgesurl = \"album1584/\";
 
 ?>";
 	$temp = fopen("config.php","w");
@@ -2529,6 +2534,9 @@ mysql_query("INSERT DELAYED INTO `cms_banners` (`id`, `text`, `banner`, `url`, `
 		mysql_query("ALTER TABLE `users` ADD `screen` VARCHAR( 4 ) NULL DEFAULT 'wide' AFTER `online` ;");
 		mysql_query("ALTER TABLE `users` ADD `rea` VARCHAR( 8 ) NULL DEFAULT 'enabled' AFTER `screen` ;");
 		mysql_query("ALTER TABLE `cms_homes_stickers` ADD `var` INT( 100 ) NULL AFTER `groupid` ;");
+		mysql_query("ALTER TABLE `cms_system` ADD `analytics` TEXT NULL AFTER `loader` ;");
+		mysql_query("ALTER TABLE `cms_banners` ADD `advanced` INT( 1 ) NULL AFTER `status` ;");
+		mysql_query("ALTER TABLE `cms_banners` ADD `html` TEXT NULL AFTER `advanced` ;");
 
 		echo "<strong>done!</strong></p>\n";
 		echo "<p>The tables have been created, truncated and modified where needed, and required data has been inserted. Your site is technically ready for use now, but let's take a moment to set up an administrator account for you first.</p>";

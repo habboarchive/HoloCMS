@@ -249,7 +249,7 @@ document.observe(\"dom:loaded\", function() {
 Event.observe(\"widget-".$saved_id."-edit\", \"click\", function(e) { openEditMenu(e, ".$saved_id.", \"widget\", \"widget-".$saved_id."-edit\"); }, false);
 </script>\n";
 	?>
-			<div class="movable widget RoomsWidget" id="widget-<?php echo $saved_id ?>\" style=\" left: 20px; top: 20px; z-index: <?php echo $zindex; ?>;">
+			<div class="movable widget RoomsWidget" id="widget-<?php echo $saved_id ?>" style=" left: 20px; top: 20px; z-index: <?php echo $zindex; ?>;">
 <div class="w_skin_defaultskin">
 	<div class="widget-corner" id="widget-<?php echo $saved_id ?>-handle">
 		<div class="widget-headline"><h3>
@@ -344,7 +344,7 @@ Event.observe(\"widget-".$saved_id."-edit\", \"click\", function(e) { openEditMe
 Event.observe(\"widget-".$saved_id."-edit\", \"click\", function(e) { openEditMenu(e, ".$saved_id.", \"widget\", \"widget-".$saved_id."-edit\"); }, false);
 </script>\n";
 	?>
-	<div class="movable widget GuestbookWidget" id="widget-<?php echo $saved_id ?>\" style=\" left: 20px; top: 20px; z-index: <?php echo $zindex; ?>;">
+	<div class="movable widget GuestbookWidget" id="widget-<?php echo $saved_id ?>" style=" left: 20px; top: 20px; z-index: <?php echo $zindex; ?>;">
 <div class="w_skin_defaultskin">
 	<div class="widget-corner" id="widget-<?php echo $saved_id ?>-handle">
 		<div class="widget-headline"><h3>
@@ -494,7 +494,7 @@ document.observe(\"dom:loaded\", function() {
 Event.observe(\"widget-".$saved_id."-edit\", \"click\", function(e) { openEditMenu(e, ".$saved_id.", \"widget\", \"widget-".$saved_id."-edit\"); }, false);
 </script>\n";
 	?>
-			<div class="movable widget TraxPlayerWidget" id="widget-<?php echo $saved_id ?>\" style=\" left: 20px; top: 20px; z-index: <?php echo $zindex; ?>;">
+			<div class="movable widget TraxPlayerWidget" id="widget-<?php echo $saved_id ?>" style=" left: 20px; top: 20px; z-index: <?php echo $zindex; ?>;">
 <div class="w_skin_defaultskin">
 	<div class="widget-corner" id="widget-<?php echo $saved_id ?>-handle">
 		<div class="widget-headline"><h3><?php echo $edit; ?><span class="header-left">&nbsp;</span><span class="header-middle">TRAXPLAYER</span><span class="header-right">&nbsp;</span></h3>
@@ -544,7 +544,7 @@ $songrow1 = mysql_fetch_assoc($sql); ?>
 Event.observe(\"widget-".$saved_id."-edit\", \"click\", function(e) { openEditMenu(e, ".$saved_id.", \"widget\", \"widget-".$saved_id."-edit\"); }, false);
 </script>\n";
 	?>
-<div class="movable widget HighScoresWidget" id="widget-<?php echo $saved_id ?>\" style=\" left: 20px; top: 20px; z-index: <?php echo $zindex; ?>;">
+<div class="movable widget HighScoresWidget" id="widget-<?php echo $saved_id ?>" style=" left: 20px; top: 20px; z-index: <?php echo $zindex; ?>;">
 <div class="w_skin_defaultskin">
 	<div class="widget-corner" id="widget-<?php echo $saved_id ?>-handle">
 		<div class="widget-headline"><h3><?php echo $edit; ?><span class="header-left">&nbsp;</span><span class="header-middle">HIGH SCORES</span><span class="header-right">&nbsp;</span></h3>
@@ -591,7 +591,7 @@ Event.observe(\"widget-".$saved_id."-edit\", \"click\", function(e) { openEditMe
 Event.observe(\"widget-".$saved_id."-edit\", \"click\", function(e) { openEditMenu(e, ".$saved_id.", \"widget\", \"widget-".$saved_id."-edit\"); }, false);
 </script>\n";
 	?>
-	<div class="movable widget GuestbookWidget" id="widget-<?php echo $saved_id ?>\" style=\" left: 20px; top: 20px; z-index: <?php echo $zindex; ?>;">
+	<div class="movable widget GuestbookWidget" id="widget-<?php echo $saved_id ?>" style=" left: 20px; top: 20px; z-index: <?php echo $zindex; ?>;">
 <div class="w_skin_defaultskin">
 	<div class="widget-corner" id="widget-<?php echo $saved_id ?>-handle">
 		<div class="widget-headline"><h3>
@@ -632,7 +632,7 @@ Event.observe(\"widget-".$saved_id."-edit\", \"click\", function(e) { openEditMe
 Event.observe(\"widget-".$saved_id."-edit\", \"click\", function(e) { openEditMenu(e, ".$saved_id.", \"widget\", \"widget-".$saved_id."-edit\"); }, false);
 </script>\n";
 	?>
-			<div class="movable widget TraxPlayerWidget" id="widget-<?php echo $saved_id ?>\" style=\" left: 20px; top: 20px; z-index: <?php echo $zindex; ?>;">
+			<div class="movable widget TraxPlayerWidget" id="widget-<?php echo $saved_id ?>" style=" left: 20px; top: 20px; z-index: <?php echo $zindex; ?>;">
 <div class="w_skin_defaultskin">
 	<div class="widget-corner" id="widget-<?php echo $saved_id ?>-handle">
 		<div class="widget-headline"><h3><?php echo $edit; ?><span class="header-left">&nbsp;</span><span class="header-middle">TRAXPLAYER</span><span class="header-right">&nbsp;</span></h3>

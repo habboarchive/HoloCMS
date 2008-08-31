@@ -166,5 +166,6 @@ if (_shockwaveDetectionSuccessful) {
 HabboClientUtils.showLoader(["opening <?php echo $shortname; ?>&nbsp;&nbsp;&nbsp;", "opening <?php echo $shortname; ?>.&nbsp;&nbsp;", "opening <?php echo $shortname; ?>..&nbsp;", "opening <?php echo $shortname; ?>..."]);
 </script><?php } ?>
 </div>
+<?php echo $analytics; ?>
 </body>
 </html>

@@ -84,7 +84,7 @@ $body_id = "home";
             <div id="subnavi-search">
                 <div id="subnavi-search-upper">
                 <ul id="subnavi-search-links">
-                    <li><a href="./iot/go.php" target="habbohelp" onclick="openOrFocusHelp(this); return false">Help</a></li>
+                    <li><a href="./help.php" target="habbohelp" onclick="openOrFocusHelp(this); return false">Help</a></li>
 					<li><a href="logout.php?reason=site" class="userlink">Sign Out</a></li>
 				</ul>
                 </div>
@@ -119,7 +119,7 @@ $body_id = "home";
         <?php } else { ?>
         <li class=" "><a href="credits.php">Credits</a><span></span></li>
         <?php } ?>
-
+		
         <?php if($user_rank > 5 && $logged_in == true){ ?>
         <li id="tab-register-now"><a href="./housekeeping/" target="_self"><b>Housekeeping</b></a><span></span></li>
         <?php } ?>
