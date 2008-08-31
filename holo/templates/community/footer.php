@@ -34,8 +34,12 @@ if (!defined("IN_HOLOCMS")) { header("Location: ../../index.php"); exit; }
 <?php } elseif($pageid == "forum"){ ?>
 <?php } else { ?>
 <div id="column3" class="column">
-				<div class="habblet-container ">		
-	
+
+<script type="text/javascript">
+HabboView.run();
+
+</script>
+				<div class="habblet-container ">
 						<div class="ad-container">
 <?php $sql = mysql_query("SELECT * FROM cms_banners WHERE status = '1'");
 
@@ -47,11 +51,7 @@ echo stripslashes($row['html'])."\n<br />\n";
 <a target="blank" href="<?php echo $row['url']; ?>"><?php echo stripslashes($row['text']); ?></a><br />
 <?php } ?>
 <?php } ?>
-<br>
-</div>
-	
-						
-					
+						</div>
 				</div>
 				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
 </div>
@@ -66,7 +66,7 @@ Pngfix.doPngImageFix();
 <div id="footer">
 	<p><a href="index.php" target="_self">Homepage</a> | <a href="./disclaimer.php" target="_self">Terms of Service</a> | <a href="./privacy.php" target="_self">Privacy Policy</a></p>
 	<?php /*@@* DO NOT EDIT OR REMOVE THE LINE BELOW WHATSOEVER! *@@*/ ?>
-	<p>Powered by HoloCMS &copy 2008 Meth0d.<br />Everything &copy 2005 - 2007 Sulake Corporation Ltd. HABBO is a registered trademark of Sulake Corporation Oy in the European Union, the USA, Japan, the People's Republic of China and various other jurisdictions. All rights reserved.<br>We are not endorsed, affiliated, or sponsered by Sulake Corporation Oy.</p>
+	<p>Powered by HoloCMS &copy 2008 Meth0d & Parts by Yifan, sisija<br />HABBO is a registered trademark of Sulake Corporation. All rights reserved to their respective owner(s).<br />We are not endorsed, affiliated, or sponsered by Sulake Corporation Oy.</p>
 	<?php /*@@* DO NOT EDIT OR REMOVE THE LINE ABOVE WHATSOEVER! *@@*/ ?>
 </div></div>
 

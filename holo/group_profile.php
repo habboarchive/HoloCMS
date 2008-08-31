@@ -813,6 +813,7 @@ Event.observe("dialog-group-settings-exit", "click", function(e) {
 HabboView.run();
 </script>
 
+<?php echo $analytics; ?>
 </body>
 </html>
 

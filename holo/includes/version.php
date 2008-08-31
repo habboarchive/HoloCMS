@@ -10,7 +10,7 @@
 |+===================================================*/
 
 // HoloCMS Versioning
-$holocms['version'] = "3.1.0.31";
+$holocms['version'] = "3.1.0.32";
 $holocms['title'] = "HEATHROW";
 $holocms['stable'] = "PRE-STABLE";
 $holocms['date'] = "August 31, 2008 3:16PM CST";

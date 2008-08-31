@@ -985,9 +985,6 @@ var roomListHabblet_h105 = new RoomListHabblet("rooms-habblet-list-container-h10
 <script type="text/javascript">
 	HabboView.add(LoginFormUI.init);
 </script>
-
-<div id="column3" class="column">
-
 <?php
 
 include('templates/community/footer.php');

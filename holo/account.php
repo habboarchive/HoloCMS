@@ -197,7 +197,7 @@ if($tab == "1"){
 	}
 } else if($tab == "8"){
 	if(isset($_POST['save'])){
-		mysql_query("UPDATE users SET screen = '".$_POST['screen']."', rea = '".$_POST['rea']."', language = '".$_POST['language']."' WHERE id = '".$my_id."'");
+		mysql_query("UPDATE users SET screen = '".$_POST['screen']."', rea = '".$_POST['rea']."' WHERE id = '".$my_id."'");
 		$result = "Updated";
 	}
 }
