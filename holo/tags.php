@@ -191,28 +191,6 @@ include('templates/community/header.php');
 <script type="text/javascript">
 HabboView.run();
 </script>
-<div id="column3" class="column">
-				<div class="habblet-container ">
-
-						<div class="ad-container">
-
-</div>
-
-
-
-				</div>
-				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
-
-				<div class="habblet-container ">
-
-						<div class="ad-container">
-                                                        &nbsp;
-                                                </div>
-
-				</div>
-				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
-
-</div>
 
 <?php
 include('templates/community/footer.php');

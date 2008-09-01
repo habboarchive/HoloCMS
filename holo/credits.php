@@ -103,6 +103,11 @@ include('templates/community/header.php');
 							 
 </div>
 
+<script type="text/javascript">
+HabboView.run();
+</script>	
+				</div>
+				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
 <?php
 
 include('templates/community/footer.php');
