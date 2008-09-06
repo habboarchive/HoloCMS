@@ -16,7 +16,7 @@ include '../core.php';
 echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 echo "<habbos>\n";
 
-$sqll = mysql_query("SELECT id,name,mission,figure FROM users ORDER BY BY online DESC LIMIT 10") or die(mysql_error());
+$sqll = mysql_query("SELECT id,name,mission,figure FROM users ORDER BY online DESC LIMIT 10") or die(mysql_error());
 while ($row = mysql_fetch_array($sqll, MYSQL_NUM)) {
 
 	$form_badge = GetUserBadge($row[1]);
