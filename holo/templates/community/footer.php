@@ -33,8 +33,13 @@ if (!defined("IN_HOLOCMS")) { header("Location: ../../index.php"); exit; }
 <?php if($noads == true){ ?>
 <?php } elseif($pageid == "forum"){ ?>
 <?php } else { ?>
-				<div class="habblet-container ">		
-	
+<div id="column3" class="column">
+
+<script type="text/javascript">
+HabboView.run();
+
+</script>
+				<div class="habblet-container ">
 						<div class="ad-container">
 <?php $sql = mysql_query("SELECT * FROM cms_banners WHERE status = '1' ORDER BY id ASC");
 
@@ -46,16 +51,12 @@ echo stripslashes($row['html'])."\n<br />\n";
 <a target="blank" href="<?php echo $row['url']; ?>"><?php echo stripslashes($row['text']); ?></a><br />
 <?php } ?>
 <?php } ?>
-
-</div>
-	
-						
-					
+						</div>
 				</div>
 				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
-			 
 </div>
 <?php } ?>
+
 <!--[if lt IE 7]>
 <script type="text/javascript">
 Pngfix.doPngImageFix();
@@ -70,6 +71,10 @@ Pngfix.doPngImageFix();
 </div></div>
 
 </div>
+
+<script type="text/javascript">
+HabboView.run();
+</script>
 
 <?php echo $analytics; ?>
 </body>
