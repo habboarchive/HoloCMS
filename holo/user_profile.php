@@ -204,7 +204,8 @@ Event.observe(\"".$type."-".$row[0]."-edit\", \"click\", function(e) { openEditM
 		case 4: $subtype = "GuestbookWidget"; break;
 		case 5: $subtype = "FriendsWidget"; break;
 		case 6: $subtype = "TraxPlayerWidget"; break;
-		case 7: $subtype = "HighScoresWidget";
+		case 7: $subtype = "HighScoresWidget"; break;
+		case 8: $subtype = "BadgesWidget";
 		}
 
 		if($subtype == "GroupsWidget"){
@@ -765,7 +766,43 @@ wmode="transparent" flashvars="songUrl=<?php echo $path; ?>myhabbo/trax_song.php
 		</div>
 	</div>
 </div>
-</div><?php
+</div>
+<?php
+		} elseif($subtype == "BadgesWidget"){
+	$sql = mysql_query("SELECT * FROM users_badges WHERE userid = '".$user_row['id']."' ORDER BY badgeid ASC");
+	$count = mysql_num_rows($sql);
+	?>
+<div class="movable widget BadgesWidget" id="widget-<?php echo $row['0']; ?>" style=" left: <?php echo $row['2']; ?>px; top: <?php echo $row['3']; ?>px; z-index: <?php echo $row['4']; ?>;">
+<div class="w_skin_<?php echo $row['6']; ?>">
+	<div class="widget-corner" id="widget-<?php echo $row['0']; ?>-handle">
+		<div class="widget-headline"><h3><?php echo $edit; ?><span class="header-left">&nbsp;</span><span class="header-middle">Badges</span><span class="header-right">&nbsp;</span></h3>
+		</div>	
+	</div>
+	<div class="widget-body">
+		<div class="widget-content">
+    <div id="badgelist-content">
+	<?php
+	if($count == 0){
+		echo "You don't have any badges.";
+	}else{
+	?>
+    <ul class="clearfix">
+	<?php
+	while($badgerow = mysql_fetch_assoc($sql)){
+		echo "<li style=\"background-image: url(".$cimagesurl.$badgesurl.$badgerow['badgeid'].".gif)\"></li>\n";
+	}
+	?>
+    </ul>
+	<?php } ?>
+
+    </div>
+		<div class="clear"></div>
+		</div>
+	</div>
+
+</div>
+</div>
+	<?php
 	}
 }
 }

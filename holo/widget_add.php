@@ -45,6 +45,7 @@ if(!empty($widgetid)){
     elseif($widgetid == "5" && $linked > 0){ $widget = "5"; }
     elseif($widgetid == "6" && $linked < 1){ $widget = "6"; }
     elseif($widgetid == "7" && $linked < 1){ $widget = "7"; }
+    elseif($widgetid == "8" && $linked < 1){ $widget = "8"; }
     else { exit; }
 
     if($widget == "2" && $linked < 1){
@@ -579,6 +580,50 @@ Event.observe(\"widget-".$saved_id."-edit\", \"click\", function(e) { openEditMe
 </div>
 </div>
 <?php 
+    } elseif($widget == "8" && $linked < 1){
+	mysql_query("INSERT INTO cms_homes_stickers (userid,groupid,type,subtype,skin,x,y,z) VALUES ('".$my_id."','-1','2','8','defaultskin','20','20','".$zindex."')") or die(mysql_error());
+
+        $ret_sql = mysql_query("SELECT id FROM cms_homes_stickers WHERE userid = '".$my_id."' AND groupid = '-1' AND type = '2' ORDER BY id DESC LIMIT 1") or die(mysql_error());
+        $ret_row = mysql_fetch_assoc($ret_sql);
+        $saved_id = $ret_row['id'];
+
+        $edit = "\n<img src=\"./web-gallery/images/myhabbo/icon_edit.gif\" width=\"19\" height=\"18\" class=\"edit-button\" id=\"widget-" . $saved_id . "-edit\" />
+<script language=\"JavaScript\" type=\"text/javascript\">
+Event.observe(\"widget-".$saved_id."-edit\", \"click\", function(e) { openEditMenu(e, ".$saved_id.", \"widget\", \"widget-".$saved_id."-edit\"); }, false);
+</script>\n";
+	?>
+<div class="movable widget BadgesWidget" id="widget-<?php echo $saved_id ?>" style=" left: 20px; top: 20px; z-index: <?php echo $zindex; ?>;">
+<div class="w_skin_defaultskin">
+	<div class="widget-corner" id="widget-<?php echo $saved_id ?>-handle">
+		<div class="widget-headline"><h3><?php echo $edit; ?><span class="header-left">&nbsp;</span><span class="header-middle">Badges</span><span class="header-right">&nbsp;</span></h3>
+		</div>	
+	</div>
+	<div class="widget-body">
+		<div class="widget-content">
+    <div id="badgelist-content">
+	<?php
+	$sql = mysql_query("SELECT * FROM users_badges WHERE userid = '".$my_id."' ORDER BY badgeid ASC");
+	$count = mysql_num_rows($sql);
+	if($count == 0){
+		echo "You don't have any badges.";
+	}else{
+	?>
+    <ul class="clearfix">
+	<?php
+	while($badgerow = mysql_fetch_assoc($sql)){
+		echo "<li style=\"background-image: url(".$cimagesurl.$badgesurl.$badgerow['badgeid'].".gif)\"></li>";
+	} ?>
+    </ul>
+	<?php } ?>
+
+    </div>
+		<div class="clear"></div>
+		</div>
+	</div>
+
+</div>
+</div>
+<?php
     } elseif($widget == "4" && $linked > 0){
         mysql_query("INSERT INTO cms_homes_stickers (userid,groupid,type,subtype,skin,x,y,z) VALUES ('".$my_id."','".$groupid."','2','4','defaultskin','20','20','".$zindex."')") or die(mysql_error());
 

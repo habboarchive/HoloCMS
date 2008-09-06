@@ -575,6 +575,8 @@ $type = $_POST['type'];
 			$placed_traxwidget = mysql_num_rows($check);
 			$check = mysql_query("SELECT id FROM cms_homes_stickers WHERE userid = '".$my_id."' AND groupid = '-1' AND type = '2' AND subtype = '7' LIMIT 1") or die(mysql_error());
 			$placed_scoreswidget = mysql_num_rows($check);
+			$check = mysql_query("SELECT id FROM cms_homes_stickers WHERE userid = '".$my_id."' AND groupid = '-1' AND type = '2' AND subtype = '8' LIMIT 1") or die(mysql_error());
+			$placed_badgeswidget = mysql_num_rows($check);
 
 			echo "<ul id=\"inventory-item-list\">";
 	echo "<li id=\"inventory-item-p-7\"
@@ -647,6 +649,18 @@ $type = $_POST['type'];
 		<div class=\"webstore-widget-description\">
 			<h3>Traxplayer</h3>
 			<p>Plays your ".$shortname." tunes on your page</p>
+		</div>
+	</li>
+	<li id=\"inventory-item-p-8\"
+		title=\"My Badges\" class=\"webstore-widget-item" ; if($placed_badgeswidget > 0){ echo " webstore-widget-disabled"; } echo "\">
+		<div class=\"webstore-item-preview w_badgeswidget_pre\" >
+			<div class=\"webstore-item-mask\">
+
+			</div>
+		</div>
+		<div class=\"webstore-widget-description\">
+			<h3>My Badges</h3>
+			<p>Show your badges on your page.</p>
 		</div>
 	</li>";
 echo "</ul>";
