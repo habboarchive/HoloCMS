@@ -288,103 +288,21 @@ echo "\n<div class=\"group-info-description\">".stripslashes($groupdata['descrip
 		</div>
 	</div>
 	<div class=\"widget-body\">
-		<div class=\"widget-content\">\n";
+		<div class=\"widget-content\">
 
-//<div id=\"avatar-list-search\">
-//<input type=\"text\" style=\"float:left;\" id=\"avatarlist-search-string\"/>
-//<a class=\"new-button\" style=\"float:left;\" id=\"avatarlist-search-button\"><b>Search</b><i></i></a>
-//</div>
-echo "<br clear=\"all\"/>
-
-<div id=\"avatarlist-content\">
-
-<div class=\"avatar-widget-list-container\">
-<ul id=\"avatar-list-list\" class=\"avatar-widget-list\">";
-
-$get_admins = mysql_query("SELECT userid,is_current,member_rank FROM groups_memberships WHERE groupid = '".$groupid."' AND is_pending = '0' AND member_rank = '2'") or die(mysql_error());
-
-while($membership = mysql_fetch_assoc($get_admins)){
-
-	$userrow = mysql_query("SELECT id,name,figure,hbirth FROM users WHERE id = '".$membership['userid']."' LIMIT 1") or die(mysql_error());
-	$found = mysql_num_rows($userrow);
-
-	if($found > 0){
-		$userrow = mysql_fetch_assoc($userrow);
-
-		echo "<li id=\"avatar-list-".$groupid."-".$userrow['id']."\" title=\"".$userrow['name']."\">
-<div class=\"avatar-list-open\">
-	<a href=\"#\" id=\"avatar-list-open-link-".$groupid."-".$userrow['id']."\" class=\"avatar-list-open-link\"></a>
+<div id=\"avatar-list-search\">
+<input type=\"text\" style=\"float:left;\" id=\"avatarlist-search-string\"/>
+<a class=\"new-button\" style=\"float:left;\" id=\"avatarlist-search-button\"><b>Search</b><i></i></a>
 </div>
-<div class=\"avatar-list-avatar\">
-	<img src=\"http://www.habbo.co.uk/habbo-imaging/avatarimage?figure=".$userrow['figure']."&size=s&direction=2&head_direction=2&gesture=sml\" alt=\"\" />
-</div>
-<h4>
-	<a href=\"user_profile.php?name=".$userrow['name']."\">".$userrow['name']."</a>
-</h4>
-<p class=\"avatar-list-birthday\">
-	".$userrow['hbirth']."
-</p>
-<p>";
-if($userrow['id'] == $ownerid){
-echo "<img src=\"./web-gallery/images/groups/owner_icon.gif\" alt=\"\" class=\"avatar-list-groupstatus\" />";
-} else {
-echo "<img src=\"./web-gallery/images/groups/administrator_icon.gif\" alt=\"\" class=\"avatar-list-groupstatus\" />";
-}
-if($membership['is_current'] == "1"){
-echo "<img src=\"./web-gallery/images/groups/favourite_group_icon.gif\" alt=\"Favorite\" class=\"avatar-list-groupstatus\" />";
-}
-echo "</p>
-</li>";
-	}
-}
+<br clear=\"all\"/>
 
-$get_users = mysql_query("SELECT userid,is_current,member_rank FROM groups_memberships WHERE groupid = '".$groupid."' AND is_pending = '0' AND member_rank = '1'") or die(mysql_error());
+<div id=\"avatarlist-content\">\n";
 
-while($membership = mysql_fetch_assoc($get_users)){
+$bypass = true;
+$widgetid = $row['0'];
+include('./myhabbo/avatarlist_membersearchpaging.php');
 
-	$userrow = mysql_query("SELECT id,name,figure,hbirth FROM users WHERE id = '".$membership['userid']."' LIMIT 1") or die(mysql_error());
-	$found = mysql_num_rows($userrow);
-
-	if($found > 0){
-		$userrow = mysql_fetch_assoc($userrow);
-
-		echo "<li id=\"avatar-list-".$groupid."-".$userrow['id']."\" title=\"".$userrow['name']."\">
-<div class=\"avatar-list-open\">
-	<a href=\"#\" id=\"avatar-list-open-link-".$groupid."-".$userrow['id']."\" class=\"avatar-list-open-link\"></a>
-</div>
-<div class=\"avatar-list-avatar\">
-	<img src=\"http://www.habbo.co.uk/habbo-imaging/avatarimage?figure=".$userrow['figure']."&size=s&direction=2&head_direction=2&gesture=sml\" alt=\"\" />
-</div>
-<h4>
-	<a href=\"user_profile.php?name=".$userrow['name']."\">".$userrow['name']."</a>
-</h4>
-<p class=\"avatar-list-birthday\">
-	".$userrow['hbirth']."
-</p>
-<p>";
-if($membership['is_current'] == "1"){
-echo "<img src=\"./web-gallery/images/groups/favourite_group_icon.gif\" alt=\"Favorite\" class=\"avatar-list-groupstatus\" />";
-}
-echo "</p>
-</li>";
-	}
-}
-
-echo "</ul>
-
-<div id=\"avatar-list-info\" class=\"avatar-list-info\">
-<div class=\"avatar-list-info-close-container\"><a href=\"#\" class=\"avatar-list-info-close\"></a></div>
-<div class=\"avatar-list-info-container\"></div>
-</div>
-
-</div>
-
-<div id=\"avatar-list-paging\">
-<input type=\"hidden\" id=\"pageNumber\" value=\"1\"/>
-<input type=\"hidden\" id=\"totalPages\" value=\"1\"/>
-</div>
-
-<script type=\"text/javascript\">
+echo "<script type=\"text/javascript\">
 document.observe(\"dom:loaded\", function() {
 	window.widget".$row[0]." = new MemberWidget('".$groupid."', '".$row[0]."');
 });

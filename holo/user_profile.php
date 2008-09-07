@@ -617,105 +617,46 @@ if($userdata['id'] == $my_id){
 </div>
 </div>
 	<?php
-	} elseif($subtype == "FriendsWidget"){
-	$sql1 = mysql_query("SELECT * FROM messenger_friendships WHERE userid = '".$user_row['id']."'");
-	$sql2 = mysql_query("SELECT * FROM messenger_friendships WHERE friendid = '".$user_row['id']."'");
-	$count = mysql_num_rows($sql1) + mysql_num_rows($sql2);
-			echo "<div class=\"movable widget FriendsWidget\" id=\"widget-".$row[0]."\" style=\" left: ".$row[2]."px; top: ".$row[3]."px; z-index: ".$row[4].";\">
-<div class=\"w_skin_".$row[6]."\">
-	<div class=\"widget-corner\" id=\"widget-".$row[0]."-handle\">
-		<div class=\"widget-headline\"><h3><span class=\"header-left\">&nbsp;</span><span class=\"header-middle\">My Friends (<span id=\"avatar-list-size\">".$count."</span>)</span><span class=\"header-right\">".$edit."</span></h3>
-		</div>
+	} elseif($subtype == "FriendsWidget"){ 
+	$sql = mysql_query("SELECT * FROM messenger_friendships WHERE userid = '".$user_row['id']."' OR friendid = '".$user_row['id']."'");
+	$count = mysql_num_rows($sql);
+	?>
+<div class="movable widget FriendsWidget" id="widget-<?php echo $row['0']; ?>" style=" left: <?php echo $row['2']; ?>px; top: <?php echo $row['3']; ?>px; z-index: <?php echo $row['4']; ?>;">
+<div class="w_skin_<?php echo $row['6']; ?>">
+	<div class="widget-corner" id="widget-<?php echo $row['0']; ?>-handle">
+		<div class="widget-headline"><h3><?php echo $edit; ?><span class="header-left">&nbsp;</span><span class="header-middle">My Friends (<?php echo $count; ?>)</span><span class="header-right">&nbsp;</span></h3>
+		</div>	
 	</div>
-	<div class=\"widget-body\">
-		<div class=\"widget-content\">\n";
+	<div class="widget-body">
+		<div class="widget-content">
 
-//<div id=\"avatar-list-search\">
-//<input type=\"text\" style=\"float:left;\" id=\"avatarlist-search-string\"/>
-//<a class=\"new-button\" style=\"float:left;\" id=\"avatarlist-search-button\"><b>Search</b><i></i></a>
-//</div>
-echo "<br clear=\"all\"/>
-
-<div id=\"avatarlist-content\">
-
-<div class=\"avatar-widget-list-container\">
-<ul id=\"avatar-list-list\" class=\"avatar-widget-list\">";
-$i = 0;
-while($row = mysql_fetch_assoc($sql1)){
-	$i++;
-	$userrow = mysql_query("SELECT id,name,figure,hbirth FROM users WHERE id = '".$row['friendid']."' LIMIT 1") or die(mysql_error());
-	$found = mysql_num_rows($userrow);
-
-	if($found > 0){
-		$userrow = mysql_fetch_assoc($userrow);
-
-		echo "<li id=\"avatar-list-".$user_row['id']."-".$userrow['id']."\" title=\"".$userrow['name']."\">
-<div class=\"avatar-list-open\">
-	<a href=\"#\" id=\"avatar-list-open-link-".$user_row['id']."-".$userrow['id']."\" class=\"avatar-list-open-link\"></a>
+<div id="avatar-list-search">
+<input type="text" style="float:left;" id="avatarlist-search-string"/>
+<a class="new-button" style="float:left;" id="avatarlist-search-button"><b>Search</b><i></i></a>
 </div>
-<div class=\"avatar-list-avatar\">
-	<img src=\"http://www.habbo.co.uk/habbo-imaging/avatarimage?figure=".$userrow['figure']."&size=s&direction=2&head_direction=2&gesture=sml\" alt=\"\" />
-</div>
-<h4>
-	<a href=\"user_profile.php?name=".$userrow['name']."\">".$userrow['name']."</a>
-</h4>
-<p class=\"avatar-list-birthday\">
-	".$userrow['hbirth']."
-</p>
-</li>";
-	}
-}
-$i = 0;
-while($row = mysql_fetch_assoc($sql2)){
-	$i++;
-	$userrow = mysql_query("SELECT id,name,figure,hbirth FROM users WHERE id = '".$row['userid']."' LIMIT 1") or die(mysql_error());
-	$found = mysql_num_rows($userrow);
+<br clear="all"/>
 
-	if($found > 0){
-		$userrow = mysql_fetch_assoc($userrow);
+<div id="avatarlist-content">
 
-		echo "<li id=\"avatar-list-".$user_row['id']."-".$userrow['id']."\" title=\"".$userrow['name']."\">
-<div class=\"avatar-list-open\">
-	<a href=\"#\" id=\"avatar-list-open-link-".$user_row['id']."-".$userrow['id']."\" class=\"avatar-list-open-link\"></a>
-</div>
-<div class=\"avatar-list-avatar\">
-	<img src=\"http://www.habbo.co.uk/habbo-imaging/avatarimage?figure=".$userrow['figure']."&size=s&direction=2&head_direction=2&gesture=sml\" alt=\"\" />
-</div>
-<h4>
-	<a href=\"user_profile.php?name=".$userrow['name']."\">".$userrow['name']."</a>
-</h4>
-<p class=\"avatar-list-birthday\">
-	".$userrow['hbirth']."
-</p>
-</li>";
-	}
-}
-echo "</ul>
+<?php
+$bypass = true;
+$widgetid = $row['0'];
+include('./myhabbo/avatarlist_friendsearchpaging.php');
+?>
 
-<div id=\"avatar-list-info\" class=\"avatar-list-info\">
-<div class=\"avatar-list-info-close-container\"><a href=\"#\" class=\"avatar-list-info-close\"></a></div>
-<div class=\"avatar-list-info-container\"></div>
-</div>
-
-</div>
-
-<div id=\"avatar-list-paging\">
-<input type=\"hidden\" id=\"pageNumber\" value=\"1\"/>
-<input type=\"hidden\" id=\"totalPages\" value=\"1\"/>
-</div>
-
-<script type=\"text/javascript\">
-document.observe(\"dom:loaded\", function() {
-	window.widget".$row[0]." = new FriendsWidget('1', '".$row[0]."');
+<script type="text/javascript">
+document.observe("dom:loaded", function() {
+	window.widget<?php echo $row['0']; ?> = new FriendsWidget('<?php echo $user_row['id']; ?>', '<?php echo $row['0']; ?>');
 });
 </script>
 
 </div>
-		<div class=\"clear\"></div>
+		<div class="clear"></div>
 		</div>
 	</div>
 </div>
-</div>";
+</div>
+<?php
 	} elseif($subtype == "TraxPlayerWidget"){ ?>
 		<div class="movable widget TraxPlayerWidget" id="widget-<?php echo $row['0']; ?>" style=" left: <?php echo $row['2']; ?>px; top: <?php echo $row['3']; ?>px; z-index: <?php echo $row['4']; ?>;">
 <div class="w_skin_<?php echo $row['6']; ?>">
