@@ -81,7 +81,7 @@ Collectibles.init(<?php echo $timeleft; ?>);
 							</h2>
 						<ul id="collectibles-list">
 						<?php
-						$sql = mysql_query("SELECT * FROM cms_collectables WHERE showroom= '1'");
+						$sql = mysql_query("SELECT * FROM cms_collectables WHERE showroom= '1' ORDER BY id DESC");
 		while($row = mysql_fetch_assoc($sql)) {
         $i++;
         if(IsEven($i)){
@@ -90,7 +90,7 @@ Collectibles.init(<?php echo $timeleft; ?>);
             $even = "odd";
         }		?>
 	<li class="<?php echo $even; ?> clearfix">
-		<div class="collectibles-prodimg" style="background-image: url(<?php echo $row['furni_image_small']; ?>)"></div>
+		<div class="collectibles-prodimg" style="background-image: url(<?php echo $row['image_small']; ?>)"></div>
 		<h4><?php if($row['month'] == 01 OR $row['month'] == 1) { echo "January"; }elseif($row['month'] == 02 OR $row['month'] == 2) { echo "February"; }elseif($row['month'] == 03 OR $row['month'] == 3) { echo "March"; }elseif($row['month'] == 04 OR $row['month'] == 4) { echo "April"; }elseif($row['month'] == 05 OR $row['month'] == 5) { echo "May"; }elseif($row['month'] == 06 OR $row['month'] == 6) { echo "June"; }elseif($row['month'] == 07 OR $row['month'] == 7) { echo "July"; }elseif($row['month'] == 08 OR $row['month'] == 8) { echo "August"; }elseif($row['month'] == 09 OR $row['month'] == 9) { echo "September"; }elseif($row['month'] == 10) { echo "October"; }elseif($row['month'] == 11) { echo "November"; }elseif($row['month'] == 12) { echo "December"; } ?> <?php echo $row['year']; ?>: <?php echo htmlspecialchars(stripslashes($row['title'])); ?></h4>
 		<p class="collectibles-proddesc last"><?php echo htmlspecialchars(stripslashes($row['description'])); ?></p>
 	</li>

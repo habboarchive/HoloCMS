@@ -23,11 +23,11 @@ $pagename = "Collectables";
 @include('subheader.php');
 @include('header.php');
 
-if(isset($_POST['edit']) && isset($_POST['title']) && isset($_POST['description']) && isset($_POST['furni_image']) && isset($_POST['furni_image_small']) && isset($_POST['year']) && isset($_POST['month']) && isset($_POST['tid'])) {
-mysql_query("UPDATE cms_collectables SET title='".$_POST['title']."',description='".$_POST['description']."',image_small='".$_POST['furni_image_small']."',image_large='".$_POST['furni_image']."',year='".$_POST['year']."',month='".$_POST['month']."',tid='".$_POST['tid']."' WHERE id='".$_GET['key']."' LIMIT 1") or die(mysql_error());
+if(isset($_POST['edit']) && isset($_POST['title']) && isset($_POST['description']) && isset($_POST['furni_image_big']) && isset($_POST['furni_image_small']) && isset($_POST['year']) && isset($_POST['month']) && isset($_POST['tid'])) {
+mysql_query("UPDATE cms_collectables SET title='".$_POST['title']."',description='".$_POST['description']."',image_small='".$_POST['furni_image_small']."',image_large='".$_POST['furni_image_big']."',year='".$_POST['year']."',month='".$_POST['month']."',tid='".$_POST['tid']."' WHERE id='".$_GET['key']."' LIMIT 1") or die(mysql_error());
 $msg = "Succesfully modified!";
 }elseif(isset($_POST['add'])) {
-mysql_query("INSERT INTO cms_collectables (title,image_small,image_large,tid,description,month,year) VALUES ('".$_POST['title']."','".$_POST['furni_image_small']."','".$_POST['furni_image']."','".$_POST['tid']."','".$_POST['description']."','".$_POST['month']."','".$_POST['year']."')") or die(mysql_error());
+mysql_query("INSERT INTO cms_collectables (title,image_small,image_large,tid,description,month,year) VALUES ('".$_POST['title']."','".$_POST['furni_image_small']."','".$_POST['furni_image_big']."','".$_POST['tid']."','".$_POST['description']."','".$_POST['month']."','".$_POST['year']."')") or die(mysql_error());
 $msg = "Collectable added.";
 }else{
 $msg = "Fill in everything!";
@@ -65,7 +65,7 @@ $msg = "Fill in everything!";
 
 <tr>
 <td class='tablerow1'  width='40%'  valign='middle'><b>Furni Image Big</b><div class='graytext'>Give a url of a picture of the furniture (big).</div></td>
-<td class='tablerow2'  width='60%'  valign='middle'><input type='text' name='furni_image' value="<?php echo $_POST['furni_image']; ?>" maxlength='255' class='textinput'></td>
+<td class='tablerow2'  width='60%'  valign='middle'><input type='text' name='furni_image_big' value="<?php echo $_POST['furni_image_big']; ?>" maxlength='255' class='textinput'></td>
 </tr>
 
 <tr>
@@ -85,7 +85,7 @@ $msg = "Fill in everything!";
 
 <tr>
 <td class='tablerow1'  width='40%'  valign='middle'><b>Furni tid</b><div class='graytext'>What's the "tid" of the furniture? You can find all the tids of furnitures <a href="index.php?p=furniture">here</a>.</div></td>
-<td class='tablerow2'  width='60%'  valign='middle'><input type='text' name='year' value="<?php echo $_POST['tid']; ?>" maxlength='9' class='textinput'></td>
+<td class='tablerow2'  width='60%'  valign='middle'><input type='text' name='tid' value="<?php echo $_POST['tid']; ?>" maxlength='9' class='textinput'></td>
 </tr>
 <?php }elseif($_GET['a'] == "edit") {
 		if(isset($_GET['key'])) {
@@ -103,12 +103,12 @@ $msg = "Fill in everything!";
 
 <tr>
 <td class='tablerow1'  width='40%'  valign='middle'><b>Furni Image Big</b><div class='graytext'>Give a url of a picture of the furniture (big).</div></td>
-<td class='tablerow2'  width='60%'  valign='middle'><input type='text' name='furni_image' value="<?php echo $row['furni_image']; ?>" maxlength='255' class='textinput'></td>
+<td class='tablerow2'  width='60%'  valign='middle'><input type='text' name='furni_image_big' value="<?php echo $row['image_large']; ?>" maxlength='255' class='textinput'></td>
 </tr>
 
 <tr>
 <td class='tablerow1'  width='40%'  valign='middle'><b>Furni Image Small</b><div class='graytext'>Give a url of a picture of the furniture (small).</div></td>
-<td class='tablerow2'  width='60%'  valign='middle'><input type='text' name='furni_image_small' value="<?php echo $row['furni_image_small']; ?>" maxlength='255' class='textinput'></td>
+<td class='tablerow2'  width='60%'  valign='middle'><input type='text' name='furni_image_small' value="<?php echo $row['image_small']; ?>" maxlength='255' class='textinput'></td>
 </tr>
 
 <tr>
