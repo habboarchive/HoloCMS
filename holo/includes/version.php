@@ -10,10 +10,10 @@
 |+===================================================*/
 
 // HoloCMS Versioning
-$holocms['version'] = "3.1.0.37";
+$holocms['version'] = "3.1.0.38";
 $holocms['title'] = "ATLANTA";
 $holocms['stable'] = "UNSTABLE";
-$holocms['date'] = "September 6, 2008 9:46PM CST";
+$holocms['date'] = "September 6, 2008 10:42PM CST";
 
 // Holograph Emulator Compatability Data
 $holograph['revision'] = "48";
