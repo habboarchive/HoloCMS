@@ -7,7 +7,7 @@
 <div id="faq-category-list">
 <ul class="faq">
 <?php
-$sql = mysql_query("SELECT * FROM cms_faq WHERE type = 'type' ORDER BY id ASC") or die(mysql_error());
+$sql = mysql_query("SELECT * FROM cms_faq WHERE type = 'cat' ORDER BY id ASC") or die(mysql_error());
 while($row = mysql_fetch_assoc($sql)){
 echo "<li><a href=\"./help.php?id=".$row['id']."\" name=\"\"><span class=\"faq-link\">".$row['title']."</span></a></li>\n";
 }

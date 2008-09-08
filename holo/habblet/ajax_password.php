@@ -9,7 +9,7 @@
 || # warrenty of any kind. HoloCMS is free software!
 |+===================================================*/
 
-include('core.php');
+include('../core.php');
 
 $password = addslashes($_POST['password']);
 

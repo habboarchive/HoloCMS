@@ -25,7 +25,7 @@ $id = $_GET['id'];
 $query = $_POST['query'];
 ?>
 <div id="faq-category-content" class="clearfix" >
-<?php if(isset($_POST['id'])){
+<?php if(isset($_GET['id'])){
 $sql = mysql_query("SELECT * FROM cms_faq WHERE id = '".$id."' LIMIT 1");
 $row = mysql_fetch_assoc($sql);
 if($row['content'] != ""){ ?>
@@ -52,7 +52,7 @@ $i = 0;
 	}
 }
 }elseif(isset($_POST['query'])){
-$sql = mysql_query("SELECT * FROM cms_faq WHERE type = 'subtype' AND title LIKE '%".$query."%' OR content LIKE '%".$query."%'");
+$sql = mysql_query("SELECT * FROM cms_faq WHERE type = 'item' AND title LIKE '%".$query."%' OR content LIKE '%".$query."%'");
 $count = mysql_num_rows($sql);
 if($count == 0){;
 	echo "No matching FAQ found. Please search again.";

@@ -9,19 +9,20 @@
 || # warrenty of any kind. HoloCMS is free software!
 |+===================================================*/
 
-include('core.php');
+include('../core.php');
 
-$email = addslashes($_POST['email']);
-$email_check = preg_match("/^[a-z0-9_\.-]+@([a-z0-9]+([\-]+[a-z0-9]+)*\.)+[a-z]{2,7}$/i", $email);
+if(getContent('forum-enabled') !== "1"){ header("Location: index.php"); exit; }
+if(!session_is_registered(username)){ exit; }
 
-if(strlen($email) < 6){
-	echo "register.message.invalid_email";
-} elseif($email_check !== 1){
-	echo "register.message.invalid_email";
-} else {
-	header("X-JSON: \"emailOk\"");
-	echo "register.message.email_chars_ok";
-}
+if($user_rank < 6){ exit; }
 
 ?>
 
+<p>You are about to delete a compelete topic. Are you sure?</p>
+
+<p>
+<a href="#" class="new-button" id="discussion-action-cancel"><b>Cancel</b><i></i></a>
+<a href="#" class="new-button" id="discussion-action-ok"><b>Proceed</b><i></i></a>
+</p>
+
+<div class="clear"></div>

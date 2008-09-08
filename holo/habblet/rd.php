@@ -1,5 +1,5 @@
 <?php
-include('core.php');
+include('../core.php');
 
 if(isset($_GET['id'])) {
 

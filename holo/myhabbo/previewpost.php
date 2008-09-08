@@ -9,7 +9,7 @@
 || # warrenty of any kind. HoloCMS is free software!
 |+===================================================*/
 
-include('./core.php');
+include('../core.php');
 $x = $_GET['x'];
 
 if(getContent('forum-enabled') !== "1"){ header("Location: index.php"); exit; }

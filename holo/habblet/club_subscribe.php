@@ -9,8 +9,8 @@
 || # warrenty of any kind. HoloCMS is free software!
 |+===================================================*/
 
-require_once('./core.php');
-if(function_exists(SendMUSData) !== true){ include('includes/mus.php'); }
+require_once('../core.php');
+if(function_exists(SendMUSData) !== true){ include('../includes/mus.php'); }
 
 if(!session_is_registered(username)){ echo "<p>\nPlease log in first.\n</p>\n\n<p>\n<a href=\"#\" class=\"new-button\" onclick=\"habboclub.closeSubscriptionWindow(); return false;\"><b>Done</b><i></i></a>\n</p>"; exit; }
 

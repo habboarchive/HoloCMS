@@ -9,8 +9,8 @@
 || # warrenty of any kind. HoloCMS is free software!
 |+===================================================*/
 
-include('core.php');
-include('./includes/session.php');
+include('../core.php');
+include('../includes/session.php');
 
 if(getContent('forum-enabled') !== "1"){ header("Location: index.php"); exit; }
 $sql = mysql_query("SELECT * FROM groups_details WHERE id='".$_POST['groupId']."' LIMIT 1");

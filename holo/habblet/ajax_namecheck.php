@@ -9,7 +9,7 @@
 || # warrenty of any kind. HoloCMS is free software!
 |+===================================================*/
 
-include('core.php');
+include('../core.php');
 
 $name = addslashes($_POST['name']);
 $filter = preg_replace("/[^a-z\d]/i", "", $name);

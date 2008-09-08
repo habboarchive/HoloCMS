@@ -9,8 +9,8 @@
 || # warrenty of any kind. HoloCMS is free software!
 |+===================================================*/
 
-include('core.php');
-include('./includes/session.php');
+include('../core.php');
+include('../includes/session.php');
 
 $check = mysql_query("SELECT groupid,active FROM cms_homes_group_linker WHERE userid = '".$my_id."' AND active = '1' LIMIT 1") or die(mysql_error());
 $linked = mysql_num_rows($check);

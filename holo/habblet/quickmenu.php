@@ -1,7 +1,7 @@
 <?php
 
-require_once('core.php');
-require_once('includes/session.php');
+require_once('../core.php');
+require_once('../includes/session.php');
 
 $key = $_GET['key'];
 

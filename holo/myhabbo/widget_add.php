@@ -9,8 +9,8 @@
 || # warrenty of any kind. HoloCMS is free software!
 |+===================================================*/
 
-require_once('core.php');
-require_once('includes/session.php');
+require_once('../core.php');
+require_once('../includes/session.php');
 
 $check = mysql_query("SELECT groupid,active FROM cms_homes_group_linker WHERE userid = '".$my_id."' AND active = '1' LIMIT 1") or die(mysql_error());
 $linked = mysql_num_rows($check);
@@ -148,7 +148,7 @@ Event.observe(\"widget-".$saved_id."-edit\", \"click\", function(e) { openEditMe
 
 $bypass = true;
 $widgetid = $saved_id;
-include('./myhabbo/avatarlist_membersearchpaging.php');
+include('../myhabbo/avatarlist_membersearchpaging.php');
 
 echo "<script type=\"text/javascript\">
 document.observe(\"dom:loaded\", function() {
@@ -333,7 +333,7 @@ Event.observe(\"widget-".$saved_id."-edit\", \"click\", function(e) { openEditMe
 <?php
 $bypass = true;
 $widgetid = $saved_id;
-include('./myhabbo/avatarlist_friendsearchpaging.php');
+include('../myhabbo/avatarlist_friendsearchpaging.php');
 ?>
 
 <script type="text/javascript">

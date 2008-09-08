@@ -136,6 +136,9 @@ $starttime = $starttime[1] + $starttime[0];
 			} elseif($p == "collectables"){
 				$tab = 3;
 				include('collectables.php');
+			} elseif($p == "faq"){
+				$tab = 3;
+				include('faq.php');
 			} elseif($p == "vouchers"){
 				$tab = 5;
 				include('vouchers.php');

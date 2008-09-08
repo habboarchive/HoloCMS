@@ -11,8 +11,8 @@
 
 $allow_guests = true;
 
-require_once('core.php');
-require_once('includes/session.php');
+require_once('../core.php');
+require_once('../includes/session.php');
 
 $tag_1 = $_POST['tag1'];
 $tmp = mysql_query("SELECT id FROM cms_tags WHERE tag = '".addslashes($tag_1)."'") or die(mysql_error());

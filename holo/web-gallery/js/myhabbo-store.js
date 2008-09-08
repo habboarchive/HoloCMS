@@ -93,7 +93,7 @@ var WebStore = {
       WebStore.Inventory.load();
     } else {
       new Ajax.Request(
-        habboReqPath + "store.php?key=main", {
+        habboReqPath + "myhabbo/store.php?key=main", {
           method: "post",
           onComplete: function(req, json) {
             if (WebStore._checkResponse(req.responseText)) {
@@ -186,7 +186,7 @@ var WebStore = {
             Overlay.move(9002);
             Dialog.moveDialogToCenter(warning);
             Dialog.makeDialogDraggable(warning);
-            new Ajax.Request(habboReqPath + "store.php?key=background_warning", {
+            new Ajax.Request(habboReqPath + "myhabbo/store.php?key=background_warning", {
                 method: "post",
                 onComplete: function(req) {
                   if (WebStore._checkResponse(req.responseText)) {
@@ -297,7 +297,7 @@ var WebStore = {
       query.subCategoryId = subCategoryId;
     }
     new Ajax.Request(
-      habboReqPath + "store.php?key=items", {
+      habboReqPath + "myhabbo/store.php?key=items", {
         method: "post", parameters: query,
         onComplete: function(req, json) {
           if (WebStore._checkResponse(req.responseText)) {
@@ -351,7 +351,7 @@ var WebStore = {
     Element.wait($("webstore-preview"));
     WebStore._showPreview();
     new Ajax.Request(
-      habboReqPath + "store.php?key=preview", {
+      habboReqPath + "myhabbo/store.php?key=preview", {
         method: "post", parameters: { "productId": productId, "subCategoryId": WebStore.selectedSubCategory },
         onComplete: function(req, json) {
           if (WebStore._checkResponse(req.responseText)) {
@@ -460,7 +460,7 @@ var WebStore = {
     Dialog.setAsWaitDialog(dialog);
     Dialog.moveDialogToCenter(dialog);
     
-    new Ajax.Request(habboReqPath + "store.php?key=purchase_confirm", { 
+    new Ajax.Request(habboReqPath + "myhabbo/store.php?key=purchase_confirm", { 
       method: "post", parameters: { "productId" : productId, "subCategoryId" :  WebStore.selectedSubCategory }, 
       onComplete: function(req, json) {
         if (WebStore._checkResponse(req.responseText)) {
@@ -480,7 +480,7 @@ var WebStore = {
   _purchase: function(productId, dialog) {
     Dialog.setAsWaitDialog(dialog);
     var type = WebStore.MenuBar.selectedMainCategory.id.split("-").last();
-    new Ajax.Request(habboReqPath + "store.php?key=purchase_" + type, { 
+    new Ajax.Request(habboReqPath + "myhabbo/store.php?key=purchase_" + type, { 
       method: "post", parameters: { task: "purchase", selectedId: productId }, onComplete: function(req, json) {
         if (WebStore._checkResponse(req.responseText)) {
           if (req.responseText.strip() != "OK") {
@@ -711,7 +711,7 @@ WebStore.Inventory = {
   
   load: function() {
     new Ajax.Request(
-      habboReqPath + "store.php?key=inventory", {
+      habboReqPath + "myhabbo/store.php?key=inventory", {
         method: "post", parameters: { type: "stickers" }, 
         onComplete: function(req, json) {
           if (WebStore._checkResponse(req.responseText)) {
@@ -749,7 +749,7 @@ WebStore.Inventory = {
       WebStore.Inventory._clearPreview();
       WebStore.Inventory.loadingCategory = true;
       new Ajax.Request(
-        habboReqPath + "store.php?key=inventory_items", {
+        habboReqPath + "myhabbo/store.php?key=inventory_items", {
           method: "post", parameters: { type: type },
           onComplete: function(req, json) {
             if (WebStore._checkResponse(req.responseText)) {
@@ -906,7 +906,7 @@ WebStore.Inventory = {
       qs.privileged = privileged;
     }
     new Ajax.Request(
-      habboReqPath + "store.php?key=inventory_preview", {
+      habboReqPath + "myhabbo/store.php?key=inventory_preview", {
         method: "post", parameters: qs,
         onComplete: function(req, json) {
           if (WebStore._checkResponse(req.responseText)) {
@@ -1004,7 +1004,7 @@ WebStore.StickerEditor = {
   
   open: function() {
     new Ajax.Request(
-      habboReqPath + "store.php?key=stickereditor_flash", {
+      habboReqPath + "myhabbo/store.php?key=stickereditor_flash", {
         method: "post", parameters: WebStore.StickerEditor.figureParams || "", 
         onComplete: function(req, json) {
           if (WebStore._checkResponse(req.responseText)) {
@@ -1037,7 +1037,7 @@ WebStore.StickerEditor = {
     Dialog.setAsWaitDialog(dialog);
     Dialog.moveDialogToCenter(dialog);
     
-    new Ajax.Request(habboReqPath + "store.php?key=preview", {
+    new Ajax.Request(habboReqPath + "myhabbo/store.php?key=preview", {
       method: "post", parameters: figureParams || "", 
       onComplete: function(req, json) {
         if (WebStore._checkResponse(req.responseText)) {
@@ -1064,7 +1064,7 @@ WebStore.StickerEditor = {
   }, 
   
   _purchase: function(imageUrl) {
-    new Ajax.Request(habboReqPath + "store.php?key=purchase_avatarsticker", {
+    new Ajax.Request(habboReqPath + "myhabbo/store.php?key=purchase_avatarsticker", {
       method: "post", parameters: { stickerimage: imageUrl },
       onComplete: function(req, json) {
         if (WebStore._checkResponse(req.responseText)) {
@@ -1135,7 +1135,7 @@ WebStore.NoteEditor = {
   _loadEditor: function(noteParams, backFromPreview) {
     WebStore.NoteEditor.noteParams = noteParams || "";
     
-    new Ajax.Request(habboReqPath + "store.php?key=noteeditor", {
+    new Ajax.Request(habboReqPath + "myhabbo/store.php?key=noteeditor", {
       method: "post", parameters: WebStore.NoteEditor.noteParams, onComplete: function(req, json) {
             if (WebStore._checkResponse(req.responseText)) {
               Dialog.setDialogBody(WebStore.NoteEditor.dialog, req.responseText);
@@ -1171,7 +1171,7 @@ WebStore.NoteEditor = {
                 if (!el.className || !Element.hasClassName(el, "disabled-button")) {
                   WebStore.NoteEditor.noteParams = Form.serialize($("webstore-notes-form"));
                   Dialog.setAsWaitDialog(WebStore.NoteEditor.dialog);
-                  new Ajax.Request(habboReqPath + "store.php?key=noteeditor-preview", {
+                  new Ajax.Request(habboReqPath + "myhabbo/store.php?key=noteeditor-preview", {
                     method: "post", parameters: WebStore.NoteEditor.noteParams, onComplete: function(req, json) {
                       if (WebStore._checkResponse(req.responseText)) {
                         if (req.responseText.strip() == "BACK") {
@@ -1209,7 +1209,7 @@ WebStore.NoteEditor = {
   
   _place: function() {
     if (WebStore.NoteEditor.noteParams) {
-      new Ajax.Request(habboReqPath + "store.php?key=noteeditor-place", {
+      new Ajax.Request(habboReqPath + "myhabbo/store.php?key=noteeditor-place", {
         method: "post", parameters: WebStore.NoteEditor.noteParams, onComplete: function(req, json) {
           if (WebStore._checkResponse(req.responseText)) {
             if (req.responseText.strip() == "BACK") {
@@ -1231,7 +1231,7 @@ WebStore.NoteEditor = {
   
   _saveChanges: function() {
     if (WebStore.NoteEditor.noteParams) {
-      new Ajax.Request(habboReqPath + "store.php?key=noteeditor-save", {
+      new Ajax.Request(habboReqPath + "myhabbo/store.php?key=noteeditor-save", {
         method: "post", parameters: WebStore.NoteEditor.noteParams, onComplete: function(req, json) {
           if (WebStore._checkResponse(req.responseText)) {
             if (req.responseText.strip() == "BACK") {

@@ -9,9 +9,9 @@
 || # warrenty of any kind. HoloCMS is free software!
 |+===================================================*/
 
-require_once('core.php');
-require_once('includes/session.php');
-if(function_exists(SendMUSData) !== true){ include('includes/mus.php'); }
+require_once('../core.php');
+require_once('../includes/session.php');
+if(function_exists(SendMUSData) !== true){ include('../includes/mus.php'); }
 
 $check = mysql_query("SELECT groupid,active FROM cms_homes_group_linker WHERE userid = '".$my_id."' AND active = '1' LIMIT 1") or die(mysql_error());
 $linked = mysql_num_rows($check);

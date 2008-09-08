@@ -9,8 +9,8 @@
 || # warrenty of any kind. HoloCMS is free software!
 |+===================================================*/
 
-include('core.php');
-include('./includes/session.php');
+include('../core.php');
+include('../includes/session.php');
 
 $groupid = $_POST['groupId'];
 if(!is_numeric($groupid)){ exit; }

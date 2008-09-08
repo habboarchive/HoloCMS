@@ -86,6 +86,11 @@ if($hkzone !== true){ header("Location: index.php?throwBack=true"); exit; }
 
 <div class='menulinkwrap'>&nbsp;
 <img src='./images/item_bullet.gif' border='0' alt='' valign='absmiddle'>&nbsp;
+<a href='./index.php?p=faq' style='text-decoration:none'>Manage FAQ Items</a>
+</div>
+
+<div class='menulinkwrap'>&nbsp;
+<img src='./images/item_bullet.gif' border='0' alt='' valign='absmiddle'>&nbsp;
 <a href='./index.php?p=news_compose' style='text-decoration:none'>Compose News Item</a>
 </div>
 
