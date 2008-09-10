@@ -6,7 +6,7 @@ $search = "";
 include('../core.php');
 include('../includes/session.php');
 $page = $_POST['pageNumber'];
-$search = $_POST['searchString'];
+$search = addslashes($_POST['searchString']);
 $widgetid = $_POST['widgetId'];
 }
 

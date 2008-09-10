@@ -4,7 +4,7 @@ include('../core.php');
 
 if(isset($_POST['searchString'])) {
 $page = $_POST['pageNumber'];
-$search = stripslashes($_POST['searchString']);
+$search = addslashes($_POST['searchString']);
 $sql = mysql_query("SELECT name,figure,id,lastvisit FROM users WHERE name LIKE '%$search%' ORDER BY name ASC");
 $count = mysql_num_rows($sql);
 $pages = ceil($count / 10);

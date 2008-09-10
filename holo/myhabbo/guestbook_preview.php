@@ -13,7 +13,7 @@ include('../core.php');
 include('../includes/session.php');
 
 $ownerid = $_POST['ownerId'];
-$message = $_POST['message']; 
+$message = addslashes($_POST['message']); 
 
 $row = mysql_fetch_assoc(mysql_query("SELECT * FROM users WHERE id = '".$my_id."' LIMIT 1"));
 ?>
