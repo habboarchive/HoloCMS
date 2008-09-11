@@ -37,9 +37,9 @@ if($linked > 0){
 
 	if(is_numeric($stickie)){
 		if($linked > 0){
-			$sql = mysql_query("SELECT * FROM cms_homes_stickers WHERE groupid = '".$groupid."' AND type = '3' AND id = '".$stickie."' LIMIT 1") or die(mysql_error());
+			$sql = mysql_query("SELECT * FROM cms_homes_stickers WHERE groupid = '".$groupid."' AND id = '".$stickie."' LIMIT 1") or die(mysql_error());
 		} else {
-			$sql = mysql_query("SELECT * FROM cms_homes_stickers WHERE userid = '".$my_id."' AND groupid = '-1' AND type = '3' AND id = '".$stickie."' LIMIT 1") or die(mysql_error());
+			$sql = mysql_query("SELECT * FROM cms_homes_stickers WHERE userid = '".$my_id."' AND groupid = '-1' AND id = '".$stickie."' LIMIT 1") or die(mysql_error());
 		}
 	} else {
 		exit;

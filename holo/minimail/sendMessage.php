@@ -13,10 +13,10 @@ if($bypass1 != "true"){
 include('../core.php');
 include('../includes/session.php');
 
-$messageid = $_POST['messageId'];
+$messageid = addslashes($_POST['messageId']);
 $recipientids = $_POST['recipientIds'];
-$subject = $_POST['subject'];
-$body = $_POST['body'];
+$subject = addslashes($_POST['subject']);
+$body = stripslashes(addslashes($_POST['body']));
 }
 $body = stripslashes(mysql_real_escape_string(htmlspecialchars($body)));
 

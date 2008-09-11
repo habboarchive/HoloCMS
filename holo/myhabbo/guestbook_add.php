@@ -14,7 +14,7 @@ include('../includes/session.php');
 
 $ownerid = $_POST['ownerId'];
 $widgetid = $_POST['widgetId'];
-$message = stripslashes(mysql_real_escape_string(htmlspecialchars($_POST['message'])));
+$message = stripslashes(mysql_real_escape_string(htmlspecialchars(addslashes($_POST['message']))));
 $sql = mysql_query("SELECT NOW()");
 $date = mysql_result($sql, 0);
 

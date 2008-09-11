@@ -9,9 +9,9 @@
 || # warrenty of any kind. HoloCMS is free software! 
 |+===================================================*/ 
 
-require_once('core.php'); 
-require_once('./includes/session.php'); 
-if(function_exists(SendMUSData) !== true){ include('includes/mus.php'); } 
+require_once('../core.php'); 
+require_once('../includes/session.php'); 
+if(function_exists(SendMUSData) !== true){ include('../includes/mus.php'); } 
 
 $credits = $myrow['credits']; 
 $voucher = addslashes($_POST['voucherCode']); 

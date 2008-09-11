@@ -172,7 +172,7 @@ if($user_rank > 5){
 }
 
 $tmp = mysql_query("SELECT * FROM cms_alerts WHERE userid = '".$my_id."'") or die(mysql_error());
-$alerts = mysql_query($tmp);
+$alerts = mysql_num_rows($tmp);
 
     if($alerts > 0){
 

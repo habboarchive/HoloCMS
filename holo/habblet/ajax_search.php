@@ -9,27 +9,6 @@ $sql = mysql_query("SELECT name,figure,id,lastvisit FROM users WHERE name LIKE '
 $count = mysql_num_rows($sql);
 $pages = ceil($count / 10);
 if($page == null){ $page = 1; }
-/*
-$realpage = ($count - 10);
-$ceil = ceil($realpage);
-$ceil = ($ceil - 1);
-if($page != 0) {
-$limit2 = ($page * 10);
-$limit = ($limit2 - 10);
-}else{
-$limit2 = "10";
-$limit = ($limit2 - 10);
-}
-
-		$calc = $ceil;
-		if($calc < 0) {
-		$sql = mysql_query("SELECT id FROM users LIMIT 1");
-		}else{
-		$sql = mysql_query("SELECT id FROM users LIMIT $calc");
-		}
-		while($row = mysql_fetch_assoc($sql)) {
-$page = $_POST['pageNumber'];		?>
-*/
 $limit = 10;
 $offset = $page - 1;
 $offset = $offset * 10;
