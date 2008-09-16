@@ -33,7 +33,7 @@ $figure = $_POST['bean_figure'];
 $gender = $_POST['bean_gender'];
 
 // Start validating the stuff the user has submitted
-$filter = preg_replace("/[^a-z\d]/i", "", $name);
+$filter = preg_replace("/[^a-z\d\-=\?!@:\.]/i", "", $name);
 $email_check = preg_match("/^[a-z0-9_\.-]+@([a-z0-9]+([\-]+[a-z0-9]+)*\.)+[a-z]{2,7}$/i", $email);
 
 $tmp = mysql_query("SELECT id FROM users WHERE name = '".$name."' LIMIT 1") or die(mysql_error());

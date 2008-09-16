@@ -16,9 +16,9 @@ include('../includes/session.php');
 $messageid = addslashes($_POST['messageId']);
 $recipientids = $_POST['recipientIds'];
 $subject = addslashes($_POST['subject']);
-$body = stripslashes(addslashes($_POST['body']));
+$body = stripslashes(addslashes($_POST["body"]));
 }
-$body = stripslashes(mysql_real_escape_string(htmlspecialchars($body)));
+$body = stripslashes(addslashes(mysql_real_escape_string(htmlspecialchars($body))));
 
 $ids = explode(",", $recipientids);
 $numofids = count($ids);
