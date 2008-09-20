@@ -23,16 +23,16 @@ $check = mysql_query("SELECT id FROM users WHERE name = '".$key."' OR id = '".$k
 $exists = mysql_num_rows($check);
 $drow = mysql_fetch_assoc($check);
 
-if($rank = 3){
-$badge = "XXX"
-}elseif($rank = 4){
-$badge = "NWB"
-}elseif($rank = 5){
-$badge = "HBA"
-}elseif($rank = 6){
-$badge = "MOD"
-}elseif($rank = 4){
-$badge = "ADM"
+if($rank == 3){
+$badge = "XXX";
+}elseif($rank == 4){
+$badge = "NWB";
+}elseif($rank == 5){
+$badge = "HBA";
+}elseif($rank == 6){
+$badge = "MOD";
+}elseif($rank == 4){
+$badge = "ADM";
 }
 
 	if($exists > 0){
