@@ -44,7 +44,7 @@ if(!session_is_registered(username)){
 					if($remember_me == "true"){
 						setcookie("remember", "remember", time()+60*60*24*100, "/");
 						setcookie("rusername", $_SESSION['username'], time()+60*60*24*100, "/");
-						setcookie("rpassword", HoloHash($_SESSION['password'], $_SESSION['username']), time()+60*60*24*100, "/");
+						setcookie("rpassword", $_SESSION['password'], time()+60*60*24*100, "/");
 					}
 					$sql3 = mysql_query("UPDATE users SET lastvisit = '".$date_full."' WHERE name = '".$username."'") or die(mysql_error());
 					header("location:security_check.php"); exit;

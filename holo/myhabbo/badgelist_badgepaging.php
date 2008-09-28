@@ -3,7 +3,6 @@ if($bypass1 == true){
 $page = "1";
 }else{
 include('../core.php');
-include('../includes/session.php');
 $page = $_POST['pageNumber'];
 $widgetid = $_POST['widgetId'];
 }

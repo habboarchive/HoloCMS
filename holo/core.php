@@ -164,7 +164,7 @@ if(!session_is_registered(username) && $_COOKIE['remember'] == "remember"){
 
 			// We found a user, now get his password and hash it
 			$crow = mysql_fetch_assoc($csql);
-			$correct_pass = HoloHash($crow['password'], $crow['name']);
+			$correct_pass = $crow['password'];
 
 			// Check if the hashed database password and hash in the cookie match
 			// If no, destroy the cookie. If yes, log the user in.

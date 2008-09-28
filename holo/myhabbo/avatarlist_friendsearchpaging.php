@@ -4,7 +4,6 @@ $page = "1";
 $search = "";
 }else{
 include('../core.php');
-include('../includes/session.php');
 $page = $_POST['pageNumber'];
 $search = addslashes($_POST['searchString']);
 $widgetid = $_POST['widgetId'];

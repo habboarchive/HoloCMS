@@ -1,6 +1,5 @@
 <?php
 include('../core.php');
-include('../includes/session.php');
 $id = $_POST['anAccountId'];
 $ownerid = $_POST['ownerAccountId'];
 $sql = mysql_query("SELECT * FROM users WHERE id = '".$id."' LIMIT 1");
