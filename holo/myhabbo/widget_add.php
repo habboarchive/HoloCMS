@@ -474,12 +474,10 @@ Event.observe(\"widget-".$saved_id."-edit\", \"click\", function(e) { openEditMe
 		echo "You don't have any badges.";
 	}else{
 	?>
-    <ul class="clearfix">
-	<?php
-	while($badgerow = mysql_fetch_assoc($sql)){
-		echo "<li style=\"background-image: url(".$cimagesurl.$badgesurl.$badgerow['badgeid'].".gif)\"></li>";
-	} ?>
-    </ul>
+    <?php
+	$bypass1 = true;
+	include('./badgelist_badgepaging.php');
+	?>
 	<?php } ?>
 
     </div>

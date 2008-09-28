@@ -128,7 +128,7 @@ $viewtools = $viewtools . "	</div>\n"; ?>
                     <div id="discussionbox">
 					<?php
 					if($groupdata['pane'] > 0) {
-					$sql = mysql_query("SELECT * FROM groups_memberships WHERE userid = '".$my_id."' AND groupid='".$_GET['id']."'");
+					$sql = mysql_query("SELECT * FROM groups_memberships WHERE userid = '".$my_id."' AND is_pending <> '1' AND groupid='".$_GET['id']."'");
 					$member = mysql_fetch_assoc($sql);
 					if(mysql_num_rows($sql) > 0) { ?>
 <div id="group-topiclist-container">
@@ -143,13 +143,13 @@ $viewtools = $viewtools . "	</div>\n"; ?>
         <input type="hidden" id="email-verfication-ok" value="1"/>
         <?php if($logged_in){ ?><a href="#" id="newtopic-upper" class="new-button verify-email newtopic-icon" style="float:left"><b><span></span>New Thread</b><i></i></a><?php } else { echo "You must be logged in to reply or post new threads."; }
 		}elseif($row['topics'] == 1) {
-		$check = mysql_query("SELECT * FROM groups_memberships WHERE userid='".$my_id."' AND groupid='".$_GET['id']."' LIMIT 1");
+		$check = mysql_query("SELECT * FROM groups_memberships WHERE userid='".$my_id."' AND groupid='".$_GET['id']."' AND is_pending <> '1' LIMIT 1");
 		if(mysql_num_rows($check) > 0) { ?>
         <input type="hidden" id="email-verfication-ok" value="1"/>
         <?php if($logged_in){ ?><a href="#" id="newtopic-upper" class="new-button verify-email newtopic-icon" style="float:left"><b><span></span>New Thread</b><i></i></a><?php } else { echo "You must be logged in to reply or post new threads."; }
 		}
 	}elseif($row['topics'] == 2) {
-	$check = mysql_query("SELECT * FROM groups_memberships WHERE userid='".$my_id."' AND groupid='".$_GET['id']."' AND member_rank='2' LIMIT 1");
+	$check = mysql_query("SELECT * FROM groups_memberships WHERE userid='".$my_id."' AND groupid='".$_GET['id']."' AND member_rank='2' AND is_pending <> '1' LIMIT 1");
 		if(mysql_num_rows($check) > 0) { ?>
         <input type="hidden" id="email-verfication-ok" value="1"/>
         <?php if($logged_in){ ?><a href="#" id="newtopic-upper" class="new-button verify-email newtopic-icon" style="float:left"><b><span></span>New Thread</b><i></i></a><?php } else { echo "You must be logged in to reply or post new threads."; }
@@ -558,13 +558,13 @@ while($row = mysql_fetch_assoc($sql)){
         <input type="hidden" id="email-verfication-ok" value="1"/>
         <?php if($logged_in){ ?><a href="#" id="newtopic-upper" class="new-button verify-email newtopic-icon" style="float:left"><b><span></span>New Thread</b><i></i></a><?php } else { echo "You must be logged in to reply or post new threads."; }
 		}elseif($row['topics'] == 1) {
-		$check = mysql_query("SELECT * FROM groups_memberships WHERE userid='".$my_id."' AND groupid='".$_GET['id']."' LIMIT 1");
+		$check = mysql_query("SELECT * FROM groups_memberships WHERE userid='".$my_id."' AND groupid='".$_GET['id']."' AND is_pending <> '1' LIMIT 1");
 		if(mysql_num_rows($check) > 0) { ?>
         <input type="hidden" id="email-verfication-ok" value="1"/>
         <?php if($logged_in){ ?><a href="#" id="newtopic-upper" class="new-button verify-email newtopic-icon" style="float:left"><b><span></span>New Thread</b><i></i></a><?php } else { echo "You must be logged in to reply or post new threads."; }
 		}
 	}elseif($row['topics'] == 2) {
-	$check = mysql_query("SELECT * FROM groups_memberships WHERE userid='".$my_id."' AND groupid='".$_GET['id']."' AND member_rank='2' LIMIT 1");
+	$check = mysql_query("SELECT * FROM groups_memberships WHERE userid='".$my_id."' AND groupid='".$_GET['id']."' AND member_rank='2' AND is_pending <> '1' LIMIT 1");
 		if(mysql_num_rows($check) > 0) { ?>
         <input type="hidden" id="email-verfication-ok" value="1"/>
         <?php if($logged_in){ ?><a href="#" id="newtopic-upper" class="new-button verify-email newtopic-icon" style="float:left"><b><span></span>New Thread</b><i></i></a><?php } else { echo "You must be logged in to reply or post new threads."; }

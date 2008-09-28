@@ -162,7 +162,29 @@ include('templates/community/header.php');
 <div id="group-postlist-container">
 
     <div class="postlist-header clearfix">
-                <?php if($topic_open && $logged_in){ ?><a href="#" id="create-post-message" class="create-post-link verify-email">Post reply</a><?php } elseif($logged_in) { ?><span class="topic-closed"><img src="./web-gallery/images/groups/status_closed.gif" title="Closed Thread"> Closed Thread</span><?php } ?>
+				<?php
+				$sql = mysql_query("SELECT * FROM groups_details WHERE id='".$row['forumid']."' LIMIT 1");
+				$row = mysql_fetch_assoc($sql);
+				$asdf = "";
+				$zxcv = "";
+				if($row['topics'] == 0) {
+					$asdf = "<a href=\"#\" id=\"create-post-message\" class=\"create-post-link verify-email\">Post reply</a>";
+					$zxcv = "<a href=\"#\" class=\"quote-post-link verify-email\" id=\"quote-post-".$row['id']."-message\">Quote</a>";
+				}elseif($row['topics'] == 1) {
+					$check = mysql_query("SELECT * FROM groups_memberships WHERE userid='".$my_id."' AND groupid='".$_GET['id']."' AND is_pending <> '1' LIMIT 1");
+					if(mysql_num_rows($check) > 0) { 
+						$asdf = "<a href=\"#\" id=\"create-post-message\" class=\"create-post-link verify-email\">Post reply</a>";
+						$zxcv = "<a href=\"#\" class=\"quote-post-link verify-email\" id=\"quote-post-".$row['id']."-message\">Quote</a>";
+					}
+				}elseif($row['topics'] == 2) {
+					$check = mysql_query("SELECT * FROM groups_memberships WHERE userid='".$my_id."' AND groupid='".$_GET['id']."' AND member_rank='2' AND is_pending <> '1' LIMIT 1");
+					if(mysql_num_rows($check) > 0) { 
+						$asdf = "<a href=\"#\" id=\"create-post-message\" class=\"create-post-link verify-email\">Post reply</a>";
+						$zxcv = "<a href=\"#\" class=\"quote-post-link verify-email\" id=\"quote-post-".$row['id']."-message\">Quote</a>";
+					}
+				}
+				?>
+                <?php if($topic_open && $logged_in){ ?><?php echo $asdf ?><?php } elseif($logged_in) { ?><span class="topic-closed"><img src="./web-gallery/images/groups/status_closed.gif" title="Closed Thread"> Closed Thread</span><?php } ?>
                 <input type="hidden" id="email-verfication-ok" value="1"/>
 				<?php
 				$hid = mysql_query("SELECT * FROM groups_memberships WHERE userid='".$my_id."' AND groupid='".$groupid."' AND member_rank='2' LIMIT 1");
@@ -237,7 +259,7 @@ while($row = mysql_fetch_assoc($get_em)){
 	</td>
 	<td class=\"post-list-message\" valign=\"top\" colspan=\"2\">";
 			if($topic_open == true && $logged_in){
-echo "                <a href=\"#\" class=\"quote-post-link verify-email\" id=\"quote-post-".$row['id']."-message\">Quote</a>";
+echo "                ".$zxcv;
 			}
 			if($user_rank > 5 || $my_id == $userdata['id'] && $logged_in){
 	                echo "<a href=\"#\" class=\"edit-post-link verify-email\" id=\"edit-post-".$row['id']."-message\">Modify</a>";
@@ -314,7 +336,7 @@ echo "        <div class=\"post-list-content-element\">";
 </div>
 
     <div class="postlist-footer clearfix">
-		<?php if($topic_open && $logged_in){ ?><a href="#" id="create-post-message-lower" class="create-post-link verify-email">Post reply</a><?php } elseif($logged_in){ ?><span class="topic-closed"><img src="./web-gallery/images/groups/status_closed.gif" title="Closed Thread"> Closed Thread</span><?php } else { echo "</a>You must be logged in to reply or post new threads."; } ?>
+		<?php if($topic_open && $logged_in){ ?><?php echo $asdf ?></a><?php } elseif($logged_in){ ?><span class="topic-closed"><img src="./web-gallery/images/groups/status_closed.gif" title="Closed Thread"> Closed Thread</span><?php } else { echo "</a>You must be logged in to reply or post new threads."; } ?>
     </a><div class="page-num-list">
     View page:
 <?php

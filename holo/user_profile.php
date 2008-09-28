@@ -319,9 +319,9 @@ echo "
 			<div class=\"clear\"></div>
 		</div>";
 	}
-	if($userdata['id'] != $my_id){ ?>
+	if($userdata['id'] != $my_id && $logged_in == true){ ?>
 		<div class="profile-friend-request clearfix">
-			<a href="/myhabbo/friends/addAfterLogin?accountId=5690416" class="new-button" id="add-friend" style="float: left"><b>Add as friend</b><i></i></a>
+			<a href="./myhabbo/friends_add.php?id=<?php echo $userdata['id']; ?>" class="new-button" id="add-friend" style="float: left"><b>Add as friend</b><i></i></a>
 		</div>
 	<?php } 
 	echo "<br clear=\"all\" style=\"display: block; height: 1px\"/>
@@ -727,13 +727,10 @@ wmode="transparent" flashvars="songUrl=<?php echo $path; ?>myhabbo/trax_song.php
 		echo "You don't have any badges.";
 	}else{
 	?>
-    <ul class="clearfix">
-	<?php
-	while($badgerow = mysql_fetch_assoc($sql)){
-		echo "<li style=\"background-image: url(".$cimagesurl.$badgesurl.$badgerow['badgeid'].".gif)\"></li>\n";
-	}
+    <?php
+	$bypass1 = true;
+	include('./myhabbo/badgelist_badgepaging.php');
 	?>
-    </ul>
 	<?php } ?>
 
     </div>
