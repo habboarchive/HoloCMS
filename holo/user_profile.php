@@ -732,7 +732,11 @@ wmode="transparent" flashvars="songUrl=<?php echo $path; ?>myhabbo/trax_song.php
 	include('./myhabbo/badgelist_badgepaging.php');
 	?>
 	<?php } ?>
-
+        <script type="text/javascript">
+        document.observe("dom:loaded", function() {
+            window.badgesWidget<?php echo $row['0']; ?> = new BadgesWidget('<?php echo $count; ?>', '<?php echo $row['0']; ?>');
+        });
+        </script>
     </div>
 		<div class="clear"></div>
 		</div>

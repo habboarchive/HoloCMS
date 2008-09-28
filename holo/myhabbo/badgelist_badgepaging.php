@@ -1,7 +1,6 @@
 <?php
 if($bypass1 == true){
 $page = "1";
-$search = "";
 }else{
 include('../core.php');
 include('../includes/session.php');
@@ -10,15 +9,15 @@ $widgetid = $_POST['widgetId'];
 }
 
 $sql = mysql_query("SELECT userid FROM cms_homes_stickers WHERE id = '".$widgetid."' LIMIT 1");
-$row1 = mysql_fetch_assoc($sql);
-$user = $row1['userid'];
+$rrow1 = mysql_fetch_assoc($sql);
+$user = $rrow1['userid'];
 $offset = $page - 1;
 $offset = $offset * 16;
 $sql = mysql_query("SELECT * FROM users_badges WHERE userid = '".$user."' ORDER BY iscurrent DESC LIMIT 16 OFFSET ".$offset);
 ?>
     <ul class="clearfix">
-	<?php while($row = mysql_fetch_assoc($sql)){ ?>
-            <li style="background-image: url(<?php echo $cimagesurl.$badgesurl.$row['badgeid'].".gif"; ?>)"></li>
+	<?php while($rrow = mysql_fetch_assoc($sql)){ ?>
+            <li style="background-image: url(<?php echo $cimagesurl.$badgesurl.$rrow['badgeid'].".gif"; ?>)"></li>
     <?php } ?>
     </ul>
 
