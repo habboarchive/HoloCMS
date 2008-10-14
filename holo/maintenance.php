@@ -92,6 +92,6 @@ exit;
 	</div>
 	<div id="footer-container"><center><a href='./housekeeping/' target='_self'>Administrator Login</a></center></div>
 </div>
+<?php echo $analytics; ?>
 </body>
 </html>
-

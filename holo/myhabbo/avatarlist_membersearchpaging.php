@@ -5,7 +5,7 @@ $search = "";
 }else{
 include('../core.php');
 $page = $_POST['pageNumber'];
-$search = addslashes($_POST['searchString']);
+$search = FilterText($_POST['searchString']);
 $widgetid = $_POST['widgetId'];
 }
 

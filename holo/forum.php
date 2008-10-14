@@ -115,7 +115,7 @@ while($row = mysql_fetch_assoc($sql)){
 	echo "<tr class=\"topiclist-row-" . $x . "\">
 		<td class=\"topiclist-rowtopic\" valign=\"top\">
 			<div class=\"topiclist-row-content\">
-			<a class=\"topiclist-link icon icon-sticky\" href=\"viewthread.php?thread=".$row['id']."\">".stripslashes($row['title'])."</a>";
+			<a class=\"topiclist-link icon icon-sticky\" href=\"viewthread.php?thread=".$row['id']."\">".HoloText($row['title'])."</a>";
 
 			if($row['type'] == 4){
 			echo "&nbsp;<span class=\"topiclist-row-topicsticky\"><img src=\"./web-gallery/images/groups/status_closed.gif\" title=\"Closed Thread\" alt=\"Closed Thread\"></span>";
@@ -173,7 +173,7 @@ while($row = mysql_fetch_assoc($sql)){
 	echo "<tr class=\"topiclist-row-" . $x . "\">
 		<td class=\"topiclist-rowtopic\" valign=\"top\">
 			<div class=\"topiclist-row-content\">
-			<a class=\"topiclist-link \" href=\"viewthread.php?thread=".$row['id']."\">".stripslashes($row['title'])."</a>";
+			<a class=\"topiclist-link \" href=\"viewthread.php?thread=".$row['id']."\">".HoloText($row['title'])."</a>";
 
 			if($row['type'] == 2){
 			echo "&nbsp;<span class=\"topiclist-row-topicsticky\"><img src=\"./web-gallery/images/groups/status_closed.gif\" title=\"Closed Thread\" alt=\"Closed Thread\"></span>";

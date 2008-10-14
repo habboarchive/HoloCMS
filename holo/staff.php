@@ -88,7 +88,7 @@ printf("<p><img src='http://www.habbo.co.uk/habbo-imaging/avatarimage?figure=%s&
 Rank: %s<br />
 Last Visit: %s<br />
 <br />%s&nbsp;%s<br /><br /></p>
-",$row[4],$row[0],$row[0],$row[0],$online_img,$online_caption,$online_caption,stripslashes($row[1]),$row[2],$row[3], $badge, $gbadge);
+",$row[4],$row[0],$row[0],$row[0],$online_img,$online_caption,$online_caption,HoloText($row[1]),$row[2],$row[3], $badge, $gbadge);
 	}
 }
 ?>
@@ -102,12 +102,12 @@ Last Visit: %s<br />
 </div>
 <div id="column2" class="column">
 				<div class="habblet-container ">
-						<div class="cbb clearfix <?php echo stripslashes(getContent('staff1-color')); ?> ">
+						<div class="cbb clearfix <?php echo HoloText(getContent('staff1-color')); ?> ">
 
-							<h2 class="title"><?php echo stripslashes(getContent('staff1-heading')); ?>
+							<h2 class="title"><?php echo HoloText(getContent('staff1-heading')); ?>
 							</h2>
 						<div id="notfound-looking-for" class="box-content">
-    <p><?php echo stripslashes(getContent('staff1')); ?></p>
+    <p><?php echo HoloText(getContent('staff1')); ?></p>
 </div>
 
 
@@ -116,12 +116,12 @@ Last Visit: %s<br />
 				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
 
 				<div class="habblet-container ">
-						<div class="cbb clearfix <?php echo stripslashes(getContent('staff2-color')); ?> ">
+						<div class="cbb clearfix <?php echo HoloText(getContent('staff2-color')); ?> ">
 
-							<h2 class="title"><?php echo stripslashes(getContent('staff2-heading')); ?>
+							<h2 class="title"><?php echo HoloText(getContent('staff2-heading')); ?>
 							</h2>
 						<div id="notfound-looking-for" class="box-content">
-    <p><?php echo stripslashes(getContent('staff2')); ?></p>
+    <p><?php echo HoloText(getContent('staff2')); ?></p>
 </div>
 
 

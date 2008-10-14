@@ -89,7 +89,7 @@ $msg = "Fill in everything!";
 </tr>
 <?php }elseif($_GET['a'] == "edit") {
 		if(isset($_GET['key'])) {
-		$sql = mysql_query("SELECT * FROM cms_collectables WHERE id='".stripslashes($_GET['key'])."' LIMIT 1");
+		$sql = mysql_query("SELECT * FROM cms_collectables WHERE id='".HoloText($_GET['key'])."' LIMIT 1");
 		$row = mysql_fetch_assoc($sql);?>
 <tr>
 <td class='tablerow1'  width='40%'  valign='middle'><b>Name</b><div class='graytext'>What's the name of the collectable?</div></td>

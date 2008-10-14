@@ -17,11 +17,11 @@ $pagename = "Loader Configuration";
 
 if(isset($_POST['ip'])){
 
-	$ip = addslashes($_POST['ip']);
-	$texts = addslashes($_POST['texts']);
-	$variables = addslashes($_POST['variables']);
-	$dcr = addslashes($_POST['dcr']);
-	$reload_url = addslashes($_POST['reload_url']);
+	$ip = FilterText($_POST['ip']);
+	$texts = FilterText($_POST['texts']);
+	$variables = FilterText($_POST['variables']);
+	$dcr = FilterText($_POST['dcr']);
+	$reload_url = FilterText($_POST['reload_url']);
 	$localhost = $_POST['localhost'];
 
 	if(!empty($ip) && !empty($texts) && !empty($variables) && !empty($dcr) && !empty($reload_url)){

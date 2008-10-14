@@ -16,7 +16,7 @@ if(!session_is_registered(acp)){ header("Location: index.php?p=login"); exit; }
 $pagename = "Dashboard";
 
 if(isset($_POST['notes'])){
-	$notes = addslashes($_POST['notes']);
+	$notes = FilterText($_POST['notes']);
 	mysql_query("UPDATE cms_system SET admin_notes = '".$notes."' LIMIT 1") or die(mysql_error());
 }
 
@@ -161,7 +161,7 @@ $onlineUsers = mysql_evaluate("SELECT COUNT(*) FROM users WHERE online > " . $on
 					<div class='homepage_sub_header'>Housekeeping Notes</div>
 					<br /><div align='center'>
 <form action='index.php?p=dashboard&do=save' method='post'>
-<textarea name='notes' style='background-color:#F9FFA2;border:1px solid #CCC;width:95%;font-family:verdana;font-size:10px' rows='8' cols='25'><?php echo stripslashes($system['admin_notes']); ?></textarea>
+<textarea name='notes' style='background-color:#F9FFA2;border:1px solid #CCC;width:95%;font-family:verdana;font-size:10px' rows='8' cols='25'><?php echo HoloText($system['admin_notes']); ?></textarea>
 <div><br /><input type='submit' value='Save Admin Notes' class='realbutton' /></div>
 </form>
 </div><br />

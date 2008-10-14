@@ -35,8 +35,8 @@ if(isset($_POST['uid'])){
         } else {
             $uid = $_POST['uid'];
             $length = $_POST['length'];
-            $ip = addslashes($_POST['ip']);
-            $reason = addslashes($_POST['reason']);
+            $ip = FilterText($_POST['ip']);
+            $reason = FilterText($_POST['reason']);
             $date = $date_full;
             $date = explode(" ", $date);
             $time = explode(":", $date[1]);

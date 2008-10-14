@@ -16,7 +16,7 @@ if(!session_is_registered(acp)){ header("Location: index.php?p=login"); exit; }
 $pagename = "User ID";
 
 if(isset($_POST['query'])){
-	$query = addslashes($_POST['query']);
+	$query = FilterText($_POST['query']);
 	$find = mysql_query("SELECT id,name FROM users WHERE name LIKE '".$query."' LIMIT 1") or die(mysql_error());
 	$results = mysql_num_rows($find);
 	if($results > 0){

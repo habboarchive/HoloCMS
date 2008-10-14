@@ -14,7 +14,7 @@ include('../includes/session.php');
 
 $ownerid = $_POST['ownerId'];
 $widgetid = $_POST['widgetId'];
-$message = stripslashes(mysql_real_escape_string(htmlspecialchars(addslashes($_POST["message"]))));
+$message = HoloText(FilterText($_POST["message"]));
 $sql = mysql_query("SELECT NOW()");
 $date = mysql_result($sql, 0);
 
@@ -37,7 +37,7 @@ $userrow = mysql_fetch_assoc(mysql_query("SELECT * FROM users WHERE id = '".$row
 			<div class="online">
 				<a href="./user_profile.php?id=<?php echo $userrow['id']; ?>"><?php echo $userrow['name']; ?></a>
 			</div>
-			<p><?php echo bbcode_format(trim(nl2br(stripslashes($row['message'])))); ?></p>
+			<p><?php echo bbcode_format(trim(nl2br(HoloText($row["message"])))); ?></p>
 		</div>
 		<div class="guestbook-cleaner">&nbsp;</div>
 		<div class="guestbook-entry-footer metadata"><?php echo $row['date']; ?></div>

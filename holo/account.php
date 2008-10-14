@@ -38,8 +38,8 @@ if($tab == "1"){
 
 	if(isset($_POST['figureData'])){
 		$refer = $_SERVER['HTTP_REFERER']; $pos = strrpos($refer, "account.php"); if ($pos === false) { echo "<h1>Security check failure.</h1>"; exit; }
-		$new_figure = addslashes($_POST['figureData']);
-		$new_gender = addslashes($_POST['newGender']);
+		$new_figure = FilterText($_POST['figureData']);
+		$new_gender = FilterText($_POST['newGender']);
 		if($new_gender !== "M" && $new_gender !== "F"){
 			$result = "An error occured. Please try again.";
 			$error = "1";
@@ -50,8 +50,8 @@ if($tab == "1"){
 			} else {
 				mysql_query("UPDATE users SET figure = '".$new_figure."', sex = '".$new_gender."' WHERE name = '".$rawname."' LIMIT 1") or die(mysql_error());
 				$result = "Account settings updated successfully.";
-				$mylook1 = addslashes($_POST['figureData']);
-				$mysex1 = addslashes($_POST['newGender']);
+				$mylook1 = FilterText($_POST['figureData']);
+				$mysex1 = FilterText($_POST['newGender']);
 				@SendMUSData('UPRA' . $my_id);
 			}
 		}
@@ -84,14 +84,14 @@ if($tab == "1"){
 			$error = "1";
 			$motto = $_POST['motto']; // Do not add slashes, no database communication here.
 		} else {
-			$motto = htmlspecialchars(addslashes($_POST['motto']));
+			$motto = FilterText($_POST['motto']);
 			mysql_query("UPDATE users SET mission = '".$motto."' WHERE name = '".$rawname."' and password = '".$rawpass."' LIMIT 1");
 			$result = "Changes saved successfully.";
 			$motto = $_POST['motto']; // Do not add slashes, this is for display purposes.
 			@SendMUSData('UPRA' . $my_id);
 		}
 	} else {
-		$motto = stripslashes($myrow['mission']);
+		$motto = HoloText($myrow['mission']);
 	}
 } else if($tab == "3"){
 	if(isset($_POST['save'])){
@@ -466,7 +466,7 @@ Your motto is seen by everyone, so think carefully!
 
 <p>
 <span class="label">Motto:</span>
-<input type="text" name="motto" size="32" maxlength="32" value="<?php echo stripslashes($motto); ?>" id="avatarmotto" />
+<input type="text" name="motto" size="32" maxlength="32" value="<?php echo HoloText($motto); ?>" id="avatarmotto" />
 </p>
 
 <?php if( IsHCMember($my_id) ){ ?>

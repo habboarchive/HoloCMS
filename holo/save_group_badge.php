@@ -43,11 +43,11 @@ if(file_exists($image)) {
 unlink($image);
 }
 } else {
-mysql_query("UPDATE groups_details SET badge = '".addslashes($badge)."' WHERE id = '".$groupid."' LIMIT 1");
+mysql_query("UPDATE groups_details SET badge = '".FilterText($badge)."' WHERE id = '".$groupid."' LIMIT 1");
 header("Location: group_profile.php?id=".$groupid."&x=BadgeUpdated"); exit;
 }
 }
-mysql_query("UPDATE groups_details SET badge = '".addslashes($badge)."' WHERE id = '".$groupid."' LIMIT 1");
+mysql_query("UPDATE groups_details SET badge = '".FilterText($badge)."' WHERE id = '".$groupid."' LIMIT 1");
 header("Location: group_profile.php?id=".$groupid."&x=BadgeUpdated"); exit;
 
 ?> 

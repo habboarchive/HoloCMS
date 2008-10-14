@@ -17,7 +17,7 @@ $pagename = "Chat Log Viewer";
 
 if(isset($_POST['query'])){
 
-	$query = addslashes($_POST['query']);
+	$query = FilterText($_POST['query']);
 
 	$get_logs = mysql_query("SELECT * FROM system_chatlog WHERE roomid = '".$query."' OR username = '".$query."' ORDER BY mtime DESC") or die(mysql_error());
 	$results = mysql_num_rows($get_logs);
@@ -78,7 +78,7 @@ while($row = mysql_fetch_assoc($get_logs)){
   <td class='tablerow2' align='center'>%s</td>
   <td class='tablerow2' align='center'>%s</td>
   <td class='tablerow2' align='center'>%s</td>
-</tr>", $row['username'], $row['roomid'], $row['mtime'], stripslashes($row['message']));
+</tr>", $row['username'], $row['roomid'], $row['mtime'], HoloText($row['message']));
 }
 ?>
  

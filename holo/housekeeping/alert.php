@@ -17,7 +17,7 @@ if(function_exists(SendMUSData) !== true){ include('../includes/mus.php'); }
 $pagename = "Alert";
 
 if(isset($_POST['alert'])){
-    $alert = addslashes($_POST['alert']);
+    $alert = FilterText($_POST['alert']);
     $username = $_POST['username'];
     $check = mysql_query("SELECT id FROM users WHERE name = '".$username."' LIMIT 1") or die(mysql_error());
     $valid = mysql_num_rows($check);
@@ -44,7 +44,7 @@ if(isset($_POST['alert'])){
         mysql_query("INSERT INTO system_stafflog (action,message,note,userid,targetid,timestamp) VALUES ('Housekeeping','Automaticly picked up help query (ID: ".$_GET['key'].")','alert.php','".$my_id."','','".$date_full."')") or die(mysql_error());
         mysql_query("UPDATE cms_help SET picked_up = '1' WHERE id = '".$_GET['key']."' LIMIT 1") or die(mysql_error());
     }
-    $_POST['alert'] = "Hello, my name is ".$name.". I am sending you this message in reply to your help inquiry sent on ".$tmp['date'].", with the subject '".stripslashes($tmp['subject'])."'.\n\n".$name."\n".$shortname." Player Support";
+    $_POST['alert'] = "Hello, my name is ".$name.". I am sending you this message in reply to your help inquiry sent on ".$tmp['date'].", with the subject '".HoloText($tmp['subject'])."'.\n\n".$name."\n".$shortname." Player Support";
     $_POST['username'] = $tmp['username'];
 }
 
@@ -77,7 +77,7 @@ if(isset($_POST['alert'])){
 
 <tr>
 <td class='tablerow1'  width='40%'  valign='middle'><b>Alert</b><div class='graytext'>The actual message that will be shown to the user.</div></td>
-<td class='tablerow2'  width='60%'  valign='middle'><textarea name='alert' cols='60' rows='5' wrap='soft' id='sub_desc' class='multitext'><?php echo stripslashes($_POST['alert']); ?></textarea></td>
+<td class='tablerow2'  width='60%'  valign='middle'><textarea name='alert' cols='60' rows='5' wrap='soft' id='sub_desc' class='multitext'><?php echo HoloText($_POST['alert']); ?></textarea></td>
 </tr>
 
 <tr>

@@ -14,7 +14,7 @@ require_once('../includes/session.php');
 if(function_exists(SendMUSData) !== true){ include('../includes/mus.php'); } 
 
 $credits = $myrow['credits']; 
-$voucher = addslashes($_POST['voucherCode']); 
+$voucher = FilterText($_POST['voucherCode']); 
 
 $check = mysql_query("SELECT type, credits FROM vouchers WHERE voucher = '" . $voucher . "' LIMIT 1") or die(mysql_error()); 
 $valid = mysql_num_rows($check); 
@@ -25,7 +25,7 @@ if($valid > 0){
     $resultcode = "green"; 
     if($tmp['type'] == credits) { 
     $credits = $credits + $amount; 
-    mysql_query("UPDATE users SET credits = '".$credits."' WHERE name = '" . addslashes($name) . "' LIMIT 1") or die(mysql_error()); 
+    mysql_query("UPDATE users SET credits = '".$credits."' WHERE name = '" . FilterText($name) . "' LIMIT 1") or die(mysql_error()); 
     mysql_query("DELETE FROM vouchers WHERE voucher = '" . $voucher . "' LIMIT 1") or die(mysql_error()); 
     mysql_query("INSERT INTO `cms_transactions` (`date`, `amount`, `descr`, `userid`) VALUES ('".$date_full."', '".$amount."', 'Credit voucher redeem', '".$my_id."');") or die(mysql_error()); // Appearently ' is not good enough, has to be fancy ` =/ 
     $result = "You have redeemed " . $amount . " credits successfully."; 

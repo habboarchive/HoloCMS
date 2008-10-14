@@ -18,8 +18,8 @@ $pagename = "Give Credits";
 
 if(isset($_POST['query'])){
 
-	$query = addslashes($_POST['query']);
-	$amount = addslashes($_POST['amount']);
+	$query = FilterText($_POST['query']);
+	$amount = FilterText($_POST['amount']);
 
 	$check = mysql_query("SELECT id,name FROM users WHERE name = '".$query."' LIMIT 1") or die(mysql_error());
 	$results = mysql_num_rows($check);

@@ -39,18 +39,18 @@ if($valid > 0){
 
 if($ownerid !== $my_id){ exit; }
 
-$name = trim(addslashes(htmlspecialchars($_POST['name'])));
-$description = trim(addslashes(htmlspecialchars($_POST['description'])));
+$name = trim(FilterText($_POST['name']));
+$description = trim(FilterText($_POST['description']));
 $type = $_POST['type'];
 
 if($groupdata['type'] == "3" && $_POST['type'] !== "3"){ echo "You may not change the group type if it is set to 3."; exit; } // you can't change the group type once you set it to 4, fool
 if($type < 0 || $type > 3){ echo "Invalid group type."; exit; } // this naughty user doesn't even deserve an settings update
 
-if(strlen(stripslashes($name)) > 25){
+if(strlen(HoloText($name)) > 25){
 	echo "Name too long\n\n<p>\n<a href=\"group_profile.php?id=".$groupid."\" class=\"new-button\"><b>Done</b><i></i></a>\n</p>\n\n<div class=\"clear\"></div>";
-} elseif(strlen(stripslashes($description)) > 200){
+} elseif(strlen(HoloText($description)) > 200){
 	echo "Description too long\n\n<p>\n<a href=\"group_profile.php?id=".$groupid."\" class=\"new-button\"><b>Done</b><i></i></a>\n</p>\n\n<div class=\"clear\"></div>";
-} elseif(strlen(stripslashes($name)) < 1){
+} elseif(strlen(HoloText($name)) < 1){
 	echo "Please give a name\n\n<p>\n<a href=\"group_profile.php?id=".$groupid."\" class=\"new-button\"><b>Done</b><i></i></a>\n</p>\n\n<div class=\"clear\"></div>";	
 } else {
 	mysql_query("UPDATE groups_details SET name = '".$name."', description = '".$description."', type = '".$type."' WHERE id = '".$groupid."' AND ownerid = '".$my_id."' LIMIT 1") or die(mysql_error());

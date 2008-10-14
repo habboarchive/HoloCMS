@@ -61,7 +61,7 @@ while($row = mysql_fetch_assoc($get_em)){
   <td class='tablerow1' align='center'>%s (ID: %s)</td>
   <td class='tablerow1' align='center'>%s</td>
   <td class='tablerow1' align='center'>%s</td>
-</tr>", $row['id'], $username, $row['userid'], stripslashes($row['alert']), $type);
+</tr>", $row['id'], $username, $row['userid'], HoloText($row['alert']), $type);
 }
 ?>
  

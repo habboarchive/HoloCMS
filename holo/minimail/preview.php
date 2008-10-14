@@ -12,5 +12,5 @@
 include('../core.php');
 include('../includes/session.php');
 
-echo bbcode_format(trim(nl2br(stripslashes($_POST['body']))));
+echo bbcode_format(trim(nl2br(HoloText($_POST['body']))));
 ?>

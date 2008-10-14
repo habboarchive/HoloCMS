@@ -15,7 +15,7 @@ if(getContent('forum-enabled') !== "1"){ header("Location: index.php"); exit; }
 if(!session_is_registered(username)){ exit; }
 
 $topicid = $_POST['topicId'];
-$topicname = trim(addslashes(htmlspecialchars($_POST['topicName'])));
+$topicname = trim(FilterText($_POST['topicName']));
 $topic_closed = $_POST['topicClosed'];
 $topic_sticky = $_POST['topicSticky'];
 

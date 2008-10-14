@@ -21,7 +21,7 @@ $pageid = "forum";
 $body_id = "viewmode";
 
 if(isset($_POST['searchString'])){
-	$searchString = addslashes($_POST['searchString']);
+	$searchString = FilterText($_POST['searchString']);
 	$check = mysql_query("SELECT id FROM groups_details WHERE name LIKE '".$searchString."' LIMIT 1") or die(mysql_error());
 	$found = mysql_num_rows($check);
 	if($found > 0){
@@ -104,7 +104,7 @@ mysql_query("UPDATE groups_details SET views = views+'1' WHERE id='".$groupid."'
 <div class="box-tabs-container box-tabs-left clearfix">
 	<?php if($member_rank > 1 && !$edit_mode){ ?><a href="group_profile.php?id=<?php echo $groupid; ?>&do=edit" class="new-button dark-button edit-icon" style="float:left"><b><span></span>Edit</b><i></i></a><?php } ?>
     <h2 class="page-owner">
-<?php echo stripslashes($groupdata['name']); ?>&nbsp;
+<?php echo HoloText($groupdata['name']); ?>&nbsp;
 <?php if($groupdata['type'] == "2"){ ?><img src='./web-gallery/images/status_closed_big.gif' alt='Closed Group' title='Closed Group'><?php } ?>
 <?php if($groupdata['type'] == "1"){ ?><img src='./web-gallery/images/status_exclusive_big.gif' alt='Moderated Group' title='Moderated Group'><?php } ?></h2>
 </h2>
@@ -214,7 +214,7 @@ while($row = mysql_fetch_assoc($sql)){
 	echo "<tr class=\"topiclist-row-" . $x . "\">
 		<td class=\"topiclist-rowtopic\" valign=\"top\">
 			<div class=\"topiclist-row-content\">
-			<a class=\"topiclist-link icon icon-sticky\" href=\"viewthread.php?thread=".$row['id']."\">".stripslashes($row['title'])."</a>";
+			<a class=\"topiclist-link icon icon-sticky\" href=\"viewthread.php?thread=".$row['id']."\">".HoloText($row['title'])."</a>";
 
 			if($row['type'] == 4){
 			echo "&nbsp;<span class=\"topiclist-row-topicsticky\"><img src=\"./web-gallery/images/groups/status_closed.gif\" title=\"Closed Thread\" alt=\"Closed Thread\"></span>";
@@ -272,7 +272,7 @@ while($row = mysql_fetch_assoc($sql)){
 	echo "<tr class=\"topiclist-row-" . $x . "\">
 		<td class=\"topiclist-rowtopic\" valign=\"top\">
 			<div class=\"topiclist-row-content\">
-			<a class=\"topiclist-link \" href=\"viewthread.php?thread=".$row['id']."\">".stripslashes($row['title'])."</a>";
+			<a class=\"topiclist-link \" href=\"viewthread.php?thread=".$row['id']."\">".HoloText($row['title'])."</a>";
 
 			if($row['type'] == 2){
 			echo "&nbsp;<span class=\"topiclist-row-topicsticky\"><img src=\"./web-gallery/images/groups/status_closed.gif\" title=\"Closed Thread\" alt=\"Closed Thread\"></span>";
@@ -444,7 +444,7 @@ while($row = mysql_fetch_assoc($sql)){
 	echo "<tr class=\"topiclist-row-" . $x . "\">
 		<td class=\"topiclist-rowtopic\" valign=\"top\">
 			<div class=\"topiclist-row-content\">
-			<a class=\"topiclist-link icon icon-sticky\" href=\"viewthread.php?thread=".$row['id']."\">".stripslashes($row['title'])."</a>";
+			<a class=\"topiclist-link icon icon-sticky\" href=\"viewthread.php?thread=".$row['id']."\">".HoloText($row['title'])."</a>";
 
 			if($row['type'] == 4){
 			echo "&nbsp;<span class=\"topiclist-row-topicsticky\"><img src=\"./web-gallery/images/groups/status_closed.gif\" title=\"Closed Thread\" alt=\"Closed Thread\"></span>";
@@ -502,7 +502,7 @@ while($row = mysql_fetch_assoc($sql)){
 	echo "<tr class=\"topiclist-row-" . $x . "\">
 		<td class=\"topiclist-rowtopic\" valign=\"top\">
 			<div class=\"topiclist-row-content\">
-			<a class=\"topiclist-link \" href=\"viewthread.php?thread=".$row['id']."\">".stripslashes($row['title'])."</a>";
+			<a class=\"topiclist-link \" href=\"viewthread.php?thread=".$row['id']."\">".HoloText($row['title'])."</a>";
 
 			if($row['type'] == 2){
 			echo "&nbsp;<span class=\"topiclist-row-topicsticky\"><img src=\"./web-gallery/images/groups/status_closed.gif\" title=\"Closed Thread\" alt=\"Closed Thread\"></span>";

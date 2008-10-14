@@ -36,7 +36,7 @@ if(isset($_GET['tag'])){
                         $valid_tag = true;
                 }
 
-                $check = mysql_query("SELECT id FROM cms_tags WHERE ownerid = '".$my_id."' AND tag = '".addslashes($query)."' LIMIT 1") or die(mysql_error());
+                $check = mysql_query("SELECT id FROM cms_tags WHERE ownerid = '".$my_id."' AND tag = '".FilterText($query)."' LIMIT 1") or die(mysql_error());
                 $tag_count = mysql_num_rows($check);
                 if($tag_count > 0){
                         $already_tagged = true;
@@ -49,7 +49,7 @@ if(isset($_GET['tag'])){
                         $already_tagged = true;
                 }
 
-                $get_taggers = mysql_query("SELECT ownerid FROM cms_tags WHERE tag LIKE '".addslashes($query)."' LIMIT 20") or die(mysql_error());
+                $get_taggers = mysql_query("SELECT ownerid FROM cms_tags WHERE tag LIKE '".FilterText($query)."' LIMIT 20") or die(mysql_error());
                 $results = mysql_num_rows($get_taggers);
         } else {
                 $valid_search = false;
@@ -131,10 +131,10 @@ include('templates/community/header.php');
 							</h2>
 						<div id="tag-search-habblet-container">
 <form name="tag_search_form" action="tags.php" class="search-box">
-    <input type="text" name="tag" id="search_query" value="<?php if(isset($query)){ echo stripslashes($query); } ?>" class="search-box-query" style="float: left"/>
+    <input type="text" name="tag" id="search_query" value="<?php if(isset($query)){ echo HoloText($query); } ?>" class="search-box-query" style="float: left"/>
 	<a onclick="$(this).up('form').submit(); return false;" href="#" class="new-button search-icon" style="float: left"><b><span></span></b><i></i></a>
 </form>        <?php if($results > 0){ echo "<br /><p class=\"search-result-count\">1 - " . $results . " / " . $results . "</p>"; } else { echo "<p class=\"search-result-count\">No results</p>"; } ?>
-                <?php if($valid_search == true && $logged_in == true && $valid_tag == true && $already_tagged == false){ echo "<p id=\"tag-search-add\" class=\"clearfix\"><span style=\"float:left\">Tag yourself with:</span> <a id=\"tag-search-tag-add\" href=\"tags.php?tag=".trim(stripslashes(htmlspecialchars($query)))."&add=true\" class=\"new-button\" style=\"float:left\"><b>".trim(stripslashes(htmlspecialchars($query)))."</b><i></i></a></p>"; } ?>
+                <?php if($valid_search == true && $logged_in == true && $valid_tag == true && $already_tagged == false){ echo "<p id=\"tag-search-add\" class=\"clearfix\"><span style=\"float:left\">Tag yourself with:</span> <a id=\"tag-search-tag-add\" href=\"tags.php?tag=".trim(HoloText($query)))."&add=true\" class=\"new-button\" style=\"float:left\"><b>".trim(HoloText($query)."</b><i></i></a></p>"; } ?>
         <p class="search-result-divider"></p>
 
     <table border="0" cellpadding="0" cellspacing="0" width="100%" class="search-result">
@@ -163,7 +163,7 @@ include('templates/community/header.php');
                 </td>
                 <td class=\"text\">
                     <a href=\"user_profile.php?name=".$userdata['name']."\" class=\"result-title\">".$userdata['name']."</a><br/>
-                    <span class=\"result-description\">".stripslashes($userdata['mission'])."</span>
+                    <span class=\"result-description\">".HoloText($userdata['mission'])."</span>
                         <ul class=\"tag-list\">\n";
 
                                         $get_tags = mysql_query("SELECT tag FROM cms_tags WHERE ownerid = '".$userdata['id']."'") or die(mysql_error());

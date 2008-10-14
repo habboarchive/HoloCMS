@@ -48,11 +48,11 @@ if($do == "delete" && is_numeric($key)){
 
 		$num = $key;
 
-		$title = addslashes($_POST['title']);
-		$category = addslashes($_POST['category']);
-		$topstory = addslashes($_POST['topstory']);
-		$short_story = addslashes($_POST['short_story']);
-		$story = addslashes($_POST['story']);
+		$title = FilterText($_POST['title']);
+		$category = FilterText($_POST['category']);
+		$topstory = FilterText($_POST['topstory']);
+		$short_story = FilterText($_POST['short_story']);
+		$story = FilterText($_POST['story']);
 
 		mysql_query("UPDATE cms_news SET title = '".$title."', category = '".$category."', topstory = '".$topstory."', short_story = '".$short_story."', story = '".$story."' WHERE num = '".$num."' LIMIT 1") or die(mysql_error());
 
@@ -111,7 +111,7 @@ while($row = mysql_fetch_assoc($get_articles)){
   <td class='tablerow2' align='center'>%s</td>
   <td class='tablerow2' align='center'><a href='index.php?p=news_manage&do=edit&key=%s'><img src='./images/edit.gif' alt='Edit'></a></td>
   <td class='tablerow2' align='center'><a href='index.php?p=news_manage&do=delete&key=%s'><img src='./images/delete.gif' alt='Delete'></a></td>															
-</tr>", $row['num'], htmlspecialchars(stripslashes($row['title'])), htmlspecialchars(stripslashes($row['short_story'])), $row['date'], $row['author'], $row['num'], $row['num']);
+</tr>", $row['num'], HoloText($row['title'])), FilterText($row['short_story']), $row['date'], $row['author'], $row['num'], $row['num'];
 }
 ?>
  
@@ -126,7 +126,7 @@ while($row = mysql_fetch_assoc($get_articles)){
 <table width='100%' cellspacing='0' cellpadding='5' align='center' border='0'>
 <tr>
 <td class='tablerow1'  width='40%'  valign='middle'><b>Title</b><div class='graytext'>The full title of your article.</div></td>
-<td class='tablerow2'  width='60%'  valign='middle'><input type='text' name='title' value="<?php echo stripslashes($article['title']); ?>" size='30' class='textinput'></td>
+<td class='tablerow2'  width='60%'  valign='middle'><input type='text' name='title' value="<?php echo HoloText($article['title']); ?>" size='30' class='textinput'></td>
 </tr>
 
 <tr>
@@ -142,12 +142,12 @@ while($row = mysql_fetch_assoc($get_articles)){
 
 <tr>
 <td class='tablerow1'  width='40%'  valign='middle'><b>Short Story</b><div class='graytext'>A small introduction to the article.<br />HTML is not allowed here.</div></td>
-<td class='tablerow2'  width='60%'  valign='middle'><textarea name='short_story' cols='60' rows='5' wrap='soft' id='sub_desc'   class='multitext'><?php echo stripslashes($article['short_story']); ?></textarea></td>
+<td class='tablerow2'  width='60%'  valign='middle'><textarea name='short_story' cols='60' rows='5' wrap='soft' id='sub_desc'   class='multitext'><?php echo HoloText($article['short_story']); ?></textarea></td>
 </tr>
 
 <tr>
 <td class='tablerow1'  width='40%'  valign='middle'><b>Story</b><div class='graytext'>The actual news message.<br />HTML is allowed here.</div></td>
-<td class='tablerow2'  width='60%'  valign='middle'><textarea name='story' cols='60' rows='5' wrap='soft' id='sub_desc'   class='multitext'><?php echo stripslashes($article['story']); ?></textarea></td>
+<td class='tablerow2'  width='60%'  valign='middle'><textarea name='story' cols='60' rows='5' wrap='soft' id='sub_desc'   class='multitext'><?php echo HoloText($article['story']); ?></textarea></td>
 </tr>
 
 <tr>

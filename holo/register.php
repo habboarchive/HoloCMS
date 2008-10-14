@@ -19,14 +19,14 @@ if(isset($_POST['bean_avatarName'])){
 $refer = $_SERVER['HTTP_REFERER']; $pos = strrpos($refer, "register.php"); if($pos === false) { exit; }
 
 // Collect the variables we should've recieved
-$name = mysql_real_escape_string($_POST['bean_avatarName']);
-$password = addslashes($_POST['password']);
-$retypedpassword = addslashes($_POST['retypedPassword']);
+$name = $_POST['bean_avatarName'];
+$password = FilterText($_POST['password']);
+$retypedpassword = FilterText($_POST['retypedPassword']);
 $day = $_POST['bean_day'];
 $month = $_POST['bean_month'];
 $year = $_POST['bean_year'];
-$email = addslashes($_POST['bean_email']);
-$retypedemail = addslashes($_POST['bean_retypedEmail']);
+$email = FilterText($_POST['bean_email']);
+$retypedemail = FilterText($_POST['bean_retypedEmail']);
 $accept_tos = $_POST['bean_termsOfServiceSelection'];
 $spam_me = $_POST['bean_marketing'];
 $figure = $_POST['bean_figure'];

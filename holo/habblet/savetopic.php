@@ -14,8 +14,8 @@ include('../includes/session.php');
 
 if(getContent('forum-enabled') !== "1"){ header("Location: index.php"); exit; }
 
-$message = addslashes(htmlspecialchars($_POST['message']));
-$topicTitle = addslashes(htmlspecialchars($_POST['topicName']));
+$message = FilterText($_POST['message']);
+$topicTitle = FilterText($_POST['topicName']);
 
 if(empty($topicTitle)){ echo "Topic title may not be blank"; exit; }
 

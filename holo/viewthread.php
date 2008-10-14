@@ -140,7 +140,7 @@ include('templates/community/header.php');
 	$sql = mysql_query("SELECT forumid FROM cms_forum_posts WHERE threadid='".$_GET['thread']."'");
 	$row = mysql_fetch_assoc($sql);
 	if($row['forumid'] != 0) {
- echo stripslashes($groupdata['name']); ?>&nbsp;<?php
+ echo HoloText($groupdata['name']); ?>&nbsp;<?php
  if($groupdata['type'] == "2"){ ?><img src='./web-gallery/images/status_closed_big.gif' alt='Closed Group' title='Closed Group'><?php } ?>
 <?php if($groupdata['type'] == "1"){ ?><img src='./web-gallery/images/status_exclusive_big.gif' alt='Moderated Group' title='Moderated Group'><?php } ?></h2>
 <?php }else{ ?>
@@ -255,7 +255,7 @@ while($row = mysql_fetch_assoc($get_em)){
 		}
 		echo "</div>
         </div>
-        <div class=\"post-list-motto post-list-creator-info\">".trim(stripslashes($userdata['mission']))."</div>
+        <div class=\"post-list-motto post-list-creator-info\">".trim(HoloText($userdata['mission']))."</div>
 	</td>
 	<td class=\"post-list-message\" valign=\"top\" colspan=\"2\">";
 			if($topic_open == true && $logged_in){
@@ -268,7 +268,7 @@ echo "                ".$zxcv;
 	if($dynamic_id !== 1 || $page > 1){
 		echo "RE: ";
  	}
-	echo stripslashes($thread['title'])."</span><br />
+	echo HoloText($thread['title'])."</span><br />
         <span class=\"post-list-message-time\">".$row['date']."</span>
         <div class=\"post-list-report-element\">";
 			if($user_rank > 5 || $my_id == $userdata['id'] && $logged_in){
@@ -285,8 +285,8 @@ echo "        </div>";
 
 echo "        <div class=\"post-list-content-element\">";
 
-            echo bbcode_format(trim(nl2br(stripslashes($row['message']))))."
-                <input type=\"hidden\" id=\"".$row['id']."-message\" value=\"".stripslashes($row['message'])."\" />
+            echo bbcode_format(trim(nl2br(HoloText($row['message']))))."
+                <input type=\"hidden\" id=\"".$row['id']."-message\" value=\"".HoloText($row['message'])."\" />
         </div>
         <div>
         </div>

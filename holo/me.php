@@ -95,8 +95,8 @@ $tag_question = $randomq[$chosen];
 		<div id="motto-container" class="clearfix">
 			<strong><?php echo $name; ?>:</strong>
 			<div>
-				<span title="Click to enter your motto/ status"><?php if(!empty($myrow['mission'])){ echo stripslashes($myrow['mission']); } else { echo "Click here to enter your motto"; } ?></span>
-				<p style="display: none"><input type="text" length="30" name="motto" value="<?php echo stripslashes($myrow['mission']); ?>"/></p>
+				<span title="Click to enter your motto/ status"><?php if(!empty($myrow['mission'])){ echo HoloText($myrow['mission']); } else { echo "Click here to enter your motto"; } ?></span>
+				<p style="display: none"><input type="text" length="30" name="motto" value="<?php echo HoloText($myrow['mission']); ?>"/></p>
 			</div>
 		</div>
 		<div id="motto-links" style="display: none"><a href="#" id="motto-cancel">Cancel</a></div>
@@ -194,7 +194,7 @@ $alerts = mysql_num_rows($tmp);
     <a href="#" class="remove-feed-item" id="remove-feed-item-<?php echo $row['id']; ?>" title="Remove notification">Remove notification</a>
     <div>
             <b><?php echo $heading; ?></b><br />
-            <?php echo stripslashes(nl2br(trim(stripslashes($row['alert'])))); ?>
+            <?php echo HoloText(nl2br(trim(FilterText($row['alert'])))); ?>
     </div>
 </li>
 <?php            while($row = mysql_fetch_assoc($tmp)) {
@@ -204,7 +204,7 @@ $alerts = mysql_num_rows($tmp);
     <a href="#" class="remove-feed-item" id="remove-feed-item-<?php echo $row['id']; ?>" title="Remove notification">Remove notification</a>
     <div>
             <b><?php echo $heading; ?></b><br />
-            <?php echo stripslashes(nl2br(trim(stripslashes($row['alert'])))); ?>
+            <?php echo HoloText(nl2br(trim(FilterText($row['alert'])))); ?>
     </div>
 </li>
 
@@ -635,7 +635,7 @@ while($row = mysql_fetch_assoc($get_em)){
 	$check = mysql_query("SELECT * FROM groups_details WHERE id = '".$group_id."' LIMIT 1");
 	$groupdata = mysql_fetch_assoc($check);
 
-	echo "            <li class=\"".$oddeven." ".$pos."\" style=\"background-image: url(./habbo-imaging/badge.php?badge=".$groupdata['badge'].")\">\n            	\n                \n                <a class=\"item\" href=\"group_profile.php?id=".$group_id."\">".stripslashes($groupdata['name'])."</a>\n            </li>";
+	echo "            <li class=\"".$oddeven." ".$pos."\" style=\"background-image: url(./habbo-imaging/badge.php?badge=".$groupdata['badge'].")\">\n            	\n                \n                <a class=\"item\" href=\"group_profile.php?id=".$group_id."\">".HoloText($groupdata['name'])."</a>\n            </li>";
 }
 
 $rights_should_be = $lefts;
@@ -817,7 +817,7 @@ while ($row = mysql_fetch_assoc($getem)) {
     ?>
             <li class="<?php echo $even; ?>" style="background-image: url(./habbo-imaging/badge-fill/<?php echo $grouprow['badge']; ?>.gif)">
         <?php if($grouprow['roomid'] != 0) { ?><a href="client.php?forwardId=2&amp;roomId=<?php echo $grouprow['roomid']; ?>" onclick="HabboClient.roomForward(this, '<?php echo $grouprow['roomid']; ?>', 'private'); return false;" target="client" class="group-room"></a><?php } ?>
-            <a class="item" href="group_profile.php?id=<?php echo $grouprow['id']; ?>"><?php echo htmlspecialchars(stripslashes($grouprow['name'])); ?></a>
+            <a class="item" href="group_profile.php?id=<?php echo $grouprow['id']; ?>"><?php echo HoloText($grouprow['name']); ?></a>
             </li>
             <?php } ?>
     </ul>
@@ -961,7 +961,7 @@ while ($row = mysql_fetch_assoc($getem)) {
 	    <span class=\"room-description\">%s</span>
 		<span class=\"room-owner\">Owner: <a href=\"user_profile.php?name=%s\">%s</a></span>
     </span>
-</li>", $even, $room_fill, $row['id'], stripslashes($row['name']), stripslashes($row['descr']), $row['owner'], $row['owner']);
+</li>", $even, $room_fill, $row['id'], HoloText($row['name']), FilterText($row['descr']), $row['owner'], $row['owner']);
     }
 }
 ?>

@@ -21,7 +21,7 @@ exit;
 if(!session_is_registered(username)){
 
 	if(isset($_POST['username']) && isset($_POST['password'])){
-		$username = addslashes($_POST['username']);
+		$username = FilterText($_POST['username']);
 		// $password = HoloHash($_POST['password']);
 		$password = HoloHash($_POST['password'], $username);
 		$remember_me = $_POST['_login_remember_me'];

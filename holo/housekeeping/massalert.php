@@ -19,7 +19,7 @@ $pagename = "Alert";
 if(isset($_POST['alert'])){
     if(!empty($_POST['alert'])){
         $counter = 0;
-        $alert = stripslashes($_POST['alert']);
+        $alert = HoloText($_POST['alert']);
         $get_users = mysql_query("SELECT id FROM users");
         while($row = mysql_fetch_assoc($get_users)){
             $counter++;
@@ -59,7 +59,7 @@ if(isset($_POST['alert'])){
 
 <tr>
 <td class='tablerow1'  width='40%'  valign='middle'><b>Alert</b><div class='graytext'>The actual message that will be shown to the user.</div></td>
-<td class='tablerow2'  width='60%'  valign='middle'><textarea name='alert' cols='60' rows='5' wrap='soft' id='sub_desc' class='multitext'><?php echo stripslashes($_POST['alert']); ?></textarea></td>
+<td class='tablerow2'  width='60%'  valign='middle'><textarea name='alert' cols='60' rows='5' wrap='soft' id='sub_desc' class='multitext'><?php echo HoloText($_POST['alert']); ?></textarea></td>
 </tr>
 
 <tr>

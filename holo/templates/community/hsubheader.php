@@ -22,7 +22,7 @@ $pagename = "User Profile";
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title><?php echo $shortname; ?> ~ <?php echo stripslashes($pagename); ?> </title>
+	<title><?php echo $shortname; ?> ~ <?php echo HoloText($pagename); ?> </title>
 
 <script type="text/javascript">
 var andSoItBegins = (new Date()).getTime();

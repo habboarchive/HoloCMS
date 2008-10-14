@@ -28,8 +28,8 @@ if(!isset($_POST['gosend']) && !isset($_GET['post'])){
 include('header.php');
 
 if(isset($_POST['gosend'])){
-$subject = addslashes(htmlspecialchars($_POST['subject']));
-$message = addslashes(htmlspecialchars($_POST['message']));
+$subject = FilterText($_POST['subject']);
+$message = FilterText($_POST['message']);
 	if(empty($subject) || empty($message)){
 	$result = "Please do not leave any fields blank";
 	} else {
@@ -59,7 +59,7 @@ $post_id = $_GET['post'];
 				$disableform = "1";
 				$page = $_GET['page'];
 				if(empty($page) || !is_numeric($page)){ $page = 1; }
-				$go_sql = mysql_query("INSERT INTO cms_help (username,message,subject,ip,date,picked_up) VALUES ('".$rawname."','This user has reported an post on the Discussion Board. The Post ID is ".$post_id.", in thread ".$row3['threadid'].".\n\nOriginal Message\n-----------------------------------\n".addslashes($row3['message'])."\n\nURL:\n-----------------------------------\n".$path."viewthread.php?thread=".$row3['threadid']."&page=".$page."#post-".$row3['id']."','DISCUSSION BOARD - REPORTED POST','".$remote_ip."','".$date_full."','0')") or die(mysql_error());
+				$go_sql = mysql_query("INSERT INTO cms_help (username,message,subject,ip,date,picked_up) VALUES ('".$rawname."','This user has reported an post on the Discussion Board. The Post ID is ".$post_id.", in thread ".$row3['threadid'].".\n\nOriginal Message\n-----------------------------------\n".FilterText($row3['message'])."\n\nURL:\n-----------------------------------\n".$path."viewthread.php?thread=".$row3['threadid']."&page=".$page."#post-".$row3['id']."','DISCUSSION BOARD - REPORTED POST','".$remote_ip."','".$date_full."','0')") or die(mysql_error());
 			} elseif($exists < 1){
 				$result = "Invalid post specified";
 				$disableform = "1";

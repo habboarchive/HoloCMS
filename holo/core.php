@@ -98,7 +98,7 @@ $online_count = $r1ow['onlinecount'];
 $server_on_localhost = $config['localhost'];
 $habboversion = "23_deebb3529e0d9d4e847a31e5f6fb4c5b/9";
 $forumid = $_GET['id'];
-$analytics = stripslashes($config['analytics'])."\n";
+$analytics = HoloText($config['analytics'], true)."\n";
 
 // #########################################################################
 
@@ -121,7 +121,7 @@ function FetchServerSetting($strSetting, $switch = false){
 
 function getContent($strKey){
 
-	$tmp = mysql_query("SELECT contentvalue FROM cms_content WHERE contentkey = '".addslashes($strKey)."' LIMIT 1") or die(mysql_error());
+	$tmp = mysql_query("SELECT contentvalue FROM cms_content WHERE contentkey = '".FilterText($strKey)."' LIMIT 1") or die(mysql_error());
 	$tmp = mysql_fetch_assoc($tmp);
 	return $tmp['contentvalue'];
 
@@ -148,7 +148,7 @@ function FetchCMSSetting($strSetting){
 if(!session_is_registered(username) && $_COOKIE['remember'] == "remember"){
 
 	// Get variables stored in cookies; the username and sha1 hashed password
-	$cname = addslashes($_COOKIE['rusername']);
+	$cname = FilterText($_COOKIE['rusername']);
 	$cpass_hash = $_COOKIE['rpassword'];
 
 	// Now fetch the password that belongs to this user from the database
@@ -357,7 +357,7 @@ if(session_is_registered('username')){
 	}
 
 	$logged_in = true;
-	$name = stripslashes($myrow['name']);
+	$name = HoloText($myrow['name']);
 
 } else {
 
@@ -422,7 +422,7 @@ function GetUserBadge($strName){ // supports user IDs also
 	if(is_numeric($strName)){
 		$check = mysql_query("SELECT id FROM users WHERE id = '".$strName."' AND badge_status = '1' LIMIT 1") or die(mysql_error());
 	} else {
-		$check = mysql_query("SELECT id FROM users WHERE name = '".addslashes($strName)."' AND badge_status = '1' LIMIT 1") or die(mysql_error());
+		$check = mysql_query("SELECT id FROM users WHERE name = '".FilterText($strName)."' AND badge_status = '1' LIMIT 1") or die(mysql_error());
 	}
 
 	$exists = mysql_num_rows($check);
@@ -672,6 +672,19 @@ function mysql_evaluate($query, $default_value="undefined") {
 	} else {
 		return mysql_result($result, 0);
 	}
+}
+
+// #########################################################################
+
+function FilterText($str) {
+	$str = mysql_real_escape_string(htmlspecialchars($str));
+	return $str;
+}
+
+function HoloText($str, $advanced=false) {
+	if($advanced == true){ return stripslashes($str); }
+	$str = stripslashes(htmlspecialchars(nl2br($str)));
+	return $str;
 }
 
 // #########################################################################

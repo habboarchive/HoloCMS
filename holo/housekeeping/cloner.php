@@ -21,7 +21,7 @@ $query = $key;
 
 if(isset($_POST['query'])){
 
-	$get_users = mysql_query("SELECT id,name,email,ipaddress_last,hbirth FROM users WHERE ipaddress_last = '" . addslashes($_POST['query']) . "' ORDER BY name ASC") or die(mysql_error());
+	$get_users = mysql_query("SELECT id,name,email,ipaddress_last,hbirth FROM users WHERE ipaddress_last = '" . FilterText($_POST['query']) . "' ORDER BY name ASC") or die(mysql_error());
 	$results = mysql_num_rows($get_users);
 
 	if($results > 0){

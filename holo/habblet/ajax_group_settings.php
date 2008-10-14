@@ -53,7 +53,7 @@ if($ownerid !== $my_id){ exit; }
         <div id="group-name-area">
             <div id="group_name_message_error" class="error"></div>
             <label for="group_name" id="group_name_text">Edit group name:</label>
-            <input type="text" name="group_name" id="group_name" onKeyUp="GroupUtils.validateGroupElements('group_name', 25, 'Maximum Group name length reached');" value="<?php echo stripslashes($groupdata['name']); ?>"/><br />
+            <input type="text" name="group_name" id="group_name" onKeyUp="GroupUtils.validateGroupElements('group_name', 25, 'Maximum Group name length reached');" value="<?php echo HoloText($groupdata['name']); ?>"/><br />
         </div>
 
         <div id="group-url-area">
@@ -71,9 +71,9 @@ if($ownerid !== $my_id){ exit; }
 	    <label for="group_description" id="description_text">Edit text:</label>
 	    <span id="description_chars_left">
 	        <label for="characters_left">Characters left:</label>
-	        <input id="group_description-counter" type="text" value="<?php echo 255 - strlen(stripslashes($groupdata['description'])); ?>" size="3" readonly="readonly" class="amount" />
+	        <input id="group_description-counter" type="text" value="<?php echo 255 - strlen(HoloText($groupdata['description'])); ?>" size="3" readonly="readonly" class="amount" />
 	    </span>
-	    <textarea name="group_description" id="group_description" onKeyUp="GroupUtils.validateGroupElements('group_description', 255, 'Description limit reached');"><?php echo stripslashes($groupdata['description']); ?></textarea>
+	    <textarea name="group_description" id="group_description" onKeyUp="GroupUtils.validateGroupElements('group_description', 255, 'Description limit reached');"><?php echo HoloText($groupdata['description']); ?></textarea>
 	</div>
 
 </div>
@@ -163,8 +163,8 @@ $group = mysql_fetch_assoc($groupdetails); ?>
 		?>
     	<li class="<?php echo $even; ?>">
     		<input type="radio" name="roomId" value="<?php echo $row['id']; ?>" <?php if($group['roomid'] == $row['id']) { echo "CHECKED"; } ?> /><a href="client.php?forwardId=2&roomId=<?php echo $row['id']; ?>" onclick="HabboClient.roomForward(this, '<?php echo $row['id']; ?>', 'private'); return false;" target="client" class="room-enter">Go to room!</a><div>
-				<?php echo htmlspecialchars(stripslashes($row['name'])); if($row['name'] == "") { ?>&nbsp;<?php } ?><br />
-				<span class="room-description"><?php echo htmlspecialchars(stripslashes($row['description'])); if($row['description'] == "") { ?>&nbsp;<?php } ?></span>
+				<?php echo HoloText($row['name'])); if($row['name'] == "" { ?>&nbsp;<?php } ?><br />
+				<span class="room-description"><?php echo HoloText($row['description'])); if($row['description'] == "" { ?>&nbsp;<?php } ?></span>
 			</div>
     	</li>
 		<?php } ?>

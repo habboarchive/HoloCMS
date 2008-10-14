@@ -45,10 +45,10 @@ HabboView.run();
 
 while($row = mysql_fetch_assoc($sql)) { ?>
 <?php if($row['advanced'] == "1"){
-echo stripslashes($row['html'])."\n<br />\n";
+echo HoloText($row['html'], true)."\n<br />\n";
 }else{ ?>
 <a target="blank" href="<?php echo $row['url']; ?>"><img src="<?php echo $row['banner']; ?>"></a><br />
-<a target="blank" href="<?php echo $row['url']; ?>"><?php echo stripslashes($row['text']); ?></a><br />
+<a target="blank" href="<?php echo $row['url']; ?>"><?php echo HoloText($row['text']); ?></a><br />
 <?php } ?>
 <?php } ?>
 						</div>

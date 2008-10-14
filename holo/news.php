@@ -26,7 +26,7 @@ if(isset($_GET['id'])){
         $article_exists = mysql_num_rows($main_sql);
 	if($article_exists == "1"){
                 $news = mysql_fetch_assoc($main_sql);
-                $pagename = "News - " . stripslashes($news['title']);
+                $pagename = "News - " . HoloText($news['title']);
                 $archive = "0";
 	} else {
                 $pagename = "News Archive";
@@ -35,7 +35,7 @@ if(isset($_GET['id'])){
 } elseif(isset($_GET['category'])){
         $pagename = "Category Listing";
         $archive = "2";
-        $cat = addslashes(htmlspecialchars($_GET['category']));
+        $cat = FilterText($_GET['category']);
 } else {
         $pagename = "News Archive";
         $archive = "1";
@@ -63,7 +63,7 @@ include('templates/community/header.php');
 
 	if($count > 0){
 		while ($row = mysql_fetch_array($get_sub_archive, MYSQL_NUM)) {
-			printf("<li><a href='news.php?id=%s'>%s</a> &raquo;</li>", $row[0], stripslashes($row[1]));
+			printf("<li><a href='news.php?id=%s'>%s</a> &raquo;</li>", $row[0], HoloText($row[1]));
 		}
 	} else {
 		echo "<br />No headlines to display yet.";
@@ -91,13 +91,13 @@ include('templates/community/header.php');
 
 <?php if($archive < 1){ ?>
 						<div id="article-wrapper">
-	<h2><?php echo stripslashes($news['title']); ?></h2>
+	<h2><?php echo HoloText($news['title']); ?></h2>
 	<div class="article-meta">Posted <?php echo $news['date']; ?>
 		<a href="news.php?category=<?php echo $news['category']; ?>"><?php echo $news['category']; ?></a></div>
-	<p class="summary"><?php echo nl2br(htmlspecialchars(stripslashes($news['short_story']))); ?></p>
+	<p class="summary"><?php echo nl2br(HoloText($news['short_story'])); ?></p>
 
 	<div class="article-body">
-<p><?php echo nl2br(stripslashes($news['story'])); ?></p>
+<p><?php echo nl2br(HoloText($news['story'])); ?></p>
 
 	    <div class="article-body"><a href='user_profile.php?name=<?php echo $news['author']; ?>' target='_self'><img src='./web-gallery/album1/users_online.PNG' alt='User Profile' border='0'></a><b><?php echo $news['author']; ?></b></div>
 
@@ -116,7 +116,7 @@ include('templates/community/header.php');
 
 		if($count > 0){
 			while ($row = mysql_fetch_array($get_archive, MYSQL_NUM)) {
-				printf("<li>%s - <a href='news.php?id=%s'>%s</a></li>", $row[2], $row[0], stripslashes($row[1]));
+				printf("<li>%s - <a href='news.php?id=%s'>%s</a></li>", $row[2], $row[0], HoloText($row[1]));
 			}
 		} else {
 			echo "No news to display yet.";
@@ -137,7 +137,7 @@ include('templates/community/header.php');
 		$get_archive = mysql_query("SELECT num, title, date FROM cms_news WHERE category = '".$cat."' ORDER BY num DESC LIMIT 25");
 
 		while ($row = mysql_fetch_array($get_archive, MYSQL_NUM)) {
-		printf("<li>%s - <a href='news.php?id=%s'>%s</a></li>", $row[2], $row[0], stripslashes($row[1]));
+		printf("<li>%s - <a href='news.php?id=%s'>%s</a></li>", $row[2], $row[0], HoloText($row[1]));
 		}
 		?>
 		</ul>

@@ -28,7 +28,7 @@ if($linked > 0){
 if(!empty($background[1])){
 	$bg = str_replace("b_","",$background[1]);
 	echo $bg;
-	$check = mysql_query("SELECT id FROM cms_homes_inventory WHERE userid = '".$my_id."' AND type = '4' AND data = '" . addslashes($bg) . "' LIMIT 1") or die(mysql_error());
+	$check = mysql_query("SELECT id FROM cms_homes_inventory WHERE userid = '".$my_id."' AND type = '4' AND data = '" . FilterText($bg) . "' LIMIT 1") or die(mysql_error());
 	$valid = mysql_num_rows($check);
 	if($valid > 0){
 		if(!isset($groupid)){
@@ -57,7 +57,7 @@ if(!empty($background[1])){
 foreach($widget as $raw){
 	$bits = explode(":", $raw);
 	$id = $bits[0];
-	$data = addslashes($bits[1]);
+	$data = FilterText($bits[1]);
 	if(!empty($data) && !empty($id) && is_numeric($id)){
 		$coordinates = explode(",", $data);
 		$x = $coordinates[0];
@@ -76,7 +76,7 @@ foreach($widget as $raw){
 foreach($sticker as $raw){
 	$bits = explode(":", $raw);
 	$id = $bits[0];
-	$data = addslashes($bits[1]);
+	$data = FilterText($bits[1]);
 	if(!empty($data) && !empty($id) && is_numeric($id)){
 		$coordinates = explode(",", $data);
 		$x = $coordinates[0];
@@ -95,7 +95,7 @@ foreach($sticker as $raw){
 foreach($note as $raw){
 	$bits = explode(":", $raw);
 	$id = $bits[0];
-	$data = addslashes($bits[1]);
+	$data = FilterText($bits[1]);
 	if(!empty($data) && !empty($id) && is_numeric($id)){
 		$coordinates = explode(",", $data);
 		$x = $coordinates[0];
@@ -115,6 +115,6 @@ if(isset($groupid)){
 	echo "\n<script language=\"JavaScript\" type=\"text/javascript\">\nwaitAndGo('group_profile.php?id=" . $groupid . "');\n</script>";
 	exit;
 } else {
-	echo "\n<script language=\"JavaScript\" type=\"text/javascript\">\nwaitAndGo('user_profile.php?name=" . stripslashes($name) . "');\n</script>";
+	echo "\n<script language=\"JavaScript\" type=\"text/javascript\">\nwaitAndGo('user_profile.php?name=" . HoloText($name) . "');\n</script>";
 	exit;
 }

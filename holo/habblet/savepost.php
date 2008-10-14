@@ -14,7 +14,7 @@ include('../includes/session.php');
 
 if(getContent('forum-enabled') !== "1"){ header("Location: index.php"); exit; }
 
-$message = addslashes(htmlspecialchars($_POST['message']));
+$message = FilterText($_POST['message']);
 $topicId = $_POST['topicId'];
 
 if(!empty($topicId) && is_numeric($topicId)){
@@ -133,7 +133,7 @@ while($row = mysql_fetch_assoc($get_em)){
 		}
 		echo "</div>
         </div>
-        <div class=\"post-list-motto post-list-creator-info\">".stripslashes($userdata['mission'])."</div>
+        <div class=\"post-list-motto post-list-creator-info\">".HoloText($userdata['mission'])."</div>
 	</td>
 	<td class=\"post-list-message\" valign=\"top\" colspan=\"2\">
                 <a href=\"#\" class=\"quote-post-link verify-email\" id=\"quote-post-".$row['id']."-message\">Quote</a>";
@@ -144,7 +144,7 @@ while($row = mysql_fetch_assoc($get_em)){
 	if($dynamic_id !== 1 || $page > 1){
 		echo "RE: ";
  	}
-	echo stripslashes($thread['title'])."</span><br />
+	echo HoloText($thread['title'])."</span><br />
         <span class=\"post-list-message-time\">".$row['date']."</span>
         <div class=\"post-list-report-element\">";
 			if($user_rank > 5 || $my_id == $userdata['id']){
@@ -161,8 +161,8 @@ echo "        </div>";
 
 echo "        <div class=\"post-list-content-element\">";
 
-            echo bbcode_format(trim(nl2br(stripslashes($row['message']))))."
-                <input type=\"hidden\" id=\"".$row['id']."-message\" value=\"".stripslashes($row['message'])."\" />
+            echo bbcode_format(trim(nl2br(HoloText($row['message']))))."
+                <input type=\"hidden\" id=\"".$row['id']."-message\" value=\"".HoloText($row['message'])."\" />
         </div>
         <div>
         </div>

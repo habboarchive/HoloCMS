@@ -16,7 +16,7 @@ if(getContent('forum-enabled') !== "1"){ header("Location: index.php"); exit; }
 if(!session_is_registered(username)){ exit; }
 if($x !== "topic" && $x !== "post"){ exit; }
 
-$message = htmlspecialchars($_POST['message']);
+$message = $_POST['message'];
 $topicName = $_POST['topicName'];
 
 if(empty($topicName)){ $topicName = "Post Preview"; }
@@ -49,7 +49,7 @@ echo "</div>
         <div class=\"post-list-report-element\">
         </div>
         <div class=\"post-list-content-element\">
-            ".bbcode_format(trim(nl2br(stripslashes($message))))."
+            ".bbcode_format(trim(nl2br(HoloText($message))))."
         </div>
 	<div>&nbsp;</div><div>&nbsp;</div>
 

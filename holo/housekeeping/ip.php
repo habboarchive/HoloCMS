@@ -17,7 +17,7 @@ $pagename = "Retrive IP Address";
 
 if(isset($_POST['query'])){
 
-	$check = mysql_query("SELECT name,ipaddress_last,id FROM users WHERE name LIKE '" . addslashes($_POST['query']) . "' LIMIT 1") or die(mysql_error());
+	$check = mysql_query("SELECT name,ipaddress_last,id FROM users WHERE name LIKE '" . FilterText($_POST['query']) . "' LIMIT 1") or die(mysql_error());
 	$result = mysql_num_rows($check);
 
 	if($result > 0){

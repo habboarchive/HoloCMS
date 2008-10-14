@@ -13,7 +13,7 @@ include('../core.php');
 include('../includes/session.php');
 
 $ownerid = $_POST['ownerId'];
-$message = addslashes($_POST["message"]); 
+$message = FilterText($_POST["message"]); 
 
 $row = mysql_fetch_assoc(mysql_query("SELECT * FROM users WHERE id = '".$my_id."' LIMIT 1"));
 ?>
@@ -27,7 +27,7 @@ $row = mysql_fetch_assoc(mysql_query("SELECT * FROM users WHERE id = '".$my_id."
 			<div class="online">
 				<a href="user_profile.php?id=<?php echo $my_id; ?>"><?php echo $row['name'] ?></a>
 			</div>
-			<p><?php echo bbcode_format(trim(nl2br(stripslashes($message)))); ?></p>
+			<p><?php echo bbcode_format(trim(nl2br(HoloText($message)))); ?></p>
 		</div>
 		<div class="guestbook-cleaner">&nbsp;</div>
 		<div class="guestbook-entry-footer metadata"></div>

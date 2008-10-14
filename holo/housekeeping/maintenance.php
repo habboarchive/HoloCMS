@@ -17,7 +17,7 @@ $pagename = "Maintenance";
 
 if(isset($_POST['site_closed'])){
 
-	$site_closed = addslashes($_POST['site_closed']);
+	$site_closed = FilterText($_POST['site_closed']);
 
 	mysql_query("UPDATE cms_system SET site_closed = '".$site_closed."' LIMIT 1") or die(mysql_error());
 	$msg = "Settings saved successfully.";

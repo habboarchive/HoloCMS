@@ -44,7 +44,7 @@ if(IsEven($lefts)){
 $group_id = $row['id'];
 $groupdata = $row;
 
-echo "            <li class=\"".$oddeven." ".$pos."\" style=\"background-image: url(./habbo-imaging/badge.php?badge=".$groupdata['badge'].")\">\n		<a class=\"item\" href=\"group_profile.php?id=".$group_id."\">".stripslashes($groupdata['name'])."</a>\n            </li>\n\n";
+echo "            <li class=\"".$oddeven." ".$pos."\" style=\"background-image: url(./habbo-imaging/badge.php?badge=".$groupdata['badge'].")\">\n		<a class=\"item\" href=\"group_profile.php?id=".$group_id."\">".HoloText($groupdata['name'])."</a>\n            </li>\n\n";
 }
 
 $rights_should_be = $lefts;

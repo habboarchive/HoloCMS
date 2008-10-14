@@ -4,7 +4,7 @@ include('../core.php');
 
 if(isset($_POST['searchString'])) {
 $page = $_POST['pageNumber'];
-$search = addslashes($_POST['searchString']);
+$search = FilterText($_POST['searchString']);
 $sql = mysql_query("SELECT name,figure,id,lastvisit FROM users WHERE name LIKE '%$search%' ORDER BY name ASC");
 $count = mysql_num_rows($sql);
 $pages = ceil($count / 10);
@@ -24,9 +24,9 @@ while($row = mysql_fetch_assoc($sql)) {
             $even = "even";
         } ?>
 
-              <li class="<?php echo $even; ?> offline" homeurl="user_profile.php?tag=<?php echo stripslashes($row['name']); ?>" style="background-image: url(http://www.habbo.co.uk/habbo-imaging/avatarimage?figure=<?php echo $row['figure']; ?>&direction=2&head_direction=2&gesture=sml&size=s)">
+              <li class="<?php echo $even; ?> offline" homeurl="user_profile.php?tag=<?php echo HoloText($row['name']); ?>" style="background-image: url(http://www.habbo.co.uk/habbo-imaging/avatarimage?figure=<?php echo $row['figure']; ?>&direction=2&head_direction=2&gesture=sml&size=s)">
 	            	    <div class="item">
-	            		    <b><?php echo stripslashes(htmlspecialchars($row['name'])); ?></b><br />
+	            		    <b><?php echo HoloText($row['name']); ?></b><br />
 
 	            	    </div>
 	            	    <div class="lastlogin">

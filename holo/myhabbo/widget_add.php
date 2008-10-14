@@ -388,7 +388,7 @@ $songrow1 = mysql_fetch_assoc($sql); ?>
 		$n = 0;
 		while($songrow = mysql_fetch_assoc($sql)){
 			$n++;
-			if($songrow['id'] <> ""){ echo "		<option value=\"".$songrow['id']."\">".trim(nl2br(stripslashes($songrow['title'])))."</option>\n"; }
+			if($songrow['id'] <> ""){ echo "		<option value=\"".$songrow['id']."\">".trim(nl2br(HoloText($songrow['title'])))."</option>\n"; }
 		}
 	} ?>
     </select>
@@ -568,7 +568,7 @@ $songrow1 = mysql_fetch_assoc($sql); ?>
 		$n = 0;
 		while($songrow = mysql_fetch_assoc($sql)){
 			$n++;
-			if($songrow['id'] <> ""){ echo "		<option value=\"".$songrow['id']."\">".trim(nl2br(stripslashes($songrow['title'])))."</option>\n"; }
+			if($songrow['id'] <> ""){ echo "		<option value=\"".$songrow['id']."\">".trim(nl2br(HoloText($songrow['title'])))."</option>\n"; }
 		}
 	} ?>
     </select>

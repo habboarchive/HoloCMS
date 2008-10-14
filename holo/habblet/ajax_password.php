@@ -11,7 +11,7 @@
 
 include('../core.php');
 
-$password = addslashes($_POST['password']);
+$password = FilterText($_POST['password']);
 
 if(strlen($password) < 6){
 	echo "Password must be at least 6 characters long.";

@@ -17,7 +17,7 @@ $pagename = "Transactions";
 
 if(isset($_POST['query'])){
 
-	$query = addslashes($_POST['query']);
+	$query = FilterText($_POST['query']);
 
 	$get_logs = mysql_query("SELECT * FROM cms_transactions WHERE userid = '".$query."' ORDER BY id DESC") or die(mysql_error());
 	$results = mysql_num_rows($get_logs);

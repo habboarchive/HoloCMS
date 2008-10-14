@@ -16,7 +16,7 @@ if(!session_is_registered(acp)){ header("Location: index.php?p=login"); exit; }
 if(!isset($_POST['category'])){ // do not try to save when it's a category jump
     foreach($_POST as $key => $value){
         if(strlen($value) > 0 && strlen($key) > 0){
-            mysql_query("UPDATE cms_content SET contentvalue = '".addslashes($value)."' WHERE contentkey = '".addslashes($key)."' LIMIT 1") or die(mysql_error());
+            mysql_query("UPDATE cms_content SET contentvalue = '".FilterText($value)."' WHERE contentkey = '".FilterText($key)."' LIMIT 1") or die(mysql_error());
             $msg = "Settings saved successfully.<br />"; // I know, we shouldn't do this in a loop but meh, doesn't really matter that much, does it?
         }
     }
@@ -91,13 +91,13 @@ if(empty($catId) || !is_numeric($catId) || $catId < 1 || $catId > 5){
     if($row['fieldtype'] == "1"){
         // Dynamicly calculate the size of the boxes. Please note that due to the word-is-too-long-so-we-break-the-line
         // stuff we can't really determine it here so it may not be '100%' correct (eg. one line too few creating scrollbars.)
-        $rows = ceil(strlen(stripslashes($row['contentvalue'])) / 60);
+        $rows = ceil(strlen(HoloText($row['contentvalue'])) / 60);
         // If it is too long, by the means of more than 10 rows, we stick with 10 (avoiding boxes that are way to large).
         if($rows > 10){ $rows = 10; }
         // Default amount of cols is 60, but we'll adjust it if it's only one line
-        if($rows < 2){ $cols = strlen(stripslashes($row['contentvalue'])); } else { $cols = "60"; }
+        if($rows < 2){ $cols = strlen(HoloText($row['contentvalue'])); } else { $cols = "60"; }
         if($rows < 2 && $cols > 3){ $cols = $cols + 10; } else { $cols = $cols + 1; } // give a little extra space
-        echo "<textarea name='".$row['contentkey']."' cols='" . $cols . "' rows='" . $rows . "' wrap='soft' id='sub_desc'   class='multitext'>".stripslashes($row['contentvalue'])."</textarea>";
+        echo "<textarea name='".$row['contentkey']."' cols='" . $cols . "' rows='" . $rows . "' wrap='soft' id='sub_desc'   class='multitext'>".HoloText($row['contentvalue'])."</textarea>";
     } elseif($row['fieldtype'] == "2"){
         echo "<select name='".$row['contentkey']."' class='dropdown'><option value='1'>Enabled</option><option value='0'"; if($row['contentvalue'] == "0"){ echo " selected='selected'"; } echo ">Disabled</option></select>";
     } elseif($row['fieldtype'] == "3"){

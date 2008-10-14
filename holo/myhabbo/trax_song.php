@@ -11,6 +11,6 @@ $song = str_replace(":2:", "&track2=", $song);
 $song = str_replace("1:", "&track1=", $song);
 $sql = mysql_query("SELECT * FROM users WHERE id = '".$mysql['userid']."' LIMIT 1");
 $userrow = mysql_fetch_assoc($sql);
-$output = "status=0&name=".trim(nl2br(stripslashes($mysql['title'])))."&author=".$userrow['name'].$song;
+$output = "status=0&name=".trim(nl2br(HoloText($mysql['title'])))."&author=".$userrow['name'].$song;
 echo $output;
 ?>

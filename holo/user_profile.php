@@ -16,11 +16,11 @@ require_once('includes/session.php');
 
 if(isset($_GET['tag']) || isset($_GET['name']) || isset($_POST['name'])){
 	if(isset($_GET['tag'])){
-	$searchname = addslashes($_GET['tag']);
+	$searchname = FilterText($_GET['tag']);
 	} else if(isset($_GET['name'])){
-	$searchname = addslashes($_GET['name']);
+	$searchname = FilterText($_GET['name']);
 	} else if(isset($_POST['name'])){
-	$searchname = addslashes($_POST['name']);
+	$searchname = FilterText($_POST['name']);
 	} else {
 	$error = true;
 	}
@@ -47,11 +47,11 @@ if(isset($_GET['tag']) || isset($_GET['name']) || isset($_POST['name'])){
 
 } else if(isset($_GET['tagid']) || isset($_GET['id']) || isset($_POST['id'])){
 	if(isset($_GET['tagid'])){
-	$searchid = addslashes($_GET['tagid']);
+	$searchid = FilterText($_GET['tagid']);
 	} else if(isset($_GET['id'])){
-	$searchid = addslashes($_GET['id']);
+	$searchid = FilterText($_GET['id']);
 	} else if(isset($_POST['id'])){
-	$searchid = addslashes($_POST['id']);
+	$searchid = FilterText($_POST['id']);
 	} else {
 	$error = true;
 	}
@@ -126,7 +126,7 @@ include('templates/community/header.php');
 	<div id="content" style="position: relative" class="clearfix">
     <div id="mypage-wrapper" class="cbb blue">
 <div class="box-tabs-container box-tabs-left clearfix">
-	<?php if($user_row['name'] == $name && $edit_mode !== true){ ?><a href="user_profile.php?do=edit&name=<?php echo addslashes($name); ?>" id="edit-button" class="new-button dark-button edit-icon" style="float:left"><b><span></span>Modify</b><i></i></a><?php } ?>
+	<?php if($user_row['name'] == $name && $edit_mode !== true){ ?><a href="user_profile.php?do=edit&name=<?php echo FilterText($name); ?>" id="edit-button" class="new-button dark-button edit-icon" style="float:left"><b><span></span>Modify</b><i></i></a><?php } ?>
     <h2 class="page-owner"><?php echo $user_row['name']; ?></h2>
     <ul class="box-tabs"></ul>
 </div>
@@ -172,9 +172,9 @@ Event.observe(\"".$type."-".$row[0]."-edit\", \"click\", function(e) { openEditM
 
 	// old check
 	if($user_row['rank'] > 5){
-		$content = bbcode_format(nl2br(stripslashes($row[5])));
+		$content = bbcode_format(nl2br(HoloText($row[5])));
 	} else {
-		$content = bbcode_format(nl2br(stripslashes($row[5])));
+		$content = bbcode_format(nl2br(HoloText($row[5])));
 	}
 
 	if($type == "stickie"){
@@ -315,7 +315,7 @@ echo "
 	</div>";
 	if($userdata['mission'] != null){
 		echo "<div class=\"profile-motto\">
-			".stripslashes($userdata['mission'])."
+			".HoloText($userdata['mission'])."
 			<div class=\"clear\"></div>
 		</div>";
 	}
@@ -554,7 +554,7 @@ if($userdata['id'] == $my_id){
 		</div>
 		<div class=\"guestbook-cleaner\">&nbsp;</div>
 		<div class=\"guestbook-entry-footer metadata\">%s</div>
-	</li>",$row1['id'], $userrow['figure'], $userrow['name'], $userrow['name'], $useronline, $userrow['id'], $userrow['name'], bbcode_format(trim(nl2br(stripslashes($row1['message'])))), $userrow['time']);
+	</li>",$row1['id'], $userrow['figure'], $userrow['name'], $userrow['name'], $useronline, $userrow['id'], $userrow['name'], bbcode_format(trim(nl2br(HoloText($row1['message'])))), $userrow['time']);
 			}
 	} ?>
 </ul></div>
@@ -685,7 +685,7 @@ if($edit_mode == true){ ?>
 		$n = 0;
 		while($songrow = mysql_fetch_assoc($sql)){
 			$n++;
-			if($songrow['id'] <> ""){ echo "		<option value=\"".$songrow['id']."\">".trim(nl2br(stripslashes($songrow['title'])))."</option>\n"; }
+			if($songrow['id'] <> ""){ echo "		<option value=\"".$songrow['id']."\">".trim(nl2br(HoloText($songrow['title'])))."</option>\n"; }
 		}
 	} ?>
     </select>
@@ -802,7 +802,7 @@ echo "
 			<img alt=\"".$userdata['name']."\" src=\"http://www.habbo.co.uk/habbo-imaging/avatarimage?figure=".$userdata['figure']."&size=b&direction=4&head_direction=4&gesture=sml\" />
 	</div>
 	<div class=\"profile-motto\">
-		".stripslashes($userdata['mission'])."
+		".HoloText($userdata['mission'])."
 		<div class=\"clear\"></div>
 	</div>
 	<br clear=\"all\" style=\"display: block; height: 1px\"/>

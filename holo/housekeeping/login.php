@@ -17,7 +17,7 @@ $pagename = "Login";
 
 if(isset($_POST['username'])){
 
-	$form_name = addslashes($_POST['username']);
+	$form_name = FilterText($_POST['username']);
 	$form_pass = HoloHash($_POST['password'], $_POST['username']);
 
 	$check = mysql_query("SELECT id,name FROM users WHERE name = '" . $form_name . "' AND password = '" . $form_pass . "' AND rank > 5 LIMIT 1") or die(mysql_error());

@@ -4,7 +4,7 @@ $sql = mysql_query("SELECT title FROM cms_collectables WHERE month='".date('n').
 $row = mysql_fetch_assoc($sql); ?>
 
 <p>
-Are you sure you want to purchase <?php echo htmlspecialchars(stripslashes($row['title'])); ?>? It will cost 25 credits.
+Are you sure you want to purchase <?php echo HoloText($row['title']); ?>? It will cost 25 credits.
 </p>
 
 <p>

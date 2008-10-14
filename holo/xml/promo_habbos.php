@@ -40,7 +40,7 @@ while ($row = mysql_fetch_array($sqll, MYSQL_NUM)) {
 	$status = "0";
 	}
 
-	printf("<habbo id=\"%s\" name=\"%s\" motto=\"%s\" url=\"user_profile.php?name=%s\" image=\"http://www.habbo.co.uk/habbo-imaging/avatarimage?figure=%s&size=b&direction=4&head_direction=3&gesture=sml\" badge=\"%s\" status=\"%s\" %s />\n", $row[0], $row[1], stripslashes($row[2]), $row[1], $row[3], $form_badge, $status, $form_group_badge);
+	printf("<habbo id=\"%s\" name=\"%s\" motto=\"%s\" url=\"user_profile.php?name=%s\" image=\"http://www.habbo.co.uk/habbo-imaging/avatarimage?figure=%s&size=b&direction=4&head_direction=3&gesture=sml\" badge=\"%s\" status=\"%s\" %s />\n", $row[0], $row[1], HoloText($row[2]), $row[1], $row[3], $form_badge, $status, $form_group_badge);
 
 }
 

@@ -13,7 +13,7 @@ include('../core.php');
 include('../includes/session.php');
 
 $slot = $_POST['slot'];
-$figure = addslashes($_POST['figure']);
+$figure = FilterText($_POST['figure']);
 $gender = $_POST['gender'];
 
 if(!empty($figure) && !empty($gender) && !empty($slot)){

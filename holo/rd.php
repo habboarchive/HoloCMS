@@ -4,7 +4,7 @@ include('../core.php');
 if(isset($_GET['id'])) {
 
 
-	$sql = mysql_query("SELECT name FROM users WHERE id='".htmlspecialchars($_GET['id'])."'");
+	$sql = mysql_query("SELECT name FROM users WHERE id='".$_GET['id'])."'";
 	$row = mysql_fetch_assoc($sql); ?>
 	
 <html>

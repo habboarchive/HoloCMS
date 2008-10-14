@@ -13,12 +13,12 @@ if($bypass1 != "true"){
 include('../core.php');
 include('../includes/session.php');
 
-$messageid = addslashes($_POST['messageId']);
+$messageid = FilterText($_POST['messageId']);
 $recipientids = $_POST['recipientIds'];
-$subject = addslashes($_POST['subject']);
-$body = stripslashes(addslashes($_POST["body"]));
+$subject = FilterText($_POST['subject']);
+$body = HoloText(FilterText($_POST["body"]));
 }
-$body = stripslashes(addslashes(mysql_real_escape_string(htmlspecialchars($body))));
+$body = HoloText(FilterText($body));
 
 $ids = explode(",", $recipientids);
 $numofids = count($ids);

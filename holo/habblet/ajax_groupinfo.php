@@ -35,13 +35,13 @@ echo "<div class=\"groups-info-basic\">
 	<div class=\"groups-info-close-container\"><a href=\"#\" class=\"groups-info-close\"></a></div>
 	
 	<div class=\"groups-info-icon\"><a href=\"group_profile.php?id=".$groupid."\"><img src=\"./habbo-imaging/badge-fill/".$data['badge'].".gif\" /></a></div>
-	<h4><a href=\"group_profile.php?id=".$groupid."\">".stripslashes($data['name'])."</a></h4>
+	<h4><a href=\"group_profile.php?id=".$groupid."\">".HoloText($data['name'])."</a></h4>
 	
 	<p>
 Group created:<br />
 <b>".$data['created']."</b>
 	</p>
 	
-	<div class=\"groups-info-description\">".stripslashes(nl2br($data['description']))."</div>
+	<div class=\"groups-info-description\">".HoloText(nl2br($data['description']))."</div>
 
 </div>";

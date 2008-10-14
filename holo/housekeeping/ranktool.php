@@ -17,7 +17,7 @@ $pagename = "User Rank Management";
 
 if(isset($_POST['rank'])){
 $rank = $_POST['rank'];
-$key = addslashes($_POST['name']);
+$key = FilterText($_POST['name']);
 
 $check = mysql_query("SELECT id FROM users WHERE name = '".$key."' OR id = '".$key."' LIMIT 1") or die(mysql_error());
 $exists = mysql_num_rows($check);

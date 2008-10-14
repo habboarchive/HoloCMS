@@ -68,9 +68,9 @@ function formatThing($type,$data,$pre)
 
 function UpdateOrInsert($type,$amount,$data,$my_id)
 {
-	$data = addslashes($data);
-	$type = addslashes($type);
-	$amount = addslashes($amount);
+	$data = FilterText($data);
+	$type = FilterText($type);
+	$amount = FilterText($amount);
 
 	$check = mysql_query("SELECT id FROM cms_homes_inventory WHERE data = '".$data."' AND userid = '".$my_id."' AND type = '".$type."' LIMIT 1") or die(mysql_error());
 	$exists = mysql_num_rows($check);
@@ -92,8 +92,8 @@ function UpdateOrInsert($type,$amount,$data,$my_id)
 
 function UpdateOrDelete($id,$my_id)
 {
-	$id = addslashes($id);
-	$type = addslashes($type);
+	$id = FilterText($id);
+	$type = FilterText($type);
 
 	$check = mysql_query("SELECT amount FROM cms_homes_inventory WHERE id = '".$id."' AND userid = '".$my_id."' LIMIT 1") or die(mysql_error());
 	$exists = mysql_num_rows($check);
@@ -1035,8 +1035,8 @@ You have:<br /><b><?php echo $myrow['credits']; ?> Credits</b><br />
 <?php
 } elseif($mode == "preview"){
 
-$productId = addslashes($_POST['productId']);
-$subCategoryId = addslashes($_POST['subCategoryId']);
+$productId = FilterText($_POST['productId']);
+$subCategoryId = FilterText($_POST['subCategoryId']);
 
 $tmp = mysql_query("SELECT * FROM cms_homes_catalouge WHERE id = '".$productId."' AND category = '".$subCategoryId."' LIMIT 1");
 $exists = mysql_num_rows($tmp);
@@ -1074,8 +1074,8 @@ You have:<br /><b><?php echo $myrow['credits']; ?> Credits</b><br />
 <span id="webstore-preview-bg-text" style="display: none">Preview</span>
 <?php
 } elseif($mode == "purchase_confirm"){
-$productId = addslashes($_POST['productId']);
-$subCategoryId = addslashes($_POST['subCategoryId']);
+$productId = FilterText($_POST['productId']);
+$subCategoryId = FilterText($_POST['subCategoryId']);
 
 $tmp = mysql_query("SELECT * FROM cms_homes_catalouge WHERE id = '".$productId."' AND category = '".$subCategoryId."' LIMIT 1");
 $exists = mysql_num_rows($tmp);
@@ -1106,7 +1106,7 @@ $row = mysql_fetch_assoc($tmp);
 <?php
 	}
 } elseif($mode == "purchase_stickers"){
-$productId = addslashes($_POST['selectedId']);
+$productId = FilterText($_POST['selectedId']);
 
 $tmp = mysql_query("SELECT * FROM cms_homes_catalouge WHERE id = '".$productId."' LIMIT 1");
 $exists = mysql_num_rows($tmp);
@@ -1143,7 +1143,7 @@ if($row['category'] == "50" && $user_rank < 6){ exit; }
 	}
 } elseif($mode == "items"){
 
-	$category = addslashes($_POST['subCategoryId']);
+	$category = FilterText($_POST['subCategoryId']);
 
 	if($category == "50" && $user_rank < 6){ exit; }
 
@@ -1202,7 +1202,7 @@ if($row['category'] == "50" && $user_rank < 6){ exit; }
 	echo "</ul>";
 
 } elseif($mode == "purchase_backgrounds"){
-$productId = addslashes($_POST['selectedId']);
+$productId = FilterText($_POST['selectedId']);
 
 $tmp = mysql_query("SELECT * FROM cms_homes_catalouge WHERE id = '".$productId."' LIMIT 1");
 $exists = mysql_num_rows($tmp);
@@ -1248,7 +1248,7 @@ if($row['category'] == "50" && $user_rank < 6){ exit; }
 <?php
 	}
 } elseif($mode == "purchase_stickie_notes"){
-$productId = addslashes($_POST['selectedId']); if(!is_numeric($productId)){ exit; }
+$productId = FilterText($_POST['selectedId']); if(!is_numeric($productId)){ exit; }
 
 $tmp = mysql_query("SELECT * FROM cms_homes_catalouge WHERE id = '".$productId."' LIMIT 1");
 $exists = mysql_num_rows($tmp);
@@ -1297,7 +1297,7 @@ if($_POST['type'] == "widgets"){
 	$row['type'] = 2;
 	$exists = 1;
 } else {
-	$productId = addslashes($_POST['itemId']); if(!is_numeric($productId)){ exit; }
+	$productId = FilterText($_POST['itemId']); if(!is_numeric($productId)){ exit; }
 	$tmp = mysql_query("SELECT * FROM cms_homes_inventory WHERE id = '".$productId."' AND userid = '".$my_id."' LIMIT 1");
 	$exists = mysql_num_rows($tmp);
 	$row = mysql_fetch_assoc($tmp);
@@ -1327,7 +1327,7 @@ header("X-JSON: [\"" . FormatThing($row['type'],$row['data'],true) . "\",\"" . F
 
 <input type="hidden" name="maxlength" id="webstore-notes-maxlength" value="500" />
 
-<div id="webstore-notes-counter"><?php echo 500 - strlen(stripslashes($_POST['noteText'])); ?></div>
+<div id="webstore-notes-counter"><?php echo 500 - strlen(HoloText($_POST['noteText'])); ?></div>
 
 <p>
 	<select id="webstore-notes-skin" name="skin">
@@ -1343,7 +1343,7 @@ header("X-JSON: [\"" . FormatThing($row['type'],$row['data'],true) . "\",\"" . F
 <p class="warning">Note! This text is not editable after you've placed the note on your page.</p>
 
 <div id="webstore-notes-edit-container">
-<textarea id="webstore-notes-text" rows="7" cols="42" name="noteText"><?php echo stripslashes($_POST['noteText']); ?></textarea>
+<textarea id="webstore-notes-text" rows="7" cols="42" name="noteText"><?php echo HoloText($_POST['noteText']); ?></textarea>
     <script type="text/javascript">
         bbcodeToolbar = new Control.TextArea.ToolBar.BBCode("webstore-notes-text");
         bbcodeToolbar.toolbar.toolbar.id = "bbcode_toolbar";
@@ -1373,7 +1373,7 @@ header("X-JSON: [\"" . FormatThing($row['type'],$row['data'],true) . "\",\"" . F
 ?>
 <div id="webstore-notes-container">
 <?php
-if($user_rank < 6){ $text = htmlspecialchars($_POST['noteText']); } else { $text = $_POST['noteText']; }
+if($user_rank < 6){ $text = $_POST['noteText']; } else { $text = $_POST['noteText']; }
 $newskin = $_POST['skin'];
 
 	if($newskin == 1){ $skin = "defaultskin"; }
@@ -1392,7 +1392,7 @@ $newskin = $_POST['skin'];
 		</div>
 		<div class=\"stickie-body\">
 			<div class=\"stickie-content\">
-				<div class=\"stickie-markup\">" . bbcode_format(nl2br(stripslashes($text))) . "</div>
+				<div class=\"stickie-markup\">" . bbcode_format(nl2br(HoloText($text))) . "</div>
 				<div class=\"stickie-footer\">
 				</div>
 			</div>
@@ -1411,7 +1411,7 @@ $newskin = $_POST['skin'];
 <?php
 } elseif($mode == "noteeditor-place"){
 
-	if($user_rank < 6){ $data = htmlspecialchars($_POST['noteText']); } else { $data = $_POST['noteText']; }
+	if($user_rank < 6){ $data = $_POST['noteText']; } else { $data = $_POST['noteText']; }
 	$newskin = $_POST['skin'];
 
 	if($newskin == 1){ $skin = "defaultskin"; }
@@ -1425,12 +1425,12 @@ $newskin = $_POST['skin'];
 	if(strlen($data) < 501 && strlen($data) > 0){
 
 		if($linked > 0){
-			mysql_query("INSERT INTO cms_homes_stickers (userid,groupid,x,y,z,data,type,subtype,skin) VALUES ('".$my_id."','".$groupid."','10','10','18','".addslashes($data)."','3','0','".$skin."')") or die(mysql_error());
-			$sql = mysql_query("SELECT id FROM cms_homes_stickers WHERE userid = '".$my_id."' AND groupid = '".$groupid."' AND type = '3' AND data = '".addslashes($data)."' ORDER BY id DESC LIMIT 1") or die(mysql_error());
+			mysql_query("INSERT INTO cms_homes_stickers (userid,groupid,x,y,z,data,type,subtype,skin) VALUES ('".$my_id."','".$groupid."','10','10','18','".FilterText($data)."','3','0','".$skin."')") or die(mysql_error());
+			$sql = mysql_query("SELECT id FROM cms_homes_stickers WHERE userid = '".$my_id."' AND groupid = '".$groupid."' AND type = '3' AND data = '".FilterText($data)."' ORDER BY id DESC LIMIT 1") or die(mysql_error());
 			$sql2 = mysql_query("SELECT id FROM cms_homes_inventory WHERE userid = '".$my_id."' AND type = '3' LIMIT 1") or die(mysql_error());
 		} else {
-			mysql_query("INSERT INTO cms_homes_stickers (userid,groupid,x,y,z,data,type,subtype,skin) VALUES ('".$my_id."','-1','10','10','18','".addslashes($data)."','3','0','".$skin."')") or die(mysql_error());
-			$sql = mysql_query("SELECT id FROM cms_homes_stickers WHERE userid = '".$my_id."' AND groupid = '-1' AND type = '3' AND data = '".addslashes($data)."' ORDER BY id DESC LIMIT 1") or die(mysql_error());
+			mysql_query("INSERT INTO cms_homes_stickers (userid,groupid,x,y,z,data,type,subtype,skin) VALUES ('".$my_id."','-1','10','10','18','".FilterText($data)."','3','0','".$skin."')") or die(mysql_error());
+			$sql = mysql_query("SELECT id FROM cms_homes_stickers WHERE userid = '".$my_id."' AND groupid = '-1' AND type = '3' AND data = '".FilterText($data)."' ORDER BY id DESC LIMIT 1") or die(mysql_error());
 			$sql2 = mysql_query("SELECT id FROM cms_homes_inventory WHERE userid = '".$my_id."' AND type = '3' LIMIT 1") or die(mysql_error());
 		}
 
@@ -1455,7 +1455,7 @@ Event.observe(\"stickie-" . $id . "-edit\", \"click\", function(e) { openEditMen
 		</div>
 		<div class=\"stickie-body\">
 			<div class=\"stickie-content\">
-				<div class=\"stickie-markup\">" . bbcode_format(nl2br(stripslashes($data))) . "</div>
+				<div class=\"stickie-markup\">" . bbcode_format(nl2br(HoloText($data))) . "</div>
 				<div class=\"stickie-footer\">
 				</div>
 			</div>
@@ -1466,8 +1466,8 @@ Event.observe(\"stickie-" . $id . "-edit\", \"click\", function(e) { openEditMen
 	}
 } elseif($mode == "place_sticker"){
 
-$id = addslashes($_POST['selectedStickerId']);
-$z = addslashes($_POST['zindex']);
+$id = FilterText($_POST['selectedStickerId']);
+$z = FilterText($_POST['zindex']);
 $placeAll = $_POST['placeAll'];
 
 $check = mysql_query("SELECT data,amount FROM cms_homes_inventory WHERE userid = '".$my_id."' AND type = '1' AND id = '".$id."' LIMIT 1") or die(mysql_error());

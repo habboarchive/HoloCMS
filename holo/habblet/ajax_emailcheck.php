@@ -11,7 +11,7 @@
 
 include('../core.php');
 
-$email = addslashes($_POST['email']);
+$email = FilterText($_POST['email']);
 $email_check = preg_match("/^[a-z0-9_\.-]+@([a-z0-9]+([\-]+[a-z0-9]+)*\.)+[a-z]{2,7}$/i", $email);
 
 if(strlen($email) < 6){

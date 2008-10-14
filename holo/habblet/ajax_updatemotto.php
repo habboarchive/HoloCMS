@@ -20,7 +20,7 @@ if(isset($_POST['motto'])){
 	if(strlen($_POST['motto']) > 38){
 		echo $myrow['mission'];
 	} else {
-		$motto = addslashes(htmlspecialchars($_POST['motto']));
+		$motto = FilterText($_POST['motto']);
 		mysql_query("UPDATE users SET mission = '".$motto."' WHERE id = '".$my_id."' LIMIT 1") or die(mysql_error());
 		echo $_POST['motto'];
 		@SendMUSData('UPRA' . $my_id);

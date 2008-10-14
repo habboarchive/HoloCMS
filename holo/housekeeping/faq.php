@@ -44,9 +44,9 @@ if($_GET['cat'] != ""){
 	$page = "editcat";
 	$id = $_POST['id'];
 	if($id == ""){
-		mysql_query("INSERT INTO cms_faq (type,title,content) VALUES ('cat','".$_POST['title']."','".addslashes($_POST['content'])."')");
+		mysql_query("INSERT INTO cms_faq (type,title,content) VALUES ('cat','".$_POST['title']."','".FilterText($_POST['content'])."')");
 	}else{
-		mysql_query("UPDATE cms_faq SET title = '".$_POST['title']."', content = '".addslashes($_POST['content'])."' WHERE id = '".$id."' LIMIT 1");
+		mysql_query("UPDATE cms_faq SET title = '".$_POST['title']."', content = '".FilterText($_POST['content'])."' WHERE id = '".$id."' LIMIT 1");
 	}
 	$msg = "Category saved.";
 }elseif($_GET['do'] == "saveitem"){
@@ -54,9 +54,9 @@ if($_GET['cat'] != ""){
 	$id = $_POST['id'];
 	$catid = $_POST['catid'];
 	if($id == ""){
-		mysql_query("INSERT INTO cms_faq (type,title,content,catid) VALUES ('item','".$_POST['topic']."','".addslashes($_POST['content'])."','".$catid."')");
+		mysql_query("INSERT INTO cms_faq (type,title,content,catid) VALUES ('item','".$_POST['topic']."','".FilterText($_POST['content'])."','".$catid."')");
 	}else{
-		mysql_query("UPDATE cms_faq SET title = '".$_POST['topic']."', content = '".addslashes($_POST['content'])."' WHERE id = '".$id."' LIMIT 1");
+		mysql_query("UPDATE cms_faq SET title = '".$_POST['topic']."', content = '".FilterText($_POST['content'])."' WHERE id = '".$id."' LIMIT 1");
 	}
 	$msg = "Item saved.";
 }elseif($_GET['cat'] == "" OR $_GET['cat'] == "0"){
@@ -93,7 +93,7 @@ while($row = mysql_fetch_assoc($sql)){ ?>
 <tr>
   <td class='tablerow1' align='center'><?php echo $row['id']; ?></td>
   <td class='tablerow2' align='center'><a href="index.php?p=faq&cat=<?php echo $row['id']; ?>"><?php echo $row['title']; ?></a></td>
-  <td class='tablerow1' align='center'><?php echo htmlspecialchars(stripslashes($row['content'])); ?></div></td>
+  <td class='tablerow1' align='center'><?php echo HoloText($row['content']); ?></div></td>
   <td class='tablerow2' align='center'><a href='index.php?p=faq&key=<?php echo $row['id']; ?>&edit=cat'><img src='./images/edit.gif' alt='Edit'></a> <a href='index.php?p=faq&key=<?php echo $row['id']; ?>&delete=cat'><img src='./images/delete.gif' alt='Delete'></a></td>
 </tr>
 <?php } ?>
@@ -110,7 +110,7 @@ while($row = mysql_fetch_assoc($sql)){ ?>
 if(isset($_GET['key'])){
 	$row = mysql_fetch_assoc(mysql_query("SELECT * FROM cms_faq WHERE id = '".$_GET['key']."' LIMIT 1"));
 	$title = $row['title'];
-	$content = stripslashes($row['content']);
+	$content = HoloText($row['content']);
 }else{
 	$title = $_POST['title'];
 	$content = $_POST['content'];
@@ -153,7 +153,7 @@ while($row1 = mysql_fetch_assoc($sql)){ ?>
 <tr>
   <td class='tablerow1' align='center'><?php echo $row1['id']; ?></td>
   <td class='tablerow2' align='center'><?php echo $row1['title']; ?></td>
-  <td class='tablerow1' align='center'><?php echo htmlspecialchars(stripslashes($row1['content'])); ?></div></td>
+  <td class='tablerow1' align='center'><?php echo HoloText($row1['content']); ?></div></td>
   <td class='tablerow2' align='center'><a href='index.php?p=faq&key=<?php echo $row1['id']; ?>&edit=item'><img src='./images/edit.gif' alt='Edit'></a> <a href='index.php?p=faq&key=<?php echo $row1['id']; ?>&delete=item'><img src='./images/delete.gif' alt='Delete'></a></td>
 </tr>
 <?php } ?>
@@ -170,7 +170,7 @@ while($row1 = mysql_fetch_assoc($sql)){ ?>
 if(isset($_GET['key'])){
 	$row = mysql_fetch_assoc(mysql_query("SELECT * FROM cms_faq WHERE id = '".$_GET['key']."' LIMIT 1"));
 	$topic = $row['title'];
-	$content = stripslashes($row['content']);
+	$content = HoloText($row['content']);
 }else{
 	$topic = $_POST['topic'];
 	$content = $_POST['content'];

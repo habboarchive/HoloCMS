@@ -75,8 +75,8 @@ $do = $_GET['do'];
 				} else {
 
 					$orname = $group_name;
-					$group_name = addslashes(htmlspecialchars($orname));
-					$group_desc = addslashes(htmlspecialchars($group_desc));
+					$group_name = FilterText($orname);
+					$group_desc = FilterText($group_desc);
 
 					mysql_query("INSERT INTO groups_details (name,description,ownerid,created,badge,type) VALUES ('".$group_name."','".$group_desc."','".$my_id."','".$date_full."','b0503Xs09114s05013s05015','0')") or die(mysql_error());
 
@@ -90,7 +90,7 @@ $do = $_GET['do'];
 					
 					@SendMUSData('UPRC' . $my_id);
 
-					echo "<p>\n<b>Group Purchased</b><br /><br /><img src='./habbo-imaging/badge-fill/b0503Xs09114s05013s05015.gif' border='0' align='left'>Congratulations! You are now the proud owner of <b>".stripslashes($orname)."</b>.<br /><br />Click <a href='group_profile.php?id=".$group_id."'>here</a> to go to your group home right away, or use the button below to close this window.\n</p>\n\n<p>\n<a href=\"#\" class=\"new-button\" onclick=\"GroupPurchase.close(); return false;\"><b>Done</b><i></i></a>\n</p>";
+					echo "<p>\n<b>Group Purchased</b><br /><br /><img src='./habbo-imaging/badge-fill/b0503Xs09114s05013s05015.gif' border='0' align='left'>Congratulations! You are now the proud owner of <b>".HoloText($orname)."</b>.<br /><br />Click <a href='group_profile.php?id=".$group_id."'>here</a> to go to your group home right away, or use the button below to close this window.\n</p>\n\n<p>\n<a href=\"#\" class=\"new-button\" onclick=\"GroupPurchase.close(); return false;\"><b>Done</b><i></i></a>\n</p>";
 
 				}
 

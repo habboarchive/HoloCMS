@@ -78,7 +78,7 @@ while ($row = mysql_fetch_assoc($getem)) {
 		<span class=\"room-owner\">Visitors Now: <b>%s</b></span>
 		<span class=\"room-owner\">Owner: <a href=\"user_profile.php?name=%s\">%s</a></span>
     </span>
-</li>", $even, $room_fill, $row['id'], stripslashes($row['name']), stripslashes($row['descr']), $row['visitors_now'], $row['owner'], $row['owner']);
+</li>", $even, $room_fill, $row['id'], HoloText($row['name']), FilterText($row['descr']), $row['visitors_now'], $row['owner'], $row['owner']);
     }
 }
 ?>
@@ -128,7 +128,7 @@ printf("        <div id=\"active-habbo-data-%s\" class=\"active-habbo-data\">
                     </div>
                 </div>
                 <input type=\"hidden\" id=\"active-habbo-url-%s\" value=\"user_profile.php?name=%s\"/>
-                <input type=\"hidden\" id=\"active-habbo-image-%s\" class=\"active-habbo-image\" value=\"http://www.habbo.co.uk/habbo-imaging/avatarimage?figure=%s&size=b&direction=4&head_direction=4&gesture=sml\n\" />", $list_id, $status, $row['name'], $row['hbirth'], stripslashes($row['mission']), $list_id, $row['name'], $list_id, $row['figure']);
+                <input type=\"hidden\" id=\"active-habbo-image-%s\" class=\"active-habbo-image\" value=\"http://www.habbo.co.uk/habbo-imaging/avatarimage?figure=%s&size=b&direction=4&head_direction=4&gesture=sml\n\" />", $list_id, $status, $row['name'], $row['hbirth'], HoloText($row['mission']), $list_id, $row['name'], $list_id, $row['figure']);
 }
 ?>
 

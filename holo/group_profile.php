@@ -16,7 +16,7 @@ require_once('includes/session.php');
 
 // Search function
 if(isset($_POST['searchString'])){
-	$searchString = addslashes($_POST['searchString']);
+	$searchString = FilterText($_POST['searchString']);
 	$check = mysql_query("SELECT id FROM groups_details WHERE name LIKE '".$searchString."' LIMIT 1") or die(mysql_error());
 	$found = mysql_num_rows($check);
 	if($found > 0){
@@ -160,7 +160,7 @@ mysql_query("UPDATE groups_details SET views = views+'1' WHERE id='".$groupid."'
 	<?php if($member_rank > 1 && !$edit_mode){ ?><a href="#" id="myhabbo-group-tools-button" class="new-button dark-button edit-icon" style="float:left"><b><span></span>Edit</b><i></i></a><?php } ?>
 	<?php if(!$edit_mode){ echo $viewtools; } ?>
     <h2 class="page-owner">
-<?php echo stripslashes($groupdata['name']); ?>&nbsp;
+<?php echo HoloText($groupdata['name']); ?>&nbsp;
 <?php if($groupdata['type'] == "2"){ ?><img src='./web-gallery/images/status_closed_big.gif' alt='Closed Group' title='Closed Group'><?php } ?>
 <?php if($groupdata['type'] == "1"){ ?><img src='./web-gallery/images/status_exclusive_big.gif' alt='Moderated Group' title='Moderated Group'><?php } ?></h2>
 </h2>
@@ -223,7 +223,7 @@ Event.observe(\"".$type."-".$row[0]."-edit\", \"click\", function(e) { openEditM
 			</div>
 		</div>
 	</div>
-</div>",$row[6],$row[2],$row[3],$row[4],$row[0],$row[6],$edit,bbcode_format(nl2br(stripslashes($row[5]))));
+</div>",$row[6],$row[2],$row[3],$row[4],$row[0],$row[6],$edit,bbcode_format(nl2br(HoloText($row[5]))));
 	} elseif($type == "sticker"){
 	printf("<div class=\"movable sticker s_%s\" style=\"left: %spx; top: %spx; z-index: %s\" id=\"sticker-%s\">\n%s\n</div>", $row[5], $row[2], $row[3], $row[4], $row[0], $edit);
 	} elseif($type == "widget"){
@@ -251,7 +251,7 @@ Event.observe(\"".$type."-".$row[0]."-edit\", \"click\", function(e) { openEditM
 
 <div class=\"group-info-icon\"><img src='./habbo-imaging/<?php if(!isset($_GET['x'])) { echo "badge-fill/".$groupdata['badge'].".gif"; }else{ echo "badge.php?badge=".$groupdata['badge'].""; } ?>' /></div>
 <?php echo "
-<h4>".stripslashes($groupdata['name'])."</h4>
+<h4>".HoloText($groupdata['name'])."</h4>
 
 <p>
 Created: <strong>".$groupdata['created']."</strong>
@@ -263,11 +263,11 @@ Created: <strong>".$groupdata['created']."</strong>
 if($groupdata['roomid'] != 0 OR $groupdata['roomid'] != "" OR $groupdata['roomid'] != " ") {
 $sql = mysql_query("SELECT name FROM rooms WHERE id='".$groupdata['roomid']."' LIMIT 1");
 $roominfo = mysql_fetch_assoc($sql); ?>
-<?php if($groupdata['roomid'] <> 0){ ?><p><a href="client.php?forwardId=2&amp;roomId=<?php echo $groupdata['roomid']; ?>" onclick="HabboClient.roomForward(this, '<?php echo $groupdata['roomid']; ?>', 'private'); return false;" target="client" class="group-info-room"><?php echo htmlspecialchars(stripslashes($roominfo['name'])); ?></a></p><?php } ?>
+<?php if($groupdata['roomid'] <> 0){ ?><p><a href="client.php?forwardId=2&amp;roomId=<?php echo $groupdata['roomid']; ?>" onclick="HabboClient.roomForward(this, '<?php echo $groupdata['roomid']; ?>', 'private'); return false;" target="client" class="group-info-room"><?php echo HoloText($roominfo['name']); ?></a></p><?php } ?>
 <?php
 }
 
-echo "\n<div class=\"group-info-description\">".stripslashes($groupdata['description'])."</div>
+echo "\n<div class=\"group-info-description\">".HoloText($groupdata['description'])."</div>
 
 <script type=\"text/javascript\">
     document.observe(\"dom:loaded\", function() {
@@ -368,7 +368,7 @@ document.observe(\"dom:loaded\", function() {
 		</div>
 		<div class=\"guestbook-cleaner\">&nbsp;</div>
 		<div class=\"guestbook-entry-footer metadata\">%s</div>
-	</li>",$row1['id'], $userrow['figure'], $userrow['name'], $userrow['name'], $useronline, $userrow['id'], $userrow['name'], bbcode_format(trim(nl2br(stripslashes($row1['message'])))), $userrow['time']);
+	</li>",$row1['id'], $userrow['figure'], $userrow['name'], $userrow['name'], $useronline, $userrow['id'], $userrow['name'], bbcode_format(trim(nl2br(HoloText($row1['message'])))), $userrow['time']);
 			}
 	} ?>
 </ul></div>
@@ -424,7 +424,7 @@ if($edit_mode == true){ ?>
 		$n = 0;
 		while($songrow = mysql_fetch_assoc($sql)){
 			$n++;
-			if($songrow['id'] <> ""){ echo "		<option value=\"".$songrow['id']."\">".trim(nl2br(stripslashes($songrow['title'])))."</option>\n"; }
+			if($songrow['id'] <> ""){ echo "		<option value=\"".$songrow['id']."\">".trim(nl2br(HoloText($songrow['title'])))."</option>\n"; }
 		}
 	} ?>
     </select>
@@ -468,7 +468,7 @@ if($found_profile !== true){
 
 <div class=\"group-info-icon\"><img src='./habbo-imaging/badge-fill/".$groupdata['badge'].".gif' /></div>
 
-<h4>".stripslashes($groupdata['name'])."</h4>
+<h4>".HoloText($groupdata['name'])."</h4>
 
 <p>
 Created: <strong>".$groupdata['created']."</strong>
@@ -480,7 +480,7 @@ Created: <strong>".$groupdata['created']."</strong>
 
 // <p><a href=\"http://www.habbo.nl/client?forwardId=2&amp;roomId=13303122\" onclick=\"roomForward(this, '13303122', 'private'); return false;\" target=\"client\" class=\"group-info-room\">The church of bobbaz</a></p>
 
-echo "\n<div class=\"group-info-description\">".stripslashes($groupdata['description'])."</div>
+echo "\n<div class=\"group-info-description\">".HoloText($groupdata['description'])."</div>
 
 <script type=\"text/javascript\">
     document.observe(\"dom:loaded\", function() {

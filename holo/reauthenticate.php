@@ -14,8 +14,8 @@ include('includes/session.php');
 $noads = true;
 
 if(isset($_POST['password'])) {
-	$username = addslashes($name);
-	$password = addslashes($_POST['password']);
+	$username = FilterText($name);
+	$password = FilterText($_POST['password']);
 	//Hashes and salts the password --encryption--
 	$password_hash = HoloHash($password, $username);
 

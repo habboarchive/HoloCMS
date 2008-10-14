@@ -4,10 +4,10 @@ include('core.php');
 $sql = mysql_query("SELECT * FROM users WHERE id='".$my_id."'");
 $row = mysql_fetch_assoc($sql);
 
-$email = addslashes($_POST['recipientEmails']);
-$email2 = addslashes($_POST['recipientEmails']);
-$email3 = addslashes($_POST['recipientEmails']);
-$message = htmlspecialchars(stripslashes($_POST['message']));
+$email = FilterText($_POST['recipientEmails']);
+$email2 = FilterText($_POST['recipientEmails']);
+$email3 = FilterText($_POST['recipientEmails']);
+$message = HoloText($_POST['message']);
 
 if($email == $row['email']) { ?>
     <div id="invitation-form" class="clearfix">

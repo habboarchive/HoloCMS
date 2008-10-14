@@ -16,12 +16,12 @@ if(!session_is_registered(acp)){ header("Location: index.php?p=login"); exit; }
 $pagename = "Wordfilter Options";
 
 if(isset($_POST['add'])) {
-	mysql_query("INSERT INTO cms_banners (text,banner,url,status,advanced,html) VALUES ('".$_POST['text']."','".$_POST['banner']."','".$_POST['url']."','".$_POST['status']."','".$_POST['advanced']."','".addslashes($_POST['html'])."')");
+	mysql_query("INSERT INTO cms_banners (text,banner,url,status,advanced,html) VALUES ('".$_POST['text']."','".$_POST['banner']."','".$_POST['url']."','".$_POST['status']."','".$_POST['advanced']."','".FilterText($_POST['html'])."')");
 	$msg = "Action succesfull!";
 	}
 	
 	if(isset($_POST['edit'])) {
-	mysql_query("UPDATE cms_banners SET text='".$_POST['text']."',banner='".$_POST['banner']."',url='".$_POST['url']."',status='".$_POST['status']."',advanced='".$_POST['advanced']."',html='".addslashes($_POST['html'])."' WHERE id='".$_POST['id']."'");
+	mysql_query("UPDATE cms_banners SET text='".$_POST['text']."',banner='".$_POST['banner']."',url='".$_POST['url']."',status='".$_POST['status']."',advanced='".$_POST['advanced']."',html='".FilterText($_POST['html'])."' WHERE id='".$_POST['id']."'");
 	$msg = "Action succesfull!";
 	}
 	
@@ -149,7 +149,7 @@ $row = mysql_fetch_assoc($sql); ?>
 
 <tr>
 <td class='tablerow1'  width='40%'  valign='middle'><b>HTML</b><div class='graytext'>HTML code for advanced users (for placing Google Adsense or something)</div></td>
-<td class='tablerow2'  width='60%'  valign='middle'><textarea name='html' cols='61' rows='3' wrap='soft' id='sub_desc' class='multitext'><?php echo stripslashes($row['html']); ?></textarea></td>
+<td class='tablerow2'  width='60%'  valign='middle'><textarea name='html' cols='61' rows='3' wrap='soft' id='sub_desc' class='multitext'><?php echo HoloText($row['html']); ?></textarea></td>
 </tr>
 
 <tr>

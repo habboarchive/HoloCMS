@@ -13,7 +13,7 @@ include('../core.php');
 include('../includes/session.php');
 
 $key = $_GET['key'];
-$tag = addslashes($_POST['tagName']);
+$tag = FilterText($_POST['tagName']);
 
 $tmp = mysql_query("SELECT * FROM cms_tags WHERE ownerid = '".$my_id."' LIMIT 20") or die(mysql_error());
 $tag_num = mysql_num_rows($tmp);
@@ -87,7 +87,7 @@ echo "\n    <img id=\"tag-img-added\" border=\"0\" src=\"http://images.habbohote
 
 } elseif($key == "add"){
 
-$tag = strtolower(addslashes(htmlspecialchars($_POST['tagName'])));
+$tag = strtolower(FilterText($_POST['tagName']));
 $filter = preg_replace("/[^a-z\d]/i", "", $tag);
 
 	if(strlen($tag) < 2 || $filter !== $tag || strlen($tag) > 20){

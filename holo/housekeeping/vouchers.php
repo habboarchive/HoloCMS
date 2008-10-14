@@ -20,10 +20,10 @@ if(isset($_POST['voucher'])){
     if(!empty($_POST['voucher']) && !empty($_POST['credits'])){ 
 
 
-            mysql_query("INSERT INTO vouchers (voucher,type,credits) VALUES ('".addslashes($_POST['voucher'])."','".$_POST['type']."','".$_POST['credits']."')") or die(mysql_error()); 
+            mysql_query("INSERT INTO vouchers (voucher,type,credits) VALUES ('".FilterText($_POST['voucher'])."','".$_POST['type']."','".$_POST['credits']."')") or die(mysql_error()); 
             $msg = "The voucher has been created successfully."; 
 
-            mysql_query("INSERT INTO system_stafflog (action,message,note,userid,targetid,timestamp) VALUES ('Housekeeping','Created voucher ".addslashes($_POST['voucher'])." worth ".addslashes($_POST['credits'])." credits','vouchers.php','".$my_id."','','".$date_full."')") or die(mysql_error()); 
+            mysql_query("INSERT INTO system_stafflog (action,message,note,userid,targetid,timestamp) VALUES ('Housekeeping','Created voucher ".FilterText($_POST['voucher'])." worth ".FilterText($_POST['credits'])." credits','vouchers.php','".$my_id."','','".$date_full."')") or die(mysql_error()); 
 
         } 
     } else { 

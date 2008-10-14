@@ -71,7 +71,7 @@ $oddeven = 0;
 				if($row['member_rank'] > 1 && $groupdata['ownerid'] !== $my_id){ echo "<div class=\"admin-group\" title=\"Admin\"></div>\n"; }
 				if($groupdata['ownerid'] == $my_id && $row['member_rank'] > 1){ echo "<div class=\"owned-group\" title=\"Owner\"></div>\n"; }
 
-				echo "\n<a href=\"group_profile.php?id=".$group_id."\">".stripslashes($groupdata['name'])."</a>\n</li>";
+				echo "\n<a href=\"group_profile.php?id=".$group_id."\">".HoloText($groupdata['name'])."</a>\n</li>";
 			}
 
 		echo "\n</ul>";

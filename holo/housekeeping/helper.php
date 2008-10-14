@@ -117,7 +117,7 @@ if($row['picked_up'] == 1){ $picked = "Yes"; } else { $picked = "No (<a href='in
   <td class='tablerow2' align='center'>%s</td>
   <td class='tablerow2' align='center'><a href='index.php?p=alert&do=quickreply&key=%s'><img src='./images/edit.gif' alt='Quick Reply'></a></td>
   <td class='tablerow2' align='center'><a href='index.php?p=helper&do=delete&key=%s'><img src='./images/delete.gif' alt='Delete'></a></td>															
-</tr>", $row['id'], $row['id'], htmlspecialchars(stripslashes($row['subject'])), $row['date'], $row['username'], $row['username'], $picked, $roomid, $row['id'], $row['id']);
+</tr>", $row['id'], $row['id'], HoloText($row['subject'])), $row['date'], $row['username'], $row['username'], $picked, $roomid, $row['id'], $row['id'];
 }
 ?>
  
@@ -132,17 +132,17 @@ if($row['picked_up'] == 1){ $picked = "Yes"; } else { $picked = "No (<a href='in
 <table width='100%' cellspacing='0' cellpadding='5' align='center' border='0'>
 <tr>
 <td class='tablerow1'  width='40%'  valign='middle'><b>Username</b><div class='graytext'>The name of the user that submitted this help query.</div></td>
-<td class='tablerow2'  width='60%'  valign='middle'><input type='text' name='attrb' readonly='readonly' value="<?php echo stripslashes($viewdata['username']); ?>" size='25' maxlength='25' class='textinput'></td>
+<td class='tablerow2'  width='60%'  valign='middle'><input type='text' name='attrb' readonly='readonly' value="<?php echo HoloText($viewdata['username']); ?>" size='25' maxlength='25' class='textinput'></td>
 </tr>
 
 <tr>
 <td class='tablerow1'  width='40%'  valign='middle'><b>IP Address</b><div class='graytext'>The IP Address of the user that submitted this help query.</div></td>
-<td class='tablerow2'  width='60%'  valign='middle'><input type='text' name='attrb' readonly='readonly' value="<?php echo stripslashes($viewdata['ip']); ?>" size='30' class='textinput'></td>
+<td class='tablerow2'  width='60%'  valign='middle'><input type='text' name='attrb' readonly='readonly' value="<?php echo HoloText($viewdata['ip']); ?>" size='30' class='textinput'></td>
 </tr>
 
 <tr>
 <td class='tablerow1'  width='40%'  valign='middle'><b>Date</b><div class='graytext'>The date and time this query was submitted.</div></td>
-<td class='tablerow2'  width='60%'  valign='middle'><input type='text' name='attrb' readonly='readonly' value="<?php echo stripslashes($viewdata['date']); ?>" size='30' class='textinput'></td>
+<td class='tablerow2'  width='60%'  valign='middle'><input type='text' name='attrb' readonly='readonly' value="<?php echo HoloText($viewdata['date']); ?>" size='30' class='textinput'></td>
 </tr>
 
 <tr>
@@ -154,7 +154,7 @@ if($row['picked_up'] == 1){ $picked = "Yes"; } else { $picked = "No (<a href='in
 
 <tr>
 <td class='tablerow1'  width='40%'  valign='middle'><b>Message</b><div class='graytext'>The actual query submitted by the user via the Help Tool or ingame CFH tool.</div></td>
-<td class='tablerow2'  width='60%'  valign='middle'><textarea name='data' cols='60' rows='8' readonly='readonly' wrap='soft' id='sub_desc'   class='multitext'><?php echo stripslashes($viewdata['message']); ?></textarea></td>
+<td class='tablerow2'  width='60%'  valign='middle'><textarea name='data' cols='60' rows='8' readonly='readonly' wrap='soft' id='sub_desc'   class='multitext'><?php echo HoloText($viewdata['message']); ?></textarea></td>
 </tr>
 
 <tr><td align='left' class='tablesubheader' colspan='2' >Options</td></tr>

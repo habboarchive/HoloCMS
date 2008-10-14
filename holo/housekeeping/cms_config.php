@@ -17,12 +17,12 @@ $pagename = "HoloCMS Configuration";
 
 if(isset($_POST['sitename'])){
 
-	$sitename = addslashes($_POST['sitename']);
-	$shortname = addslashes($_POST['shortname']);
+	$sitename = FilterText($_POST['sitename']);
+	$shortname = FilterText($_POST['shortname']);
 	$enable_sso = $_POST['enable_sso'];
 	$start_credits = $_POST['credits'];
-	$language = addslashes($_POST['language']);
-	$analytics = addslashes($_POST['analytics']);
+	$language = FilterText($_POST['language']);
+	$analytics = FilterText($_POST['analytics']);
 
 	if(!empty($sitename) && !empty($shortname) && !empty($language)){
 
@@ -91,7 +91,7 @@ if(isset($_POST['sitename'])){
 
 <tr>
 <td class='tablerow1'  width='40%'  valign='middle'><b>Google Analytics Code</b><div class='graytext'>Code for Google Analytics placed in every page.</div></td>
-<td class='tablerow2'  width='60%'  valign='middle'><textarea name='analytics' cols='61' rows='3' wrap='soft' id='sub_desc' class='multitext'><?php echo stripslashes(FetchCMSSetting('analytics')); ?></textarea></td>
+<td class='tablerow2'  width='60%'  valign='middle'><textarea name='analytics' cols='61' rows='3' wrap='soft' id='sub_desc' class='multitext'><?php echo HoloText(FetchCMSSetting('analytics')); ?></textarea></td>
 </tr>
 
 <tr>

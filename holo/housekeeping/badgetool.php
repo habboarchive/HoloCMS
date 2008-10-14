@@ -18,7 +18,7 @@ $pagename = "User Badge Management";
 
 if(isset($_POST['badge'])){
 $badge = $_POST['badge'];
-$key = addslashes($_POST['name']);
+$key = FilterText($_POST['name']);
 
 $check = mysql_query("SELECT id FROM users WHERE name = '".$key."' LIMIT 1") or die(mysql_error());
 $exists = mysql_num_rows($check);

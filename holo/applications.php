@@ -38,13 +38,13 @@ Do YOU want to become a staff member? That's possible, below you see what jobs a
 	$sql = mysql_query("SELECT id,name FROM cms_application_forms WHERE enabled='1' AND deleted='0' ORDER BY name ASC");
 	if(mysql_num_rows($sql) < 1) { echo "<i>There aren't any open applications!</i>"; }
 	while($row = mysql_fetch_assoc($sql)) {
-	echo "<a href='applications.php?id=".$row['id']."'>".htmlspecialchars(stripslashes($row['name']))."</a><br>";
+	echo "<a href='applications.php?id=".$row['id']."'>".HoloText($row['name'])."</a><br>";
 	 } ?>
 	 <br><b>Closed applications:</b><br><?php
 	$sql = mysql_query("SELECT id,name FROM cms_application_forms WHERE enabled='0' AND deleted='0' ORDER BY name ASC");
 	if(mysql_num_rows($sql) < 1) { echo "<i>There aren't any closed applications!</i><br>"; }
 	while($row = mysql_fetch_assoc($sql)) {
-	echo "".htmlspecialchars(stripslashes($row['name']))."<br>";
+	echo "".HoloText($row['name'])."<br>";
 	 } ?><br>Regards,<br>The staff team
 </div>
 	
@@ -117,7 +117,7 @@ $user = mysql_fetch_assoc($usersql); ?>
 if(isset($_POST['sumbit'])) {
 
 
-mysql_query("INSERT INTO cms_applications (rankname,username,realname,birth,sex,country,general_information,experience,education,additional_information,accepted_disclaimer) VALUES ('".htmlspecialchars(stripslashes($row['name']))."','".$rawname."','".$_POST['realname']."','".$user['birth']."','".$_POST['sex']."','".$_POST['country']."','".$_POST['general_information']."','".$_POST['experience']."','".$_POST['education']."','".$_POST['additional_information']."','".$_POST['accepted_disclaimer']."')") or die(mysql_error());
+mysql_query("INSERT INTO cms_applications (rankname,username,realname,birth,sex,country,general_information,experience,education,additional_information,accepted_disclaimer) VALUES ('".HoloText($row['name']))."','".$rawname."','".$_POST['realname']."','".$user['birth']."','".$_POST['sex']."','".$_POST['country']."','".$_POST['general_information']."','".$_POST['experience']."','".$_POST['education']."','".$_POST['additional_information']."','".$_POST['accepted_disclaimer']."')") or die(mysql_error();
 echo "<b>You're application is submitted!</b>";
 
 }
@@ -134,16 +134,16 @@ echo "<b>You're application is submitted!</b>";
 				<div class="habblet-container ">
 						<div class="cbb clearfix brown ">
 
-							<h2 class="title">Application: <?php echo htmlspecialchars(stripslashes($row['name'])); ?>
+							<h2 class="title">Application: <?php echo HoloText($row['name']); ?>
 							</h2>
 						<div class="habblet box-content">
 						<i><b>Note:</b> There aren't any 'checks' if you fill in everything. If you submit the form without fill in everything, it will still be submitted. You can apply once till your application is read.</i><hr><center>The staff team wishes you good luck!</center><hr>
 						<?php if($row['introduction'] != "" OR $row['introduction'] != " ") { ?>
 						<b>Introduction</b><br>
-						<?php echo wordwrap(stripslashes(nl2br($row['introduction'])),5000,"\n",1); ?><br><br><?php }
+						<?php echo wordwrap(HoloText(nl2br($row['introduction'])),5000,"\n",1); ?><br><br><?php }
 						if($row['requirements'] != "" OR $row['requirements'] != " ") { ?>
 						<b>Requirements</b><br>
-						<?php echo wordwrap(stripslashes(nl2br($row['requirements'])),5000,"\n",1); ?><br><br><?php }
+						<?php echo wordwrap(HoloText(nl2br($row['requirements'])),5000,"\n",1); ?><br><br><?php }
 								?>Are you still sure you want to apply for this job? Yes? Than fill in the form below!<br><br>
 								
 					<form method="post">
@@ -153,7 +153,7 @@ echo "<b>You're application is submitted!</b>";
 								<td><b>Username</b><br>
 								<i>What's your username?</i></td>
 								
-								<td><input type="text" maxlength="50" name="username" disabled="disabled" value="<?php echo htmlspecialchars(stripslashes($user['name'])); ?>"></td>
+								<td><input type="text" maxlength="50" name="username" disabled="disabled" value="<?php echo HoloText($user['name']); ?>"></td>
 							</tr>
 							<?php } 
 							if($row['realname'] == 1) { ?>
@@ -235,7 +235,7 @@ echo "<b>You're application is submitted!</b>";
 							<?php
 							while($row = mysql_fetch_assoc($sql)) {
 							$questions = mysql_query("SELECT * FROM cms_application_questions WHERE qid='".$row['id']."'") or die(mysql_error()); ?>
-							<br><b><?php echo stripslashes($row['text']); ?></b><br>
+							<br><b><?php echo HoloText($row['text']); ?></b><br>
 							<?php while($row = mysql_fetch_assoc($questions)) {
 							$type = $row['type']; ?>
 						 	<input value="<?php echo $row['id']; ?>" type="<?php if($row['sort'] != 1) { echo "checkbox"; }else{ echo "radio"; } ?>" name="<?php echo $row['type']; ?>"> <?php echo $row['text']; ?><br>
@@ -255,7 +255,7 @@ $row = mysql_fetch_assoc($sql);
 								
 					<table cellspacing="1" cellpadding="0" width="420" border="3">
 							<td><b>Disclaimer</b><br><i>Below you read a disclaimer, you need to agree with these.</i><br><br><center>--------------------------------------------------------------------------------</center>
-							<font color="gray"><?php echo wordwrap(stripslashes(nl2br($row['disclaimer_text'])),5000,"\n",1); ?></font><br><center>--------------------------------------------------------------------------------</center><br>
+							<font color="gray"><?php echo wordwrap(HoloText(nl2br($row['disclaimer_text'])),5000,"\n",1); ?></font><br><center>--------------------------------------------------------------------------------</center><br>
 							<INPUT type=checkbox name="agreement"<?php if(isset($_POST['agreement'])){ echo " CHECKED"; } ?>> I agree with this disclaimer.
 							</td>
 					</table>

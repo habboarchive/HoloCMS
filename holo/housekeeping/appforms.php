@@ -93,9 +93,9 @@ $get_rooms = mysql_query("SELECT id,name,introduction,hconly,disclaimer_text FRO
 while($row = mysql_fetch_assoc($get_rooms)){ ?>
  <tr>
   <td class='tablerow1' align='center'><?php echo $row['id']; ?></td>
-  <td class='tablerow2'><?php echo htmlspecialchars(stripslashes($row['name'])); ?></div></td>
-  <td class='tablerow2' align='center'><?php echo htmlspecialchars(stripslashes($row['introduction'])); ?></td>
-  <td class='tablerow2' align='center'><?php echo htmlspecialchars(stripslashes($row['disclaimer_text'])); ?></td>
+  <td class='tablerow2'><?php echo HoloText($row['name']); ?></div></td>
+  <td class='tablerow2' align='center'><?php echo HoloText($row['introduction']); ?></td>
+  <td class='tablerow2' align='center'><?php echo HoloText($row['disclaimer_text']); ?></td>
   <td class='tablerow2' align='center'><?php if($row['hconly'] == 0) { echo "No"; }else{ echo "Yes"; } ?></td>
   <td class='tablerow2' align='center'><a href='index.php?p=application_form_edit&key=<?php echo $row['id']; ?>&a=edit'><img src='./images/edit.gif' alt='Edit application form'></a> <a href='index.php?p=application_form_edit&key=<?php echo $row['id']; ?>&a=delete'><img src='./images/delete.gif' alt='Delete application form'></a></td>
 </tr>
@@ -226,9 +226,9 @@ $get_rooms = mysql_query("SELECT id,name,introduction,hconly,disclaimer_text FRO
 while($row = mysql_fetch_assoc($get_rooms)){ ?>
  <tr>
   <td class='tablerow1' align='center'><?php echo $row['id']; ?></td>
-  <td class='tablerow2'><?php echo htmlspecialchars(stripslashes($row['name'])); ?></div></td>
-  <td class='tablerow2' align='center'><?php echo htmlspecialchars(stripslashes($row['introduction'])); ?></td>
-  <td class='tablerow2' align='center'><?php echo htmlspecialchars(stripslashes($row['disclaimer_text'])); ?></td>
+  <td class='tablerow2'><?php echo HoloText($row['name']); ?></div></td>
+  <td class='tablerow2' align='center'><?php echo HoloText($row['introduction']); ?></td>
+  <td class='tablerow2' align='center'><?php echo HoloText($row['disclaimer_text']); ?></td>
   <td class='tablerow2' align='center'><?php if($row['hconly'] == 0) { echo "No"; }else{ echo "Yes"; } ?></td>
   <td class='tablerow2' align='center'><a href='index.php?p=application_form_edit&key=<?php echo $row['id']; ?>&a=edit'><img src='./images/edit.gif' alt='Edit application form'></a> <a href='index.php?p=application_form_edit&key=<?php echo $row['id']; ?>&a=delete'><img src='./images/delete.gif' alt='Delete application form'></a></td>
 </tr>

@@ -34,7 +34,7 @@ mysql_query("INSERT INTO cms_transactions (userid,amount,date,descr) VALUES ('".
 @SendMUSData('UPRH' . $my_id);
 // Now we say in a message he has the furniture! ?>
 <p>
-You've succesfully bought a <?php echo stripslashes(htmlspecialchars($row['title'])); ?>.
+You've succesfully bought a <?php echo HoloText($row['title']); ?>.
 </p>
 
 

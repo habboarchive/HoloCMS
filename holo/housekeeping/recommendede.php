@@ -69,7 +69,7 @@ $msg = "Fill in everything!";
 
 <?php }elseif($_GET['a'] == "edit") {
 		if(isset($_GET['key'])) {
-		$sql = mysql_query("SELECT * FROM cms_recommended WHERE id='".stripslashes($_GET['key'])."' LIMIT 1");
+		$sql = mysql_query("SELECT * FROM cms_recommended WHERE id='".HoloText($_GET['key'])."' LIMIT 1");
 		$row = mysql_fetch_assoc($sql);?>
 <tr>
 <td class='tablerow1'  width='40%'  valign='middle'><b>Type</b><div class='graytext'>Type either 'group' or 'room' (not yet supported)</div></td>

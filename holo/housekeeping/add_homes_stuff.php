@@ -74,7 +74,7 @@ if (is_writable($filename)) {
 			}else{
             mysql_query("INSERT INTO cms_homes_catalouge (name,type,subtype,data,price,category) VALUES ('".$name."','1', '0', '".$stickyname[0]."', '".$price."', '".$type."')") or die(mysql_error());
             }
-			mysql_query("INSERT INTO system_stafflog (action,message,note,userid,targetid,timestamp) VALUES ('Housekeeping','Created Sticker or Background ".addslashes($_POST['$name'])." worth ".$price." credits','add_homes_stuff.php','".$my_id."','','".$date_full."')") or die(mysql_error());
+			mysql_query("INSERT INTO system_stafflog (action,message,note,userid,targetid,timestamp) VALUES ('Housekeeping','Created Sticker or Background ".FilterText($_POST['$name'])." worth ".$price." credits','add_homes_stuff.php','".$my_id."','','".$date_full."')") or die(mysql_error());
 
         }
     } else {

@@ -11,7 +11,7 @@
 
 include('../core.php');
 
-$name = addslashes($_POST['name']);
+$name = FilterText($_POST['name']);
 $filter = preg_replace("/[^a-z\d\-=\?!@:\.]/i", "", $name);
 
 $tmp = mysql_query("SELECT id FROM users WHERE name = '".$name."' LIMIT 1") or die(mysql_error());
