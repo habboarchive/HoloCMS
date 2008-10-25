@@ -554,7 +554,7 @@ if($userdata['id'] == $my_id){
 		</div>
 		<div class=\"guestbook-cleaner\">&nbsp;</div>
 		<div class=\"guestbook-entry-footer metadata\">%s</div>
-	</li>",$row1['id'], $userrow['figure'], $userrow['name'], $userrow['name'], $useronline, $userrow['id'], $userrow['name'], bbcode_format(trim(nl2br(HoloText($row1['message'])))), $userrow['time']);
+	</li>",$row1['id'], $userrow['figure'], $userrow['name'], $userrow['name'], $useronline, $userrow['id'], $userrow['name'], HoloText($row1['message'],false ,true), $userrow['time']);
 			}
 	} ?>
 </ul></div>

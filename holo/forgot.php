@@ -41,8 +41,8 @@ $sql_num = mysql_num_rows($sql_forgot);
 	$hashed_pass = HoloHash($password, $sql_row['name']);
 	mysql_query("UPDATE users SET password = '".$hashed_pass."' WHERE name = '".$forgot_name."'") or die(mysql_error());
 	$teh_pass = $password;
-	$subject = 'Your $shortname Password';
-	$headers = "From: $sitename <mailings@$shortname.com>\r\nReply-To:admin@$shortname.com";
+	$subject = 'Your ".$shortname." Password';
+	$headers = "From: ".$sitename." <mailings@".strtolower($shortname).".com>\r\nReply-To:admin@".strtolower($shortname).".com";
 	$headers .= "\r\nContent-Type: text/html;charset=ISO-8859-1\r\nContent-Transfer-Encoding: 7bit";
 	ob_start(); //Turn on output buffering
 	?>

@@ -30,7 +30,7 @@ if(isset($_GET['messageId'])){
 			<li><b>To:</b> <?php echo $torow['name']; ?></li>
 
 		</ul>
-		<div class="body-text"><?php echo bbcode_format(trim(nl2br(HoloText($row['message'])))); ?><br></div>
+		<div class="body-text"><?php echo HoloText($row['message'],false ,true); ?><br></div>
 		<div class="reply-controls">
 			<div>
 				<div class="new-buttons clearfix">

@@ -63,7 +63,7 @@ if($count == 0){;
 	$cat = $catrow['title'];
 		echo "<h4 id=\"faq-item-header-".$itemrow['id']."\" class=\"faq-item-header faq-toggle \"><span class=\"faq-toggle \" id=\"faq-header-text-".$itemrow['id']."\">".$itemrow['title']."</span><span class=\"item-category\"> - ".$cat."</span></h4>
 	<div id=\"faq-item-content-".$itemrow['id']."\" class=\"faq-item-content clearfix\">
-	    <div class=\"faq-item-content clearfix\">".$itemrow['content']."</div>
+	    <div class=\"faq-item-content clearfix\">".HoloText($itemrow['content'], true)."</div>
 	<div class=\"faq-close-container\">
 	<div id=\"faq-close-button-".$itemrow['id']."\" class=\"faq-close-button clearfix faq-toggle\" style=\"display:none\">Close FAQ <img id=\"faq-close-image-".$itemrow['id']."\" class=\"faq-toggle\" src=\"./web-gallery/v2/images/faq/close_btn.png\"/></div>
 	</div>

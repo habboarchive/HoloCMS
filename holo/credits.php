@@ -28,8 +28,8 @@ include('templates/community/header.php');
 <div id='column1' class='column'><div class='habblet-container '>		
 <div class='cbb clearfix green '>
 	
-<h2 class='title'><?php echo HoloText(getContent('credits2-heading')); ?></h2>
-<p class='credits-countries-select'><?php echo HoloText(getContent('credits2')); ?></p>
+<h2 class='title'><?php echo HoloText(getContent('credits2-heading'), true); ?></h2>
+<p class='credits-countries-select'><?php echo HoloText(getContent('credits2'), true); ?></p>
 </div>
 </div>
 				<script type='text/javascript'>if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
@@ -88,11 +88,11 @@ include('templates/community/header.php');
 				<div class='habblet-container '>		
 						<div class='cbb clearfix blue '>
 	
-							<h2 class='title'><?php echo HoloText(getContent('credits1-heading')); ?></h2>
+							<h2 class='title'><?php echo HoloText(getContent('credits1-heading'), true); ?></h2>
 						<div id='credits-promo' class='box-content credits-info'>
     <div class='credit-info-text clearfix'>
     <p><img class="credits-image" src="./web-gallery/v2/images/credits_permission.png" align="left" width="114" height="136"/>
-    <?php echo HoloText(getContent('credits1')); ?></p>
+    <?php echo HoloText(getContent('credits1'), true); ?></p>
 </div>
 	
 						

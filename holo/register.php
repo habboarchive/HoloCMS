@@ -31,6 +31,7 @@ $accept_tos = $_POST['bean_termsOfServiceSelection'];
 $spam_me = $_POST['bean_marketing'];
 $figure = $_POST['bean_figure'];
 $gender = $_POST['bean_gender'];
+$newsletter = $_POST['bean_marketing'];
 
 // Start validating the stuff the user has submitted
 $filter = preg_replace("/[^a-z\d\-=\?!@:\.]/i", "", $name);
@@ -125,6 +126,13 @@ $failure = false;
 		$failure = true;
 	}
 	
+	// Newsletter
+	if($newsletter == "true"){
+		$newsletter = "1";
+	}else{
+		$newsletter = "0";
+	}
+	
 	// Finally, if everything's OK we add the user to the database, log him in, etc
 	if($failure == false){
 		$scredits = FetchCMSSetting('start_credits');
@@ -133,7 +141,7 @@ $failure = false;
 
 		$password = HoloHash($password, $name);
 
-		mysql_query("INSERT INTO users (name,password,email,birth,figure,sex,rank,hbirth,ipaddress_last,postcount,tickets,credits,lastvisit,screen,rea) VALUES ('".$name."','".$password."','".$email."','".$dob."','".$figure."','".$gender."','1','".$date_normal."','".$remote_ip."','0','100','".$scredits."','".$date_full."','wide','enabled')") or die(mysql_error());
+		mysql_query("INSERT INTO users (name,password,email,birth,figure,sex,rank,hbirth,ipaddress_last,postcount,tickets,credits,lastvisit,screen,rea,newsletter) VALUES ('".$name."','".$password."','".$email."','".$dob."','".$figure."','".$gender."','1','".$date_normal."','".$remote_ip."','0','100','".$scredits."','".$date_full."','wide','enabled','".$newsletter."')") or die(mysql_error());
 
 		$check = mysql_query("SELECT id FROM users WHERE name = '".$name."' ORDER BY id ASC LIMIT 1") or die(mysql_error());
 		$row = mysql_fetch_assoc($check);

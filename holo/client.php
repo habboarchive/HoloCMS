@@ -36,7 +36,7 @@ if($ssocheck2['ticket_sso'] == "") {
 	}
 }
 
-if(getContent('client-widescreen') == "1"){
+if(HoloText(getContent('client-widescreen'), true) == "1"){
         $wide_enabled = true;
 } else {
         $wide_enabled = false;

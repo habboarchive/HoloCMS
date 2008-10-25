@@ -91,6 +91,16 @@ if($hkzone !== true){ header("Location: index.php?throwBack=true"); exit; }
 
 <div class='menulinkwrap'>&nbsp;
 <img src='./images/item_bullet.gif' border='0' alt='' valign='absmiddle'>&nbsp;
+<a href='./index.php?p=newsletter' style='text-decoration:none'>Compose Newsletter</a>
+</div>
+
+<div class='menulinkwrap'>&nbsp;
+<img src='./images/item_bullet.gif' border='0' alt='' valign='absmiddle'>&nbsp;
+<a href='./index.php?p=content&category=5&do=jumpCategory' style='text-decoration:none'>Newsletter settings</a>
+</div>
+
+<div class='menulinkwrap'>&nbsp;
+<img src='./images/item_bullet.gif' border='0' alt='' valign='absmiddle'>&nbsp;
 <a href='./index.php?p=news_compose' style='text-decoration:none'>Compose News Item</a>
 </div>
 

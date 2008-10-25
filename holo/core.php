@@ -32,7 +32,7 @@ if(empty($sqlpassword) || empty($sqlusername) || empty($sqldb) || empty($sqlhost
 
 } else {
 
-	if(file_exists('install.php') || file_exists('upgrade.php')){
+	if(file_exists('install.php') || file_exists('upgrade.php') && $bypass_check != true){
 
 		echo "<h1>Security Alert</h1><hr>It appears you have already executed the installation script or written your configuration file. To start using your site, for security reasons, please delete install.php and/or upgrade.php from the HoloCMS directory to proceed. If you have not yet completed installation or wish to execute it again, please <a href='install.php'>click here</a>.<hr><i>HoloCMS</i>";
 		exit;
@@ -200,7 +200,7 @@ function IsEven($intNumber)
 function bbcode_format($str){
 
 	// Parse smilies
-	if(getContent('enable-smilies') == "1"){
+	if(HoloText(getContent('enable-smilies'), true) == "1"){
 		$str = str_replace(":)", " <img src='./web-gallery/smilies/smile.gif' alt='Smiley' title='Smiley' border='0'> ", $str);
 		$str = str_replace(";)", " <img src='./web-gallery/smilies/wink.gif' alt='Smiley' title='Smiley' border='0'> ", $str);
 		$str = str_replace(":P", " <img src='./web-gallery/smilies/tongue.gif' alt='Smiley' title='Smiley' border='0'> ", $str);
@@ -676,14 +676,16 @@ function mysql_evaluate($query, $default_value="undefined") {
 
 // #########################################################################
 
-function FilterText($str) {
+function FilterText($str, $advanced=false) {
+	if($advanced == true){ return mysql_real_escape_string($str); }
 	$str = mysql_real_escape_string(htmlspecialchars($str));
 	return $str;
 }
 
-function HoloText($str, $advanced=false) {
+function HoloText($str, $advanced=false, $bbcode=false) {
 	if($advanced == true){ return stripslashes($str); }
-	$str = stripslashes(htmlspecialchars(nl2br($str)));
+	$str = stripslashes(nl2br(htmlspecialchars($str)));
+	if($bbcode == true){$str = bbcode_format($str); }
 	return $str;
 }
 

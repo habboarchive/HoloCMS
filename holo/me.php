@@ -68,7 +68,7 @@ $tag_question = $randomq[$chosen];
 <?php if($online == "online"){ ?>
 		<div class="open">
 		<?php
-		if(getContent('client-widescreen') == "1"){
+		if(HoloText(getContent('client-widescreen'), true) == "1"){
         	$wide_enabled = true;
 		} else {
         	$wide_enabled = false;
@@ -230,7 +230,7 @@ $row = mysql_fetch_assoc($sql); ?>
         $month2 = $bits[1];
         $year2 = $bits[2];
 
-    if($day == $today && $month2 == $month && getContent('birthday-notifications') == "1"){
+    if($day == $today && $month2 == $month && HoloText(getContent('birthday-notifications'), true) == "1"){
 
         $age = $year - $year2;
 

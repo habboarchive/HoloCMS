@@ -104,11 +104,13 @@ if($tab == "1"){
 		$formatted_dob = "".$day1."-".$month1."-".$year1."";
 	$mail1 = $_POST['email'];
 	$themail = $mail1;
+	if($_POST['directemail'] == "on"){ $newsletter = "checked=\"checked\""; }else{ $newsletter = ""; }
 		//checks password --encryption--
 		if($pass1_hash == $myrow['password'] && $formatted_dob == $myrow['birth']){
 		$email_check = preg_match("/^[a-z0-9_\.-]+@([a-z0-9]+([\-]+[a-z0-9]+)*\.)+[a-z]{2,7}$/i", $mail1);
 			if($email_check == "1"){
-			mysql_query("UPDATE users SET email = '".$mail1."' WHERE name = '".$rawname."' and password = '".$rawpass."'") or die(mysql_error());
+			if($_POST['directemail'] == "on"){ $newsletter = "1"; }else{ $newsletter = "0"; }
+			mysql_query("UPDATE users SET email = '".$mail1."', newsletter = '".$newsletter."' WHERE name = '".$rawname."' and password = '".$rawpass."'") or die(mysql_error());
 			$result = "Your e-mail address has been changed to ".$mail1."";
 			} else {
 			$result = "Invalid e-mail address";
@@ -120,6 +122,7 @@ if($tab == "1"){
 		}
 	} else {
 	$themail = $myrow['email'];
+	if($myrow['newsletter'] == "1"){ $newsletter = "checked=\"checked\""; }else{ $newsletter = ""; }
 	}
 } else if($tab == "4"){
 	if(isset($_POST['save'])){
@@ -544,7 +547,7 @@ if(!empty($result)){
 </p>
 
 <p>
- <input name="directemail" id="directemail"  type="checkbox"> <label for="directemail">Yes, please send me <?php echo $sitename; ?> updates, including the newsletter!</label>
+ <input name="directemail" id="directemail" <?php echo $newsletter; ?> type="checkbox"> <label for="directemail">Yes, please send me <?php echo $sitename; ?> updates, including the newsletter!</label>
 </p>
 
 	</div>

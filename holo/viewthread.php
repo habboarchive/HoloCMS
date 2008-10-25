@@ -14,7 +14,7 @@ $allow_guests = true;
 include('core.php');
 include('includes/session.php');
 
-if(getContent('forum-enabled') !== "1"){ header("Location: index.php"); exit; }
+if(HoloText(getContent('forum-enabled'), true) !== "1"){ header("Location: index.php"); exit; }
 
 $threadid = $_GET['thread'];
 

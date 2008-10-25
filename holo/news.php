@@ -97,7 +97,7 @@ include('templates/community/header.php');
 	<p class="summary"><?php echo nl2br(HoloText($news['short_story'])); ?></p>
 
 	<div class="article-body">
-<p><?php echo nl2br(HoloText($news['story'])); ?></p>
+<p><?php echo nl2br(HoloText($news['story'], true)); ?></p>
 
 	    <div class="article-body"><a href='user_profile.php?name=<?php echo $news['author']; ?>' target='_self'><img src='./web-gallery/album1/users_online.PNG' alt='User Profile' border='0'></a><b><?php echo $news['author']; ?></b></div>
 

@@ -16,9 +16,9 @@ include('../includes/session.php');
 $messageid = FilterText($_POST['messageId']);
 $recipientids = $_POST['recipientIds'];
 $subject = FilterText($_POST['subject']);
-$body = HoloText(FilterText($_POST["body"]));
+$body = addslashes(htmlspecialchars(($_POST["body"])));
 }
-$body = HoloText(FilterText($body));
+$body = FilterText($body);
 
 $ids = explode(",", $recipientids);
 $numofids = count($ids);

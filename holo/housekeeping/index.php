@@ -139,6 +139,9 @@ $starttime = $starttime[1] + $starttime[0];
 			} elseif($p == "faq"){
 				$tab = 3;
 				include('faq.php');
+			} elseif($p == "newsletter"){
+				$tab = 3;
+				include('newsletter.php');
 			} elseif($p == "vouchers"){
 				$tab = 5;
 				include('vouchers.php');

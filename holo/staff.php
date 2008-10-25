@@ -14,7 +14,7 @@ $allow_guests = true;
 include('core.php');
 include('includes/session.php');
 
-$tmp = getContent('mod_staff-enabled');
+$tmp = HoloText(getContent('mod_staff-enabled'), true);
 if($tmp !== "1"){
         header("Location: index.php"); exit;
 }
@@ -102,12 +102,12 @@ Last Visit: %s<br />
 </div>
 <div id="column2" class="column">
 				<div class="habblet-container ">
-						<div class="cbb clearfix <?php echo HoloText(getContent('staff1-color')); ?> ">
+						<div class="cbb clearfix <?php echo HoloText(getContent('staff1-color'), true); ?> ">
 
-							<h2 class="title"><?php echo HoloText(getContent('staff1-heading')); ?>
+							<h2 class="title"><?php echo HoloText(getContent('staff1-heading'), true); ?>
 							</h2>
 						<div id="notfound-looking-for" class="box-content">
-    <p><?php echo HoloText(getContent('staff1')); ?></p>
+    <p><?php echo HoloText(getContent('staff1'), true); ?></p>
 </div>
 
 
@@ -116,12 +116,12 @@ Last Visit: %s<br />
 				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
 
 				<div class="habblet-container ">
-						<div class="cbb clearfix <?php echo HoloText(getContent('staff2-color')); ?> ">
+						<div class="cbb clearfix <?php echo HoloText(getContent('staff2-color'), true); ?> ">
 
-							<h2 class="title"><?php echo HoloText(getContent('staff2-heading')); ?>
+							<h2 class="title"><?php echo HoloText(getContent('staff2-heading'), true); ?>
 							</h2>
 						<div id="notfound-looking-for" class="box-content">
-    <p><?php echo HoloText(getContent('staff2')); ?></p>
+    <p><?php echo HoloText(getContent('staff2'), true); ?></p>
 </div>
 
 
