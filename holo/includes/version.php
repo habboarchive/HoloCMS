@@ -10,13 +10,13 @@
 |+===================================================*/
 
 // HoloCMS Versioning
-$holocms['version'] = "3.1.0.50";
+$holocms['version'] = "3.1.1.51";
 $holocms['title'] = "ATLANTA";
-$holocms['stable'] = "UNSTABLE";
-$holocms['date'] = "October, 25 2008 6:29PM CST";
+$holocms['stable'] = "STABLE";
+$holocms['date'] = "November 8, 2008 9:06PM CST";
 
 // Holograph Emulator Compatability Data
-$holograph['revision'] = "48";
-$holograph['type'] = "Eucalypt, Holo C#";
+$holograph['revision'] = "4";
+$holograph['type'] = "Eucalypt C#, HoloEMU Vista4life & Shine-Away's V26 Source";
 
 ?>

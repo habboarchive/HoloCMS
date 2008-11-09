@@ -21,7 +21,7 @@ if($do == "publish" && isset($_POST['body'])){
 
 	$subject = FilterText($_POST['subject'], true);
 	$where = $_POST['where'];
-	$body = HoloText($_POST['body'], true);
+	$body = $_POST['body'];
 	$header = HoloText(getContent('newsletter-1header'), true);
 	$footer = HoloText(getContent('newsletter-2footer'), true);
 	$from = HoloText(getContent('newsletter-3from'), true);
