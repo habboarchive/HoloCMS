@@ -98,13 +98,11 @@ $failure = false;
 	}
 	
 	// captcha check
-	   if( $_SESSION['register-captcha-bubble'] == $_POST['bean.captchaResponse'] && !empty($_SESSION['register-captcha-bubble'] ) ) {
-		// Insert you code for processing the form here, e.g emailing the submission, entering it into a database. 
-		echo "";
-		unset($_SESSION['security_code']);
-   } else {
-		$error['captcha'] = "The code that you filled in inn't right, are you sure you're a human?!";
-   }
+	if( $_SESSION['register-captcha-bubble'] == $_POST['bean.captchaResponse'] && !empty($_SESSION['register-captcha-bubble'] ) ) {
+		unset($_SESSION['register-captcha-bubble']);
+	} else {
+		$error['captcha'] = "The code that you filled in isn't right, please try again.";
+	}
 
 	// Terms of Service validation
 	if($accept_tos !== "true"){
@@ -321,7 +319,7 @@ swfobj.write("register-avatar-editor");
 
                         <noscript>
                             <fieldset id="register-fieldset-captcha">
-	                            <div class="register-label"><img src="demo/CaptchaSecurityImages.php?width=170&height=40&characters=10" /></div>
+	                            <div class="register-label"><img src="./captcha/CaptchaSecurityImages.php?width=170&height=40&characters=10" /></div>
 	     <div id="captcha-error-box">
 				<?php if(isset($error['captcha'])){ ?>
 	                        <div class="register-error">

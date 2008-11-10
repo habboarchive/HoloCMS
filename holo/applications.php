@@ -117,7 +117,7 @@ $user = mysql_fetch_assoc($usersql); ?>
 if(isset($_POST['sumbit'])) {
 
 
-mysql_query("INSERT INTO cms_applications (rankname,username,realname,birth,sex,country,general_information,experience,education,additional_information,accepted_disclaimer) VALUES ('".HoloText($row['name']))."','".$rawname."','".$_POST['realname']."','".$user['birth']."','".$_POST['sex']."','".$_POST['country']."','".$_POST['general_information']."','".$_POST['experience']."','".$_POST['education']."','".$_POST['additional_information']."','".$_POST['accepted_disclaimer']."')") or die(mysql_error();
+mysql_query("INSERT INTO cms_applications (rankname,username,realname,birth,sex,country,general_information,experience,education,additional_information,accepted_disclaimer) VALUES ('".HoloText($row['name'])."','".$rawname."','".$_POST['realname']."','".$user['birth']."','".$_POST['sex']."','".$_POST['country']."','".$_POST['general_information']."','".$_POST['experience']."','".$_POST['education']."','".$_POST['additional_information']."','".$_POST['accepted_disclaimer']."')") or die(mysql_error());
 echo "<b>You're application is submitted!</b>";
 
 }

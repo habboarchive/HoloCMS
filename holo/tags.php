@@ -134,7 +134,7 @@ include('templates/community/header.php');
     <input type="text" name="tag" id="search_query" value="<?php if(isset($query)){ echo HoloText($query); } ?>" class="search-box-query" style="float: left"/>
 	<a onclick="$(this).up('form').submit(); return false;" href="#" class="new-button search-icon" style="float: left"><b><span></span></b><i></i></a>
 </form>        <?php if($results > 0){ echo "<br /><p class=\"search-result-count\">1 - " . $results . " / " . $results . "</p>"; } else { echo "<p class=\"search-result-count\">No results</p>"; } ?>
-                <?php if($valid_search == true && $logged_in == true && $valid_tag == true && $already_tagged == false){ echo "<p id=\"tag-search-add\" class=\"clearfix\"><span style=\"float:left\">Tag yourself with:</span> <a id=\"tag-search-tag-add\" href=\"tags.php?tag=".trim(HoloText($query)))."&add=true\" class=\"new-button\" style=\"float:left\"><b>".trim(HoloText($query)."</b><i></i></a></p>"; } ?>
+                <?php if($valid_search == true && $logged_in == true && $valid_tag == true && $already_tagged == false){ echo "<p id=\"tag-search-add\" class=\"clearfix\"><span style=\"float:left\">Tag yourself with:</span> <a id=\"tag-search-tag-add\" href=\"tags.php?tag=".trim(HoloText($query))."&add=true\" class=\"new-button\" style=\"float:left\"><b>".trim(HoloText($query))."</b><i></i></a></p>"; } ?>
         <p class="search-result-divider"></p>
 
     <table border="0" cellpadding="0" cellspacing="0" width="100%" class="search-result">

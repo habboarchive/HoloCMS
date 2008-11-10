@@ -117,7 +117,7 @@ if($row['picked_up'] == 1){ $picked = "Yes"; } else { $picked = "No (<a href='in
   <td class='tablerow2' align='center'>%s</td>
   <td class='tablerow2' align='center'><a href='index.php?p=alert&do=quickreply&key=%s'><img src='./images/edit.gif' alt='Quick Reply'></a></td>
   <td class='tablerow2' align='center'><a href='index.php?p=helper&do=delete&key=%s'><img src='./images/delete.gif' alt='Delete'></a></td>															
-</tr>", $row['id'], $row['id'], HoloText($row['subject'])), $row['date'], $row['username'], $row['username'], $picked, $roomid, $row['id'], $row['id'];
+</tr>", $row['id'], $row['id'], HoloText($row['subject']), $row['date'], $row['username'], $row['username'], $picked, $roomid, $row['id'], $row['id']);
 }
 ?>
  

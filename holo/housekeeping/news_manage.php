@@ -111,7 +111,7 @@ while($row = mysql_fetch_assoc($get_articles)){
   <td class='tablerow2' align='center'>%s</td>
   <td class='tablerow2' align='center'><a href='index.php?p=news_manage&do=edit&key=%s'><img src='./images/edit.gif' alt='Edit'></a></td>
   <td class='tablerow2' align='center'><a href='index.php?p=news_manage&do=delete&key=%s'><img src='./images/delete.gif' alt='Delete'></a></td>															
-</tr>", $row['num'], HoloText($row['title'])), FilterText($row['short_story']), $row['date'], $row['author'], $row['num'], $row['num'];
+</tr>", $row['num'], HoloText($row['title']), FilterText($row['short_story']), $row['date'], $row['author'], $row['num'], $row['num']);
 }
 ?>
  

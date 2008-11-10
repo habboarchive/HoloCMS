@@ -47,8 +47,8 @@ while($row = mysql_fetch_assoc($get_rooms)){ ?>
  <tr>
   <td class='tablerow1' align='center'><?php echo $row['id']; ?></td>
   <td class='tablerow2'><?php echo HoloText($row['owner']); ?></div></td>
-  <td class='tablerow2' align='center'><?php echo HoloText($row['name'])); if($row['name'] == "" OR $row['name'] == " " { echo "<b><i>No roomname</i></b>"; } ?></td>
-  <td class='tablerow2' align='center'><?php echo HoloText($row['description'])); if($row['description'] == "" OR $row['description'] == " " { echo "<b><i>No roomdescription</i></b>"; } ?></td>
+  <td class='tablerow2' align='center'><?php echo HoloText($row['name']); if($row['name'] == "" OR $row['name'] == " ") { echo "<b><i>No roomname</i></b>"; } ?></td>
+  <td class='tablerow2' align='center'><?php echo HoloText($row['description']); if($row['description'] == "" OR $row['description'] == " ") { echo "<b><i>No roomdescription</i></b>"; } ?></td>
   <td class='tablerow2' align='center'><?php if($row['state'] == 0) { echo "Open"; }elseif($row['state'] == 1) { echo "Locked (visitors have to ring bell)"; }elseif($row['state'] == 2) { echo "Password protected"; }elseif($row['state'] == 3) { echo "HC Only"; }elseif($row['state'] == 4) { echo "Staff only"; }else{ echo "Unknown"; } ?></td>
   <td class='tablerow2' align='center'><a href='index.php?p=editguestroom&key=<?php echo $row['id']; ?>&a=edit'><img src='./images/edit.gif' alt='Edit guestroom'></a> <a href='index.php?p=editguestroom&key=<?php echo $row['id']; ?>&a=delete'><img src='./images/delete.gif' alt='Delete guestroom'></a></td>
 </tr>

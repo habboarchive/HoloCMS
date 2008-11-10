@@ -18,8 +18,7 @@ if($email == $row['email']) { ?>
             </div>
             <div class="invitation-input">2.<input  onkeypress="$('invitation_recipient3').enable()" type="text" name="invitation_recipients" id="invitation_recipient2" value="<?php echo $email2; ?>" class="invitation-input" />
             </div>
-            <div class="invitation-input">3.<input disabled  type="text" name="invitation_recipients" id="invitation_recipient3" value="<?php echo $email367890+
-			]	?>" class="invitation-input" />
+            <div class="invitation-input">3.<input disabled  type="text" name="invitation_recipients" id="invitation_recipient3" value="<?php echo $email3; ?>" class="invitation-input" />
             </div>
         </div>
         <div class="clear"></div>

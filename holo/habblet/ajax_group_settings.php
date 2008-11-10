@@ -163,8 +163,8 @@ $group = mysql_fetch_assoc($groupdetails); ?>
 		?>
     	<li class="<?php echo $even; ?>">
     		<input type="radio" name="roomId" value="<?php echo $row['id']; ?>" <?php if($group['roomid'] == $row['id']) { echo "CHECKED"; } ?> /><a href="client.php?forwardId=2&roomId=<?php echo $row['id']; ?>" onclick="HabboClient.roomForward(this, '<?php echo $row['id']; ?>', 'private'); return false;" target="client" class="room-enter">Go to room!</a><div>
-				<?php echo HoloText($row['name'])); if($row['name'] == "" { ?>&nbsp;<?php } ?><br />
-				<span class="room-description"><?php echo HoloText($row['description'])); if($row['description'] == "" { ?>&nbsp;<?php } ?></span>
+				<?php echo HoloText($row['name']); if($row['name'] == ""){ ?>&nbsp;<?php } ?><br />
+				<span class="room-description"><?php echo HoloText($row['description']); if($row['description'] == "") { ?>&nbsp;<?php } ?></span>
 			</div>
     	</li>
 		<?php } ?>
