@@ -16,7 +16,7 @@ if(session_is_registered(username)){ header("Location: index.php"); exit; }
 include("locale/".$language."/login.php");
 
 if(isset($_POST['bean_avatarName'])){
-$refer = $_SERVER['HTTP_REFERER']; $pos = strrpos($refer, "register.php"); if($pos === false) { exit; }
+// $refer = $_SERVER['HTTP_REFERER']; $pos = strrpos($refer, "register.php"); if($pos === false) { exit; }
 
 // Collect the variables we should've recieved
 $name = $_POST['bean_avatarName'];
@@ -28,7 +28,6 @@ $year = $_POST['bean_year'];
 $email = FilterText($_POST['bean_email']);
 $retypedemail = FilterText($_POST['bean_retypedEmail']);
 $accept_tos = $_POST['bean_termsOfServiceSelection'];
-$spam_me = $_POST['bean_marketing'];
 $figure = $_POST['bean_figure'];
 $gender = $_POST['bean_gender'];
 $newsletter = $_POST['bean_marketing'];
@@ -102,6 +101,7 @@ $failure = false;
 		unset($_SESSION['register-captcha-bubble']);
 	} else {
 		$error['captcha'] = "The code that you filled in isn't right, please try again.";
+		$failure = true;
 	}
 
 	// Terms of Service validation
