@@ -94,10 +94,10 @@ include('templates/community/header.php');
 	<h2><?php echo HoloText($news['title']); ?></h2>
 	<div class="article-meta">Posted <?php echo $news['date']; ?>
 		<a href="news.php?category=<?php echo $news['category']; ?>"><?php echo $news['category']; ?></a></div>
-	<p class="summary"><?php echo nl2br(HoloText($news['short_story'])); ?></p>
+	<p class="summary"><?php echo nl2br($news['short_story']); ?></p>
 
 	<div class="article-body">
-<p><?php echo nl2br(HoloText($news['story'], true)); ?></p>
+<p><?php echo nl2br($news['story'], true); ?></p>
 
 	    <div class="article-body"><a href='user_profile.php?name=<?php echo $news['author']; ?>' target='_self'><img src='./web-gallery/album1/users_online.PNG' alt='User Profile' border='0'></a><b><?php echo $news['author']; ?></b></div>
 

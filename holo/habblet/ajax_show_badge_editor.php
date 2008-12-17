@@ -24,11 +24,11 @@ $check = mysql_query("SELECT member_rank FROM groups_memberships WHERE userid = 
 $is_member = mysql_num_rows($check);
 
 if($is_member > 0){
-	$my_membership = mysql_fetch_assoc($check);
-	$member_rank = $my_membership['member_rank'];
-	if($member_rank < 2){ exit; }
+    $my_membership = mysql_fetch_assoc($check);
+    $member_rank = $my_membership['member_rank'];
+    if($member_rank < 2){ exit; }
 } else {
-	exit;
+    exit;
 }
 
 $check = mysql_query("SELECT * FROM groups_details WHERE id = '".$groupid."' LIMIT 1") or die(mysql_error());
@@ -41,8 +41,8 @@ if($valid > 0){ $groupdata = mysql_fetch_assoc($check); } else {exit; }
 <strong>Flash is required to use this tool</strong>
 </div>
 <script type="text/javascript" language="JavaScript">
-var swfobj = new SWFObject("http://images.habbohotel.co.uk/habboweb/23_deebb3529e0d9d4e847a31e5f6fb4c5b/8/web-gallery/flash/BadgeEditor.swf", "badgeEditor", "280", "366", "8");
-swfobj.addParam("base", "http://images.habbohotel.co.uk/habboweb/23_deebb3529e0d9d4e847a31e5f6fb4c5b/8/web-gallery/flash/");
+var swfobj = new SWFObject("http://images.habbohotel.co.uk/habboweb/28_6c80a6dd09d60c84a1396e0ceb63e445/14/web-gallery/flash/BadgeEditor.swf", "badgeEditor", "280", "366", "8");
+swfobj.addParam("base", "http://images.habbohotel.co.uk/habboweb/28_6c80a6dd09d60c84a1396e0ceb63e445/14/web-gallery/flash/");
 swfobj.addParam("bgcolor", "#FFFFFF");
 swfobj.addVariable("post_url", "<?php echo $path; ?>save_group_badge.php");
 swfobj.addVariable("__app_key", "Meth0d.org");

@@ -19,12 +19,12 @@ if($do == "save" && isset($_POST['topstory'])){
 
 	$num = $key;
 
-	$title = FilterText($_POST['title']);
-	$category = FilterText($_POST['category']);
-	$topstory = FilterText($_POST['topstory']);
-	$short_story = FilterText($_POST['short_story']);
-	$story = FilterText($_POST['story']);
-	$name = FilterText($_POST['author']);
+	$title = $_POST['title'];
+	$category = $_POST['category'];
+	$topstory = $_POST['topstory'];
+	$short_story = $_POST['short_story'];
+	$story = $_POST['story'];
+	$name = $_POST['author'];
 
 	mysql_query("INSERT INTO cms_news (title,category,topstory,short_story,story,author,date) VALUES ('".$title."','".$category."','".$topstory."','".$short_story."','".$story."','".$name."','".$date_reversed."')") or die(mysql_error());
 
