@@ -15,6 +15,7 @@ session_start();
 if(session_is_registered(username)){
 $username = $_SESSION['username'];
 $password = $_SESSION['password'];
+$referral = FilterText($_GET['referral']);
 
 $sql = mysql_query("SELECT * FROM users WHERE name = '".$username."' LIMIT 1") or die(mysql_error());
 $row = mysql_fetch_assoc($sql);
@@ -34,7 +35,7 @@ $row = mysql_fetch_assoc($sql);
 </head>
 <body>
 <?php if(isset($_GET['welcome'])){ ?>
-<script type="text/javascript">window.location.replace('welcome.php');</script><noscript><meta http-equiv="Refresh" content="0;URL=welcome.php"></noscript>
+<script type="text/javascript">window.location.replace('welcome.php?referral=<?php echo $referral; ?>');</script><noscript><meta http-equiv="Refresh" content="0;URL=welcome.php"></noscript>
 <?php } else { ?>
 <script type="text/javascript">window.location.replace('index.php');</script><noscript><meta http-equiv="Refresh" content="0;URL=index.php"></noscript>
 <?php } ?>

@@ -39,15 +39,32 @@ if(!session_is_registered(username)){
 				$check = mysql_query("SELECT * FROM users_bans WHERE userid = '".$userid."' OR ipaddress = '".$remote_ip."' LIMIT 1") or die(mysql_error());
 				$is_banned = mysql_num_rows($check);
 				if($is_banned < 1){
-					$_SESSION['username'] = $username;
-					$_SESSION['password'] = $password;
-					if($remember_me == "true"){
-						setcookie("remember", "remember", time()+60*60*24*100, "/");
-						setcookie("rusername", $_SESSION['username'], time()+60*60*24*100, "/");
-						setcookie("rpassword", $_SESSION['password'], time()+60*60*24*100, "/");
+					if($email_force_verify == true){
+						$temp1 = mysql_query("SELECT * FROM users WHERE id = '".$userid."' AND email_verified = '1'");
+						if(mysql_num_rows($temp1) < 1){
+							$login_error = "Your email is not verified! Please verify your email with the link sent to you at the time of registration.";
+						}else{
+							$_SESSION['username'] = $username;
+							$_SESSION['password'] = $password;
+							if($remember_me == "true"){
+								setcookie("remember", "remember", time()+60*60*24*100, "/");
+								setcookie("rusername", $_SESSION['username'], time()+60*60*24*100, "/");
+								setcookie("rpassword", $_SESSION['password'], time()+60*60*24*100, "/");
+							}
+							$sql3 = mysql_query("UPDATE users SET lastvisit = '".$date_full."' WHERE name = '".$username."'") or die(mysql_error());
+							header("location:security_check.php"); exit;
+						}
+					}else{
+						$_SESSION['username'] = $username;
+						$_SESSION['password'] = $password;
+						if($remember_me == "true"){
+							setcookie("remember", "remember", time()+60*60*24*100, "/");
+							setcookie("rusername", $_SESSION['username'], time()+60*60*24*100, "/");
+							setcookie("rpassword", $_SESSION['password'], time()+60*60*24*100, "/");
+						}
+						$sql3 = mysql_query("UPDATE users SET lastvisit = '".$date_full."' WHERE name = '".$username."'") or die(mysql_error());
+						header("location:security_check.php"); exit;
 					}
-					$sql3 = mysql_query("UPDATE users SET lastvisit = '".$date_full."' WHERE name = '".$username."'") or die(mysql_error());
-					header("location:security_check.php"); exit;
 				} else {
 					$bandata = mysql_fetch_assoc($check);
 					$reason = $bandata['descr'];
@@ -180,12 +197,23 @@ if(!session_is_registered(username)){
 						<div class="ad-container">
 <a href="register.php"><img src="./web-gallery/v2/images/landing/uk_party_frontpage_image.gif" alt="" /></a>
 </div>
-
-
-
+	
+						
+					
 				</div>
 				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
+			 
 
+</div>
+<div id="column3" class="column">
+</div>
+<div id="column-footer">
+		
+				<div class="habblet-container ">		
+	
+						<div class="habblet box-content" id="tag-cloud-slim">
+    <span class="tags-habbos-like"><?php echo $shortname; ?>s like</span>
+<?php include('tagcloud.php'); ?>
 </div>
 
 <?php

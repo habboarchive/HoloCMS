@@ -103,6 +103,11 @@ function writeconfig($host, $username, $password, $db, $sitepath, $encryption, $
 "."$"."cimagesurl = \"http://images.habbohotel.co.uk/c_images/\";
 "."$"."badgesurl = \"album1584/\";
 
+//	****** EMAIL VERIFY ******
+//	Email verification settings
+"."$"."email_verify = true;
+"."$"."email_force_verify = false;
+"."$"."email_verify_reward = \"500\";
 ?>";
 	$temp = fopen("config.php","w");
 	
@@ -2527,12 +2532,17 @@ mysql_query("ALTER TABLE `groups_details` ADD `views` INT( 15 ) NOT NULL ;");
 ('4574', 'xmas_gifts_bg2', '4', '0', 'xmas_gifts_bg2', '2', '1', '248');") or die(mysql_error());
 		mysql_query("ALTER TABLE `rooms` CHANGE `name` `name` VARCHAR( 50 ) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL");
 		mysql_query("ALTER TABLE `users` ADD `visibility` INT( 1 ) NOT NULL DEFAULT '1' AFTER `lastgift` ;");
-		mysql_query("ALTER TABLE `users` ADD `screen` VARCHAR( 4 ) NULL DEFAULT 'wide' AFTER `online` ;");
-		mysql_query("ALTER TABLE `users` ADD `rea` VARCHAR( 8 ) NULL DEFAULT 'enabled' AFTER `screen` ;");
 		mysql_query("ALTER TABLE `cms_homes_stickers` ADD `var` INT( 100 ) NULL AFTER `groupid` ;");
 		mysql_query("ALTER TABLE `cms_system` ADD `analytics` TEXT NULL AFTER `loader` ;");
 		mysql_query("ALTER TABLE `cms_banners` ADD `advanced` INT( 1 ) NULL AFTER `status` ;");
 		mysql_query("ALTER TABLE `cms_banners` ADD `html` TEXT NULL AFTER `advanced` ;");
+		mysql_query("ALTER TABLE `users` ADD `email_verified` TINYINT( 1 ) NULL DEFAULT '0' AFTER `newsletter` ;");
+		mysql_query("CREATE TABLE `cms_verify` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `key` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;");
 		
 
 		echo "<strong>done!</strong><br />\n";

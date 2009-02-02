@@ -12,7 +12,7 @@ if (!defined("IN_HOLOCMS")) { header("Location: ../../index.php"); exit; }
 
 ?>
 
-<body id="register" class="process-template">
+<body id="register" class="process-template secure-page">
 
 <div id="overlay"></div>
 

@@ -110,7 +110,125 @@ if($tab == "1"){
 		$email_check = preg_match("/^[a-z0-9_\.-]+@([a-z0-9]+([\-]+[a-z0-9]+)*\.)+[a-z]{2,7}$/i", $mail1);
 			if($email_check == "1"){
 			if($_POST['directemail'] == "on"){ $newsletter = "1"; }else{ $newsletter = "0"; }
-			mysql_query("UPDATE users SET email = '".$mail1."', newsletter = '".$newsletter."' WHERE name = '".$rawname."' and password = '".$rawpass."'") or die(mysql_error());
+			mysql_query("UPDATE users SET email = '".$mail1."', newsletter = '".$newsletter."', email_verified = '0' WHERE name = '".$rawname."' and password = '".$rawpass."'") or die(mysql_error());
+
+if($email_verify == true){
+$hash = "";
+$length = 8;
+$possible = "0123456789qwertyuiopasdfghjkzxcvbnm";
+$i = 0;
+while ($i < $length) {
+$char = substr($possible, mt_rand(0, strlen($possible)-1), 1);
+if (!strstr($hash, $char)) {
+  $hash .= $char;
+  $i++;
+}
+}
+$hash = sha1($hash);
+$num = $key;
+$sql = mysql_query("SELECT * FROM cms_verify WHERE id = '".$my_id."' LIMIT 1");
+if(mysql_num_rows($sql) > 0){
+	$sql1 = "UPDATE cms_verify SET key_hash = '".$hash."', email = '".$mail1."' WHERE id = '".$my_id."' LIMIT 1";
+}else{
+	$sql1 = "INSERT INTO cms_verify (id,email,key_hash) VALUES ('".$my_id."','".$mail1.",'".$hash."')";
+}
+mysql_query($sql1);
+
+$subject = "Welcome to ".$shortname;
+$from = HoloText(getContent('newsletter-3from'), true);
+$fromname = HoloText(getContent('newsletter-4fromname'), true);
+$headers  = '';
+$headers  = 'Return-Path: <'.$from.'>' . "\r\n";
+$headers  = 'From: '.$fromname.' <'.$from.'>' . "\r\n";
+$headers .= 'MIME-Version: 1.0' . "\r\n";
+$headers .= 'Content-Type: multipart/related; ' . "\r\n";
+$headers .= '	boundary="----=_Part_116200_21286957.1233466802029"' . "\r\n";
+$to = $row['email'];
+$message = '------=_Part_116200_21286957.1233466802029
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_116201_12539834.1233466802029"
+
+------=_Part_116201_12539834.1233466802029
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+
+'.$shortname.'
+
+Welcome to '.$shortname.', '.$name.'!
+
+Please activate your account by clicking here:
+'.$path.'email.php?key='.$hash.'&verify=1
+
+Here are your user details:
+'.$shortname.' name: '.$name.'
+Birthdate: '.$dob.'
+
+Keep this information safe - you need your username and birthdate to reset your password if you forget it.
+
+See you in '.$shortname.' soon!
+'.$shortname.' Staff
+'.$path.'
+
+If you did not register to '.$sitename.', please click the following link to remove your information:
+'.$path.'email.php?remove='.$hash.'&verify=1
+
+Replies to this email will not be processed. If you need assistance, please visit our support pages:
+'.$path.'help.php
+
+------=_Part_116201_12539834.1233466802029
+Content-Type: text/html;charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+
+<html><head><style type="text/css">
+a { color: #fc6204; }
+</style></head>
+<body style="background-color: #e3e3db; margin: 0; padding: 0; font-size: 11px; font-family: Verdana, Arial, Helvetica, sans-serif; color: #000;">
+
+<div style="background-color: #bce0ee; padding: 14px; border-bottom: 3px solid #000;">
+	<img src="'.$path.'web-gallery/v2/images/habbo.png" alt="'.$shortname.'" width="160" height="66" />
+</div>
+
+<div style="padding: 14px 14px 50px 14px; background-color: #e3e3db;">
+	<div style="background-color: #fff; padding: 14px; border: 1px solid #ccc">
+<h1 style="font-size: 16px">Welcome to '.$shortname.', '.$name.'!</h1>
+
+<p>
+Please activate your account by <a href="'.$path.'email.php?key='.$hash.'&verify=1">clicking here</a>.
+</p>
+
+<p>
+Here are your user details:
+</p>
+
+<blockquote>
+<p>
+<b>'.$shortname.' name:</b> '.$name.'<br>
+<b>Birthday:</b> '.$dob.'
+</p>
+</blockquote>
+
+<p>
+Keep this information safe. You will  need to know your username and birthday to reset your password if you forget it.
+</p>
+
+<p>See you in Habbo!<br><br>
+Habbo Staff<p>
+www.habbo.com</p>
+
+<p>
+If you did not register at '.$shortname.', please click the following link to <a href="'.$path.'email.php?remove='.$hash.'&verify=1">remove your information</a>.
+</p>
+
+<p>
+Please do no reply to this email.  If you need assistance, visit <a href="'.$path.'help.php">our support pages</a>.
+</p>
+	</div>
+</div>
+
+</body>
+</html>';
+mail($to, $subject, $message, $headers);
+}
 			$result = "Your e-mail address has been changed to ".$mail1."";
 			} else {
 			$result = "Invalid e-mail address";
@@ -198,11 +316,6 @@ if($tab == "1"){
 		$error = "1";
 		}
 	}
-} else if($tab == "8"){
-	if(isset($_POST['save'])){
-		mysql_query("UPDATE users SET screen = '".$_POST['screen']."', rea = '".$_POST['rea']."' WHERE id = '".$my_id."'");
-		$result = "Updated";
-	}
 }
 
 include('templates/community/subheader.php');
@@ -257,28 +370,12 @@ $hc_member = IsHCMember($my_id);
                 </li>";
 		}
 
-		if($tab == "5"){
-                echo "<li class='selected'>Refer Options
-                </li>";
-		} else {
-                echo "<li><a href='account.php?tab=5'>Refer Options</a>
-                </li>";
-		}
-
 		if($tab == "6"){
                 echo "<li class='selected'>Friend Management
                 </li>";
 		} else {
                 echo "<li><a href='account.php?tab=6'>Friend Management</a>
                 </li>";
-		}
-
-		if($tab == "8"){
-				echo "<li class='selected'>Client Settings
-				</li>";
-		} else {
-				echo "<li><a href='account.php?tab=8'>Client Settings</a>
-				</li>";
 		}
 		?>
             </ul>
@@ -639,27 +736,6 @@ if(!empty($result)){
 
 </div>
     </div>
-<?php } else if($tab == "5"){ ?>
-    <div class="habblet-container " style="float:left; width: 560px;">
-        <div class="cbb clearfix settings">
-
-            <h2 class="title">Refer Options</h2>
-            <div class="box-content">
-		<h3>Refer users and get credits</h3>
-		<p>Out of credits again? Can't find staff that is willing to fill up your purse? Want to buy that shiney rare but just don't have the credits for it? Don't stress, just get a few friends to sign up on <?php echo $shortname; ?>! Do that, and your purse will be filled again in no time! Below are a few options you have at your disposal.</p>
-		<h3>Referal Options</h3>
-		<p>There are two ways you can use to get refers, and with that, free credits.</p>
-		<p><b>1. Send your friends a link</b><br />This option is probably as easy as it gets; it basicly does step 2, but automaticly! You just send your friends a invite with the link shown below, your friends click the link, and if they complete registration, you get free credits! This is your referal link to get some easy credits:<br /><br />
-		<input type="text" size="80%" disabled="disabled" value="<?php if(!empty($path)){ echo $path; } ?>register.php?refer=<?php echo $rawname; ?>"></p>
-		<p><b>2. Let them fill in your name during registration</b><br />During the registration process, users can manually give the username of the person that referred them to the site. If they complete registration, that person gets credits! And that person could be you, if you have some friends that are nice enough to fill in your username.
-		<h3>Today's Referal Reward</h3>
-		<p>This is the amount of credits you get per user you refer. This amount may change over time.<br />
-		<br />
-		<b><?php echo $reward; ?></b> credits <sup>per refer</sup>
-		</p>
-	    </div>
-	</div>
-    </div>
 <?php } elseif($tab == "6"){ ?>
 <div id="friend-management" class="habblet-container">
                 <div class="cbb clearfix settings">
@@ -787,74 +863,6 @@ printf("   <tr class=\"%s\">
     </script>
 
     </div>
-    </div>
-<?php } else if($tab == "8"){ ?>
-    <div class="habblet-container " style="float:left; width: 560px;">
-        <div class="cbb clearfix settings">
-
-            <h2 class="title">Client Settings</h2>
-            <div class="box-content">
-
-
-
-<form action="account.php?tab=8" method="post">
-<input type="hidden" name="tab" value="8" />
-<input type="hidden" name="__app_key" value="HoloCMS" />
-
-<?php
-if(!empty($result)){
-	if($error == "1"){
-	echo "<div class='rounded rounded-red'>";
-	} else {
-	echo "<div class='rounded rounded-green'>";
-	}
-	echo $result . "<br />
-	</div><br />";
-}
-?>
-
-<h3>Screen Size</h3>
-
-<p>
-<?php
-$sqll = mysql_query("SELECT screen,rea FROM users WHERE id = '".$my_id."'");
-$roww = mysql_fetch_assoc($sqll);
-if($roww['screen'] == "wide"){ ?>
-<input type="radio" name="screen" value="wide" checked> Widescreen
-<br />
-<input type="radio" name="screen" value="full"> Fullscreen
-<?php } else { ?>
-<input type="radio" name="screen" value="wide"> Widescreen
-<br />
-<input type="radio" name="screen" value="full" checked> Fullscreen
-<?php } ?>
-</p>
-
-<h3>Reauthenticate</h3>
-<p>
-Turning this on would prevent any friends or siblings from accessing your account when you forget to log out.<br />
-<?php
-if($roww['rea'] == "enabled"){ ?>
-<input type="radio" name="rea" value="enabled" checked> Enabled
-<br />
-<input type="radio" name="rea" value="disabled"> Disabled
-<?php } else { ?>
-<input type="radio" name="rea" value="enabled"> Enabled
-<br />
-<input type="radio" name="rea" value="disabled" checked> Disabled
-<?php } ?>
-</p>
-
-<div class="settings-buttons">
-<input type="submit" value="Save changes" name="save" class="submit" />
-</div>
-
-</form>
-
-</div>
-</div>
-</div>
-</div></div>
     </div>
 <?php } else { ?>
 <b>Tab appears to be valid, but no tab data found. Please report this issue.</b>

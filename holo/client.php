@@ -12,13 +12,13 @@
 include('core.php');
 include('includes/session.php');
 
-$screen = $myrow['screen'];
-$language = $myrow['language'];
-$rea = $myrow['rea'];
+//$screen = $myrow['screen'];
+//$language = $myrow['language'];
+//$rea = $myrow['rea'];
 
-if($rea == "disabled"){
-	include('./includes/sso.php');
-}
+//if($rea == "disabled"){
+//	include('./includes/sso.php');
+//}
 
 $ssocheck = mysql_query("SELECT * FROM users WHERE name = '".$rawname."' and password = '".$rawpass."' LIMIT 1") or die(mysql_error());
 $ssocheck2 = mysql_fetch_assoc($ssocheck);
@@ -46,12 +46,6 @@ if($_GET['wide'] == "false"){
         $wide_enabled = false;
 } else {
         $wide_enabled = true;
-}
-
-if($screen == "full"){
-	$wide_enabled = false;
-} else {
-	$wide_enabled = true;
 }
 
 if($wide_enabled == false){

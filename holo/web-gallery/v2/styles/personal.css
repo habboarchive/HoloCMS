@@ -131,9 +131,10 @@
     background-image: url(../images/info_icons.png);
 }
 
-#new-personal-info #link-bar .change-looks { background-position: 0 -976px; }
-#new-personal-info #link-bar .credits      { background-position: 0 -143px; }
-#new-personal-info #link-bar .club         { background-position: 0 -95px; }
+#new-personal-info #link-bar .change-looks   { background-position: 0 -976px; }
+#new-personal-info #link-bar .credits        { background-position: 0 -143px; }
+#new-personal-info #link-bar .club           { background-position: 0 -95px; }
+#new-personal-info #link-bar .activitypoints { background-position: 0 -1070px; padding-left: 18px }
 
 /* motto editor */
 
@@ -226,9 +227,11 @@
 #new-personal-info #habbo-feed ul#feed-items li#feed-notification     { background-position: -439px 6px;  }
 #new-personal-info #habbo-feed ul#feed-items li#feed-friends          { background-position: -892px 6px;  }
 #new-personal-info #habbo-feed ul#feed-items li#feed-item-giftqueue   { background-position: -2240px 6px; }
+#new-personal-info #habbo-feed ul#feed-items li#feed-item-dailygift   { background-position: -2240px 6px; }
 #new-personal-info #habbo-feed ul#feed-items li#feed-item-hcgift      { background-position: -2690px 6px; }
 #new-personal-info #habbo-feed ul#feed-items li#feed-item-hc-reminder { background-position: -1339px 6px; }
 #new-personal-info #habbo-feed ul#feed-items li#feed-item-hc-expired  { background-position: -1339px 6px; }
+#new-personal-info #habbo-feed ul#feed-items li#feed-item-tutor-score { background-position: -3609px 6px; }
 #new-personal-info #habbo-feed ul#feed-items li#feed-item-campaign    { background-image: none; }
 #new-personal-info #habbo-feed ul#feed-items li#feed-pending-members  { background-position: 15px -367px; }
 #new-personal-info #habbo-feed ul#feed-items li#feed-lastlogin        { background-position: 15px -297px; }

@@ -176,6 +176,10 @@ div.lightgreen h2.title {
 	background-color: #f66200;
 }
 
+div.welcome h2.title {
+    background-color: #f66200;
+}
+
 div.loginbox h2.title {
 	background-color: #6b6b6b;
 }
@@ -237,12 +241,16 @@ div.column {
 
 .cb { margin: 0 8px 7px 0; }
 
-body#home #column1 {
+#column1 {
 	width: 460px;
 }
 
-body#home #column2 {
+#column2 {
 	width: 310px;
+}
+
+#column-footer {
+    clear: left;
 }
 
 body#news #column1, body#tags #column1 {
@@ -253,13 +261,13 @@ body#news #column2, body#tags #column2 {
 	width: 560px;
 }
 
-body#home #column3,
+#column3,
 body#news #column3,
 body#tags #column3{
 	width: 160px;
 }
 
-body#home #column3 .cb,
+#column3 .cb,
 body#news #column3 .cb,
 body#tags #column3 .cb{
 	margin-right: 0;
@@ -281,8 +289,8 @@ body#tags #column3 .cb{
 }
 
 #header {
-	position: relative;
-	background: url(../images/subnavibg.png) no-repeat 190px 0;
+	position: relative;	
+    background: url(../images/subnavibg.png) no-repeat 190px 0;
 }
 
 body.anonymous #header {
@@ -1305,6 +1313,14 @@ a.topdialog-exit {
 #content .lightgreen .bb div { background-image: url(../images/box_lightgreen.png); }
 #content .lightgreen .i3 { background-color: #d5e7d8; }
 
+#content .cbb.welcome { background: white; }
+#content .cb.welcome { background: transparent; }
+#content .welcome .bt { background-image: url(../images/box.png); }
+#content .welcome .bt div { background-image: url(../images/box.png); }
+#content .welcome .bb { background-image: url(../images/box.png); }
+#content .welcome .bb div { background-image: url(../images/box.png); }
+#content .welcome .i3 { background-color: white; }
+
 #content .cbb.loginbox { background: #b4b4ae; }
 #content .cb.loginbox { background: transparent; }
 #content .loginbox .bt { background-image: url(../images/box_loginbox.png); }
@@ -1480,7 +1496,8 @@ div.admin-group { background-position: 100% -528px; }
 #quickmenu-groups li a.group-room, #promogroups-habblet-list-container a.group-room { background-position: 0 -800px; width: 19px; }
 #promogroups-habblet-list-container a.group-room { margin-top: 15px; width: 24px; }
 
-#qtab-container-myrooms p.create-room, #qtab-container-mygroups p.create-group {
+#qtab-container-myrooms p.create-room, #qtab-container-mygroups p.create-group, 
+#qtab-container-myfriends p.manage-friends {
 	margin: 0;
     padding: 4px 14px 3px 14px;
     border-top: 1px dashed #777777;
@@ -1546,6 +1563,10 @@ ul.habblet-list li div.link p {
 
 .habblet-content-info #enter-hotel-link {
     float: none;    
+}
+
+.widehabblet {
+    width: 335px;
 }
 
 /* Habbo habblet */
@@ -1700,7 +1721,7 @@ input.invitation-input {
 }
 
 #purse-habblet li.icon-purse {
-	background-image: url(../../images/purse/purse_icon.gif);
+	background-image: url(/images/purse/purse_icon.gif);
     background-repeat: no-repeat;
     background-position: 22px 9px;
     padding: 10px 0 15px 60px;
@@ -1948,6 +1969,16 @@ a.hotgroups-toggle-more-data {
 	text-decoration:none;
 }
 
+#article-paging {
+    padding-bottom: 1.5em;
+}
+#article-paging a.older {
+    float: left;
+}
+#article-paging a.newer {
+    float: right;
+}
+
 /* Tag listing */
 
 #tag-related-habblet-container .tag-list, #front-tags .tag-list {
@@ -2193,6 +2224,7 @@ div.frank-stop {
 	-moz-opacity: .5;
 	opacity: .50;
 	filter: alpha(opacity=50);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
 }
 
 #overlay_progress {
@@ -2205,6 +2237,85 @@ div.frank-stop {
 	font-weight: bold;
 	font-size: 12px;
 }
+
+
+div.best-exps-list-container {
+    width: 460px;
+	height: 185px;
+	overflow: auto;
+}
+
+div.best-exps-no-exps {
+	text-align: center;
+	line-height:160px;
+}
+
+table.best-exps-scores .own-score {
+	background-color: #FFDC0D;
+}
+
+tr.best-exps-types td.selected {
+	font-weight: bold;
+}
+
+tr.best-exps-types td.selected a {
+	color: black;
+	text-decoration: none;
+}
+
+table.best-exps-offsets {
+	height: 30px;
+}
+
+table.best-exps-scores {
+	border: 0;
+	border-spacing: 0;
+	border-collapse: collapse;
+	width: 440px;
+}
+
+table.best-exps-scores tr.odd {
+	background-color: #efefef;
+}
+
+table.best-exps-scores td, table.highscores-scores th {
+	margin: 0;
+	padding: 2px 8px;
+	text-align: left;
+}
+
+table.best-exps-scores th {
+	color: #999;
+	font-size: 10px;
+	font-weight: normal;
+}
+
+table.best-exps-scores .scores-position {
+	padding-left: 15px;
+	color: #999;
+}
+
+table.best-exps-scores .scores-name {
+	width: 100%;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+table.best-exps-scores .scores-points {
+	text-align: right;
+	padding-right: 15px;
+}
+
+tr.hall-of-fame-games td.selected {
+	font-weight: bold;
+}
+
+tr.hall-of-fame-games td.selected a {
+	color: black;
+	text-decoration: none;
+}
+
+
 
 
 ul.highscores-habblet-games {
@@ -2760,11 +2871,11 @@ div.bubbletip .active-name {
     font-weight: bold;
 }
 
-div.bubbletip .active-name.offline, div.invitation-info .offline {
+div.bubbletip .active-name.offline {
     background-image: url(../images/offline.gif);
 }
 
-div.bubbletip .active-name.online, div.invitation-info .online {
+div.bubbletip .active-name.online {
     background-image: url(../images/online.gif);
 }
 
@@ -2785,10 +2896,13 @@ div.bubbletip .active-habbo-data-container {
     width: 100%;
     padding-top: 0px;
     margin-top: 0px;
+    position: relative;
 }
 
 #faq-header form.search-box {
     position: absolute;
+    top: 0;
+    left: 206px;    
     display: inline;
 }
 
@@ -2822,8 +2936,7 @@ div.bubbletip .active-habbo-data-container {
 }
 
 #faq-category-list ul.faq span.faq-link:hover  {
-    color: #76c7e6;
-	padding-left: 4px;
+    color: #000;
 }
 
 #faq-category-list ul.faq span.faq-link.selected:hover {
@@ -2908,50 +3021,46 @@ div.bubbletip .active-habbo-data-container {
     color: #ff8400;
 }
 
-
 /* Welcome info habblet */
 
-#invitationinfo-habblet-container, #registration-referer-habblet-container {
-    background-color: #e1d5b7;
-    height: 1%;
+#invitation-info-habblet h2.title {
+    background-color: #559EDC;	
 }
 
-#invitationinfo-habblet-container .invitation-info {
-    width: 205px;
-	float: left;
-}
-
-#invitationinfo-habblet-container .invitation-info .name {
-	background-repeat: no-repeat;
-    background-position: 100% 0;
-    padding-right: 45px;
-    margin-right: 40px;
-    font-weight: bold;
-    font-size: 12px;
-    height: 30px;
-}
-
-#invitationinfo-habblet-container .figure {
+#inviter-info-habblet img {
     float: left;
-    height:110px;
-    width: 64px;
+    margin-left: -5px;
 }
 
-#invitationinfo-habblet-container .invitation-info a {
-    background: url(../images/button_icons.gif) no-repeat 95% 5px;
-    padding-right: 22px;
-    color: #993300;
+#inviter-info-habblet p {
+    float: left;
+    width: 232px;
+    padding: 0;
+    margin: 10px 0 0 65px;
 }
 
-#invitationinfo-habblet-container a.continue, #registration-referer-habblet-container a.continue {
-    background-color: #ffeb3e;
-    padding: 2px 22px 2px 10px;
-    text-decoration: none;
+#column2 #inviter-info-habblet p { margin-left: 9px }
+
+#inviter-info-habblet p span.text {
+    display: block;
+    background: #fff url(../images/tooltips/large-bubble.png) no-repeat 0 0;
+    padding: 11px 19px 11px 15px;
 }
 
-.invitation-footer {
-    padding: 4px 15px;
-    font-weight: bold;
+#inviter-info-habblet p span.text em {
+    background: transparent url(../images/offline.gif) no-repeat top right;
+    height: 16px;
+    display: block;
+}
+
+#inviter-info-habblet p span.text em.online {
+    background-image: url(../images/online.gif);
+}
+
+#inviter-info-habblet p span.bottom {
+    display: block;
+    height: 6px;
+    background: #fff url(../images/tooltips/large-bubble.png) no-repeat 0 100%;
 }
 
 /* TAG Search Page Habblet */
@@ -3080,6 +3189,85 @@ div.bubbletip .active-habbo-data-container {
     display: inline;
     position: relative;
 }
+
+/* pixel info boxes styling */
+
+.pixels-infobox-container {
+}
+
+.pixels-infobox-text {
+    margin-right: auto;
+    margin-left: auto;
+    width: 70%;
+}
+
+div.pixelblue h2.title {
+	background-color: #0046A8;
+}
+
+div.rounded-pixelblue {
+	background-color: #0046A8;
+}
+
+div.pixelgreen h2.title {
+    background-color:#20C124;
+}
+
+div.rounded-pixelgreen {
+	background-color: #20C124;
+}
+
+div.pixellightblue h2.title {
+    background-color:#6DCDF6;
+}
+
+div.rounded-pixellightblue {
+	background-color: #6DCDF6;
+}
+
+div.pixeldarkblue h2.title {
+    background-color:#168291;
+}
+
+div.rounded-pixeldarkblue {
+	background-color: #168291;
+}
+
+
+#content .pixelblue .bt {
+    background-image:url(../images/surfer/box_blue1.png);
+}
+#content .pixelblue .bt div { background-image: url(../images/surfer/box_blue1.png); }
+
+#content .pixelblue .bb {
+    background-image:url(../images/surfer/box_blue2.png);
+}
+
+#content .pixelblue .bb div { background-image: url(../images/surfer/box_blue2.png); }
+
+#content .pixelblue .i3 {
+    background-color: #6DCDF6; 
+    background-image:url(../images/surfer/pixelpage_surferdude_crop.gif);
+    width: 452px;
+    height: 377px;
+}
+
+#content .pixelblue .i1 {
+    padding-left:0;
+}
+
+.pixels-info .pixels-text {
+    float: right;
+    position: relative;
+    width: 55%;
+}
+
+.pixels-info .pixels-image {
+    float: left;
+    display: inline;
+    position: relative;
+}
+
 
 /* Error page styling */
 #notfound-content .error-text {
@@ -3445,6 +3633,11 @@ div.hr-body a {
 	color: #666;
 }
 
+#event-list {
+    overflow: auto;
+    max-height: 200px;
+}
+
 .room-occupancy-1 { background-image: url(../images/rooms/room_icon_1.gif);	}
 .room-occupancy-2 { background-image: url(../images/rooms/room_icon_2.gif);	}
 .room-occupancy-3 { background-image: url(../images/rooms/room_icon_3.gif);	}
@@ -3468,3 +3661,78 @@ html > body #column2 #promogroups-habblet-list-container li.left:hover { backgro
 #column2 #promogroups-habblet-list-container ul.habblet-list.two-cols li div.item {
     padding: 0;
 }
+
+#invitation-link-container .copytext {
+    padding-left: 93px;
+    background: transparent url(../images/mgm_dialogue.png) no-repeat 10px 0px;
+    padding-bottom: 20px;
+}
+
+#invitation-link-container h3 {
+    font-size: 13px;
+    margin: 15px 0;
+    padding: 0;
+}
+
+#email-verified-container {
+    width: 460px;   
+}
+
+#tagging-game {
+    padding: 10px;
+}
+
+#tagging-game #taglimit { color: red }
+#tagging-game a { text-decoration: none }
+#tagging-game li a { color: green }
+#tagging-game li a span { color: black}
+#tagging-game a.tag-exists { text-decoration: underline; font-weight: bold }
+#tagging-game a.tag-button {
+    background: transparent url(../images/tags/arrowbutton.png) no-repeat scroll center bottom;
+    height : 40px;
+    width: 207px;
+    margin: 0 auto;
+    display: block;
+    cursor : pointer;
+    text-align: center;
+    line-height: 30px;
+    color: white }
+#tagging-game a.tag-button.disabled { background: transparent url(../images/tags/arrowbutton_dimmed.gif) no-repeat scroll center bottom }
+#tagging-game .full a, #tagging-game .full a span { color: #999; }
+#tagging-game #category-list ol { padding: 0; margin: 0 }
+#tagging-game #category-list ol li { float: left; width: auto; padding: 0 15px 0 0; text-align : center; line-height : 30px; font-size: 12px}
+#tagging-game #category-list li { width: auto }
+#tagging-game #tagging-game-skip { margin-bottom: 20px; margin-left: 100px; width: auto}
+#tagging-game #tagging-game-skip div { width: auto}
+#tagging-game a.go-to-client {
+    background: transparent url(../images/tags/button_gotohotel.gif) no-repeat scroll 0 bottom;
+    height : 36px;
+    display: block;
+    cursor : pointer;
+    line-height: 36px;
+    width: 169px;
+    text-align: center;
+    color: white }
+#tagging-game a.quit-game { padding-left: 35px; color: white; text-decoration: underline }
+
+#tagging-game #tagging-game-contents { width: 420px}
+#tagging-game #tagcloud {
+    background: transparent url(../images/tags/tagcloud.png) no-repeat 0 0;
+    margin: 10px;
+    width: 408px;
+    height: 243px;
+    overflow: hidden;
+}
+#tagging-game #tagcloud div { padding: 15px 20px }
+#tagging-game #category-list { width: 360px; height: 155px }
+
+.loader-tagging-game { background-color: black }
+.loader-tagging-game #tagging-game { position: absolute; left: 200px }
+
+/* less clutter on welcome page */
+body#welcome #navi, body#welcome #subnavi-user, body#welcome #to-hotel, body#welcome #navi2-container, body#welcome #habbos-online {
+    display: none;
+}
+
+body#welcome #header { background: none }
+body#welcome #header-container { background-color: #FFF }

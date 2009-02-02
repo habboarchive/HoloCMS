@@ -204,7 +204,8 @@
 		background-color: #000000;
 		opacity: .70;
 		filter: alpha(opacity=70);
-	}
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+    }
 
 	a:hover#lightwindow_galleries_tab,
 	a:active#lightwindow_galleries_tab {
@@ -238,7 +239,8 @@
 		background-color: #000000;
 		opacity: .70;
 		filter: alpha(opacity=70);
-	}	
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+    }
 
 	.lightwindow_galleries_list {
 		width: 200px;

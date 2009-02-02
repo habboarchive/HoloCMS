@@ -1,14 +1,14 @@
 body#register #column1 {
 	width: auto;
 	position: static;
-}
 
+}
 body#register #column1 .cb {
 	margin-right: 0;
 }
 
 body#register #column1 .box-content {
-	padding: 7px 7px 3px 7px;
+	padding: 7px 7px 3px 0;
 }
 
 #registerform fieldset {
@@ -16,12 +16,16 @@ body#register #column1 .box-content {
 	margin-top: 8px;
 }
 
+#registerform fieldset#register-fieldset-captcha {
+    padding: 0;
+}
+
 #registerform fieldset#register-fieldset-name {
 	margin-top: 0;
 }
 
 #registerform #register-fieldset-captcha label, #registerform #register-terms-content label {
-	color: #fff;	
+	color: #fff;
 }
 
 #register-avatar-editor-title {
@@ -89,6 +93,10 @@ div.register-error div.rounded-red {
     width: 180px;
 }
 
+#register-name.wide {
+    width: 210px;
+}
+
 #register-name-check-container {
 	text-align: right;
 }
@@ -112,8 +120,12 @@ input.register-text-black {
     border: 1px solid black;
 }
 
-input.register-text, #register-parentEmail-bubble, #register-captcha-bubble {
-	width: 230px;
+input.register-text, #recaptcha_response_field {
+    width: 230px;
+}
+
+input.register-text.wide, #register-parentEmail-bubble, #register-captcha-bubble, #recaptcha_response_field.wide {
+	width: 265px;
 }
 
 #register-parentEmail {
@@ -131,19 +143,23 @@ input.register-text, #register-parentEmail-bubble, #register-captcha-bubble {
 
 #register-column-left {
 	float: left;
-	width: 435px;	
+	width: 428px;
 }
 
 #register-column-right {
 	float: right;
-	width: 269px;
+    width: 269px;
+}
+
+#register-column-right.wide {
+    width: 305px;
 }
 
 #register-parent-email, #register-ageLimit {
 	position: absolute;
 	top: 0;
 	left: -1500px;
-	width: 270px;
+	width: 308px;
 }
 
 #register-buttons {
@@ -195,7 +211,7 @@ div.register-avatar input {
 }
 
 input.register-loading {
-	background: #fff url(../../images/progress_bubbles.gif) no-repeat 99%;
+	background: #fff url(/images/progress_bubbles.gif) no-repeat 99%;
 	padding-right: 8px;
 }
 
@@ -217,6 +233,7 @@ input.register-loading {
 	-moz-opacity: .5;
 	opacity: .50;
 	filter: alpha(opacity=50);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
 }
 
 span.numbering {
@@ -229,6 +246,30 @@ span.numbering {
 
 div.register-input {
     font-weight: bold;
-    font-size: 16px; 
+    font-size: 16px;
     text-align: center;
+}
+
+#inviter-info img {
+    position: absolute;
+    left:397px; 
+    top:0px;
+}
+
+#inviter-info p {
+    position: absolute;
+    left:168px;
+    top:14px;
+    width: 209px;
+    height: 36px;
+    padding: 8px 15px 8px 8px;
+    background: #fff url(../images/tooltips/bubble-full-right.png) no-repeat 0 0;
+}
+
+#register-marketing-box, #captcha_response {
+    padding-left: 8px;
+}
+
+#error-bubble-content.content {
+    padding: 0 5px 20px;
 }

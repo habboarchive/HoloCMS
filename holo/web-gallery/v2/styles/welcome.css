@@ -55,8 +55,19 @@ ul.roomselection-welcome li.odd a.roomselection-select {
 }
 
 div.welcome-intro {
-	background: #d5e7d8 url(../images/welcome/welcome_party.png) top left no-repeat;
+	background: #fff url(../images/welcome/welcome_party.png) top left no-repeat;
 	min-height: 319px;
+	position: relative;
+}
+
+div.welcome-intro .partner-logo {
+    position: absolute;
+    top: 60px;
+    width: 190px;
+    left: 50px;
+    background-color: #fff;
+    text-align: center;
+    padding: 5px;
 }
 
 div.welcome-skip {
@@ -133,4 +144,6 @@ p.aftergift-img {
     padding-bottom: 15px;
 }
 
-
+#welcome-partner .bt { display: none }
+#welcome-partner .i2 { background-position: right 5px; background-repeat: no-repeat }
+#welcome-partner .i1 { background-position: 0 5px; background-repeat:no-repeat; }

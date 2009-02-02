@@ -74,18 +74,4 @@ var PromoHabbos = { track:function(n) { if (!!n && window.pageTracker) { pageTra
 				</div>
 				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
 
-								<div class="habblet-container ">
-
-						<div class="habblet box-content" id="tag-cloud-slim">
-    <span class="tags-habbos-like"><?php echo $shortname; ?>s like</span>
-
-	<?php include('tagcloud.php'); ?>
-
-</div>
-
-
-
-				</div>
-				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
-
 </div>

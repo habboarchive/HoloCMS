@@ -9,6 +9,8 @@
 || # warrenty of any kind. HoloCMS is free software!
 |+===================================================*/
 
+set_time_limit(7200);
+
 require_once('../core.php');
 if($hkzone !== true){ header("Location: index.php?throwBack=true"); exit; }
 if(!session_is_registered(acp)){ header("Location: index.php?p=login"); exit; }
@@ -96,7 +98,7 @@ $template = '<h1 style="font-size: 13px; font-family: verdana,times,times new ro
 
 <tr>
 <td class='tablerow1'  width='40%'  valign='middle'><b>WHERE clause</b><div class='graytext'>For advanced users, the WHERE clause of the MySQL query for getting users. DO NOT EDIT UNLESS YOU KNOW WHAT YOU ARE DOING!</div></td>
-<td class='tablerow2'  width='60%'  valign='middle'><input type='text' name='where' value="<?php if($_POST['where'] == ""){ echo "newsletter = '1'"; }else{ echo $_POST['where']; } ?>" size='30' class='textinput'></td>
+<td class='tablerow2'  width='60%'  valign='middle'><input type='text' name='where' value="<?php if($_POST['where'] == ""){ echo "newsletter = '1' AND email_verified = '1'"; }else{ echo $_POST['where']; } ?>" size='30' class='textinput'></td>
 </tr>
 
 <tr>

@@ -53,10 +53,10 @@ body#client {
 	position: relative;
 }
 
-#clientembed, #clientembed-loader, #clientembed-loader div {
+#clientembed, #clientembed-loader, #clientembed-loader div.loader-image-inner {
 	width: 720px;
-	height: 540px;
 	overflow: hidden;
+    height: 540px;
 }
 
 #clientembed {
@@ -66,7 +66,7 @@ body#client {
 	position: absolute;
 }
 
-#clientembed-loader {
+#clientembed-loader.loader-image {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -74,13 +74,13 @@ body#client {
 	background-image: url(../images/client/grid.png);
 }
 
-#clientembed-loader div {
+#clientembed-loader div.loader-image-inner {
 	float: left;
 	background-image: url(../images/client/preload.png);
 	background-repeat: no-repeat;
 }
 
-#clientembed-loader div b {
+.loader-image div .loading-text {
 	font: 28px Verdana, Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	position: absolute;
@@ -91,7 +91,7 @@ body#client {
 }
 
 body.wide #client-topbar, body.wide #clientembed, 
-body.wide #clientembed-loader, body.wide #clientembed-loader div { width: 960px; }
+body.wide #clientembed-loader, body.wide #clientembed-loader div.loader-image-inner { width: 960px; }
 body.wide #client-topbar .logo { width: 350px; }
 
 .info-client_error-text {

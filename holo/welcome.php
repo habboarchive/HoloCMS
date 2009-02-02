@@ -15,7 +15,7 @@ $check = mysql_query("SELECT noob FROM users WHERE id='".$my_id."'");
 $row = mysql_fetch_assoc($check);
 
 if($row['noob'] != 0) {
-header("location:../index.php");
+header("location:../zindex.php");
 
 ?>
 
@@ -35,14 +35,11 @@ header("location:../index.php");
 $pagename = $name;
 $pageid = "3";
 
-// Header for minimail
-
 include('templates/community/subheader.php');
 include('templates/community/header.php');
 ?>
 
 <div id="container">
-	<div id="content" style="position: relative" class="clearfix">
 	<div id="content" style="position: relative" class="clearfix">
     <div id="column1" class="column">
 				<div class="habblet-container ">
@@ -91,45 +88,41 @@ include('templates/community/header.php');
 " width="64" height="110" class="welcome-habbo" />
     <div id="welcome-intro-welcome-user"  >Welcome <?php echo $name; ?>!</div>
     <div id="welcome-intro-welcome-party" class="box-content">When you've choosen a room you will automaticly go to it! Than you get 8 days after each other free furnitures! Enjoy <?php echo $sitename; ?>!</div>
+    </div>
 </div>
 
-</div>
+</div>	
+					
+				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
+			 
 
+	<?php
+	if($_GET['referral'] != ""){
+	$referrow = mysql_fetch_assoc(mysql_query("SELECT * FROM users WHERE id = '".FilterText($_GET['referral'])."' LIMIT 1"));
+	if(IsUserOnline($referrow['id']) == true){ $online = "online"; }else{ $online = "offline"; }
+	?>
+				<div class="habblet-container ">		
+						<div class="cbb clearfix white ">
+	
+							<h2 class="title">Welcome
+							</h2>
+						<div id="inviter-info-habblet">
+        <p><span class="text">Your friend <?php echo $referrow['name']; ?> is waiting for you in <?php echo $shortname; ?>!<em class="<?php echo $online; ?>"></em></span><span class="bottom"></span></p>
+        <img alt="<?php echo $referrow['name']; ?>" title="<?php echo $referrow['name']; ?>" src="http://www.habbo.co.uk/habbo-imaging/avatarimage?figure=<?php echo $referrow['figure']; ?>&size=b&direction=4&head_direction=4&gesture=sml" />
 
-
+        <div style="clear: left; text-align: center; padding-top: 10px; font-size: 10px">You can find him/her on your friendlist</div>    
+    </div>
+	
+						
+					</div>
 				</div>
 				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
-
-				<div class="habblet-container ">
-
-
-
-
-
-				</div>
-				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
-
-				<div class="habblet-container ">
-
-
-
-
-
-				</div>
-				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
-
-				<div class="habblet-container ">
-
-
-
-
-
-				</div>
-				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
-
-				<div class="habblet-container ">
+			 
+	<?php } ?>
+			     		
+				<div class="habblet-container ">		
 						<div class="cbb clearfix green ">
-
+	
 							<h2 class="title">Got Shockwave?
 							</h2>
 						<div class="welcome-shockwave clearfix box-content">
@@ -146,19 +139,6 @@ include('templates/community/header.php');
 <script type="text/javascript">
 HabboView.run();
 </script>
-<div id="column3" class="column">
-				<div class="habblet-container ">
-
-						<div class="ad-container">
-<br>
-</div>
-
-
-
-				</div>
-				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
-
-</div>
 
 <!--[if lt IE 7]>
 <script type="text/javascript">

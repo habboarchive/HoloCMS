@@ -135,4 +135,4 @@ div.welcome-intro { height: expression(this.scrollHeight < 250 ? "250px" : "auto
     margin-top: 6px;
 }
 
-#friend-management-container .new-button { margin: 0; padding: 0 0 5px 10px;}
+#friend-management-container .new-button, #guestbook-form .new-button { margin: 0; padding: 0 0 5px 10px;}

@@ -154,7 +154,7 @@ if(IsHCMember($my_id)){
         </div>
 </li>
 <script type="text/javascript">
-L10N.put("subscription.title", "HABBO CLUB");
+L10N.put("subscription.title", "<?php echo $shortname; ?> CLUB");
 </script>
 
 <?php
@@ -509,46 +509,17 @@ HabboView.add(GiftQueueHabblet.initClosableHabblet);
                 <script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
 <?php */ ?>
 <?php /*Habbo Search*/ ?>
-<div class="habblet-container ">
-                        <div class="cbb clearfix default ">
+				<div class="habblet-container ">		
+						<div class="cbb clearfix default ">
 <div class="box-tabs-container clearfix">
     <h2><?php echo $shortname; ?>s</h2>
     <ul class="box-tabs">
-        <li id="tab-0-3-1"><a href="#">Invite Friends</a><span class="tab-spacer"></span></li>
-        <li id="tab-0-3-2" class="selected"><a href="#">Search <?php echo $shortname; ?>s</a><span class="tab-spacer"></span></li>
+        <li id="tab-0-4-1"><a href="#">Search <?php echo $shortname; ?>s</a><span class="tab-spacer"></span></li>
+
+        <li id="tab-0-4-2" class="selected"><a href="#">Invite Friends</a><span class="tab-spacer"></span></li>
     </ul>
 </div>
-    <div id="tab-0-3-1-content"  style="display: none">
-<div id="friend-invitation-habblet-container" class="box-content">
-    <div id="invitation-form" class="clearfix">
-        <textarea name="invitation_message" id="invitation_message" class="invitation-message">Come and hangout with me in <?php echo $shortname; ?>.
-- <?php echo $rawname; ?></textarea>
-        <div id="invitation-email">
-            <div class="invitation-input">1.<input  onkeypress="$('invitation_recipient2').enable()" type="text" name="invitation_recipients" id="invitation_recipient1" value="Friend's email" class="invitation-input" />
-            </div>
-            <div class="invitation-input">2.<input disabled onkeypress="$('invitation_recipient3').enable()" type="text" name="invitation_recipients" id="invitation_recipient2" value="Friend's email" class="invitation-input" />
-            </div>
-            <div class="invitation-input">3.<input disabled  type="text" name="invitation_recipients" id="invitation_recipient3" value="Friend's email" class="invitation-input" />
-            </div>
-        </div>
-        <div class="clear"></div>
-        <div class="fielderror" id="invitation_message_error" style="display: none;"><div class="rounded"></div></div>
-    </div>
-
-    <div class="invitation-buttons clearfix" id="invitation_buttons">
-        <a  class="new-button" id="send-friend-invite-button" href="#"><b>Invite friend(s)</b><i></i></a>
-    </div>
-</div>
-<script type="text/javascript">
-    L10N.put("invitation.button.invite", "Invite friend(s)");
-    L10N.put("invitation.form.recipient", "Friend's email");
-    L10N.put("invitation.error.message_too_long", "invitation.error.message_limit");
-    inviteFriendHabblet = new InviteFriendHabblet(500);
-    $("friend-invitation-habblet-container").select(".fielderror .rounded").each(function(el) {
-        Rounder.addCorners(el, 8, 8);
-    });
-</script>    </div>
-    <div id="tab-0-3-2-content" >
+    <div id="tab-0-4-1-content"  style="display: none">
 <div class="habblet-content-info">
     <a name="habbo-search">Type in the first characters of the name to search for other <?php echo $shortname; ?>s.</a>
 </div>
@@ -556,6 +527,7 @@ HabboView.add(GiftQueueHabblet.initClosableHabblet);
 <br clear="all"/>
 <div id="avatar-habblet-list-search">
     <input type="text" id="avatar-habblet-search-string"/>
+
     <a href="#" id="avatar-habblet-search-button" class="new-button"><b>Search</b><i></i></a>
 </div>
 
@@ -568,21 +540,72 @@ HabboView.add(GiftQueueHabblet.initClosableHabblet);
 
 </div>
 <script type="text/javascript">
-    L10N.put("habblet.search.error.search_string_too_long", "The search keyword was too long. Maximum length is 25 characters.");
-    L10N.put("habblet.search.error.search_string_too_short", "The search keyword was too short. 1 character required (as a minimum).");
-    L10N.put("habblet.search.add_friend.title", "Send friend request?");
-    new HabboSearchHabblet(1, 25);
+    L10N.put("habblet.search.error.search_string_too_long", "The search keyword was too long. Maximum length is 30 characters.");
+    L10N.put("habblet.search.error.search_string_too_short", "The search keyword was too short. 2 characters required.");
+    L10N.put("habblet.search.add_friend.title", "Add to friend list");
+	new HabboSearchHabblet(2, 30);
 
 </script>
+
 </div>
 
 <script type="text/javascript">
     Rounder.addCorners($("habbo-search-error"), 8, 8);
 </script>    </div>
+    <div id="tab-0-4-2-content" >
+<div id="friend-invitation-habblet-container" class="box-content">
+    <div style="display: none"> 
+    <div id="invitation-form" class="clearfix">
+        <textarea name="invitation_message" id="invitation_message" class="invitation-message">Come and hangout with me in <?php echo $shortname; ?>.
+- <?php echo $rawname; ?></textarea>
+        <div id="invitation-email">
+            <div class="invitation-input">1.<input  onkeypress="$('invitation_recipient2').enable()" type="text" name="invitation_recipients" id="invitation_recipient1" value="Friend's email address:" class="invitation-input" />
 
-                    </div>
-                </div>
-                <script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
+            </div>
+            <div class="invitation-input">2.<input disabled onkeypress="$('invitation_recipient3').enable()" type="text" name="invitation_recipients" id="invitation_recipient2" value="Friend's email address:" class="invitation-input" />
+            </div>
+            <div class="invitation-input">3.<input disabled  type="text" name="invitation_recipients" id="invitation_recipient3" value="Friend's email address:" class="invitation-input" />
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="fielderror" id="invitation_message_error" style="display: none;"><div class="rounded"></div></div>
+
+    </div>
+
+    <div class="invitation-buttons clearfix" id="invitation_buttons">
+		<a  class="new-button" id="send-friend-invite-button" href="#"><b>Invite friend(s)</b><i></i></a>
+    </div>
+    
+    <hr/>
+    </div>
+    <div id="invitation-link-container">
+        <h3>Enjoy <?php echo $shortname; ?> more with real life friends!</h3>
+
+        <div class="copytext">
+            <p>Invite your friends to <?php echo $shortname; ?> and earn cool rewards!
+Send a link to your friend and ask them to register and activate their email.
+<?php if($email_verify_reward != "0"){ ?>If they are using <?php echo $shortname; ?> in active way you get rewarded with <?php echo $reward; ?> credits.<?php } ?></p>
+        </div>
+        <div class="invitation-buttons clearfix"> 
+            <a  class="new-button" id="getlink-friend-invite-button" href="#"><b>Click for the invitation link!</b><i></i></a>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    L10N.put("invitation.button.invite", "Invite friend(s)");
+    L10N.put("invitation.form.recipient", "Friend's email address:");
+    L10N.put("invitation.error.message_too_long", "invitation.error.message_limit");
+    inviteFriendHabblet = new InviteFriendHabblet(500);   
+    $("friend-invitation-habblet-container").select(".fielderror .rounded").each(function(el) {
+        Rounder.addCorners(el, 8, 8);
+    });
+
+</script>    </div>
+
+					</div>
+				</div>
+				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
+
 <?php /* Groups */ ?>
 <div class="habblet-container ">
                         <div class="cbb clearfix blue ">
