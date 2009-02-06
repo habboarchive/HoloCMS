@@ -40,7 +40,7 @@ if($do == "publish" && isset($_POST['body'])){
 	$i = 0;
 	while($row = mysql_fetch_assoc($sql)){
 $to = $row['email'];
-$message = stripslashes('------=_Part_1218195_2242574.1223844236223
+$message = '------=_Part_1218195_2242574.1223844236223
 Content-Type: multipart/alternative; 
 	boundary="----=_Part_1218194_9233741.1223844236223"
 
@@ -56,7 +56,7 @@ Content-Transfer-Encoding: 7bit
 
 '.str_replace("%name%", $row['name'], $header.$body.$footer).'
 
-------=_Part_1218194_9233741.1223844236223--');
+------=_Part_1218194_9233741.1223844236223--';
 mail($to, $subject, $message, $headers);
 $i++;
 }

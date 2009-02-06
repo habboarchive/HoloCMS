@@ -133,7 +133,7 @@ if($user['hc_before'] > 0 && mysql_num_rows($sql) == 0) { ?>
     </div>
 </li>
 <script type="text/javascript">
-L10N.put("subscription.title", "HABBO CLUB");
+L10N.put("subscription.title", "<?php echo $shortname; ?> CLUB");
 </script>
 
 <?php
@@ -606,88 +606,6 @@ Send a link to your friend and ask them to register and activate their email.
 				</div>
 				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
 
-<?php /* Groups */ ?>
-<div class="habblet-container ">
-                        <div class="cbb clearfix blue ">
-<div class="box-tabs-container clearfix">
-    <h2>Groups</h2>
-    <ul class="box-tabs">
-        <li id="tab-2-1"><a href="#">Hot Groups</a><span class="tab-spacer"></span></li>
-        <li id="tab-2-2" class="selected"><a href="#">My Groups</a><span class="tab-spacer"></span></li>
-    </ul>
-</div>
-    <div id="tab-2-1-content"  style="display: none">
-    		<div class="progressbar"><img src="./web-gallery/images/progress_bubbles.gif" alt="" width="29" height="6" /></div>
-    		<a href="randomgroups.php?sp=plain" class="tab-ajax"></a>
-    </div>
-    <div id="tab-2-2-content" >
-
-
-         <div id="groups-habblet-info" class="habblet-content-info">
-                View the groups you are in, create your own group, or get some inspiration from the 'Hot Groups'-tab!
-         </div>
-
-    <div id="groups-habblet-list-container" class="habblet-list-container groups-list">
-
-<?php
-$get_em = mysql_query("SELECT * FROM groups_memberships WHERE userid = '".$my_id."'") or die(mysql_error());
-$groups = mysql_num_rows($get_em);
-
-echo "\n    <ul class=\"habblet-list two-cols clearfix\">";
-
-$num = 0;
-
-while($row = mysql_fetch_assoc($get_em)){
-	$num++;
-
-	if(IsEven($num)){
-		$pos = "right";
-		$rights++;
-	} else {
-		$pos = "left";
-		$lefts++;
-	}
-
-	if(IsEven($lefts)){
-		$oddeven = "odd";
-	} else {
-		$oddeven = "even";
-	}
-
-	$group_id = $row['groupid'];
-	$check = mysql_query("SELECT * FROM groups_details WHERE id = '".$group_id."' LIMIT 1");
-	$groupdata = mysql_fetch_assoc($check);
-
-	echo "            <li class=\"".$oddeven." ".$pos."\" style=\"background-image: url(./habbo-imaging/badge.php?badge=".$groupdata['badge'].")\">\n            	\n                \n                <a class=\"item\" href=\"group_profile.php?id=".$group_id."\">".HoloText($groupdata['name'])."</a>\n            </li>";
-}
-
-$rights_should_be = $lefts;
-if($rights !== $rights_should_be){
-	echo "<li class=\"".$oddeven." right\"><div class=\"item\">&nbsp;</div></li>";
-}
-
-echo "\n    </ul>";
-?>
-
-		<div class="habblet-button-row clearfix"><a class="new-button" id="purchase-group-button" href="#"><b>Create/buy a Group</b><i></i></a></div>
-    </div>
-
-    <div id="groups-habblet-group-purchase-button" class="habblet-list-container"></div>
-
-<script type="text/javascript">
-    $("purchase-group-button").observe("click", function(e) { Event.stop(e); GroupPurchase.open(); });
-</script>
-
-
-
-
-
-    </div>
-
-					</div>
-				</div>
-				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
-
 <?php /* Events  */ ?>
 <?php
 $res = mysql_query("show table status like 'events'")
@@ -910,7 +828,89 @@ document.observe("dom:loaded", function() {
 					</div>
 				</div>
 				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
-			<?php /* Users Online*/ ?>
+				
+<?php /* Groups */ ?>
+<div class="habblet-container ">
+                        <div class="cbb clearfix blue ">
+<div class="box-tabs-container clearfix">
+    <h2>Groups</h2>
+    <ul class="box-tabs">
+        <li id="tab-2-1"><a href="#">Hot Groups</a><span class="tab-spacer"></span></li>
+        <li id="tab-2-2" class="selected"><a href="#">My Groups</a><span class="tab-spacer"></span></li>
+    </ul>
+</div>
+    <div id="tab-2-1-content"  style="display: none">
+    		<div class="progressbar"><img src="./web-gallery/images/progress_bubbles.gif" alt="" width="29" height="6" /></div>
+    		<a href="randomgroups.php?sp=plain" class="tab-ajax"></a>
+    </div>
+    <div id="tab-2-2-content" >
+
+
+         <div id="groups-habblet-info" class="habblet-content-info">
+                View the groups you are in, create your own group, or get some inspiration from the 'Hot Groups'-tab!
+         </div>
+
+    <div id="groups-habblet-list-container" class="habblet-list-container groups-list">
+
+<?php
+$get_em = mysql_query("SELECT * FROM groups_memberships WHERE userid = '".$my_id."'") or die(mysql_error());
+$groups = mysql_num_rows($get_em);
+
+echo "\n    <ul class=\"habblet-list two-cols clearfix\">";
+
+$num = 0;
+
+while($row = mysql_fetch_assoc($get_em)){
+	$num++;
+
+	if(IsEven($num)){
+		$pos = "right";
+		$rights++;
+	} else {
+		$pos = "left";
+		$lefts++;
+	}
+
+	if(IsEven($lefts)){
+		$oddeven = "odd";
+	} else {
+		$oddeven = "even";
+	}
+
+	$group_id = $row['groupid'];
+	$check = mysql_query("SELECT * FROM groups_details WHERE id = '".$group_id."' LIMIT 1");
+	$groupdata = mysql_fetch_assoc($check);
+
+	echo "            <li class=\"".$oddeven." ".$pos."\" style=\"background-image: url(./habbo-imaging/badge.php?badge=".$groupdata['badge'].")\">\n            	\n                \n                <a class=\"item\" href=\"group_profile.php?id=".$group_id."\">".HoloText($groupdata['name'])."</a>\n            </li>";
+}
+
+$rights_should_be = $lefts;
+if($rights !== $rights_should_be){
+	echo "<li class=\"".$oddeven." right\"><div class=\"item\">&nbsp;</div></li>";
+}
+
+echo "\n    </ul>";
+?>
+
+		<div class="habblet-button-row clearfix"><a class="new-button" id="purchase-group-button" href="#"><b>Create/buy a Group</b><i></i></a></div>
+    </div>
+
+    <div id="groups-habblet-group-purchase-button" class="habblet-list-container"></div>
+
+<script type="text/javascript">
+    $("purchase-group-button").observe("click", function(e) { Event.stop(e); GroupPurchase.open(); });
+</script>
+
+
+
+
+
+    </div>
+
+					</div>
+				</div>
+				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
+			<?php /* DISABLED AS HABBO NO LONGER HAS THESE!!! --- Users Online  ?>
 <div class="cbb clearfix white">
     <div class="box-content">
 
@@ -933,7 +933,7 @@ document.observe("dom:loaded", function() {
 					</div>
 				</div>
 				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
-			<?php /* Random Rooms*/ ?>
+			<?php /* Random Rooms ?>
 				<div class="habblet-container ">
 						<div class="cbb clearfix green ">
 <div class="box-tabs-container clearfix">
@@ -1002,8 +1002,8 @@ var roomListHabblet_h105 = new RoomListHabblet("rooms-habblet-list-container-h10
 					</div>
 				</div>
 				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
+*/ ?>
 </div>
-
 
 <script type="text/javascript">
 	HabboView.add(LoginFormUI.init);

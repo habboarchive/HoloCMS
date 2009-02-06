@@ -267,9 +267,9 @@ Here are your user details:
 Keep this information safe. You will  need to know your username and birthday to reset your password if you forget it.
 </p>
 
-<p>See you in Habbo!<br><br>
-Habbo Staff<p>
-www.habbo.com</p>
+<p>See you in '.$shortname.'!<br><br>
+'.$shortname.' Staff<p>
+'.$path.'</p>
 
 <p>
 If you did not register at '.$shortname.', please click the following link to <a href="'.$path.'email.php?remove='.$hash.'">remove your information</a>.
