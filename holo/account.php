@@ -227,7 +227,7 @@ Please do no reply to this email.  If you need assistance, visit <a href="'.$pat
 
 </body>
 </html>';
-mail($to, $subject, $message, $headers);
+@mail($to, $subject, $message, $headers);
 }
 			$result = "Your e-mail address has been changed to ".$mail1."";
 			} else {

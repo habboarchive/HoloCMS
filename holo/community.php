@@ -23,22 +23,29 @@ include('templates/community/header.php');
 
 ?>
 
-
 <div id="container">
 	<div id="content" style="position: relative" class="clearfix">
     <div id="column1" class="column">
-				<div class="habblet-container ">
+			     		
+				<div class="habblet-container ">		
 						<div class="cbb clearfix green ">
+
 <div class="box-tabs-container clearfix">
-    <h2>Popular Rooms</h2>
+    <h2>Rooms</h2>
     <ul class="box-tabs">
+        <li id="tab-0-0-1"><a href="#">Top Rated</a><span class="tab-spacer"></span></li>
+        <li id="tab-0-0-2" class="selected"><a href="#">Recommended Rooms</a><span class="tab-spacer"></span></li>
     </ul>
 </div>
-    <div id="tab-0-2-content" >
+    <div id="tab-0-0-1-content"  style="display: none">
 
-<div id="rooms-habblet-list-container-h105" class="recommendedrooms-lite-habblet-list-container">
+    		<div class="progressbar"><img src="./web-gallery/images/progress_bubbles.gif" alt="" width="29" height="6" /></div>
+    		<a href="./habblet/proxy.php?hid=h120" class="tab-ajax"></a>
+    </div>
+    <div id="tab-0-0-2-content" >
+
+<div id="rooms-habblet-list-container-h119" class="recommendedrooms-lite-habblet-list-container">
         <ul class="habblet-list">
-
 <?php
 $i = 0;
 $getem = mysql_query("SELECT * FROM rooms WHERE owner IS NOT NULL ORDER BY visitors_now DESC LIMIT 5") or die(mysql_error());
@@ -69,27 +76,212 @@ while ($row = mysql_fetch_assoc($getem)) {
         } elseif($data[$i] < 1){
             $room_fill = 1;
         }
+		
+		if($row['showname'] == "1"){ $roomname = $row['name']; }else{ $roomname = ""; }
 
         printf("<li class=\"%s\">
     <span class=\"clearfix enter-room-link room-occupancy-%s\" title=\"Go to room\" roomid=\"%s\">
 	    <span class=\"room-enter\">Enter</span>
 	    <span class=\"room-name\">%s</span>
 	    <span class=\"room-description\">%s</span>
-		<span class=\"room-owner\">Visitors Now: <b>%s</b></span>
 		<span class=\"room-owner\">Owner: <a href=\"user_profile.php?name=%s\">%s</a></span>
     </span>
-</li>", $even, $room_fill, $row['id'], HoloText($row['name']), FilterText($row['descr']), $row['visitors_now'], $row['owner'], $row['owner']);
+</li>", $even, $room_fill, $row['id'], HoloText($roomname), FilterText($row['descr']), $row['owner'], $row['owner']);
     }
 }
 ?>
 
         </ul>
-            <div class="clearfix"></div>
+            <div id="room-more-data-h119" style="display: none">
+                <ul class="habblet-list room-more-data">
+
+<?php
+$i = 0;
+$getem = mysql_query("SELECT * FROM rooms WHERE owner IS NOT NULL ORDER BY visitors_now DESC LIMIT 15 OFFSET 5") or die(mysql_error());
+
+while ($row = mysql_fetch_assoc($getem)) {
+    if($row['owner'] !== ""){ // Public Rooms (and possibly bugged rooms) have no owner, thus do not display them
+        $i++;
+
+        if(IsEven($i)){
+            $even = "even";
+        } else {
+            $even = "odd";
+        }
+
+        // Calculate percentage
+        if($row['visitors_now'] == 0){ $row['visitors_now'] = 1; }
+        $data[$i] = ($row['visitors_now'] / $row['visitors_max']) * 100;
+
+        // Base room icon based on this - percantage levels may not be habbolike
+        if($data[$i] == 99 || $data[$i] > 99){
+            $room_fill = 5;
+        } elseif($data[$i] > 65){
+            $room_fill = 4;
+        } elseif($data[$i] > 32){
+            $room_fill = 3;
+        } elseif($data[$i] > 0){
+            $room_fill = 2;
+        } elseif($data[$i] < 1){
+            $room_fill = 1;
+        }
+		
+		if($row['showname'] == "1"){ $roomname = $row['name']; }else{ $roomname = ""; }
+
+        printf("<li class=\"%s\">
+    <span class=\"clearfix enter-room-link room-occupancy-%s\" title=\"Go to room\" roomid=\"%s\">
+	    <span class=\"room-enter\">Enter</span>
+	    <span class=\"room-name\">%s</span>
+	    <span class=\"room-description\">%s</span>
+		<span class=\"room-owner\">Owner: <a href=\"user_profile.php?name=%s\">%s</a></span>
+    </span>
+</li>", $even, $room_fill, $row['id'], HoloText($roomname), FilterText($row['descr']), $row['owner'], $row['owner']);
+    }
+}
+?>
+                </ul>
+            </div>
+            <div class="clearfix">
+                <a href="#" class="room-toggle-more-data" id="room-toggle-more-data-h119">Show more rooms</a>
+            </div>
 </div>
 <script type="text/javascript">
 L10N.put("show.more", "Show more rooms");
 L10N.put("show.less", "Show fewer rooms");
-var roomListHabblet_h105 = new RoomListHabblet("rooms-habblet-list-container-h105", "room-toggle-more-data-h105", "room-more-data-h105");
+var roomListHabblet_h119 = new RoomListHabblet("rooms-habblet-list-container-h119", "room-toggle-more-data-h119", "room-more-data-h119");
+</script>    </div>
+
+					</div>
+				</div>
+				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
+
+			 
+
+			     		
+				<div class="habblet-container ">		
+						<div class="cbb clearfix blue ">
+<div class="box-tabs-container clearfix">
+    <h2>Groups</h2>
+    <ul class="box-tabs">
+        <li id="tab-0-1-1"><a href="#">Hot Groups</a><span class="tab-spacer"></span></li>
+        <li id="tab-0-1-2" class="selected"><a href="#">Recent topics</a><span class="tab-spacer"></span></li>
+    </ul>
+
+</div>
+    <div id="tab-0-1-1-content"  style="display: none">
+    		<div class="progressbar"><img src="./web-gallery/images/progress_bubbles.gif" alt="" width="29" height="6" /></div>
+    		<a href="./habblet/proxy.php?hid=h122" class="tab-ajax"></a>
+    </div>
+    <div id="tab-0-1-2-content" >
+
+<ul class="active-discussions-toplist">
+<?php
+$i = 0;
+$getem = mysql_query("SELECT * FROM cms_forum_threads ORDER BY unix DESC LIMIT 10") or die(mysql_error());
+
+while ($row = mysql_fetch_assoc($getem)) {
+    if($row['owner'] !== ""){ // Public Rooms (and possibly bugged rooms) have no owner, thus do not display them
+        $i++;
+
+        if(IsEven($i)){
+            $even = "even";
+        } else {
+            $even = "odd";
+        }
+		
+		$posts = mysql_evaluate("SELECT COUNT(*) FROM cms_forum_posts WHERE threadid = '".$row['id']."'");
+		$pages = ceil($posts / 10);
+		$pagelink = "<a href=\"./viewthread.php?thread=".$row['id']."\" class=\"topiclist-page-link secondary\">1</a>";
+		if($pages > 4){
+			$pageat = $pages - 2;
+			$pagelink .= "\n...";
+			while($pageat <= $pages){
+				$pagelink .= " <a href=\"./viewthread.php?thread=".$row['id']."&page=".$pageat."\" class=\"topiclist-page-link secondary\">".$pageat."</a>";
+				$pageat++;
+			}
+		}elseif($pages != 1){
+			$pageat = 2;
+			while($pageat <= $pages){
+				$pagelink .= " <a href=\"./viewthread.php?thread=".$row['id']."&page=".$pageat."\" class=\"topiclist-page-link secondary\">".$pageat."</a>";
+				$pageat++;
+			}
+		}
+
+        printf("<li class=\"%s\" >
+		<a href=\"./viewthread.php?thread=%s\" class=\"topic\">
+			<span>%s</span>
+
+		</a>
+		<div class=\"topic-info post-icon\">
+            <span class=\"grey\">(</span>
+                 %s
+             <span class=\"grey\">)</span>
+		 </div>
+	</li>", $even, $row['id'], HoloText($row['title']), $pagelink);
+    }
+}
+?>
+
+</ul>
+<div id="active-discussions-toplist-hidden-h121" style="display: none">
+    <ul class="active-discussions-toplist">
+<?php
+$i = 0;
+$getem = mysql_query("SELECT * FROM cms_forum_threads ORDER BY unix DESC LIMIT 40 OFFSET 10") or die(mysql_error());
+
+while ($row = mysql_fetch_assoc($getem)) {
+    if($row['owner'] !== ""){ // Public Rooms (and possibly bugged rooms) have no owner, thus do not display them
+        $i++;
+
+        if(IsEven($i)){
+            $even = "even";
+        } else {
+            $even = "odd";
+        }
+		
+		$posts = mysql_evaluate("SELECT COUNT(*) FROM cms_forum_posts WHERE threadid = '".$row['id']."'");
+		$pages = ceil($posts / 10);
+		$pagelink = "<a href=\"./viewthread.php?thread=".$row['id']."\" class=\"topiclist-page-link secondary\">1</a>";
+		if($pages > 4){
+			$pageat = $pages - 2;
+			$pagelink .= "\n...";
+			while($pageat <= $pages){
+				$pagelink .= " <a href=\"./viewthread.php?thread=".$row['id']."&page=".$pageat."\" class=\"topiclist-page-link secondary\">".$pageat."</a>";
+				$pageat++;
+			}
+		}elseif($pages != 1){
+			$pageat = 2;
+			while($pageat <= $pages){
+				$pagelink .= " <a href=\"./viewthread.php?thread=".$row['id']."&page=".$pageat."\" class=\"topiclist-page-link secondary\">".$pageat."</a>";
+				$pageat++;
+			}
+		}
+
+        printf("<li class=\"%s\" >
+		<a href=\"./viewthread.php?thread=%s\" class=\"topic\">
+			<span>%s</span>
+
+		</a>
+		<div class=\"topic-info post-icon\">
+            <span class=\"grey\">(</span>
+                 %s
+             <span class=\"grey\">)</span>
+		 </div>
+	</li>", $even, $row['id'], HoloText($row['title']), $pagelink);
+    }
+}
+?>
+
+</ul>
+
+</div>
+<div class="clearfix">
+    <a href="#" class="discussions-toggle-more-data secondary" id="discussions-toggle-more-data-h121">Show more discussions</a>
+</div>
+<script type="text/javascript">
+L10N.put("show.more.discussions", "Show more discussions");
+L10N.put("show.less.discussions", "Show less discussions");
+var discussionMoreDataHelper = new MoreDataHelper("discussions-toggle-more-data-h121", "active-discussions-toplist-hidden-h121","discussions");
 </script>
     </div>
 
@@ -97,10 +289,12 @@ var roomListHabblet_h105 = new RoomListHabblet("rooms-habblet-list-container-h10
 				</div>
 				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
 
+			 
 
-				<div class="habblet-container ">
+			     		
+				<div class="habblet-container ">		
 						<div class="cbb clearfix activehomes ">
-
+	
 							<h2 class="title">Random <?php echo $shortname; ?>s - Click Us!
 							</h2>
 						<div id="homes-habblet-list-container" class="habblet-list-container">
@@ -253,9 +447,9 @@ printf("        <div id=\"active-habbo-data-%s\" class=\"active-habbo-data\">
 				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
 
 				<div class="habblet-container ">
-						<div class="cbb clearfix red ">
+						<div class="cbb clearfix green">
 
-							<h2 class="title">Users like..
+							<h2 class="title">Tags
 							</h2>
 						<div class="habblet box-content">
 <?php include('tagcloud.php'); ?>

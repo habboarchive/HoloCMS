@@ -110,6 +110,7 @@ $tag_question = $randomq[$chosen];
 		<li class="club">
                 	<a href="club.php"><?php if( !IsHCMember($my_id) ){ echo "Join " . $shortname . " club &raquo;</a>"; } else { echo HCDaysLeft($my_id) . " </a>HC days"; }?>
 		</li>
+
 	</ul>
 
     <div id="habbo-feed">

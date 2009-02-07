@@ -82,10 +82,11 @@ document.observe("dom:loaded", function() { initView(55918, 1478728); });
 <link rel="stylesheet" href="./web-gallery/v2/styles/personal.css" type="text/css" />
 
 <link rel="stylesheet" href="./web-gallery/v2/styles/group.css" type="text/css" />
-<script src="web-gallery/static/js/group.js" type="text/javascript"></script>
+<script src="./web-gallery/static/js/group.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="./web-gallery/v2/styles/rooms.css" type="text/css" />
-	<script src="web-gallery/static/js/rooms.js" type="text/javascript"></script>
+<script src="./web-gallery/static/js/rooms.js" type="text/javascript"></script>
+<script src="./web-gallery/static/js/moredata.js" type="text/javascript"></script>
 <?php } ?>
 
 <?php if($pageid == "1" || $pageid == "7"){ ?>

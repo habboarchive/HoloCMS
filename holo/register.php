@@ -283,7 +283,7 @@ Please do no reply to this email.  If you need assistance, visit <a href="'.$pat
 
 </body>
 </html>';
-mail($to, $subject, $message, $headers);
+@mail($to, $subject, $message, $headers);
 }
 		
 		// Referral
@@ -291,8 +291,10 @@ mail($to, $subject, $message, $headers);
 			$tempsql = mysql_query("SELECT * FROM users WHERE id = '".$referral."' LIMIT 1");
 			if(mysql_num_rows($tempsql) > 0){
 				$referrow = mysql_fetch_assoc($tempsql);
-				mysql_query("UPDATE users SET credits = credits + ".$reward);
-				mysql_query("INSERT INTO messenger_friendships (userid,friendid) VALUES ('".$referrow['id']."','".$userid."')");
+				$referid = $referrow['id'];
+				mysql_query("UPDATE users SET credits = credits + ".$reward." WHERE id = '".$referid."'");
+				mysql_query("INSERT INTO cms_transactions (userid,date,amount,descr) VALUES ('".$referid."','".$date_full."','".$reward."','Referring a user.')") or die(mysql_error());
+				mysql_query("INSERT INTO messenger_friendships (userid,friendid) VALUES ('".$userid."','".$referid."')");
 				$location = "security_check.php?welcome=true&referral=".$referral;
 			}else{
 				$location = "security_check.php?welcome=true";

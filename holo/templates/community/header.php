@@ -114,7 +114,7 @@ $body_id = "home";
         <li class=" "><a href="community.php">Community</a><span></span></li>
         <?php } ?>
 
-        <?php if($pageid == 6 || $pageid > 5  && $pageid < 8){ ?>
+        <?php if($pageid == 6 || $pageid > 5  && $pageid < 8 || $pageid == "collectables"){ ?>
         <li class="selected"><strong>Credits</strong><span></span></li>
         <?php } else { ?>
         <li class=" "><a href="credits.php">Credits</a><span></span></li>
