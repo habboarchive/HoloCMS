@@ -110,7 +110,7 @@ if($tab == "1"){
 		$email_check = preg_match("/^[a-z0-9_\.-]+@([a-z0-9]+([\-]+[a-z0-9]+)*\.)+[a-z]{2,7}$/i", $mail1);
 			if($email_check == "1"){
 			if($_POST['directemail'] == "on"){ $newsletter = "1"; }else{ $newsletter = "0"; }
-			mysql_query("UPDATE users SET email = '".$mail1."', newsletter = '".$newsletter."', email_verified = '0' WHERE name = '".$rawname."' and password = '".$rawpass."'") or die(mysql_error());
+			mysql_query("UPDATE users SET email = '".$mail1."', newsletter = '".$newsletter."', email_verified = '-1' WHERE name = '".$rawname."' and password = '".$rawpass."'") or die(mysql_error());
 
 if($email_verify == true){
 $hash = "";
@@ -143,7 +143,9 @@ $headers  = 'From: '.$fromname.' <'.$from.'>' . "\r\n";
 $headers .= 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-Type: multipart/related; ' . "\r\n";
 $headers .= '	boundary="----=_Part_116200_21286957.1233466802029"' . "\r\n";
-$to = $row['email'];
+$to = $mail1;
+$name = $myrow['name'];
+$dob = $myrow['birth'];
 $message = '------=_Part_116200_21286957.1233466802029
 Content-Type: multipart/alternative; 
 	boundary="----=_Part_116201_12539834.1233466802029"
@@ -157,7 +159,7 @@ Content-Transfer-Encoding: 7bit
 Welcome to '.$shortname.', '.$name.'!
 
 Please activate your account by clicking here:
-'.$path.'email.php?key='.$hash.'&verify=1
+'.$path.'email.php?key='.$hash.'
 
 Here are your user details:
 '.$shortname.' name: '.$name.'
@@ -193,7 +195,7 @@ a { color: #fc6204; }
 <h1 style="font-size: 16px">Welcome to '.$shortname.', '.$name.'!</h1>
 
 <p>
-Please activate your account by <a href="'.$path.'email.php?key='.$hash.'&verify=1">clicking here</a>.
+Please activate your account by <a href="'.$path.'email.php?key='.$hash.'">clicking here</a>.
 </p>
 
 <p>

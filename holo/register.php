@@ -187,7 +187,7 @@ $hash = sha1($hash);
 $num = $key;
 mysql_query("INSERT INTO cms_verify (id,email,key_hash) VALUES ('".$userid."','".$email."','".$hash."')");
 
-if($email_verify_reward != "0"){ $reward_text = "By verifying your email, you will earn a reward of ".$email_verify_reward." credits."; }else{ $reward_text = ""; }
+if($email_verify_reward != "0"){ $reward_text = "By verifying your email, you will earn a reward of ".$email_verify_reward." pixels to spend in the Obbah Badge Shop and Obbah Ranks Shop."; }else{ $reward_text = ""; }
 $subject = "Welcome to ".$shortname;
 $from = HoloText(getContent('newsletter-3from'), true);
 $fromname = HoloText(getContent('newsletter-4fromname'), true);
@@ -197,7 +197,7 @@ $headers  = 'From: '.$fromname.' <'.$from.'>' . "\r\n";
 $headers .= 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-Type: multipart/related; ' . "\r\n";
 $headers .= '	boundary="----=_Part_116200_21286957.1233466802029"' . "\r\n";
-$to = $row['email'];
+$to = $email;
 $message = '------=_Part_116200_21286957.1233466802029
 Content-Type: multipart/alternative; 
 	boundary="----=_Part_116201_12539834.1233466802029"

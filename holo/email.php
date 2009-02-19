@@ -13,11 +13,13 @@ include('core.php');
 if(isset($_GET['key'])){
 	$key = FilterText($_GET['key']);
 	$keysql = mysql_query("SELECT * FROM cms_verify WHERE key_hash = '".$key."' LIMIT 1");
-	if(isset($_GET['verify'])){ $reward = false; }else{ $reward = true;}
 	if(mysql_num_rows($keysql) > 0){
 		$keyrow = mysql_fetch_assoc($keysql);
+		$email_verify_status = mysql_fetch_assoc(mysql_query("SELECT email_verified FROM users WHERE id = '".$keyrow['id']."' LIMIT 1"));
+		if($email_verify_status['email_verified'] == "-1"){ $reward = false; }else{ $reward = true; }
 		mysql_query("UPDATE users SET email_verified = '1', email = '".$keyrow['email']."' WHERE id = '".$keyrow['id']."' LIMIT 1");
 		if($reward == true){ mysql_query("UPDATE users SET credits = credits + ".$email_verify_reward." WHERE id = '".$keyrow['id']."' LIMIT 1"); }
+		if($reward == true){ mysql_query("INSERT INTO cms_transactions (userid,date,amount,descr) VALUES ('".$keyrow['id']."','".$date_full."','".$email_verify_reward."','Verifying your email address')") or die(mysql_error()); }
 		mysql_query("DELETE FROM cms_verify WHERE key_hash = '".$key."' LIMIT 1");
 		$sucess = "1";
 	}else{
@@ -31,7 +33,7 @@ if(isset($_GET['remove'])){
 	$keysql = mysql_query("SELECT * FROM cms_verify WHERE key_hash = '".$key."' LIMIT 1");
 	if(mysql_num_rows($keysql) > 0){
 		$keyrow = mysql_fetch_assoc($keysql);
-		mysql_query("UPDATE users SET email = '', email_verified = '0', newsletter = '0' WHERE id = '".$keyrow['id']."' LIMIT 1");
+		mysql_query("UPDATE users SET email = '', email_verified = '-1', newsletter = '0' WHERE id = '".$keyrow['id']."' LIMIT 1");
 		mysql_query("DELETE FROM cms_verify WHERE key_hash = '".$key."' LIMIT 1");
 		$sucess = "2";
 	}else{
