@@ -17,7 +17,7 @@ if (!defined("IN_HOLOCMS")) { header("Location: ../../index.php"); exit; }
 				<div class="habblet-container " id="create-habbo">
 
 						<div id="create-habbo-flash">
-	<div id="create-habbo-nonflash">
+	<div id="create-habbo-nonflash" style="background-image: url(./web-gallery/v2/images/landing/landing_group.png)">
         <div id="landing-register-text"><a href="register.php"><span>Join now, it's free >></span></a></div>
         <div id="landing-promotional-text"><span><?php echo $shortname; ?> is a virtual world where you can meet and make friends.</span></div>
     </div>

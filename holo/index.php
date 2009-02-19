@@ -114,7 +114,6 @@ if(!session_is_registered(username)){
 	include('templates/login/column1.php');
 
 ?>
-
 <div id="column2" class="column">
 				<div class="habblet-container ">
 
@@ -215,7 +214,18 @@ if(!session_is_registered(username)){
     <span class="tags-habbos-like"><?php echo $shortname; ?>s like</span>
 <?php include('tagcloud.php'); ?>
 </div>
-
+	
+						
+					
+				</div>
+				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
+			 
+ 
+<!--[if lt IE 7]>
+<script type="text/javascript">
+Pngfix.doPngImageFix();
+</script>
+<![endif]-->
 <?php
 
 include('templates/login/footer.php');
