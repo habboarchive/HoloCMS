@@ -18,6 +18,10 @@ echo "<h1>HoloCMS Version</h1><hr />".$sitename." is running HoloCMS v".$holocms
 exit;
 }
 
+if(isset($_GET['registerCancel']) && $_GET['registerCancel'] == "true"){
+session_unset();
+}
+
 if(!session_is_registered(username)){
 
 	if(isset($_POST['username']) && isset($_POST['password'])){

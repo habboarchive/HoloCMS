@@ -93,8 +93,8 @@ window.name = "habboMain";
         RegistrationForm.banHours = 24;
         HabboView.add(function() {
             Rounder.addCorners($("register-avatar-editor-title"), 4, 4, "rounded-container");
-            RegistrationForm.init(true);
-            $$('#header ul.stats').each(Element.hide);
+            RegistrationForm.init(<?php if($error['captcha'] != "The code that you filled in isn't right, please try again."){ echo "true"; }else{ echo "false"; } ?>);
+            <?php if($refer == true){ ?>$$('#header ul.stats').each(Element.hide);<?php } ?>
         });
 
         HabboView.add(function() {

@@ -10,7 +10,8 @@
 |+===================================================*/
 
 // HoloCMS Versioning
-$holocms['version'] = "3.1.1.59";
+$holocms['revision'] = "60";
+$holocms['version'] = "3.1.1.".$holocms['revision'];
 $holocms['title'] = "ATLANTA";
 $holocms['stable'] = "UNSTABLE";
 $holocms['date'] = "Feburuary 19, 2009 3:52PM CST";

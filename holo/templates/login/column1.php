@@ -33,19 +33,19 @@ if (!defined("IN_HOLOCMS")) { header("Location: ../../index.php"); exit; }
 </div>
 
 <script type="text/javascript" language="JavaScript">
-var swfobj = new SWFObject("./web-gallery/flash/intro/habbos.swf", "ch", "396", "378", "8");
+var swfobj = new SWFObject("<?php echo $path; ?>/web-gallery/flash/intro/habbos.swf", "ch", "396", "378", "8");
 swfobj.addParam("AllowScriptAccess", "always");
 swfobj.addParam("wmode", "transparent");
-swfobj.addVariable("base_url", "./web-gallery/flash/intro");
-swfobj.addVariable("habbos_url", "./xml/promo_habbos.php");
+swfobj.addVariable("base_url", "<?php echo $path; ?>/web-gallery/flash/intro");
+swfobj.addVariable("habbos_url", "<?php echo $path; ?>/xml/promo_habbos.php");
 swfobj.addVariable("create_button_text", "<?php echo $locale['register_today']; ?>");
 swfobj.addVariable("in_hotel_text", "Online now!");
 swfobj.addVariable("slogan", "<?php echo $locale['slogan']; ?>");
 swfobj.addVariable("video_start", "<?php echo $locale['play']; ?>");
 swfobj.addVariable("video_stop", "<?php echo $locale['stop']; ?>");
 swfobj.addVariable("button_link", "register.php");
-swfobj.addVariable("localization_url", "./xml/landing_intro.xml");
-swfobj.addVariable("video_link", "http://www.habbo.co.uk/flash_22_12/intro/Habbo_intro.swf");
+swfobj.addVariable("localization_url", "<?php echo $path; ?>/xml/landing_intro.xml");
+swfobj.addVariable("video_link", "<?php echo $path; ?>/web-gallery/flash/intro/Habbo_intro.swf");
 swfobj.write("create-habbo-flash");
 HabboView.add(function() {
 	if (deconcept.SWFObjectUtil.getPlayerVersion()["major"] >= 8) {

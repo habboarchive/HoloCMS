@@ -26,6 +26,7 @@ if(isset($_GET['referral'])){
 		$refer_figure = $referrow['figure'];
 	}
 }
+
 if(isset($_POST['bean_avatarName'])){
 // $refer = $_SERVER['HTTP_REFERER']; $pos = strrpos($refer, "register.php"); if($pos === false) { exit; }
 
@@ -53,6 +54,46 @@ if(isset($_POST['referral'])){
 		$refer_figure = $referrow['figure'];
 	}
 }
+$_SESSION['bean_avatarName'] = $_POST['bean_avatarName'];
+$_SESSION['password'] = $_POST['password'];
+$_SESSION['retypedPassword'] = $_POST['retypedPassword'];
+$_SESSION['bean_day'] = $_POST['bean_day'];
+$_SESSION['bean_month'] = $_POST['bean_month'];
+$_SESSION['bean_year'] = $_POST['bean_year'];
+$_SESSION['bean_email'] = $_POST['bean_email'];
+$_SESSION['bean_retypedEmail'] = $_POST['bean_retypedEmail'];
+$_SESSION['bean_termsOfServiceSelection'] = $_POST['bean_termsOfServiceSelection'];
+$_SESSION['bean_figure'] = $_POST['bean_figure'];
+$_SESSION['bean_gender'] = $_POST['bean_gender'];
+$_SESSION['bean_marketing'] = $_POST['bean_marketing'];
+$_SESSION['referral'] = $_POST['referral'];
+}elseif(isset($_SESSION['bean_avatarName'])){
+$name = FilterText($_SESSION['bean_avatarName']);
+$password = FilterText($_SESSION['password']);
+$retypedpassword = FilterText($_SESSION['retypedPassword']);
+$day = FilterText($_SESSION['bean_day']);
+$month = FilterText($_SESSION['bean_month']);
+$year = FilterText($_SESSION['bean_year']);
+$email = FilterText($_SESSION['bean_email']);
+$retypedemail = FilterText($_SESSION['bean_retypedEmail']);
+$accept_tos = $_SESSION['bean_termsOfServiceSelection'];
+$figure = FilterText($_SESSION['bean_figure']);
+$gender = FilterText($_SESSION['bean_gender']);
+$newsletter = FilterText($_SESSION['bean_marketing']);
+$referid = FilterText($_SESSION['referral']);
+if(isset($_SESSION['referral'])){
+	$referral = FilterText($_SESSION['referral']);
+	$tempsql = mysql_query("SELECT * FROM users WHERE id = '".$referral."' LIMIT 1");
+	if(mysql_num_rows($tempsql) > 0){
+		$refer = true;
+		$referrow = mysql_fetch_assoc($tempsql);
+		$refer_name = $referrow['name'];
+		$refer_figure = $referrow['figure'];
+	}
+}
+}
+
+if(isset($_POST['bean_avatarName']) || isset($_SESSION['bean_avatarName'])){
 
 // Start validating the stuff the user has submitted
 $filter = preg_replace("/[^a-z\d\-=\?!@:\.]/i", "", $name);
@@ -336,47 +377,10 @@ include('templates/login/register_header.php');
 	<input type="hidden" name="bean.gender" id="register-gender" value="<?php echo $gender; ?>" />
 	<input type="hidden" name="bean.editorState" id="register-editor-state" value="" />
 	<?php if($refer == true){ ?><input type="hidden" name="referral" id="register-referrer" value="<?php echo $referral; ?>" /><?php } ?>
-
-        <div id="register-column-left">
-            <div id="register-avatar-editor-title">
-                <h2 class="heading"><span class="numbering white">1.</span>Create Your Avatar</h2>
-            </div>
-
-            <div id="avatar-error-box">
-            </div>
-            <div id="register-avatar-editor">
-                <p><b>You don't Flash installed. This is why we can only show you a selection of pre-generated avatars. If you install Flash, you'll be able to choose from the hundreds of different options!</b></p>
-                <h3>Girls</h3>
-                <div class="register-avatars clearfix">
-	                <div class="register-avatar" style="background-image: url(http://www.habbo.co.uk/habbo-imaging/avatar/hr-505-39.hd-626-1.ch-691-83.lg-705-67.sh-735-91.ha-1001-.ea-1401-84,s-0.g-1.d-4.h-4.a-0,b72abee33635a00982228c1f9215ae9a.gif)">
-	                    <input type="radio" name="randomFigure" value="F-hr-505-39.hd-626-1.ch-691-83.lg-705-67.sh-735-91.ha-1001-.ea-1401-84" checked="checked" />
-	                </div>
-	                <div class="register-avatar" style="background-image: url(http://www.habbo.co.uk/habbo-imaging/avatar/hr-530-44.hd-615-10.ch-630-89.lg-705-67.sh-740-62.fa-1206-91.wa-2001-,s-0.g-1.d-4.h-4.a-0,161dda9150b648cd14ff1aa9d9dcc5ad.gif)">
-	                    <input type="radio" name="randomFigure" value="F-hr-530-44.hd-615-10.ch-630-89.lg-705-67.sh-740-62.fa-1206-91.wa-2001-" />
-	                </div>
-	                <div class="register-avatar" style="background-image: url(http://www.habbo.co.uk/habbo-imaging/avatar/hr-681-40.hd-629-1.ch-675-86.lg-700-78.sh-725-82,s-0.g-1.d-4.h-4.a-0,1aba810a364a5410115f463f6963f7e1.gif)">
-	                    <input type="radio" name="randomFigure" value="F-hr-681-40.hd-629-1.ch-675-86.lg-700-78.sh-725-82" />
-	                </div>
-                </div>
-                <h3>Boys</h3>
-                <div class="register-avatars clearfix">
-	                <div class="register-avatar" style="background-image: url(http://www.habbo.co.uk/habbo-imaging/avatar/hr-105-34.hd-205-6.ch-878-78.lg-281-76.sh-906-67,s-0.g-1.d-4.h-4.a-0,469e46ac01e81f244eb50b4ca7a43520.gif)">
-	                    <input type="radio" name="randomFigure" value="M-hr-105-34.hd-205-6.ch-878-78.lg-281-76.sh-906-67" />
-	                </div>
-	                <div class="register-avatar" style="background-image: url(http://www.habbo.co.uk/habbo-imaging/avatar/hr-170-44.hd-207-9.ch-210-84.lg-285-75.sh-290-67,s-0.g-1.d-4.h-4.a-0,430994a364251faa1302b37ca50f6ea9.gif)">
-	                    <input type="radio" name="randomFigure" value="M-hr-170-44.hd-207-9.ch-210-84.lg-285-75.sh-290-67" />
-	                </div>
-	                <div class="register-avatar" style="background-image: url(http://www.habbo.co.uk/habbo-imaging/avatar/hr-145-33.hd-180-10.ch-250-91.lg-270-64.sh-290-75.ea-1406-,s-0.g-1.d-4.h-4.a-0,c52a0478283776654483107d0ca2a2fd.gif)">
-	                    <input type="radio" name="randomFigure" value="M-hr-145-33.hd-180-10.ch-250-91.lg-270-64.sh-290-75.ea-1406-" />
-	                </div>
-	            </div>
-                <p><input type="submit" name="refresh" value="Show more <?php echo $shortname; ?>s" id="register-avatars-refresh" /></p>
-            </div>
-        </div>
 <?php
 if($error['captcha'] != "The code that you filled in isn't right, please try again."){
 ?>
-        <div id="register-column-right">
+        <div id="register-column-left" >
             <div id="register-section-2">
                 <div class="rounded rounded-blue">
                     <h2 class="heading"><span class="numbering white">2.</span>CHOOSE YOUR NAME</h2>
@@ -514,26 +518,11 @@ if($error['captcha'] != "The code that you filled in isn't right, please try aga
                     </div>
 	            </div>
 	        </div>
-	    </div>
-        <div id="register-buttons">
-            <input type="submit" value="Continue" class="continue" id="register-button-continue" />
-            <a href="index.php?registerCancel=true" class="cancel">Exit registration</a>
-        </div>
-    </form>			
-				</div>
-				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
-			 
+		</div>
+	</div>
 </div>
 <?php }else{ ?>
-<input type="hidden" name="bean.avatarName" id="register-name" value="<?php echo $name; ?>" />
-<input type="hidden" name="password" id="register-password" value="<?php echo $password; ?>" />
-<input type="hidden" name="retypedPassword" id="register-password2" value="<?php echo $retypedpassword; ?>" />
-<input type="hidden" name="bean.day" id="bean_day" value="<?php echo $day; ?>" />
-<input type="hidden" name="bean.month" id="bean_month" value="<?php echo $month; ?>" />
-<input type="hidden" name="bean.year" id="bean_year" value="<?php echo $year; ?>" />
-<input type="hidden" name="bean.email" id="register-email" value="<?php echo $email; ?>" />
-<input type="hidden" name="bean.retypedEmail" id="register-email2" value="<?php echo $retypedemail; ?>" />
-        <div id="register-column-right" >
+        <div id="register-column-left" >
             <div id="register-section-2">
                 <div class="rounded rounded-blue">
                     <h2 class="heading"><span class="numbering white">2.</span>CHOOSE YOUR NAME</h2>
@@ -599,8 +588,8 @@ if($error['captcha'] != "The code that you filled in isn't right, please try aga
                                     <p class="last">
                                         <input type="checkbox" name="bean.termsOfServiceSelection" id="register-terms-check" value="true"  checked="checked"/>
                                         <label for="register-terms-check">By clicking on continue, I confirm that I have read and accept the Terms of Use and Privacy Policy.</label>
-                                    </p>
 
+                                    </p>
                                 </div>
                             </div>
                         </fieldset>
@@ -609,18 +598,62 @@ if($error['captcha'] != "The code that you filled in isn't right, please try aga
 	            <div id="form-validation-error-box" style="display:none">
                     <div class="register-error">
                         <div class="rounded rounded-red">
+
                             Sorry, registration failed. Please check the information you gave in the red boxes.
                         </div>
-
                     </div>
 	            </div>
 	        </div>
-	    </div>
-        <div id="register-buttons">
-            <input type="submit" value="Continue" class="continue" id="register-button-continue" />
-            <a href="https://www.habbo.com/register/cancel" class="cancel">Exit registration</a>
-        </div>
 
+
+        </div>
+<?php } ?>
+        <div id="register-column-right">
+
+            <div id="register-avatar-editor-title">
+
+                <h2 class="heading"><span class="numbering white">3.</span>Create Your <?php echo $shortname; ?></h2>
+            </div>
+
+            <div id="avatar-error-box">
+            </div>
+            <div id="register-avatar-editor">
+                <p><b>You don't have Flash installed. This is why we can only show you a selection of pre-generated Habbos. If you install Flash, you'll be able to choose from the hundreds of different options!</b></p>
+                <h3>Girls</h3>
+
+                <div class="register-avatars clearfix">
+	                <div class="register-avatar" style="background-image: url(http://www.habbo.co.uk/habbo-imaging/avatar/hr-505-40.hd-625-5.ch-665-66.lg-715-77.sh-740-88.ha-1020-.he-1605-72.ea-1404-69.wa-2009-72,s-0.g-1.d-4.h-4.a-0,b1c6d189e50bdb212298d8abb4fecd6f.gif)">
+	                    <input type="radio" name="randomFigure" value="F-hr-505-40.hd-625-5.ch-665-66.lg-715-77.sh-740-88.ha-1020-.he-1605-72.ea-1404-69.wa-2009-72" checked="checked" />
+	                </div>
+	                <div class="register-avatar" style="background-image: url(http://www.habbo.co.uk/habbo-imaging/avatar/hd-600-3.ch-685-72.lg-715-62.sh-730-72.hr-545-45,s-0.g-1.d-4.h-4.a-0,a84223ce0944cfa29266ac6479f3dc28.gif)">
+	                    <input type="radio" name="randomFigure" value="F-hd-600-3.ch-685-72.lg-715-62.sh-730-72.hr-545-45" />
+	                </div>
+	                <div class="register-avatar" style="background-image: url(http://www.habbo.co.uk/habbo-imaging/avatar/hd-600-1.ch-685-72.lg-715-72.sh-907-68.hr-890-39.ca-1818-.he-1610-,s-0.g-1.d-4.h-4.a-0,14edf197f523577dfa41db90af0ad9ca.gif)">
+	                    <input type="radio" name="randomFigure" value="F-hd-600-1.ch-685-72.lg-715-72.sh-907-68.hr-890-39.ca-1818-.he-1610-" />
+
+	                </div>
+                </div>
+                <h3>Boys</h3>
+                <div class="register-avatars clearfix">
+	                <div class="register-avatar" style="background-image: url(http://www.habbo.co.uk/habbo-imaging/avatar/hd-180-2.ch-235-62.lg-281-62.sh-290-62.hr-165-34.ca-1802-,s-0.g-1.d-4.h-4.a-0,9f489bd657bd52e81e274526b9b91c93.gif)">
+	                    <input type="radio" name="randomFigure" value="M-hd-180-2.ch-235-62.lg-281-62.sh-290-62.hr-165-34.ca-1802-" />
+	                </div>
+	                <div class="register-avatar" style="background-image: url(http://www.habbo.co.uk/habbo-imaging/avatar/hr-893-48.hd-205-3.ch-878-70.lg-280-78.sh-906-64.ea-1403-78,s-0.g-1.d-4.h-4.a-0,eb135383bd46a25b7464d07f27604df8.gif)">
+
+	                    <input type="radio" name="randomFigure" value="M-hr-893-48.hd-205-3.ch-878-70.lg-280-78.sh-906-64.ea-1403-78" />
+	                </div>
+	                <div class="register-avatar" style="background-image: url(http://www.habbo.co.uk/habbo-imaging/avatar/hr-889-36.hd-207-5.ch-210-62.lg-280-62.sh-300-62.wa-2009-62.ea-1404-66.ha-1010-62.fa-1201-.ca-1805-62.he-1608-,s-0.g-1.d-4.h-4.a-0,5d541e21a3bc762448e1e21955f59f17.gif)">
+	                    <input type="radio" name="randomFigure" value="M-hr-889-36.hd-207-5.ch-210-62.lg-280-62.sh-300-62.wa-2009-62.ea-1404-66.ha-1010-62.fa-1201-.ca-1805-62.he-1608-" />
+	                </div>
+	            </div>
+                <p>If you dislike the <?php echo $shortname; ?> above, you may change it later via the account settings page</p>
+            </div>
+
+            <div id="register-buttons">
+                <input type="submit" value="Continue" class="continue" id="register-button-continue" />
+                <a href="./index.php?registerCancel=true" class="cancel">Exit registration</a>
+            </div>
+	    </div>
     </form>
 	
 						
@@ -628,11 +661,10 @@ if($error['captcha'] != "The code that you filled in isn't right, please try aga
 					
 				</div>
 				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
+
 			 
 
 </div>
-
-<?php } ?>
 <?php
 
 include('templates/login/footer.php');

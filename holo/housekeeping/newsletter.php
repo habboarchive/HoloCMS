@@ -21,9 +21,10 @@ if($do == "publish" && isset($_POST['body'])){
 
 	$num = $key;
 
-	$subject = FilterText($_POST['subject'], true);
+	$subject = stripslashes($_POST['subject']);
 	$where = $_POST['where'];
 	$body = $_POST['body'];
+	$where = stripslashes($_POST['where']);
 	$header = HoloText(getContent('newsletter-1header'), true);
 	$footer = HoloText(getContent('newsletter-2footer'), true);
 	$from = HoloText(getContent('newsletter-3from'), true);
@@ -35,6 +36,7 @@ if($do == "publish" && isset($_POST['body'])){
 	$headers .= 'Content-Type: multipart/related; ' . "\r\n";
 	$headers .= '	boundary="----=_Part_1218195_2242574.1223844236223"' . "\r\n";
 	$headers .= 'Precedence: Bulk' . "\r\n";
+	$headers = stripslashes($headers);
 	if($where == ""){ $where = "newsletter = '1'"; }
 	$sql = mysql_query("SELECT * FROM users WHERE ".$where);
 	$i = 0;
@@ -98,7 +100,7 @@ $template = '<h1 style="font-size: 13px; font-family: verdana,times,times new ro
 
 <tr>
 <td class='tablerow1'  width='40%'  valign='middle'><b>WHERE clause</b><div class='graytext'>For advanced users, the WHERE clause of the MySQL query for getting users. DO NOT EDIT UNLESS YOU KNOW WHAT YOU ARE DOING!</div></td>
-<td class='tablerow2'  width='60%'  valign='middle'><input type='text' name='where' value="<?php if($_POST['where'] == ""){ echo "newsletter = '1' AND email_verified = '1'"; }else{ echo $_POST['where']; } ?>" size='30' class='textinput'></td>
+<td class='tablerow2'  width='60%'  valign='middle'><input type='text' name='where' value="<?php if($_POST['where'] == ""){ echo "newsletter = '1' AND email_verified = '1'"; }else{ echo $where; } ?>" size='30' class='textinput'></td>
 </tr>
 
 <tr>

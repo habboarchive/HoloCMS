@@ -172,7 +172,7 @@ See you in '.$shortname.' soon!
 '.$path.'
 
 If you did not register to '.$sitename.', please click the following link to remove your information:
-'.$path.'email.php?remove='.$hash.'&verify=1
+'.$path.'email.php?remove='.$hash.'
 
 Replies to this email will not be processed. If you need assistance, please visit our support pages:
 '.$path.'help.php
@@ -218,7 +218,7 @@ Keep this information safe. You will  need to know your username and birthday to
 '.$path.'</p>
 
 <p>
-If you did not register at '.$shortname.', please click the following link to <a href="'.$path.'email.php?remove='.$hash.'&verify=1">remove your information</a>.
+If you did not register at '.$shortname.', please click the following link to <a href="'.$path.'email.php?remove='.$hash.'">remove your information</a>.
 </p>
 
 <p>

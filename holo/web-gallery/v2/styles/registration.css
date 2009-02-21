@@ -141,17 +141,17 @@ input.register-text.wide, #register-parentEmail-bubble, #register-captcha-bubble
 	padding-top: 7px;
 }
 
-#register-column-left {
-	float: left;
+#register-column-right {
+	float: right;
 	width: 428px;
 }
 
-#register-column-right {
-	float: right;
+#register-column-left {
+	float: left;
     width: 269px;
 }
 
-#register-column-right.wide {
+#register-column-left.wide {
     width: 305px;
 }
 
